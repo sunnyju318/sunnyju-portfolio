@@ -1,0 +1,65 @@
+@use './variables.scss' as *;
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin & padding */
+body, h1, h2, h3, h4, h5, h6,
+p, figure, blockquote,
+ul, ol, li,
+textarea {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Form elements */
+button, input, select, textarea {
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  outline: none;
+}
+
+/* Reset buttons */
+button {
+  cursor: pointer;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Images and media */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Set base line-height and font smoothing */
+body {
+  $line-height-normal: 1.6;
+  -webkit-font-smoothing: antialiased;
+  //폰트를 더 얇고 부드럽게 해준다
+  -moz-osx-font-smoothing: grayscale;
+  //텍스트의 렌더링을 개선해 준다.
+}
+// 디인에서 폰트가 너무 두껍거나 울퉁불퉁하게 보일때 또는 macOS에서 폰트가 두껍게 보이는 현상을 얇게 조정하고 싶을때, 전체적인 텍스트 렌더링을 정돈되게 하고 싶을때 사용하면 된다. 다만 일부 폰트는 가독성이 떨어질수 있으므로 실제로 적용했을때 예쁘게 나오는지 반드시 확인해야 한다.

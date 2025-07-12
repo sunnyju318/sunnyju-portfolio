@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+  </noscript>
+  <!-- @import로 폰트를 가져올경우 렌더링중 폰트 다운로드가 시작되므로 화면이 깜빡이거나 늦게 적용될수 있다. HTML의 head안에 link 방식으로 넣을경우 폰트를 렌더링전에 먼저 다운로드하므로 core web vitals(구글 웹사이트의 사용자 경험 품질을 평가하는 핵심 지표 세트)에 더 유리하다. -->
+    <title>Sunny's Portfolio</title>
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,36 @@
+@use './base/reset.scss';
+@use './base/typography.scss';
+@use './base/variables.scss' as *;
+//as *을 사용하지 않을경우 네임스페이스를 사용해야 해서 모든 베리어블 앞에 variables.을 붙여야 한다. as *을 사용하면 네임스페이스 없이 사용할수 있다.
+
+
+html,
+body {
+  min-height: 100vh;
+  background: linear-gradient(160deg, $bg-gradient-start 30%, $bg-gradient-mid 60%, $bg-gradient-end 150%);
+}
+
+//react에서는 html이나 body에 grid를 적용하는 대신 최상위 div에 적용하면 된다.
+
+.main-layout{
+  min-height: inherit;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  // auto : header와 footer가 컨텐츠 크기만큼 차지함
+  // 1fr : main이 남은 공간을 모두 차지함
+  // grid의 기본동작으로는 자식 요소들을 순서대로 자도 배치한다. 다만 순서를 바꾸고 싶거나 복잡한 레이아웃, 명확성을 위해서 필요하다면 명시적으로 할당해도 된다.
+  grid-template-areas: 
+  "header"
+  "main"
+  "footer";
+
+  header{
+    grid-area: header;
+  }
+  main{
+    grid-area: main;
+  }
+  footer{
+    grid-area: footer;
+  }
+}
