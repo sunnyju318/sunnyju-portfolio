@@ -3,34 +3,65 @@
 @use './base/variables.scss' as *;
 //as *을 사용하지 않을경우 네임스페이스를 사용해야 해서 모든 베리어블 앞에 variables.을 붙여야 한다. as *을 사용하면 네임스페이스 없이 사용할수 있다.
 
-
 html,
 body {
-  min-height: 100vh;
-  background: linear-gradient(160deg, $bg-gradient-start 30%, $bg-gradient-mid 60%, $bg-gradient-end 150%);
+  height: 100%;
+  overflow-x: hidden;
+  // 가로 스크롤 방지
+  background: linear-gradient(170deg, $bg-gradient-start 30%, $bg-gradient-mid 70%, $bg-gradient-end 130%);
 }
 
-//react에서는 html이나 body에 grid를 적용하는 대신 최상위 div에 적용하면 된다.
-
 .main-layout{
-  min-height: inherit;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  // auto : header와 footer가 컨텐츠 크기만큼 차지함
-  // 1fr : main이 남은 공간을 모두 차지함
-  // grid의 기본동작으로는 자식 요소들을 순서대로 자도 배치한다. 다만 순서를 바꾸고 싶거나 복잡한 레이아웃, 명확성을 위해서 필요하다면 명시적으로 할당해도 된다.
-  grid-template-areas: 
-  "header"
-  "main"
-  "footer";
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 150px; // header의 fixed로 인해 가려짐 현상을 해결하기 위한 것
+}
 
-  header{
-    grid-area: header;
+main {
+  flex: 1;
+  /* 
+flex:1 은 
+flex-grow: 1;
+flex-shrink: 1;
+flex-basis: 0;
+의 축약형으로 main이 가능한 공간을 최대한 차지하도록 만들라는 뜻이다. 즉 grid의 auto 1fr auto와 같은 역할을 한다.
+*/
+
+  max-width: 1400px;
+  margin: 0 auto; // 가운데 정렬
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(8, 1fr);
   }
-  main{
-    grid-area: main;
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 0.75rem;
+    gap: 0.75rem;
   }
-  footer{
-    grid-area: footer;
-  }
+}
+
+//스크롤바 커스텀 디자인
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $near-black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $muted-olive;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $scarlet-red;
 }
