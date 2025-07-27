@@ -1,0 +1,10 @@
+@use '../../styles/base/variables.scss' as vars;
+@use '../../styles/base/mixin.scss' as mixins;
+
+.face-wrapper {
+  @include mixins.flex-center;
+}
+
+.face-svg {
+  width: 80%;
+}

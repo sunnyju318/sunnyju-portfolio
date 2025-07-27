@@ -1,0 +1,29 @@
+@use '../../styles/base/variables.scss' as vars;
+
+.menu-navigation-header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  ul {
+    display: flex;
+    gap: 2rem;
+
+    li a {
+      color: vars.$nav-text-desktop;
+      font-weight: vars.$font-weight-medium;
+    }
+  }
+
+  .menu-icons-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: vars.$scarlet-red;
+  }
+}

@@ -1,0 +1,13 @@
+@use '../../../styles/base/variables.scss' as vars;
+@use '../../../styles/base/mixin.scss' as mixins;
+
+// .arrow-wrapper{
+// @include mixins.flex-center;
+// }
+// home에서 주는 display와 충돌하여 제거함
+
+.arrow-icon{
+  fill: vars.$arrow-icon;
+  width: 35px;
+  height: 35px;
+}

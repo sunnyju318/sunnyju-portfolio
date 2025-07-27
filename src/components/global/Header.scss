@@ -1,0 +1,26 @@
+@use '../../styles/base/variables.scss' as vars;
+@use '../../styles/base/mixin.scss' as mixins;
+
+header {
+  width: 100%;
+  position: fixed;
+  top: 0; // fixed 관련 위치명시
+  left: 0; // fixed 관련 위치명시
+  z-index: 100; // 다른 요소들보다 위에 오도록 표시
+  background: rgba(4, 4, 4, 0.6);
+  backdrop-filter: blur(5px);
+
+  .header-content {
+    max-width: 1400px;
+    margin: 0 auto; //가운데 정렬
+    padding: 1rem;
+    @include mixins.flex-between;
+
+    .logo-header {
+      font-size: vars.$font-size-xl;
+      color: vars.$logo-color-header;
+      font-family: vars.$logo-font-family;
+      font-weight: vars.$logo-font-weight;
+    }
+  }
+}

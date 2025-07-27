@@ -1,0 +1,61 @@
+@use './base/reset.scss';
+@use './base/typography.scss';
+@use './base/variables.scss' as vars;
+@use '../styles//base/mixin.scss' as mixins;
+//as *을 사용하지 않을경우 네임스페이스를 사용해야 해서 모든 베리어블 앞에 variables.을 붙여야 한다. as *을 사용하면 네임스페이스 없이 사용할수 있다.
+
+html,
+body {
+  min-height: 100%;
+   // 그라데이션 배경을 컨텐츠 사이즈에 맞게 늘리기 위해 height:100%에서 min-height:100%로 바꿈, 스크롤바가 헤더 뒤로 가는 현상도 함께 해결됨
+  overflow-x: hidden;
+  // 가로 스크롤 방지
+  background: linear-gradient(210deg, vars.$bg-gradient-start 20%, vars.$bg-gradient-mid 70%, vars.$bg-gradient-end 110%);
+
+}
+
+.main-layout{
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* 현재로서는 flex를 지워도 달라지는게 없는것처럼 보이지만
+  이는 헤더, 메인, 푸터가 순서대로 DOM에 들어있고 각각 block 요소이기
+  때문에 기본적으로 세로로 쌓이게 되는 것이다. 하지만 이후 다른 작업들을
+  위해 flex기반을 세워두는게 안전하고 구조적으로 더 유연하다.*/
+  padding-top: 150px; // header의 fixed로 인해 가려짐 현상을 해결하기 위한 것
+  gap: 30px;
+  
+}
+
+main {
+  min-height: 80vh;
+  flex: 1;
+  /* 
+flex:1 은 
+flex-grow: 1;
+flex-shrink: 1;
+flex-basis: 0;
+의 축약형으로 main이 가능한 공간을 최대한 차지하도록 만들라는 뜻이다. 즉 grid의 auto 1fr auto와 같은 역할을 한다.
+*/
+}
+
+
+
+//스크롤바 커스텀 디자인
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: vars.$near-black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: vars.$muted-olive;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: vars.$scarlet-red;
+}
