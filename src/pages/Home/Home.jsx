@@ -1,17 +1,94 @@
+import "./Home.scss";
+import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow";
+import FaceIllustration from "../../components/home/FaceIllustration";
+import introVideo from '../../assets/video/intro-bumper.mp4';
 
-function Home(){
-  return(
-<div>
-  <p>orem ipsum dolor sit amet, consectetur adipiscing elit. Sed at enim orci. Sed rutrum in orci vel dignissim. Integer tortor ante, commodo et ultrices at, blandit vitae massa. In leo sapien, consectetur quis sagittis sed, sollicitudin eget nisl. Vivamus eros sem, placerat scelerisque dapibus ut, rutrum a orci. Suspendisse est est, fermentum ut libero ut, tristique vehicula eros. Aliquam eget orci eros. Praesent efficitur leo non urna accumsan dapibus. Aliquam at semper elit, in varius velit. Donec vulputate eros vel orci interdum hendrerit. Cras condimentum pretium lectus. Sed sit amet turpis a nisi fringilla elementum. Donec dui nibh, sodales a finibus at, auctor sed orci. Mauris velit lectus, vestibulum ut sapien in, egestas eleifend elit. Phasellus tempus ut est id aliquet. Donec dictum finibus libero a imperdiet.
+function Home() {
+  return (
+    // React Fragment ( <.> </>) : DOM에 실제 요소를 추가하지 않고 여러 요소를 그룹핑할수 있게 해주는 React의 기능이다.
+    // 깨끗한 DOM : 불필요한 wrapper 요소 없음
+    // CSS/Grid 구조유지 : 부모의 레이아웃이 방해받지 않음
+    // 성능 : 더 적은 DOM 노드로 더 빠름
+    <div className="home-wrapper">
+      <div className="hero-text">
+        <h1>Sunny <span className="last-name">Ju</span></h1>
+        <h2>Front-end Developer</h2>
+        <p>Code X Design</p>
+      </div>
 
-Sed porta lacus vitae tristique suscipit. Donec aliquet nunc ante, vel cursus magna fringilla nec. Sed egestas elementum odio vitae rhoncus. Proin sodales, odio et molestie hendrerit, arcu metus efficitur sem, ac facilisis mi nisi in velit. Pellentesque nec velit nibh. Morbi porttitor eros a velit fringilla pharetra ac vitae tellus. Mauris dictum ligula nec erat convallis, in porta ligula malesuada. Sed odio sapien, pharetra eu mauris sit amet, malesuada tincidunt dui. Mauris quis ipsum lobortis, suscipit elit vitae, cursus diam. Curabitur id pellentesque nulla, tempor mattis augue. Nam gravida eget leo quis semper. Etiam eu sem felis. Morbi malesuada dignissim neque eu vehicula. Donec sit amet accumsan neque, ac mattis quam.
+      <div className="arrow-wrapper-top-mobile-only">
+        <AnimatedArrow />
+      </div>
 
-Maecenas viverra maximus feugiat. Donec ex justo, mattis nec ex vitae, sollicitudin dictum dolor. In leo eros, faucibus id velit sit amet, pretium blandit orci. Phasellus id dolor ut erat laoreet mollis non viverra metus. Nam viverra ante neque, nec vulputate arcu efficitur a. Donec consequat finibus diam a porttitor. In posuere felis ipsum, sit amet laoreet diam commodo interdum. Mauris pretium felis ut dolor pulvinar mollis. Aenean erat diam, tincidunt id hendrerit id, facilisis ut odio. Maecenas viverra arcu nec quam accumsan feugiat. Integer fringilla sed metus et pharetra. Maecenas tempor feugiat lorem, sit amet sagittis sapien euismod eu. Vivamus sit amet dictum turpis. Donec laoreet rutrum orci, fringilla accumsan lectus placerat id.
+      {/* 그리드 컬럼 시스템에서 가로 사이즈를 100% 이하로 주었더니 
+      margin: 0 auto;나 플렉스로 가운데 정렬시 이미지 사이즈가 변하는 현상 발생,
+      대안으로 내부 컨테이너를 추가하고 이미지 사이즈와 가운데정렬 코드를 분리함 */}
+      <div className="faceillustration-wrapper">
+        <div className="faceillustration-container">
+          <FaceIllustration />
+        </div>
+      </div>
 
-Proin a tempor ipsum, non gravida libero. Nulla mattis viverra arcu, quis pretium tortor pretium et. Vestibulum mattis, quam eget pellentesque rhoncus, sapien enim volutpat sem, non egestas erat risus ut ipsum. Sed suscipit tempor dui eget elementum. Aliquam porta turpis justo, non dignissim tortor tristique non. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque id ligula eget ipsum finibus congue ultricies suscipit purus. In nec dictum nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla rutrum consequat dignissim. Phasellus efficitur nulla lectus, at bibendum nulla sollicitudin fermentum. Praesent placerat ligula efficitur, tincidunt lacus vel, placerat lectus. Etiam convallis commodo finibus.
+      <div className="arrow-wrapper-top-desktop-only">
+        <AnimatedArrow />
+      </div>
 
-Sed massa mi, bibendum sit amet metus a, varius cursus risus. Nullam maximus sem ac felis fringilla, mattis ullamcorper tortor tempor. Ut varius libero nec urna tristique finibus. Curabitur ullamcorper eget sapien ut fringilla. In ac lorem sed nisi finibus maximus quis id eros. Aenean dictum leo eget diam fermentum, vel dictum neque mattis. Vestibulum dapibus vel mi eu luctus. Sed consequat suscipit neque, eget suscipit purus aliquet sed. Donec rhoncus tristique felis sed rutrum. Vestibulum sed imperdiet augue. Aliquam et ultrices nibh. Proin eget felis luctus, porttitor orci sed, feugiat est. Curabitur ullamcorper sem augue, eget viverra lorem volutpat ac.</p>
-</div>
+      <div className="arrow-wrapper-bottom">
+        <AnimatedArrow />
+      </div>
+
+      <div className="section-title-who">
+        {/* span은 시멘틱 의미가 없는 인라인 요소라서 적절히 쓰면
+        시멘틱 구조를 크게 해치지 않는다. */}
+        <h2>
+          <span>WHO</span>
+          <span>IS</span>
+          <span>SHE</span>
+          <span>?</span>
+        </h2>
+      </div>
+
+      <div className="section-video">
+        <video
+          src={introVideo}
+          autoPlay
+          muted
+          playsInline
+          loop
+          className="intro-video"
+        />
+      </div>
+
+      <div className="section-title-what">
+        <h2>
+          <span>WHAT</span>
+          <span>DOES</span>
+          <span>SHE</span>
+          <span>DO</span>
+          <span>?</span>
+        </h2>
+        <p>
+          <span>I code.</span>
+          <span>I design.</span>
+        </p>
+      </div>
+
+      <div className="recent-work-title">
+        <h3>
+          <span>SEE MY</span>
+          <span>RECENT WORK</span>
+        </h3>
+      </div>
+
+      <div className="arrow-wrapper-last">
+        <AnimatedArrow />
+      </div>
+
+      <div className="placeholder">
+
+      </div>
+
+    </div>
   )
 }
 

@@ -7,11 +7,11 @@ import FooterNavigation from "./FooterNavigation.jsx";
 function Footer() {
   return (
     <footer>
-      <div className="footer-content">
 
+      <div className="footer-wrapper">
         <div className="footer-text">
-<p>Build with Purpose</p>
-<p>and Mass Appeal</p>
+          <p className="footer-title">Build with Purpose</p>
+          <p className="footer-sub">and Mass Appeal</p>
         </div>
 
         <div className="footer-icons">
@@ -47,16 +47,15 @@ function Footer() {
         </div>
 
 
-        <hr className="footer-divider"></hr>
-
+        <div className="footer-divider"></div>
         <FooterNavigation />
-
         <div className="footer-copy">
           <small>© 2025 Sunny Ju. All rights reserved.</small>
         </div>
-        <Link to="/" className="footer-logo">
-          <p>SUNNY</p>
+        <Link to='/'>
+          <span className="footer-logo" aria-label="Go to home"></span>
         </Link>
+        {/* 인라인 요소<link>안에 블록<div>요소를 넣는것은 HTML문법위반이므로 div에서 span으로 바꾸고 display: inline-block를 줘서 높이를 주는게 가능하도록 하였다 */}
       </div>
     </footer>
   )

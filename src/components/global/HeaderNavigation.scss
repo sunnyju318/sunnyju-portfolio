@@ -1,4 +1,4 @@
-@use '../../styles/base/variables.scss' as *;
+@use '../../styles/base/variables.scss' as vars;
 
 .menu-navigation-header {
   display: flex;
@@ -10,8 +10,8 @@
     gap: 2rem;
 
     li a {
-      color: $nav-text-desktop;
-      font-weight: $font-weight-medium;
+      color: vars.$nav-text-desktop;
+      font-weight: vars.$font-weight-medium;
     }
   }
 
@@ -24,6 +24,6 @@
   svg {
     width: 24px;
     height: 24px;
-    fill: $scarlet-red;
+    fill: vars.$scarlet-red;
   }
 }

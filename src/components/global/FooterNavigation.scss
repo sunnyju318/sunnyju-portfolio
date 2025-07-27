@@ -1,0 +1,52 @@
+@use '../../styles/base/variables.scss' as vars;
+@use '../../styles/base/mixin.scss' as mixins;
+
+.footer-nav-wrapper {
+  .nav-highlight {
+    color: vars.$footer-text-alt;
+  }
+
+  display: flex;
+  flex-direction: row;
+  color: vars.$footer-text-primary;
+  font-size: 1.25rem;
+  font-weight: vars.$font-weight-medium;
+
+  //디폴트
+  margin-bottom: 5rem;
+  gap: 1rem;
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+// 테블릿
+@include mixins.respond-to('md') {
+  .footer-nav-wrapper {
+    margin-bottom: 0rem;
+    gap: 3rem;
+
+    .footer-col {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+    }
+  }
+}
+
+// 데스크탑
+@include mixins.respond-to('lg') {
+  .footer-nav-wrapper {
+    margin-bottom: 0rem;
+    gap: 3rem;
+
+    .footer-col {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+    }
+  }
+}

@@ -29,26 +29,58 @@ $text-primary-accent: $scarlet-red;
 $nav-text-desktop: $dusty-rose;
 $nav-text-mobile: $muted-beige;
 
-// Footer Navigation Text Colors
-$footer-nav-text-primary: $dark-forest;
-$footer-nav-text-alt: $muted-beige;
+// Footer Text Colors
+$footer-text-primary: $dark-forest;
+$footer-text-alt: $muted-beige;
+
+// Icon colors
+$header-icon: $scarlet-red;
+$arrow-icon: $scarlet-red;
+$footer-icon: $dark-forest;
+
+// Footer logo style
 
 
 
 /* === Text === */
 // Font Families
 $font-main: 'Montserrat', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-// 웹폰트+시스템 폰트 조합으로 성능과 사용자 경험을 모두 고려한 접근 : Montserrat 시도후 성공하면 사용, 실패하면 -apple-system시도(Mac/iPhone에서), 실패하면 BlinkMacSystemFont 시도(구버전 Mac), 실패하면 system-ui시도(최신 브라우저), 실패하면 마지막으로 sans-serif 사용(브라우저 기본폰트)
+/* 웹폰트+시스템 폰트 조합으로 성능과 사용자 경험을 모두 고려한 접근 : Montserrat 시도후 성공하면 사용, 
+실패하면 -apple-system시도(Mac/iPhone에서), 실패하면 BlinkMacSystemFont 시도(구버전 Mac), 
+실패하면 system-ui시도(최신 브라우저), 실패하면 마지막으로 sans-serif 사용(브라우저 기본폰트) */
 
 // Font Sizes
-$font-size-base: 1rem;        // 16px 
+$font-size-sm: 0.75rem;      // 12px 
+$font-size-base: 1rem;       // 16px 
+$font-size-lg: 1.25rem;      // 20px 
+$font-size-xl: 1.5rem;       // 24px 
+$font-size-2xl: 2rem;        // 32px 
+$font-size-3xl: 2.5rem;      // 40px 
+$font-size-4xl: 3rem;        // 48px
+$font-size-5xl: 3.5rem;      // 56px
+$font-size-6xl: 4rem;        // 64px
+$font-size-7xl: 5rem;        // 80px
+$font-size-8xl: 6rem;        // 96px
+$font-size-9xl: 7rem;        // 112px
 
-$font-size-sm: 0.875rem;      // 14px 
-$font-size-lg: 1.25rem;       // 20px 
-$font-size-xl: 1.5rem;        // 24px 
-$font-size-2xl: 2rem;         // 32px 
-$font-size-3xl: 3rem;         // 48px 
-$font-size-extra: 15rem;
+
+// Font Sizes with clamp()
+$font-size-body-clamp: clamp(1rem, 1.5vw, 1.125rem); // 16px ~ 18px
+$font-size-2xl-clamp: clamp(1rem, 2.5vw, 1.25rem);   // 16px ~ 20px
+$font-size-2_5xl-clamp: clamp(1.375rem, 3vw, 2rem);  // 22px ~ 32px
+$font-size-3xl-clamp: clamp(1.75rem, 4vw, 2.5rem);   // 28px ~ 40px
+$font-size-4xl-clamp: clamp(2rem, 5vw, 3rem);        // 32px ~ 48px
+$font-size-5xl-clamp: clamp(2.25rem, 6vw, 3.5rem);   // 36px ~ 56px
+$font-size-6xl-clamp: clamp(2.5rem, 7vw, 4rem);      // 40px ~ 64px
+$font-size-7xl-clamp: clamp(3rem, 8vw, 5rem);        // 48px ~ 80px
+$font-size-8xl-clamp: clamp(3.5rem, 9vw, 6rem);      // 56px ~ 96px
+$font-size-9xl-clamp: clamp(4rem, 10vw, 7rem);       // 64px ~ 112px
+
+
+// Desktop version
+$font-size-body-large: clamp(1.125rem, 2vw, 1.7rem);
+$font-size-3xl-large: clamp(4rem, 6vw, 5rem); 
+
 
 
 // Font Weights
@@ -60,13 +92,48 @@ $font-weight-bold: 700;
 
 // Line Heights
 $line-height-normal: 1.6;
+$line-height-lg: 2;
 
 // Letter Spacing
 
 
-
+/* === Logo === */
 // Logo Style
 $logo-font-family: $font-main;
 $logo-font-weight: $font-weight-bold;
 $logo-color-header: $dusty-rose;
 $logo-color-footer: $dark-forest;
+
+
+/* === Layout === */
+// Layout System
+$breakpoints: ( // 화면 크기 기준
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  'xxl': 1400px
+);
+
+$grid-columns: ( // 디자인 시스템 상의 컬럼 수
+  'mobile': 4,
+  'tablet': 8,
+  'desktop': 12
+);
+
+$container-padding: (
+  'sm': 0.75rem,
+  'md': 1rem,
+  'lg': 1.5rem,
+  'xl': 2rem
+);
+
+$grid-gap: (
+  'sm': 0.75rem,
+  'md': 1rem,
+  'lg': 1.5rem,
+  'xl': 2rem
+);
+/* 대부분의 디자인 시스템은 xl가지만 조정하며 그 이상은
+그대로 xl을 쓰는 경우가 많다. xl 이후부터는 중앙에 고정되거나 
+여백만 늘어나기 때문에 세부조정이 필요없는 경우가 많다. */

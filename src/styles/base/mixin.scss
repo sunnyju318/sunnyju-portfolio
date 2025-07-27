@@ -1,0 +1,180 @@
+@use './variables.scss' as vars;
+@use "sass:map";
+// map-get() → @use "sass:map" + map.get() : map 사용방식이 바뀜
+// Sass는 최근 버전부터 전역 함수 사용을 줄이고, **모듈 방식(@use)**을 도입해서 더 명확한 코딩 스타일을 강제하고 있다.
+
+// **** 증첩규칙과 일반선언의 오류를 미연에 방지하기 위해 일반 선언은 &{}로 감쌀것.
+
+// **** respond-to()는 디자인 시스템에 정해진 breakpoint map을 참조하는 방식이고 grid-span()은 반복해서 다양하게 적용될수 있는 값을 직접 넣는 스타일용 방식이다.
+
+
+
+
+/* === Responsive Mixins === */
+
+// respond-to : 모바일 우선 접근법
+// 미디어쿼리라고 생각하면 된다
+// @mixin : Sass에서 함수처럼 재사용 가능한 css코드블록을 만들기 위한 문법이다.
+@mixin respond-to($breakpoint) {
+  // respond-to : 함수이름, $breakpoint : 함수가 받을 입력값(패러미터)
+  @if map.has-key(vars.$breakpoints, $breakpoint) {
+    // map-has-key : 그 키가 map안에 실제로 존재하는지 확인하는 Sass 내장함수
+    // 'sm'이나 'md'같은 키가 실제로 $breakpoints라는 맵 베리어블 안에 있는지 체크함
+    // 유효한 키인지 검사하는 보안문 같은것. 만약 true라면 다음으로 넘어감
+    @media (min-width: map.get(vars.$breakpoints, $breakpoint)) {
+      // map-get은 맵 베리어블에서 꺼내서 쓰겠다는 뜻이다.
+      // $breakpoints에서 패러미터 $breakpoint를 꺼내쓰겠다는 뜻이다.
+      @content;
+      // mixin 말고 그 외의 CSS가 들어갈 플레이스 홀더 자리.
+      // mixin의 템플릿 안에 내가 실제로 쓸 스타일을 꽂아넣는 자리이다.
+    }
+  }
+}
+
+
+// respond-below : 데스크탑 우선 접근법
+/* 만약에 @include를 쓸때 이상한 키를 쓴다면 map.has-key 자체가 false이기 때문에 
+아무 미디어 쿼리도 생성되지 않고 무시된다. 즉, 오타나 잘못된 키가 들어왔을때도 오류없이 안전하게 
+작동하도록 만든 코드이다.*/
+
+@mixin respond-below($breakpoint) {
+  @if map.has-key(vars.$breakpoints, $breakpoint) {
+    @media (max-width: (map.get(vars.$breakpoints, $breakpoint) - 1px) ) {
+      /* 여기서 -1px를 하는 이유는 만약 내가 min-width와 max-width를
+      같은 키(예를들어 sm의 640px라던지)를 사용했을경우 디자인 충돌을 막기 위해
+      1px를 빼서 639px를 만들어주는 것이다.*/
+      @content;
+    }
+  }
+}
+
+
+
+
+/* === Grid Column Span Mixins === */
+
+// 지금의 식으로는 모바일대응만 자동화 가능
+// 태블릿까지 대응하는 새로운 mixin에 대해서는 더 공부해 볼것
+// 아직 이해가 가지 않으니 나중에 다시 공부할것
+
+@mixin grid-span($columns, $total: 12) {
+  grid-column: span $columns;
+  
+  @if $total != 12 {
+    // 작은 화면에서 다른 총 컬럼 수 처리
+    @include respond-below('md') {
+      grid-column: span min($columns, $total);
+    }
+  }
+}
+
+
+
+
+/* === Container Mixins === */
+
+/* 전체 컨테이너를 가운데 정렬한 뒤
+최대 가로사이즈를 제한하고 반응형에 맞게
+좌우 패딩을 설정하는 기본 레이아웃 mixin이다. */
+
+/* 일반적으로 컨테이너 mixin은 좌우여백만 포함한다.
+상하여백은 문맥에 따라 다른 경우가 많아서 
+컨테이너보다는 각 개별요소가 책임진다 
+즉, 좌우는 시스템화, 상하는 커스터마이즈가 일반적이다.*/
+@mixin container($max-width: 1400px) {
+  // container라는 이름의 mixin을 만든 뒤
+  // $max-width라는 패러미터(매개변수)를 정의한 것이다.
+  // 기본값은 1400px이고 이 값은 mixin에서 max-width를 설정할때 변수처럼 사용한다.
+  &{max-width: $max-width; 
+  //전체 가로폭을 $max-width만큼 제한함
+  margin: 0 auto;
+  // auto는 좌우여백을 동일하게 만들어 가운데 정렬하는 효과를 준다
+  padding: 0 map.get(vars.$container-padding, 'sm');}
+  // 현재 가로가 가장 큰 1400px이므로 $container-paddin 맵에서 가장작은 패딩 sm을 가져온다.
+  
+  @include respond-to('md') {
+    padding: 0 map.get(vars.$container-padding, 'md');
+  }
+  
+  @include respond-to('lg') {
+    padding: 0 map.get(vars.$container-padding, 'lg');
+  }
+  
+  @include respond-to('xl') {
+    padding: 0 map.get(vars.$container-padding, 'xl');
+  }
+  // 화면이 넓어질수록 패딩도 점점 넓어지게 해준다
+}
+
+
+
+
+/* === Grid Layout Mixins === */
+@mixin grid-layout($columns: 12, $gap: 1rem) {
+  // $columns : 총 컬럼수를 정해주는 패러미터, 기본값은 12
+  // $gap : 갭을 정해주는 패러미터, 기본값은 1rem
+  &{display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;}
+  
+  @include respond-below('lg') {
+    grid-template-columns: repeat(8, 1fr);
+    gap: map.get(vars.$grid-gap, 'md');
+  }
+  
+  @include respond-below('md') {
+    grid-template-columns: repeat(4, 1fr);
+    gap: map.get(vars.$grid-gap, 'sm');
+  }
+}
+// 내부 컨텐츠들은 grid-column으로 몇칸 차지할지 정해줄것.
+
+
+
+
+/* === Responsive Auto Grid Layout Mixins === */
+
+// 나중에 다시 공부하기
+// 사용처 예 : 프로젝트 카드목록, 이미지 갤러리, 블로그 썸네일목록 등
+@mixin auto-grid($min-width: 300px, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: $gap;
+  
+  @include respond-below('md') {
+    grid-template-columns: 1fr;
+    gap: map.get(vars.$grid-gap, 'sm');
+  }
+}
+
+
+
+
+/* === Flex Utility Mixins === */
+
+// 패러미터가 없는 mixin은 @include 쓸때 ()가 없어도 된다. 
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin section-title-mobile-beige{
+  color: vars.$text-heading-dark-alt;
+  font-size: vars.$font-size-3xl;
+  font-weight: vars.$font-weight-semibold;
+  line-height: 4rem;
+}
+
+@mixin section-title-tablet-beige{
+  color: vars.$text-heading-dark-alt;
+  font-size: vars.$font-size-4xl;
+  font-weight: vars.$font-weight-semibold;
+  line-height: 4rem;
+}
