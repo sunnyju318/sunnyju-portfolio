@@ -1,5 +1,6 @@
 import './About.scss';
 import profileMobile from '../../assets/images/profile-mobile.jpg';
+import profileDesktop from '../../assets/images/profile-desktop.jpg';
 import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow";
 import newYorkImg from '../../assets/images/new-york.jpeg';
 import brisbaneImg from '../../assets/images/brisbane.jpeg';
@@ -11,18 +12,42 @@ import vancouverImg from '../../assets/images/vancouver.jpeg';
 function About() {
   return (
     <div className='about-wrapper'>
+      {/* desktop 버전 */}
+      <div className='hero-desktop-content'>
+        <h1 className='hero-desktop-heading'>
+          <span>Hi,</span>
+          <span>I'm</span>
+          <span className='highlight'>Sunny {":)"}</span>
+        </h1>
+      </div>
 
-      <div className='hero-mobile-wrapper'>
-        <img
-          src={profileMobile}
-          alt="Profile Image"
-          className='mobile-hero-image' />
+      <div className='hero-wrapper'>
+        {/* <picture/> : 여러 해상도/ 조건에 따라 이미지를 다르게 보여주는 HTML 태그,
+        <source>와 <img> 태그를 묶어주는 wrapper */}
+        <picture className='hero-picture'>
+          <source
+            media='(min-width: 768px)'
+            // 뷰포트 너비가 768px 이상이면 이 이미지 사용
+            srcSet={profileDesktop}
+          //  조건만족시 desktop 이미지를 로딩
+          />
+          {/* 위 media 조건을 만족하지 못할경우 사용되는 기본이미지 */}
+          <img
+            src={profileMobile}
+            alt="Profile Image"
+            className='hero-mobile-image' />
+        </picture>
+          {/* <source>는 여러개 사용할수 있으며 css media query 기반의 if-else-if 조건문처럼 작동한다.
+          브라우저는 <source> 안의 조건들을 평가만 하지 렌더링하지는 않는다.
+          그래서 실제 DOM에 들어가는건 <img> 하나뿐이라 퍼포먼스도 좋고 접근성도 좋다. */}
+
+        {/* mobile 버전 */}
         <div className='hero-mobile-content'>
-          <h1 className='hero-mobile-heading'>
+          <p className='hero-mobile-heading'>
             <span>Hi,</span>
             <span>I'm</span>
-            <span className='hero-name'>Sunny {":)"}</span>
-          </h1>
+            <span className='highlight'>Sunny {":)"}</span>
+          </p>
           <div className="hero-arrow-wrapper-top">
             <AnimatedArrow />
           </div>
@@ -32,17 +57,17 @@ function About() {
       <div className='section-title-about-me'>
         <h2>
           <span>I</span>
-          <span>code.</span>
+          <span className='highlight'>code.</span>
           <span>I</span>
-          <span>design.</span>
+          <span className='highlight'>design.</span>
         </h2>
       </div>
 
       <div className='section-body-about-me'>
-        <p>I'm a <span>front-end developer </span> who enjoys creating digital experiences that feel thoughtful and meaningful to the people who use them.</p>
-        <p>With a background in fashion design and experience running a handmade jewelry brand, I learned how to plan creatively and work with intention. Now, I bring that mindset into front-end development—focusing on results that <span>balance usability, visual clarity, and beauty.</span></p>
+        <p>I'm a <span className='highlight'>front-end developer </span> who enjoys creating digital experiences that feel thoughtful and meaningful to the people who use them.</p>
+        <p>With a background in fashion design and experience running a handmade jewelry brand, I learned how to plan creatively and work with intention. Now, I bring that mindset into front-end development—focusing on results that <span className='highlight'>balance usability, visual clarity, and beauty.</span></p>
         <p>I believe great collaboration starts with listening. I value steady, long-term growth over quick wins and stay curious through self-learning, exploration, and continuous improvement.</p>
-        <p>Having lived and worked in Korea, Australia, the U.S., and now Canada, I bring a global perspective and <span>flexible mindset</span> to everything I create. </p>
+        <p>Having lived and worked in Korea, Australia, the U.S., and now Canada, I bring a global perspective and <span className='highlight'>flexible mindset</span> to everything I create. </p>
         <p>My goal is to connect people and ideas through thoughtful design and code.</p>
       </div>
 
