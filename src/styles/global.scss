@@ -11,7 +11,6 @@ body {
   overflow-x: hidden;
   // 가로 스크롤 방지
   background: linear-gradient(210deg, vars.$bg-gradient-start 5%, vars.$bg-gradient-mid 70%, vars.$bg-gradient-end 110%);
-
 }
 
 .main-layout{
@@ -29,6 +28,7 @@ body {
 }
 
 main {
+  z-index: 1; // 배경애니메이션 앞으로 오기위함
   min-height: 80vh;
   flex: 1;
   /* 

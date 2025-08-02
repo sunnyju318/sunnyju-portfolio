@@ -32,7 +32,6 @@ function HeaderNavigation() {
         >
           <svg
             className="svg-icon"
-            xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           // viewBox는 svg내부 좌표계의 정의로 반응형으로 크기를 조절할때 비율을 유지하게 해준다. HTML속성으로만 가능하며 scss로 옮길수 없다.
           >
@@ -48,7 +47,6 @@ function HeaderNavigation() {
         >
           <svg
             className="svg-icon"
-            xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
             <g>
@@ -70,7 +68,6 @@ function HeaderNavigation() {
         >
           <svg
             className="svg-icon"
-            xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 56.36 24">
             <g>
               <path d="M48.26 10.26c-.71 0-1.2.43-1.33 1.12h2.66c-.12-.68-.62-1.12-1.33-1.12ZM13.05 10.26c-.71 0-1.2.43-1.33 1.12h2.66c-.12-.68-.62-1.12-1.33-1.12Z" />

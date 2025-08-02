@@ -12,7 +12,7 @@ function MobileNavigation({ isOpen, onToggle, onClose }) {
             onClick={onToggle}
             aria-label='Toggle menu'
           >
-            <svg xmlns="http://www.w3.org/2000/svg"
+            <svg
               viewBox="0 0 93.76 93.76">
               <g id="hamburger">
                 <path id="Rec-1" d="M4.15 4.15h20.06v20.06H4.15z" className="cls-1" transform="rotate(45 14.188 14.177)" />

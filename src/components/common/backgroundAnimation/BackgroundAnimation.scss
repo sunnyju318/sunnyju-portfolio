@@ -1,0 +1,63 @@
+@use '../../../styles/base/variables.scss' as vars;
+@use '../../../styles/base/mixin.scss' as mixins;
+
+.background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+
+  .line-set {
+    position: absolute;
+    width: clamp(300px, 25vw, 500px);
+    height: 100%;
+
+    svg{
+      width: 100%;
+      height: 100%;
+
+      path {
+        stroke: rgba(vars.$bg-animation, 0.15);
+        stroke-width: 1.2;
+        fill: none;
+      }
+    }
+
+    &.left-set {
+      left: clamp(0px, -10vw, 50px); 
+      // 모바일에서는 화면 밖, 데스크탑에서는 안쪽
+    }
+
+    &.right-set {
+      right: clamp(-60px, -10vw, 50px);
+      display: none;
+    }
+  }
+}
+
+// 블러 스타일
+.falling-blur {
+  width: 1.5px;
+  height: 30px;
+  fill: vars.$bg-animation;
+  filter: blur(2px); 
+}
+
+//반응형
+@include mixins.respond-to('md') {
+  .background-animation {
+    .line-set {
+
+      &.left-set {
+        left: 5vw; 
+      }
+
+      &.right-set {
+        display: block;
+      }
+    }
+  }
+}

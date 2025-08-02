@@ -7,16 +7,12 @@ header {
   top: 0;
   left: 0;
   z-index: 100;
-  background: vars.$bg-header;
-  backdrop-filter: blur(5px);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   // 총 시간 0.5s, ease-in-out과 비슷한 커스텀 버전
   height: 120px;
-  box-shadow: 0 0 10px rgba(vars.$bg-header, 0.5);
 
   &.scrolled {
     height: 70px;
-    background: vars.$bg-header;
   }
 
   // & : 현재 선택자(부모 셀럭터를 의미)
@@ -76,6 +72,10 @@ header {
 
   // 스크롤 시 애니메이션
   &.scrolled {
+    background: vars.$bg-header;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(vars.$bg-header, 0.5);
+    
     .logo-header .logo-text {
       .jisun {
         transform: translateY(10px);
