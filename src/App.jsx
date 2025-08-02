@@ -9,6 +9,7 @@ import About from './pages/About/About';
 import Sandbox from './pages/Sandbox/Sandbox';
 import Contact from './pages/Contact/Contact';
 import NotFound from './pages/NotFound/NotFound';
+import WorkDetail from './pages/Work/WorkDetail';
 
 import './styles/global.scss';
 
@@ -19,7 +20,13 @@ function App() {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path='work' element={<Work />} />
+          <Route path='work' element={<Work />}/>
+          <Route path='work/detail/:id' element={<WorkDetail/>}/>
+          {/* :id 
+          URL 경로에 들어가는 데이터늬 고유값(ID)를 의미한다. 
+          즉, 이 디테일 페이지에서 어떤 데이터를 보여줄지 구분하는 key 역할을 한다.
+          그리고 이 id는 data 배열에서 해당 id에 맞는 항목을 찾을때 쓴다.   
+          */}
           <Route path='about' element={<About />} />
           <Route path='sandbox' element={<Sandbox />} />
           <Route path='contact' element={<Contact />} />

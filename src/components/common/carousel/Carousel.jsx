@@ -1,125 +1,183 @@
-import React, { useEffect, useRef, useState } from 'react';
-// import './PortfolioCarousel.css';
+import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+/* 두줄을 합쳐서 씀
+import React from 'react';
+import { useEffect, useRef, useState } from 'react';
+*/
+import './Carousel.scss';
 
-export default function PortfolioCarousel() {
+export default function Carousel() {
   const containerRef = useRef(null);
   const itemsRef = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const autoPlayRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const animationFrameRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const projects = [
+  // 프로젝트 데이터를 useMemo로 최적화
+  const projects = useMemo(() => [
     {
       id: 1,
       title: "Mobile App Design",
       category: "UI/UX",
       description: "Restaurant booking app with modern interface",
-      image: "/api/placeholder/300/400",
-      tags: ["React Native", "Figma", "UI/UX"]
+      tags: ["React Native", "Figma"],
+      color: "#ff6b6b"
     },
     {
       id: 2,
-      title: "Preloader Animation",
-      category: "Frontend",
-      description: "CSS-only animated loader with hand-drawn SVGs",
-      image: "/api/placeholder/300/400",
-      tags: ["HTML", "CSS", "SVG"]
+      title: "Dashboard Design", 
+      category: "Web Design",
+      description: "Analytics dashboard with data visualization",
+      tags: ["React", "D3.js"],
+      color: "#45b7d1"
     },
     {
       id: 3,
-      title: "Dashboard Design",
-      category: "Web Design",
-      description: "Analytics dashboard with data visualization",
-      image: "/api/placeholder/300/400",
-      tags: ["React", "D3.js", "Design"]
+      title: "E-commerce Platform",
+      category: "Full Stack", 
+      description: "Complete online store with payment integration",
+      tags: ["Next.js", "Node.js"],
+      color: "#96ceb4"
     },
     {
       id: 4,
-      title: "E-commerce Platform",
-      category: "Full Stack",
-      description: "Complete online store with payment integration",
-      image: "/api/placeholder/300/400",
-      tags: ["Next.js", "Node.js", "MongoDB"]
-    },
-    {
-      id: 5,
       title: "Brand Identity",
       category: "Branding",
       description: "Complete brand package for tech startup",
-      image: "/api/placeholder/300/400",
-      tags: ["Illustrator", "Photoshop", "Branding"]
+      tags: ["Illustrator", "Photoshop"],
+      color: "#feca57"
+    },
+    {
+      id: 5,
+      title: "AR Experience",
+      category: "Interactive",
+      description: "Augmented reality shopping experience",
+      tags: ["Three.js", "WebGL"],
+      color: "#ff9ff3"
     }
-  ];
+  ], []);
 
-  const updateCarousel = (centerIndex) => {
-    const itemCount = projects.length;
-    const centerX = 400;
-    const centerY = 300;
+  // Intersection Observer로 뷰포트 내 여부 확인
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
 
-    itemsRef.current.forEach((el, i) => {
-      if (!el) return;
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
 
-      // 중앙 기준으로 인덱스 재정렬
-      let adjustedIndex = (i - centerIndex + itemCount) % itemCount;
-      if (adjustedIndex > itemCount / 2) {
-        adjustedIndex = adjustedIndex - itemCount;
-      }
+    return () => observer.disconnect();
+  }, []);
 
-      // 가로형 원형 배치 (넓게 펼쳐진 타원)
-      const angle = (adjustedIndex * Math.PI) / 4; // 각도 범위를 줄여서 더 가로형으로
-      const x = centerX + adjustedIndex * 180 + Math.sin(angle) * 50; // 가로 간격 + 살짝 곡선
-      const y = centerY + Math.abs(Math.sin(angle)) * -30; // 중앙이 앞으로, 양쪽이 뒤로
+  // 최적화된 애니메이션 함수
+  const updateCarousel = useCallback((centerIndex) => {
+    if (!isVisible) return; // 화면에 보이지 않으면 애니메이션 중지
+    
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
 
-      // 중앙 카드는 더 크고 앞으로
-      const scale = i === centerIndex ? 1.1 : 0.9 - Math.abs(adjustedIndex) * 0.1;
-      const zIndex = 100 - Math.abs(adjustedIndex) * 10;
-      const opacity = i === centerIndex ? 1 : 0.7 - Math.abs(adjustedIndex) * 0.1;
+    animationFrameRef.current = requestAnimationFrame(() => {
+      const itemCount = projects.length;
+      
+      itemsRef.current.forEach((el, i) => {
+        if (!el) return;
 
-      el.style.transform = `translate(${x - centerX}px, ${y - centerY}px) scale(${scale})`;
-      el.style.zIndex = zIndex;
-      el.style.opacity = Math.max(opacity, 0.3);
-      el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        let adjustedIndex = (i - centerIndex + itemCount) % itemCount;
+        if (adjustedIndex > itemCount / 2) {
+          adjustedIndex = adjustedIndex - itemCount;
+        }
+
+        // 간소화된 계산으로 성능 향상
+        const distance = Math.abs(adjustedIndex);
+        const x = adjustedIndex * 140;
+        const y = distance * -15;
+        const scale = i === centerIndex ? 1.05 : Math.max(0.9 - distance * 0.05, 0.8);
+        const opacity = i === centerIndex ? 1 : Math.max(0.7 - distance * 0.1, 0.4);
+        const zIndex = 100 - distance * 10;
+
+        // transform을 한 번에 적용하여 reflow 최소화
+        el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+        el.style.opacity = opacity;
+        el.style.zIndex = zIndex;
+      });
     });
-  };
+  }, [projects.length, isVisible]);
+
+  // 디바운스된 자동재생
+  const startAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    if (!isVisible) return; // 화면에 보이지 않으면 자동재생 중지
+    
+    autoPlayRef.current = setInterval(() => {
+      if (!isHovered) {
+        setActiveIndex(prev => (prev + 1) % projects.length);
+      }
+    }, 5000); // 5초 간격
+  }, [isHovered, projects.length, isVisible]);
 
   useEffect(() => {
     updateCarousel(activeIndex);
-  }, [activeIndex, projects.length]);
+  }, [activeIndex, updateCarousel]);
 
-  const handleCardHover = (index) => {
-    setActiveIndex(index);
-  };
+  useEffect(() => {
+    if (isVisible) {
+      startAutoPlay();
+    } else {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    }
+    
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+    };
+  }, [startAutoPlay, isVisible]);
 
-  const handleCardClick = (project) => {
-    // 상세 페이지로 이동하는 로직
-    alert(`Navigating to ${project.title} detail page`);
-    // 실제로는 router.push('/project/' + project.id) 같은 방식으로 구현
-  };
+  const handleCardClick = useCallback((project, index) => {
+    if (index === activeIndex) {
+      // 이미 중앙에 있는 카드 클릭 시 디테일 페이지로 이동
+      console.log(`Opening ${project.title} detail page`);
+      // 실제 구현: router.push(`/project/${project.id}`)
+      // 또는 window.open(`/project/${project.id}`, '_blank')
+    } else {
+      // 중앙이 아닌 카드 클릭 시 중앙으로 이동
+      setActiveIndex(index);
+    }
+  }, [activeIndex]);
+
+  const handleNext = useCallback(() => {
+    setActiveIndex(prev => (prev + 1) % projects.length);
+  }, [projects.length]);
+
+  const handlePrev = useCallback(() => {
+    setActiveIndex(prev => (prev - 1 + projects.length) % projects.length);
+  }, [projects.length]);
 
   return (
-    <div className="portfolio-container">
-      <header className="header">
-        <h1>See my recent works</h1>
-        <div className="decorative-dots">
-          <span></span><span></span><span></span>
-        </div>
-      </header>
-
+    <div 
+      className="portfolio-container"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="carousel-section">
-        <div className="section-title">
-          <span className="dev-label">Dev</span>
-          <div className="diamond-accent"></div>
-        </div>
-
         <div ref={containerRef} className="carousel-wrapper">
           {projects.map((project, index) => (
             <div
               key={project.id}
               ref={(el) => (itemsRef.current[index] = el)}
               className={`carousel-card ${index === activeIndex ? 'active' : ''}`}
-              onMouseEnter={() => handleCardHover(index)}
-              onClick={() => handleCardClick(project)}
+              onClick={() => handleCardClick(project, index)}
             >
               <div className="card-image">
-                <div className="placeholder-image">
+                <div 
+                  className="placeholder-image"
+                  style={{ backgroundColor: project.color }}
+                >
                   <span className="project-icon">{project.category.charAt(0)}</span>
                 </div>
               </div>
@@ -128,7 +186,7 @@ export default function PortfolioCarousel() {
                 <p className="card-category">{project.category}</p>
                 <p className="card-description">{project.description}</p>
                 <div className="card-tags">
-                  {project.tags.map((tag, tagIndex) => (
+                  {project.tags.slice(0, 2).map((tag, tagIndex) => (
                     <span key={tagIndex} className="tag">{tag}</span>
                   ))}
                 </div>
@@ -137,226 +195,20 @@ export default function PortfolioCarousel() {
           ))}
         </div>
 
-        <div className="carousel-indicators">
-          {projects.map((_, index) => (
-            <button
-              key={index}
-              className={`indicator ${index === activeIndex ? 'active' : ''}`}
-              onClick={() => setActiveIndex(index)}
-            />
-          ))}
+        <div className="carousel-bottom">
+          <button className="nav-btn nav-prev" onClick={handlePrev}>‹</button>
+          <div className="carousel-indicators">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                className={`indicator ${index === activeIndex ? 'active' : ''}`}
+                onClick={() => setActiveIndex(index)}
+              />
+            ))}
+          </div>
+          <button className="nav-btn nav-next" onClick={handleNext}>›</button>
         </div>
       </div>
-
-      <style jsx>{`
-        .portfolio-container {
-          min-height: 100vh;
-          background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
-          color: #ffffff;
-          font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-          overflow-x: hidden;
-        }
-
-        .header {
-          text-align: center;
-          padding: 60px 20px 40px;
-        }
-
-        .header h1 {
-          font-size: 2.5rem;
-          font-weight: 300;
-          margin-bottom: 20px;
-          color: #ff6b6b;
-        }
-
-        .decorative-dots {
-          display: flex;
-          justify-content: center;
-          gap: 8px;
-        }
-
-        .decorative-dots span {
-          width: 8px;
-          height: 8px;
-          background: #ff6b6b;
-          transform: rotate(45deg);
-          display: block;
-        }
-
-        .carousel-section {
-          position: relative;
-          padding: 40px 20px;
-        }
-
-        .section-title {
-          text-align: center;
-          margin-bottom: 60px;
-          position: relative;
-        }
-
-        .section-title .dev-label {
-          font-size: 2rem;
-          font-weight: 500;
-          color: #cccccc;
-        }
-
-        .section-title .diamond-accent {
-          width: 12px;
-          height: 12px;
-          background: #ff6b6b;
-          transform: rotate(45deg);
-          margin: 15px auto;
-        }
-
-        .carousel-wrapper {
-          position: relative;
-          height: 500px;
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .carousel-card {
-          position: absolute;
-          width: 280px;
-          height: 380px;
-          background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 20px;
-          cursor: pointer;
-          overflow: hidden;
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .carousel-card:hover {
-          background: rgba(255, 255, 255, 0.08);
-          border-color: rgba(255, 107, 107, 0.3);
-          transform: translateY(-10px) !important;
-        }
-
-        .carousel-card.active {
-          border-color: rgba(255, 107, 107, 0.5);
-          box-shadow: 
-            0 20px 60px rgba(255, 107, 107, 0.1),
-            0 0 40px rgba(255, 107, 107, 0.05);
-        }
-
-        .card-image {
-          height: 200px;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .card-image .placeholder-image {
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-        }
-
-        .card-image .placeholder-image .project-icon {
-          font-size: 3rem;
-          font-weight: bold;
-          color: white;
-          opacity: 0.8;
-        }
-
-        .card-content {
-          padding: 24px;
-          height: 180px;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .card-content .card-title {
-          font-size: 1.3rem;
-          font-weight: 600;
-          margin-bottom: 8px;
-          color: #ffffff;
-        }
-
-        .card-content .card-category {
-          font-size: 0.9rem;
-          color: #ff6b6b;
-          margin-bottom: 12px;
-          font-weight: 500;
-        }
-
-        .card-content .card-description {
-          font-size: 0.9rem;
-          color: #cccccc;
-          line-height: 1.5;
-          margin-bottom: 16px;
-          flex-grow: 1;
-        }
-
-        .card-content .card-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-        }
-
-        .card-content .card-tags .tag {
-          background: rgba(255, 107, 107, 0.1);
-          color: #ff8e8e;
-          padding: 4px 8px;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          border: 1px solid rgba(255, 107, 107, 0.2);
-        }
-
-        .carousel-indicators {
-          display: flex;
-          justify-content: center;
-          gap: 12px;
-          margin-top: 50px;
-        }
-
-        .carousel-indicators .indicator {
-          width: 8px;
-          height: 8px;
-          border: none;
-          background: rgba(255, 255, 255, 0.3);
-          transform: rotate(45deg);
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .carousel-indicators .indicator.active {
-          background: #ff6b6b;
-          transform: rotate(45deg) scale(1.2);
-        }
-
-        .carousel-indicators .indicator:hover {
-          background: rgba(255, 107, 107, 0.7);
-        }
-
-        @media (max-width: 768px) {
-          .carousel-wrapper {
-            height: 400px;
-          }
-          
-          .carousel-card {
-            width: 240px;
-            height: 320px;
-          }
-          
-          .card-content {
-            padding: 20px;
-            height: 140px;
-          }
-          
-          .header h1 {
-            font-size: 2rem;
-          }
-        }
-      `}</style>
     </div>
   );
 }

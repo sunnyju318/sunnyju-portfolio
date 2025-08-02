@@ -1,0 +1,120 @@
+@use '../../styles/base/variables.scss' as vars;
+@use '../../styles/base/mixin.scss' as mixins;
+
+// hanburger menu
+
+.hamburger {
+  display: block;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  z-index: 300;
+}
+
+.hamburger svg {
+  width: 100%;
+  height: 100%;
+}
+
+// 햄버거 메뉴 기본 색상
+.hamburger .cls-1 {
+  fill: vars.$nav-hamburger-closed;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+//헴버거 메뉴 클릭하여 열렸을때 색상
+.hamburger.open .cls-1 {
+  fill: vars.$nav-hamburger-open;
+}
+
+// 클릭시 x자로 남는 색상
+.hamburger.open #Rec-1,
+.hamburger.open #Rec-3,
+.hamburger.open #Rec-5,
+.hamburger.open #Rec-7,
+.hamburger.open #Rec-9 {
+  opacity: 1;
+  fill: vars.$nav-hamburger-open;
+}
+
+//클릭시 지워지는 색상
+.hamburger.open #Rec-2,
+.hamburger.open #Rec-4,
+.hamburger.open #Rec-6,
+.hamburger.open #Rec-8 {
+  opacity: 0;
+}
+
+// 모바일 메뉴 오버레이
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(vars.$near-black, 0.85);
+  z-index: 200;
+  transform: translateX(100%);
+  // 코드를 오른쪽으로 자기 너비만큼 이동시키기
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.mobile-menu-overlay.open {
+  transform: translateX(0);
+}
+
+.mobile-menu-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 3rem;
+  padding-bottom: 3rem;
+}
+
+.mobile-menu-content ul {
+  text-align: end;
+}
+
+.mobile-menu-content li {
+  margin: 2rem 0;
+}
+
+.mobile-menu-content .nav-link {
+  color: vars.$text-heading-dark-primary;
+  font-size: vars.$font-size-2xl;
+  font-weight: vars.$font-weight-light;
+  letter-spacing: 2px;
+  transition: color 0.3s ease;
+}
+
+.mobile-menu-content .nav-link:hover {
+  color: vars.$text-heading-dark-alt;
+}
+
+.mobile-menu-content .nav-link::before {
+  display: none;
+}
+// 현재 데스크탑 네비게이션에서 준 호버 효과를 모바일 메뉴에서는 제거한다.
+// 모바일 메뉴에서도 같은 .nav-link 클래스를 사용하기 때문에 문제가될수 있기 때문이다.
+
+
+//반응형
+
+@include mixins.respond-to('md') {
+  .hamburger {
+    display: none;
+  }
+  .menu-navigation-header {
+    display: flex;
+  }
+  .mobile-menu-overlay {
+    display: none;
+  }
+}

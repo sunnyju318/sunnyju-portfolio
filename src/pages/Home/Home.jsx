@@ -31,11 +31,11 @@ function Home() {
       </div>
 
       <div className="arrow-wrapper-top-desktop-only">
-        <AnimatedArrow />
+        <AnimatedArrow direction="left" animated={true}/>
       </div>
 
       <div className="arrow-wrapper-bottom">
-        <AnimatedArrow />
+        <AnimatedArrow direction="down" animated={true}/>
       </div>
 
       <div className="section-title-who">
@@ -86,7 +86,7 @@ function Home() {
       </div>
 
       <div className="placeholder">
-          {/* <Carousel direction="horizontal"/> */}
+          <Carousel/>
       </div>
 
     </div>

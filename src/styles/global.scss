@@ -10,7 +10,7 @@ body {
    // 그라데이션 배경을 컨텐츠 사이즈에 맞게 늘리기 위해 height:100%에서 min-height:100%로 바꿈, 스크롤바가 헤더 뒤로 가는 현상도 함께 해결됨
   overflow-x: hidden;
   // 가로 스크롤 방지
-  background: linear-gradient(210deg, vars.$bg-gradient-start 20%, vars.$bg-gradient-mid 70%, vars.$bg-gradient-end 110%);
+  background: linear-gradient(210deg, vars.$bg-gradient-start 5%, vars.$bg-gradient-mid 70%, vars.$bg-gradient-end 110%);
 
 }
 
