@@ -13,6 +13,8 @@ $muted-beige: #e1dad2;
 $bg-gradient-start: $near-black;
 $bg-gradient-mid: $dark-forest;
 $bg-gradient-end: $dusty-rose;
+$bg-header: rgba($near-black, 0.5);
+$bg-animation: $dusty-rose;
 
 // Text Colors
 $text-heading-dark-primary: $muted-beige;
@@ -25,9 +27,11 @@ $text-body-light: $dark-forest;
 
 $text-primary-accent: $scarlet-red;
 
-// Navigation Text Colors
+// Navigation Colors
 $nav-text-desktop: $dusty-rose;
 $nav-text-mobile: $muted-beige;
+$nav-hamburger-closed: $dusty-rose;
+$nav-hamburger-open: $scarlet-red;
 
 // Footer Text Colors
 $footer-text-primary: $dark-forest;
@@ -39,6 +43,10 @@ $arrow-icon: $scarlet-red;
 $footer-icon: $dark-forest;
 
 // Footer logo style
+
+// Box shadow
+$shadow-color: rgba(181, 137, 113, 0.5);
+$box-shadow-soft: 1px 1px 0 $shadow-color;
 
 
 
@@ -62,6 +70,13 @@ $font-size-6xl: 4rem;        // 64px
 $font-size-7xl: 5rem;        // 80px
 $font-size-8xl: 6rem;        // 96px
 $font-size-9xl: 7rem;        // 112px
+$font-size-10xl: 8rem;       // 128px
+$font-size-11xl: 9rem;       // 144px
+$font-size-10xl: 8rem;       // 128px
+$font-size-11xl: 9rem;       // 144px
+$font-size-12xl: 10rem;      // 160px
+
+
 
 
 // Font Sizes with clamp()
@@ -75,6 +90,13 @@ $font-size-6xl-clamp: clamp(2.5rem, 7vw, 4rem);      // 40px ~ 64px
 $font-size-7xl-clamp: clamp(3rem, 8vw, 5rem);        // 48px ~ 80px
 $font-size-8xl-clamp: clamp(3.5rem, 9vw, 6rem);      // 56px ~ 96px
 $font-size-9xl-clamp: clamp(4rem, 10vw, 7rem);       // 64px ~ 112px
+$font-size-10xl-clamp: clamp(4.5rem, 11vw, 8rem);    // 72px ~ 128px
+$font-size-11xl-clamp: clamp(5rem, 12vw, 9rem);      // 80px ~ 144px
+$font-size-10xl-clamp: clamp(4.5rem, 11vw, 8rem);    // 72px ~ 128px
+$font-size-11xl-clamp: clamp(5rem, 12vw, 9rem);      // 80px ~ 144px
+$font-size-12xl-clamp: clamp(5.5rem, 13vw, 10rem);   // 88px ~ 160px
+
+
 
 
 // Desktop version

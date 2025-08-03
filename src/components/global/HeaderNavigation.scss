@@ -1,7 +1,8 @@
 @use '../../styles/base/variables.scss' as vars;
+@use '../../styles/base/mixin.scss' as mixins;
 
 .menu-navigation-header {
-  display: flex;
+  display: none;
   gap: 2rem;
   align-items: center;
 
@@ -9,11 +10,34 @@
     display: flex;
     gap: 2rem;
 
-    li a {
+    .nav-link {
       color: vars.$nav-text-desktop;
+      // font-size: vars.$font-size-lg;
       font-weight: vars.$font-weight-medium;
+      position: relative;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: vars.$nav-text-desktop;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::before {
+      transform: scaleX(1);
     }
   }
+
+  // 스케일X는 가로 크기를 조절하는 거고,
+  // 처음엔 0이라서 안 보이다가 hover 하면 100%로 늘어난다.
+  // 오리진이 왼쪽이라서 왼쪽부터 오른쪽으로 나타난다.
 
   .menu-icons-header {
     display: flex;
@@ -21,9 +45,20 @@
     align-items: center;
   }
 
-  svg {
-    width: 24px;
-    height: 24px;
+  .svg-icon {
+    height: 26px;
     fill: vars.$scarlet-red;
+    transition: fill 0.5s ease;
+  }
+
+  a:hover .svg-icon{
+    fill: vars.$nav-text-desktop;
+  }
+}
+
+//반응형
+@include mixins.respond-to('md') {
+  .menu-navigation-header {
+    display: flex;
   }
 }

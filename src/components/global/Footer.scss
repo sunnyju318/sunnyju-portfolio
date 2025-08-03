@@ -4,6 +4,7 @@
 footer {
   width: 100%;
   color: vars.$footer-text-primary;
+  z-index: 1; // 배경 애니메이션 앞으로 오기 위함
 }
 
 .footer-wrapper {

@@ -4,23 +4,123 @@
 header {
   width: 100%;
   position: fixed;
-  top: 0; // fixed 관련 위치명시
-  left: 0; // fixed 관련 위치명시
-  z-index: 100; // 다른 요소들보다 위에 오도록 표시
-  background: rgba(4, 4, 4, 0.6);
-  backdrop-filter: blur(5px);
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  // 총 시간 0.5s, ease-in-out과 비슷한 커스텀 버전
+  height: 120px;
+
+  &.scrolled {
+    height: 70px;
+  }
+
+  // & : 현재 선택자(부모 셀럭터를 의미)
+  // header {&.class} : 현재 선택자 header에 class가 붙었을때 적용
+  // header {.class} : 현재 선택자 header 안에 class라는 클래스가 있음
 
   .header-content {
     max-width: 1400px;
-    margin: 0 auto; //가운데 정렬
+    margin: 0 auto;
     padding: 1rem;
     @include mixins.flex-between;
+    height: 100%;
 
     .logo-header {
-      font-size: vars.$font-size-xl;
+      font-size: vars.$font-size-lg;
       color: vars.$logo-color-header;
       font-family: vars.$logo-font-family;
       font-weight: vars.$logo-font-weight;
+
+
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        align-items: flex-start;
+        height: 5rem;
+
+        .jisun,
+        .sunny,
+        .ju-dot {
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          white-space: nowrap;
+        }
+
+        .jisun {
+          transform: translateX(0);
+          opacity: 1;
+        }
+
+        .sunny {
+          transform: translateX(0);
+          opacity: 1;
+
+          &::after {
+            content: "";
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+        }
+
+        .ju-dot {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // 스크롤 시 애니메이션
+  &.scrolled {
+    background: vars.$bg-header;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(vars.$bg-header, 0.5);
+    
+    .logo-header .logo-text {
+      .jisun {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+
+      .ju-dot {
+        transform: translateY(0px);
+        opacity: 0;
+      }
+
+      .sunny {
+        &::after {
+          content: " JU.";
+          animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+// 초기 접근에서 slideInRight의 transform이 작동하지 않음
+// ::after 가상요소는 기본적으로 display:inline 이기 때문임
+// ::after 에 display: inline-block; 을 줘서 해결함
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(10px);
+    opacity: 1;
+  }
+}
+
+//반응형
+@include mixins.respond-to('md') {
+  header {
+    .header-content {
+      .logo-header {
+        font-size: vars.$font-size-xl;
+      }
     }
   }
 }

@@ -1,7 +1,8 @@
 import "./Home.scss";
-import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow";
+import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow";
 import FaceIllustration from "../../components/home/FaceIllustration";
 import introVideo from '../../assets/video/intro-bumper.mp4';
+import Carousel from "../../components/common/carousel/Carousel";
 
 function Home() {
   return (
@@ -30,11 +31,11 @@ function Home() {
       </div>
 
       <div className="arrow-wrapper-top-desktop-only">
-        <AnimatedArrow />
+        <AnimatedArrow direction="left" animated={true}/>
       </div>
 
       <div className="arrow-wrapper-bottom">
-        <AnimatedArrow />
+        <AnimatedArrow direction="down" animated={true}/>
       </div>
 
       <div className="section-title-who">
@@ -85,7 +86,7 @@ function Home() {
       </div>
 
       <div className="placeholder">
-
+          <Carousel/>
       </div>
 
     </div>

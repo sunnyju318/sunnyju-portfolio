@@ -2,7 +2,7 @@
 function NotFound(){
   return(
 <div>
-  <p>NotFound</p>
+  <p>NotFound 바보!!</p>
 </div>
   )
 }
