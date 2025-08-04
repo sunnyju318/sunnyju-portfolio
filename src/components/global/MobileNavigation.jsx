@@ -43,7 +43,7 @@ function MobileNavigation({ isOpen, onToggle, onClose }) {
           <li>
             <Link className="nav-link" to="/work" onClick={onClose}>
               {/*  onClick={() => setIsMobileMenuOpen(false)} : 클릭하면 해당 페이지로 이동하며 이 함수가 실행되어 false 즉, 토글이 닫힘 상태가 된다. (x자 빨간색에서 네모 베이지가 되는것) */}
-              Work
+              Projects
             </Link>
           </li>
           <li>

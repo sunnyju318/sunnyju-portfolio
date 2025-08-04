@@ -8,7 +8,7 @@ function HeaderNavigation() {
     <nav className="menu-navigation-header">
       <ul>
         <li>
-          <Link className="nav-link" to="/work">Work</Link>
+          <Link className="nav-link" to="/work">Projects</Link>
         </li>
         <li>
           <Link className="nav-link" to="/about">About</Link>

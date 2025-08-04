@@ -5,7 +5,7 @@ import ArrowIcon from '../../../assets/icons/animated-arrow.svg?react';
 import { motion } from 'framer-motion';
 // arrow에 bounce 모션 넣기
 
-function AnimatedArrow({ direction = 'down', animated = false }) {
+function AnimatedArrow({ direction = 'down', animated = false, className = '' }) {
   // 기본 props 넣기 : 방향 기본값은 'down', 애니메이션 동작 기본값은 false(움직임 없음)
 
   // 애니메이션 정의 함수 : getAnimation()
@@ -58,7 +58,8 @@ function AnimatedArrow({ direction = 'down', animated = false }) {
   // 렌더링파트
   return (
     <motion.div
-      className='arrow-wrapper'
+      className={`arrow-wrapper ${className}`}
+      // 기존 arrow-wrapper이라는 클레스네임이 있고 추가로 이 컴포넌트를 사용하는 곳에서 컴포넌트에 클레스네임을 붙이면 더하라는 뜻(props로 넘기기)
       animate={getAnimation()}
       // 아래와 같았던 단방향 움직임에서 방향에 따라 애니메이션이 설정되도록 getAnimation이라는 함수를 만듬.
       // animate={{y: [0, -10, 0]}}

@@ -1,8 +1,9 @@
 import "./Home.scss";
 import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow";
 import FaceIllustration from "../../components/home/FaceIllustration";
-import introVideo from '../../assets/video/intro-bumper.mp4';
-import Carousel from "../../components/common/carousel/Carousel";
+import { Link } from "react-router-dom";
+import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion";
+
 
 function Home() {
   return (
@@ -18,7 +19,7 @@ function Home() {
       </div>
 
       <div className="arrow-wrapper-top-mobile-only">
-        <AnimatedArrow />
+        <AnimatedArrow direction="down" animated={true} />
       </div>
 
       {/* 그리드 컬럼 시스템에서 가로 사이즈를 100% 이하로 주었더니 
@@ -31,62 +32,25 @@ function Home() {
       </div>
 
       <div className="arrow-wrapper-top-desktop-only">
-        <AnimatedArrow direction="left" animated={true}/>
+        <AnimatedArrow direction="left" animated={true} />
       </div>
 
       <div className="arrow-wrapper-bottom">
-        <AnimatedArrow direction="down" animated={true}/>
+        <AnimatedArrow direction="down" animated={true} />
       </div>
 
-      <div className="section-title-who">
-        {/* span은 시멘틱 의미가 없는 인라인 요소라서 적절히 쓰면
-        시멘틱 구조를 크게 해치지 않는다. */}
-        <h2>
-          <span>WHO</span>
-          <span>IS</span>
-          <span>SHE</span>
-          <span>?</span>
-        </h2>
+      <div className="sub-link-wrapper">
+        <Link className="sub-link" to="/work">         <AnimatedArrow className="arrow-sub-link" direction="right" />
+          See my projects
+        </Link>
+        <Link className="sub-link" to="/about">
+          <AnimatedArrow className="arrow-sub-link" direction="right" />
+          More about me
+        </Link>
       </div>
 
-      <div className="section-video">
-        <video
-          src={introVideo}
-          autoPlay
-          muted
-          playsInline
-          loop
-          className="intro-video"
-        />
-      </div>
-
-      <div className="section-title-what">
-        <h2>
-          <span>WHAT</span>
-          <span>DOES</span>
-          <span>SHE</span>
-          <span>DO</span>
-          <span>?</span>
-        </h2>
-        <p>
-          <span>I code.</span>
-          <span>I design.</span>
-        </p>
-      </div>
-
-      <div className="recent-work-title">
-        <h3>
-          <span>SEE MY</span>
-          <span>RECENT WORK</span>
-        </h3>
-      </div>
-
-      <div className="arrow-wrapper-last">
-        <AnimatedArrow />
-      </div>
-
-      <div className="placeholder">
-          <Carousel/>
+      <div className="project-list-wrapper">
+        <ProjectAccordion />
       </div>
 
     </div>
