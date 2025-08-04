@@ -3,6 +3,7 @@ import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow";
 import FaceIllustration from "../../components/home/FaceIllustration";
 import { Link } from "react-router-dom";
 import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion";
+import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView";
 
 
 function Home() {
@@ -12,6 +13,7 @@ function Home() {
     // CSS/Grid 구조유지 : 부모의 레이아웃이 방해받지 않음
     // 성능 : 더 적은 DOM 노드로 더 빠름
     <div className="home-wrapper">
+
       <div className="hero-text">
         <h1>Sunny <span className="last-name">Ju</span></h1>
         <h2>Front-end Developer</h2>
@@ -35,22 +37,31 @@ function Home() {
         <AnimatedArrow direction="left" animated={true} />
       </div>
 
-      <div className="arrow-wrapper-bottom">
+      <div className="arrow-wrapper-bottom-mobile-only">
         <AnimatedArrow direction="down" animated={true} />
       </div>
 
       <div className="sub-link-wrapper">
-        <Link className="sub-link" to="/work">         <AnimatedArrow className="arrow-sub-link" direction="right" />
-          See my projects
-        </Link>
         <Link className="sub-link" to="/about">
           <AnimatedArrow className="arrow-sub-link" direction="right" />
           More about me
         </Link>
+        <Link className="sub-link" to="/work">
+          <AnimatedArrow className="arrow-sub-link" direction="right" />
+          See all projects
+        </Link>
       </div>
 
-      <div className="project-list-wrapper">
+      <div className="arrow-wrapper-bottom-desktop-only">
+        <AnimatedArrow direction="down" animated={true} />
+      </div>
+
+      <div className="project-list-wrapper-mobile-only">
         <ProjectAccordion />
+      </div>
+
+      <div className="project-list-wrapper-desktopn-only">
+        <ProjectSplitView />
       </div>
 
     </div>
