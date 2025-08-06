@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/global/Header";
 import Footer from "../components/global/Footer";
-import BackgroundAnimation from "../components/common/backgroundAnimation/BackgroundAnimation";
+import BackgroundAnimation from "../components/common/backgroundAnimation/BackgroundAnimation.jsx";
 
 function MainLayout() {
   return (

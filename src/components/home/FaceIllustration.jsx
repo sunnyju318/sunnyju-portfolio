@@ -1,6 +1,5 @@
 import './FaceIllustration.scss';
 import FaceSvg from '../../assets/images/face-illustration.svg?react';
-import { div } from 'framer-motion/client';
 
 function FaceIllustration() {
   return (

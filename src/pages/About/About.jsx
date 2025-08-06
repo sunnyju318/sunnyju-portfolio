@@ -1,7 +1,7 @@
 import './About.scss';
 import profileMobile from '../../assets/images/profile-mobile.jpg';
 import profileDesktop from '../../assets/images/profile-desktop.jpg';
-import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow";
+import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow.jsx";
 import newYorkImg from '../../assets/images/new-york.jpeg';
 import brisbaneImg from '../../assets/images/brisbane.jpeg';
 import sydneyImg from '../../assets/images/sydney.jpg';

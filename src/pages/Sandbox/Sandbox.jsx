@@ -1,6 +1,6 @@
 import './Sandbox.scss';
 import { Link } from 'react-router-dom';
-import AnimatedArrow from '../../components/common/animatedArrow/AnimatedArrow';
+import AnimatedArrow from '../../components/common/animatedArrow/AnimatedArrow.jsx';
 
 function Sandbox() {
   return (
