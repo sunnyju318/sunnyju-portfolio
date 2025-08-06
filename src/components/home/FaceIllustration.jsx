@@ -1,11 +1,52 @@
 import './FaceIllustration.scss';
 import FaceSvg from '../../assets/images/face-illustration.svg?react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function FaceIllustration() {
   const svgRef = useRef(null);
   // DOM에 접근하기위해 useRef 사용하기, null로 초기화하고 컴포넌트가 렌더링 된 후에는 해당 DOM 요소가 여기에 저장된다.
   // 여기서는 svg에 접근하기 위해서이다.
+
+  const [currentActiveGroup, setCurrentActiveGroup] = useState(0);
+  // 자동순환 애니메이션 : 자동 애니메이션 제어용, 초기값은 0으로 첫번째 그룹을 의미.
+  const [hoveredGroup, setHoveredGroup] = useState(null);
+  // 마우스를 호버했을 시 그 상태를 추적하기 위함, 초기값은 null로 아무것도 호버되지 않은 상태임
+  const [isPaused, setIsPaused] = useState(false);
+  // 마우스 호버시 자동순환 애니메이션을 멈출지 계속할지 제어하는 용도, 초기값은 false로 기본적으로 움직이는 상태임
+
+  const groups = [
+    { 
+      id: 'neck', 
+      color: '#e1dad2', 
+      description: 'I used to drive a forklift in Australia.' 
+    },
+    { 
+      id: 'hair', 
+      color: '#e1dad2', 
+      description: 'I worked as a social worker in Korea.' 
+    },
+    { 
+      id: 'hat-right', 
+      color: '#e1dad2', 
+      description: 'I worked as a fashion designer in Korea.' 
+    },
+    { 
+      id: 'hat-left', 
+      color: '#e1dad2', 
+      description: 'I run a handmade jewelry brand.' 
+    },
+    { 
+      id: 'right-face', 
+      color: '#e1dad2', 
+      description: 'I started coding thanks to a flea market.' 
+    },
+    { 
+      id: 'left-face', 
+      color: '#e1dad2', 
+      description: 'I shifted from helping people to building technology for people.' 
+    }
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -24,7 +65,7 @@ function FaceIllustration() {
       // 왼쪽눈이나 오른쪽눈의 id를 둘중 하나라도 못찾았을경우 함수실행중단, 에러를 방어하기 위해.
 
       // 움직임 가로세로 거리 계산
-      const moveX = (e.clientX / window.innerWidth - 0.5) *10;
+      const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
       const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
       // e.clientX : 현재 커서의 가로위치이다.
       // e.clientX / window.innerWidth : 현재 커서의 가로위치를 전체 화면 너비로 나눠서 0~1사이의 비율로 만든다.
@@ -56,5 +97,6 @@ function FaceIllustration() {
     </div>
   );
 }
+import { form } from 'framer-motion/client';
 
 export default FaceIllustration;
