@@ -118,6 +118,8 @@ function WorkDetail() {
 
       {/* 5. 넥스트 프로젝트 버튼 */}
       <div className="next-project">
+        {/* 초반에 Link대신 a를 사용하였을때 로컬에서는 작동하였으나 퍼블리시후 작동하지 않았다. 
+        내부 페이지 이므로 a 대신 Link 를 사용한 후 해결되었다. */}
         <Link to={`/projects/detail/${work.nextProject.id}`}>
           <h2>{work.nextProject.title}</h2>
           <div className='next-project-title-wrapper'>
