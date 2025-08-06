@@ -4,6 +4,7 @@ import { worksData } from '../../data/worksData';
 import './WorkDetail.scss';
 import AnimatedArrow from '../../components/common/AnimatedArrow/AnimatedArrow.jsx';
 import CodeBlock from '../../components/common/codeBlock/CodeBlock.jsx';
+import { Link } from 'react-router-dom';
 
 function WorkDetail() {
   const { id } = useParams(); // URL에서 id 파라미터 받아오기
@@ -12,6 +13,8 @@ function WorkDetail() {
 
   // id로 해당 프로젝트 찾기
   const work = worksData.find(w => w.id === parseInt(id));
+
+  console.log(work);
   // parseInt(id) : id가 "1" 일때 숫자 1로 바꿔줌
   // 즉, 정수를 숫자로 바꿔줌, useParms는 문자열반 반환하기때문에 필요한 과정임
 
@@ -115,14 +118,13 @@ function WorkDetail() {
 
       {/* 5. 넥스트 프로젝트 버튼 */}
       <div className="next-project">
-        <a href={`/projects/detail/${work.nextProject.id}`}>
+        <Link to={`/projects/detail/${work.nextProject.id}`}>
           <h2>{work.nextProject.title}</h2>
           <div className='next-project-title-wrapper'>
             View Next Project
             <AnimatedArrow direction='right' animated={true} className='arrow-next-project' />
           </div>
-
-        </a>
+        </Link>
       </div>
     </div>
   );
