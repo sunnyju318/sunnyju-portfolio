@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { worksData } from '../../data/worksData';
 import './WorkDetail.scss';
 import AnimatedArrow from '../../components/common/animatedArrow/AnimatedArrow.jsx';
-import CodeBlock from '../../components/common/codeBlock/CodeBlock';
+import CodeBlock from '../../components/common/codeBlock/CodeBlock.jsx';
 
 function WorkDetail() {
   const { id } = useParams(); // URL에서 id 파라미터 받아오기

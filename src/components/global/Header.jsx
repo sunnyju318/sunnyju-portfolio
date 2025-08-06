@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import './Header.scss';
-import HeaderNavigation from "./HeaderNavigation";
-import MobileNavigation from './MobileNavigation';
+import HeaderNavigation from "./HeaderNavigation.jsx";
+import MobileNavigation from './MobileNavigation.jsx';
 
 
 /*

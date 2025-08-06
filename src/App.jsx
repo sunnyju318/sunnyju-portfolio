@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //Route 쓰기전에 터미널에서 "npm i react-router-dom" 먼저 설치할것
 
-import MainLayout from './Layouts/MainLayout';
-import Home from './pages/Home/Home';
-import Projects from './pages/Projects/Projects';
-import About from './pages/About/About';
-import Sandbox from './pages/Sandbox/Sandbox';
-import Contact from './pages/Contact/Contact';
-import NotFound from './pages/NotFound/NotFound';
-import WorkDetail from './pages/Projects/WorkDetail';
+import MainLayout from './Layouts/MainLayout.jsx';
+import Home from './pages/Home/Home.jsx';
+import Projects from './pages/Projects/Projects.jsx';
+import About from './pages/About/About.jsx';
+import Sandbox from './pages/Sandbox/Sandbox.jsx';
+import Contact from './pages/Contact/Contact.jsx';
+import NotFound from './pages/NotFound/NotFound.jsx';
+import WorkDetail from './pages/Projects/WorkDetail.jsx';
 
 import './styles/global.scss';
 

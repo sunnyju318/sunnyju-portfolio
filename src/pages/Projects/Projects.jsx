@@ -1,8 +1,8 @@
 
 import './Projects.scss';
-import ProjectSplitView from '../../components/common/projectDisplay/ProjectSplitView';
+import ProjectSplitView from '../../components/common/projectDisplay/ProjectSplitView.jsx';
 import AnimatedArrow from '../../components/common/animatedArrow/AnimatedArrow.jsx';
-import ProjectAccodian from '../../components/common/projectDisplay/ProjectAccordion';
+import ProjectAccodian from '../../components/common/projectDisplay/ProjectAccordion.jsx';
 
 function Projects() {
   return (

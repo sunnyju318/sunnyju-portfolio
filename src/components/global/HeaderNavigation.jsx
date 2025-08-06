@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import './HeaderNavigation.scss';
-import MobileNavigation from "./MobileNavigation";
+import MobileNavigation from "./MobileNavigation.jsx";
 import { useState } from "react";
 
 function HeaderNavigation() {

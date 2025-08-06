@@ -1,9 +1,9 @@
 import "./Home.scss";
 import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow.jsx";
-import FaceIllustration from "../../components/home/FaceIllustration";
+import FaceIllustration from "../../components/home/FaceIllustration.jsx";
 import { Link } from "react-router-dom";
-import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion";
-import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView";
+import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion.jsx";
+import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView.jsx";
 
 
 function Home() {
