@@ -15,6 +15,8 @@ $bg-gradient-mid: $dark-forest;
 $bg-gradient-end: $dusty-rose;
 $bg-header: rgba($near-black, 0.5);
 $bg-animation: $dusty-rose;
+$bg-button: $scarlet-red;
+$bg-code-block: $near-black;
 
 // Text Colors
 $text-heading-dark-primary: $muted-beige;
@@ -26,6 +28,7 @@ $text-body-dark-alt: $dusty-rose;
 $text-body-light: $dark-forest;
 
 $text-primary-accent: $scarlet-red;
+$text-light-bg: $near-black;
 
 // Navigation Colors
 $nav-text-desktop: $dusty-rose;
@@ -56,6 +59,7 @@ $font-main: 'Montserrat', -apple-system, BlinkMacSystemFont, system-ui, sans-ser
 /* 웹폰트+시스템 폰트 조합으로 성능과 사용자 경험을 모두 고려한 접근 : Montserrat 시도후 성공하면 사용, 
 실패하면 -apple-system시도(Mac/iPhone에서), 실패하면 BlinkMacSystemFont 시도(구버전 Mac), 
 실패하면 system-ui시도(최신 브라우저), 실패하면 마지막으로 sans-serif 사용(브라우저 기본폰트) */
+$font-code: 'Fira Code', monospace;
 
 // Font Sizes
 $font-size-sm: 0.75rem;      // 12px 

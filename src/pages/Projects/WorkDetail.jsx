@@ -1,14 +1,14 @@
-import { useState } from 'react';
+
 import { useParams } from 'react-router-dom';
 import { worksData } from '../../data/worksData';
 import './WorkDetail.scss';
 import AnimatedArrow from '../../components/common/animatedArrow/AnimatedArrow';
+import CodeBlock from '../../components/common/codeBlock/CodeBlock';
 
 function WorkDetail() {
   const { id } = useParams(); // URL에서 id 파라미터 받아오기
 
   console.log(id);
-  const [activeTab, setActiveTab] = useState(0); // 코드 탭 상태 관리
 
   // id로 해당 프로젝트 찾기
   const work = worksData.find(w => w.id === parseInt(id));
@@ -19,7 +19,7 @@ function WorkDetail() {
   if (!work) {
     return (
       <div>
-        <h1>프로젝트를 찾을 수 없습니다.</h1>
+        <h1>Can't find.</h1>
         <p>ID: {id}</p>
       </div>
     );
@@ -33,21 +33,18 @@ function WorkDetail() {
       <div className="project-links">
         <a href={work.links.liveDemo} target="_blank" rel="noopener noreferrer">
           Live Demo
-          <span>
-            <AnimatedArrow />
-          </span>
+          <AnimatedArrow direction='right' className='arrow-sub-link' />
+
         </a>
         <a href={work.links.viewCode} target="_blank" rel="noopener noreferrer">
-          View Code
-          <span>
-            <AnimatedArrow />
-          </span>
+          Github
+          <AnimatedArrow direction='right' className='arrow-sub-link' />
+
         </a>
         <a href={work.links.logDetail} target="_blank" rel="noopener noreferrer">
           Project Log
-          <span>
-            <AnimatedArrow />
-          </span>
+          <AnimatedArrow direction='right' className='arrow-sub-link' />
+
         </a>
       </div>
 
@@ -60,14 +57,14 @@ function WorkDetail() {
           아니면 이미지를 보여주라는 뜻  
             */}
         {work.preview.type === "video" ? (
-          <video 
-          autoPlay
-          muted
-          loop
-          playsInline>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline>
             {/* playInline: 모바일에서 비디오가 전체화면으로 강제전환되는 것을 막아주는 속성이다. 즉 비디오를 인라인(페이지 안)에서 재생하다록 요청한다는 의미 */}
-            <source src={work.preview.src} 
-            type="video/mp4" />
+            <source src={work.preview.src}
+              type="video/mp4" />
           </video>
           // 보여줄 비디오 정보
         ) : (
@@ -77,53 +74,24 @@ function WorkDetail() {
       </div>
 
       {/* 오른쪽: 코드 스니펫 */}
-      <div className="code-box">
-        {/* 탭 버튼들 */}
-        <div className="code-tabs">
-          {work.codeSnippets.map((snippet, index) => (
-            <button
-              key={index}
-              className={`tab ${activeTab === index ? 'active' : ''}`}
-              onClick={() => setActiveTab(index)}
-            >
-              {snippet.tab}
-            </button>
-          ))}
-        </div>
-        <div className="code-content">
-          <pre>
-            <code className={`language-${work.codeSnippets[activeTab].language}`}>
-              {work.codeSnippets[activeTab].code}
-            </code>
-          </pre>
-        </div>
-      </div>
+      <CodeBlock codeSnippets={work.codeSnippets} className="code-box-desktop"/>
 
 
       {/* 4. 디스크립션 파트 (4개 섹션) */}
       <div className="description-sections" >
- 
+
         <section className="section">
           <h2>Overview</h2>
           <p>{work.sections.overview}</p>
         </section>
 
-        <section className="section">
-          <h2>Role & Stack</h2>
-          <div>
-            <h3>Role:</h3>
-            <ul>
-              {work.sections.roleAndStack.role.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-            <h3>Stack:</h3>
-            <ul>
-              {work.sections.roleAndStack.stack.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </div>
+        <section className="section stack">
+          <h2>Stack</h2>
+          <ul>
+            {work.sections.roleAndStack.stack.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
         </section>
 
         <section className="section">
@@ -147,10 +115,13 @@ function WorkDetail() {
 
       {/* 5. 넥스트 프로젝트 버튼 */}
       <div className="next-project">
-        <p>Next Project:</p>
-        <h2>{work.nextProject.title}</h2>
-        <a href={`/work/detail/${work.nextProject.id}`}>
-          View Next Project →
+        <a href={`/projects/detail/${work.nextProject.id}`}>
+          <h2>{work.nextProject.title}</h2>
+          <div className='next-project-title-wrapper'>
+            View Next Project
+            <AnimatedArrow direction='right' animated={true} className='arrow-next-project' />
+          </div>
+
         </a>
       </div>
     </div>

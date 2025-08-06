@@ -7,7 +7,7 @@ function FooterNavigation() {
     <nav className="footer-nav-wrapper">
       <div className="footer-col">
         <Link to="/">Home</Link>
-        <Link to="/work" className="nav-highlight">Work</Link>
+        <Link to="/projects" className="nav-highlight">Projects</Link>
       </div>
       <div className="footer-col">
         <Link to="/about">About</Link>

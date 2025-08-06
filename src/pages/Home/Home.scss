@@ -78,6 +78,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+    user-select: none;
 
     // flex는 블록요소처럼 줄 전체 차지
     // inline-flex는 인라인 요소처럼 다른요소 옆에 올수 있음
@@ -110,10 +111,6 @@
   }
 
   .arrow-wrapper-bottom-mobile-only {
-    display: none;
-  }
-
-  .project-list-wrapper-mobile-only {
     display: none;
   }
 
@@ -163,12 +160,7 @@
       font-size: vars.$font-size-base;
     }
   }
-
   .arrow-wrapper-bottom-desktop-only {
-    display: block;
-  }
-
-  .project-list-wrapper-desktopn-only {
     display: block;
   }
 }
@@ -221,6 +213,14 @@
     .sub-link {
       font-size: vars.$font-size-lg;
     }
+  }
+
+  .project-list-wrapper-desktopn-only {
+    display: block;
+  }
+
+  .project-list-wrapper-mobile-only {
+display: none;
   }
 
 }

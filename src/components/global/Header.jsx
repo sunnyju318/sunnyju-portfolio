@@ -33,11 +33,23 @@ function Header() {
     // window.scrollY : 지금 화면이 얼마나 아래로 내려갔는지 픽셀로 알려줌
     // scrollTop > 50 : 조건식, scrollTop가 50보다 크면 true이고 작거나 같으면 기존의 false를 리턴함
 
+    const handleResize = () => {
+      if (window.innerWidth >768 && isOpen){
+        // 여기서 && : 양쪽 둘다 true일때 다음을 실행해라
+        // 768px 이상이면서 메뉴가 열려있으면 
+        setIsOpen(false); // 메뉴를 닫아라
+      }
+      };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
     // 컴포넌트가 사라질때 scroll 이벤트를 clean up 해주는 코드.
     // 메모리 누수를 막기위해 꼭 필요함
-  }, []);
+  }, [isOpen]); // isOpen 의존성 추가
   // [] : 컴포넌트가 처음 생길때 한번만 실행함
 
   const onToggle = (e) => {
@@ -76,6 +88,7 @@ function Header() {
           isOpen={isOpen}
           onToggle={onToggle}
           onClose={onClose}
+          contactOnly={false}
         />
         {/* 
         1. isOpen : 현재 상태 데이터, true와 false 두개의 데이터를 가지고 있음

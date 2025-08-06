@@ -1,0 +1,49 @@
+@use '../../../styles/base/variables.scss' as vars;
+@use '../../../styles/base/mixin.scss' as mixins;
+
+.hljs {
+  background-color: vars.$bg-code-block;
+  height: 250px;
+  white-space: pre-wrap;
+  // 줄바꿈, 공백유지
+  word-break: break-word;
+  // 긴 단어도 줄바꿈 가능하게
+  font-size: vars.$font-size-base;
+  line-height: vars.$line-height-normal;
+  font-family: vars.$font-code;
+  font-weight: vars.$font-weight-regular;
+}
+
+.tab{
+  color: vars.$text-heading-dark-primary;
+  font-weight: vars.$font-weight-medium;
+  width: 80px;
+  padding: 0.3rem 0;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  background-color: rgba(vars.$muted-olive, 0.3);
+  
+}
+
+.tab.active {
+  color: vars.$text-light-bg;
+  font-weight: vars.$font-weight-medium;
+  background-color: vars.$bg-button;
+}
+
+.code-content {
+  &.highlighting {
+  visibility: hidden;
+  }
+}
+
+// Desktop
+@include mixins.respond-to('lg') {
+  .preview-box {
+    max-height: 477px;
+  }
+  
+  .hljs {
+    height: 400px;
+  }
+}

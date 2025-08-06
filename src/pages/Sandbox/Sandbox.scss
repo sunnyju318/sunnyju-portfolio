@@ -1,0 +1,40 @@
+@use '../../styles/base/mixin.scss' as mixins;
+@use '../../styles/base/variables.scss' as vars;
+
+.sandbox-wrapper {
+  @include mixins.grid-layout();
+  @include mixins.container();
+}
+
+.coming-soon-wrapper {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 100%;
+  height: 80vh;
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 0 50px rgba(vars.$near-black, 0.5);
+  background: rgba(vars.$dark-forest, 0.01);
+}
+
+.back-to-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: vars.$font-size-lg;
+  color: vars.$text-primary-accent;
+  transition: color 0.3s ease;
+}
+
+.back-to-home:hover{
+  color: vars.$text-heading-dark-alt;
+}

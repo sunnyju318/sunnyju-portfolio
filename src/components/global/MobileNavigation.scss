@@ -80,6 +80,7 @@
 
 .mobile-menu-content ul {
   text-align: end;
+  width: 80%;
 }
 
 .mobile-menu-content li {
@@ -92,6 +93,7 @@
   font-weight: vars.$font-weight-light;
   letter-spacing: 2px;
   transition: color 0.3s ease;
+  padding: 0;
 }
 
 .mobile-menu-content .nav-link:hover {
@@ -101,20 +103,62 @@
 .mobile-menu-content .nav-link::before {
   display: none;
 }
+
 // 현재 데스크탑 네비게이션에서 준 호버 효과를 모바일 메뉴에서는 제거한다.
 // 모바일 메뉴에서도 같은 .nav-link 클래스를 사용하기 때문에 문제가될수 있기 때문이다.
 
+.contact-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: vars.$text-body-dark-alt;
+
+  .horizontal-line {
+    margin-top: 2rem;
+    width: 100%;
+    height: 1px;
+    background-color: vars.$scarlet-red;
+  }
+
+  .contact-list {
+    display: flex;
+    gap: 3rem;
+
+    .contact-sub-title {
+      font-weight: vars.$font-weight-medium;
+      font-size: vars.$font-size-lg;
+    }
+
+    a {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+
+  .contact-arrow {
+    width: 20px;
+  }
+}
 
 //반응형
-
 @include mixins.respond-to('md') {
   .hamburger {
     display: none;
+    &.contact-mode {
+      display: block;
+      position: fixed;
+      top: 50px;
+      right: 50px;
+      // %를 쓰면 부모요소에 영향을 받기 때문에 스크롤시 움직인다.
+      // px를 사용하면 절대값이라 부모요소와 무관하여 뷰포트 기준으로 고정된다.
+    }
   }
+// 컨텍트를 클릭하면 contact-mode 라는 클래스가 붙는다
+
+
   .menu-navigation-header {
     display: flex;
-  }
-  .mobile-menu-overlay {
-    display: none;
   }
 }

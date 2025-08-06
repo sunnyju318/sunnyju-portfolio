@@ -4,12 +4,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import MainLayout from './Layouts/MainLayout';
 import Home from './pages/Home/Home';
-import Work from './pages/Work/Work';
+import Projects from './pages/Projects/Projects';
 import About from './pages/About/About';
 import Sandbox from './pages/Sandbox/Sandbox';
 import Contact from './pages/Contact/Contact';
 import NotFound from './pages/NotFound/NotFound';
-import WorkDetail from './pages/Work/WorkDetail';
+import WorkDetail from './pages/Projects/WorkDetail';
 
 import './styles/global.scss';
 
@@ -20,8 +20,8 @@ function App() {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path='work' element={<Work />}/>
-          <Route path='work/detail/:id' element={<WorkDetail/>}/>
+          <Route path='projects' element={<Projects />}/>
+          <Route path='projects/detail/:id' element={<WorkDetail/>}/>
           {/* :id 
           URL 경로에 들어가는 데이터늬 고유값(ID)를 의미한다. 
           즉, 이 디테일 페이지에서 어떤 데이터를 보여줄지 구분하는 key 역할을 한다.

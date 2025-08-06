@@ -65,7 +65,7 @@ function ProjectAccordion() {
                   <AnimatedArrow
                     className='featured-arrow'
                     direction='right' />
-                  <Link to={`/work/detail/${project.id}`}>View Full Project</Link>
+                  <Link to={`/projects/detail/${project.id}`}>View Full Project</Link>
                 </motion.span>
               )}
           </AnimatePresence>

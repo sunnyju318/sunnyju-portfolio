@@ -197,7 +197,7 @@ window.addEventListener('load', () => {
       overview: "A CSS-only loading animation with a glowing moon rising meteors and hand-drawn stars. This preloader was designed to set a calm, introspective mood before entering a site.",
       roleAndStack: {
         role: ["Concept, design, and full implementation"],
-        stack: ["HTML", "CSS", "JavaScript", "SVG", "Adobe Illustrator"]
+        stack: ["HTML", "CSS", "JavaScript"]
       },
       designAndDevelopment: [
         "Used @keyframes for glowing moon + meteor effect",

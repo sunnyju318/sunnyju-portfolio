@@ -5,11 +5,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import AnimatedArrow from '../animatedArrow/AnimatedArrow';
 import { Link } from 'react-router-dom';
 
-
-function ProjectSplitView() {
+// Projects 페이지에서 제목변경을 위해 title를 props로 가져감
+function ProjectSplitView({
+  title = "FEATURED PROJECTS",
+  isFeatured = true
+}) {
   const [expandedItem, setExpandedItem] = useState(null);
 
-  const featuredProjects = worksData.filter(project => project.isFeatured);
+  const featuredProjects = isFeatured ?
+  worksData.filter(project => project.isFeatured) : worksData;
 
   return (
 
@@ -27,12 +31,12 @@ function ProjectSplitView() {
 
       <div className="featured-project-list-wrapper-desktop">
         <div className='list-heading-desktop'>
-          <h3>FEATURED PROJECTS</h3>
+          <h3>{title}</h3>
         </div>
 
         {featuredProjects.map((project, index) => (
           <Link
-            to={`/work/detail/${project.id}`}
+            to={`/projects/detail/${project.id}`}
             key={project.id}
             className="list-box-desktop"
             onMouseEnter={() => setExpandedItem(index)}

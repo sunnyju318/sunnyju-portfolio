@@ -1,0 +1,44 @@
+@use '../../styles/base/mixin.scss' as mixins;
+@use '../../styles/base/variables.scss' as vars;
+
+.projects-wrapper {
+  @include mixins.grid-layout();
+  @include mixins.container();
+}
+
+.projects-title {
+  margin-top: 5rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1/-1;
+}
+
+.my-projects-mobile-only {
+  margin-top: 10rem;
+  grid-column: 1/-1;
+}
+
+.my-projects-desktop-only {
+  margin-top: 10rem;
+  grid-column: 1/-1;
+  display: none;
+}
+
+// Tablet
+@include mixins.respond-to('md') {
+
+}
+
+
+// Desktop
+@include mixins.respond-to('lg') {
+  .my-projects-mobile-only {
+    display: none;
+  }
+
+  .my-projects-desktop-only {
+    display: block;
+  }
+}

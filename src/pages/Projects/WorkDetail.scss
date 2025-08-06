@@ -1,0 +1,154 @@
+@use '../../styles/base/mixin.scss' as mixins;
+@use '../../styles/base/variables.scss' as vars;
+
+.work-detail-wrapper {
+  @include mixins.grid-layout();
+  @include mixins.container();
+}
+
+.project-title {
+  grid-column: 1/-1;
+  text-align: start;
+  font-size: vars.$font-size-7xl-clamp;
+  margin-bottom: 2rem;
+}
+
+.project-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  grid-column: 1/-1;
+  margin-bottom: 1.5rem;
+  color: vars.$text-heading-dark-alt;
+  font-size: vars.$font-size-lg;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.arrow-sub-link {
+  svg {
+    width: 20px;
+  }
+}
+
+.preview-box {
+  min-height: 327px;
+  grid-column: 1/-1;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.code-box {
+  grid-column: 1/-1;
+  background-color: vars.$bg-code-block;
+  overflow: hidden;
+  margin-bottom: 4rem;
+  border-radius: 10px;
+
+  .code-content {
+    padding: 0.5rem;
+  }
+}
+
+.description-sections {
+  grid-column: 1/-1;
+  margin-bottom: 3rem;
+
+  .section {
+    margin-bottom: 3rem;
+
+    &.stack{
+      ul{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        li{
+          background-color: vars.$near-black;
+          color: vars.$scarlet-red;
+          padding: 0.3rem 1rem;
+          border-radius: 10px;
+          font-weight: vars.$font-weight-semibold;
+        }
+      }
+    }
+
+    h2 {
+      text-align: start;
+      margin-bottom: 1rem;
+      @include mixins.section-title-mobile-beige;
+    }
+
+    ul {
+      line-height: vars.$line-height-normal;
+    }
+  }
+}
+
+.next-project {
+  grid-column: 1/-1;
+  text-align: end;
+
+  a {
+    font-size: vars.$font-size-3xl-clamp;
+    font-weight: vars.$font-weight-semibold;
+
+    .next-project-title-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2 {
+      font-size: vars.$font-size-7xl-clamp;
+      color: vars.$near-black;
+      margin-bottom: 0.5rem;
+    }
+
+    .arrow-next-project {
+      width: 20px;
+
+      svg {
+        fill: vars.$muted-beige;
+      }
+    }
+  }
+}
+
+// Tablet
+@include mixins.respond-to('md') {
+  .preview-box {
+    max-height: 327px;
+    grid-column: 1/5;
+  }
+  
+  .code-box {
+    grid-column: 5/9;
+  }
+}
+
+
+// Desktop
+@include mixins.respond-to('lg') {
+  .preview-box {
+    grid-column: 1/7;
+  }
+  
+  .code-box {
+    grid-column: 7/13;
+  }
+}
+
+// 데스크탑 사이즈 코드 내부 박스 하이트는 CodeBlock.scss에서 직접 처리함

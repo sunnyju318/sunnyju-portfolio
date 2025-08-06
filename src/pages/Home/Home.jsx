@@ -46,7 +46,7 @@ function Home() {
           <AnimatedArrow className="arrow-sub-link" direction="right" />
           More about me
         </Link>
-        <Link className="sub-link" to="/work">
+        <Link className="sub-link" to="/projects">
           <AnimatedArrow className="arrow-sub-link" direction="right" />
           See all projects
         </Link>
