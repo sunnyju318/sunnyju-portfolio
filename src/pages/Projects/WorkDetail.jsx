@@ -2,7 +2,7 @@
 import { useParams } from 'react-router-dom';
 import { worksData } from '../../data/worksData';
 import './WorkDetail.scss';
-import AnimatedArrow from '../../components/common/animatedArrow/AnimatedArrow.jsx';
+import AnimatedArrow from '../../components/common/AnimatedArrow/AnimatedArrow.jsx';
 import CodeBlock from '../../components/common/codeBlock/CodeBlock.jsx';
 
 function WorkDetail() {

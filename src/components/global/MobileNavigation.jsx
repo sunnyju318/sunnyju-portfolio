@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './MobileNavigation.scss';
 import { Link } from 'react-router-dom';
-import AnimatedArrow from '../common/animatedArrow/AnimatedArrow.jsx';
+import AnimatedArrow from '../common/AnimatedArrow/AnimatedArrow.jsx';
 import { motion } from 'framer-motion';
 
 

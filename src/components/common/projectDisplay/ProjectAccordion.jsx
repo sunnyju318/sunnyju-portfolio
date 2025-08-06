@@ -2,7 +2,7 @@ import './ProjectAccordion.scss';
 import { useState } from 'react';
 import { worksData } from '../../../data/worksData';
 import { motion, AnimatePresence } from 'framer-motion';
-import AnimatedArrow from '../animatedArrow/AnimatedArrow.jsx';
+import AnimatedArrow from '../AnimatedArrow/AnimatedArrow.jsx';
 import { Link } from 'react-router-dom';
 
 function ProjectAccordion() {

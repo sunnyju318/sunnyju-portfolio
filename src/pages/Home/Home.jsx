@@ -1,5 +1,5 @@
 import "./Home.scss";
-import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow.jsx";
+import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
 import FaceIllustration from "../../components/home/FaceIllustration.jsx";
 import { Link } from "react-router-dom";
 import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion.jsx";

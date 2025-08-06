@@ -2,7 +2,7 @@ import './ProjectSplitView.scss';
 import { useState } from 'react';
 import { worksData } from '../../../data/worksData.jsx';
 import { motion, AnimatePresence } from 'framer-motion';
-import AnimatedArrow from '../animatedArrow/AnimatedArrow.jsx';
+import AnimatedArrow from '../AnimatedArrow/AnimatedArrow.jsx';
 import { Link } from 'react-router-dom';
 
 // Projects 페이지에서 제목변경을 위해 title를 props로 가져감
