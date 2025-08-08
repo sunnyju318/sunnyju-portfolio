@@ -309,15 +309,14 @@ useEffect(() => {
 
       paths.forEach(path => {
         if (isActive) {
-          path.style.filter = 'blur(0.5px) drop-shadow(0 0 20px rgba(26, 32, 30, 0.9))';
-          path.style.opacity = '0.5';
+          path.style.filter = 'saturate(200%)	brightness(0.5)';
         } else {
           path.style.fill = '';
           path.style.filter = '';
           path.style.transform = '';
           path.style.opacity = '';
         }
-        path.style.transition = 'all 0.1s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        path.style.transition = 'all 0.1s ease';
       });
     });
   }, [currentActiveGroup, hoveredGroup]);
@@ -347,7 +346,7 @@ useEffect(() => {
               zIndex: 9999,
               pointerEvents: 'none',
 
-              background: 'rgba(15, 15, 15, 0.1)',
+              background: 'rgba(4, 4, 4, 0.5)',
               backdropFilter: 'blur(10px)',
               color: '#e1dad2',
               padding: '20px 30px',
@@ -355,6 +354,7 @@ useEffect(() => {
               border: '1px solid rgba(225, 218, 210, 0.15)',
               boxShadow: '0 25px 80px rgba(0, 0, 0, 0.6)',
               maxWidth: '400px',
+              lineHeight: '32px',
             }}
           >
             <p>{hoveredGroup.description}</p>

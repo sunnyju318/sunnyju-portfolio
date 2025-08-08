@@ -14,20 +14,20 @@ footer {
   @include mixins.container();
 }
 
-.footer-icons {
+.social-icon-wrapper {
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 1rem;
 
-  svg {
-    width: 28px;
-    height: 28px;
-    fill: vars.$footer-icon;
+  .social-icon {
+    @include mixins.social-icon;
+    color: vars.$dark-forest;
   }
 }
 
 .footer-text {
+  margin-bottom: 1rem;
+
   .footer-title {
     font-size: vars.$font-size-4xl-clamp;
     font-weight: vars.$font-weight-semibold;
@@ -45,6 +45,16 @@ footer {
   background-color: vars.$dark-forest;
 }
 
+.footer-link {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.email-address {
+  display: none;
+}
+
 .footer-copy {
   display: none;
 }
@@ -60,24 +70,37 @@ footer {
 }
 
 @include mixins.respond-to('md') {
-  .footer-text .footer-sub {
-    margin-top: 1rem;
-  }
+  .footer-wrapper {
+    .email-address {
+      display: inline-block;
+      width: fit-content;
+      text-align: left;
+      margin-top: 3rem;
+      font-size: vars.$font-size-lg;
 
-  .footer-icons svg {
-    width: 32px;
-    height: 32px;
-  }
+      &:hover {
+        color: vars.$muted-beige;
+      }
+    }
 
-  .footer-divider {
-    margin-bottom: 3rem;
-  }
+    .footer-text .footer-sub {
+      margin-top: 1rem;
+    }
 
-  .footer-copy {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 5rem;
-    font-size: vars.$font-size-lg;
+    .footer-icons svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer-divider {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-copy {
+      display: block;
+      margin-bottom: 5rem;
+      font-size: vars.$font-size-lg;
+    }
   }
 
   .footer-logo {
@@ -86,6 +109,7 @@ footer {
 }
 
 @include mixins.respond-to('lg') {
+  
   .footer-text .footer-sub {
     margin-top: 1rem;
   }
@@ -95,14 +119,9 @@ footer {
     height: 36px;
   }
 
-  .footer-divider {
-    margin-bottom: 3rem;
-  }
-
   .footer-copy {
     display: block;
-    margin-top: 1rem;
-    margin-bottom: 7rem;
+    margin-bottom: 6rem;
   }
 
   .footer-logo {

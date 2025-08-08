@@ -30,8 +30,8 @@ function ProjectSplitView({
       </div>
 
       <div className="featured-project-list-wrapper-desktop">
-        <div className='list-heading-desktop'>
-          <h3>{title}</h3>
+        <div className='list-heading-wrapper-desktop'>
+          <h2 className='list-heading-desktop'>{title}</h2>
         </div>
 
         {featuredProjects.map((project, index) => (
@@ -85,6 +85,7 @@ function ProjectSplitView({
         ))
         }
       </div >
+      <div className='tape-decoration'></div>
     </div>
   )
 };

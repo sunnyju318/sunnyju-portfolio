@@ -64,31 +64,35 @@
   display: none;
 }
 
-.sub-link-wrapper {
+.sub-link-container {
   margin: 3rem auto 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   grid-column: 1/-1;
 
-  .sub-link {
-    font-size: vars.$font-size-lg;
-    color: vars.$text-heading-dark-alt;
+  .sub-link-wrapper {
     display: inline-flex;
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+  }
+
+  .arrow-sub-link {
+    svg {
+      fill: vars.$text-heading-dark-alt;
+      width: 20px;
+    }
+  }
+
+  .sub-link {
+    font-size: vars.$font-size-lg;
+    color: vars.$text-heading-dark-alt;
     user-select: none;
+    @include mixins.hover-underline;
 
     // flex는 블록요소처럼 줄 전체 차지
     // inline-flex는 인라인 요소처럼 다른요소 옆에 올수 있음
-
-    .arrow-sub-link {
-      svg {
-        fill: vars.$text-heading-dark-alt;
-        width: 20px;
-      }
-    }
   }
 }
 
@@ -99,9 +103,10 @@
 
 .project-list-wrapper-desktopn-only {
   display: none;
-  margin: 4rem 0 0;
+  margin: 8rem 0 0;
   grid-column: 1/-1;
 }
+
 
 
 // Tablet
@@ -151,7 +156,7 @@
     max-width: 90%;
   }
 
-  .sub-link-wrapper {
+  .sub-link-container {
     align-items: flex-start;
     justify-content: center;
     grid-column: 7/9;
@@ -160,6 +165,7 @@
       font-size: vars.$font-size-base;
     }
   }
+
   .arrow-wrapper-bottom-desktop-only {
     display: block;
   }
@@ -207,7 +213,7 @@
     grid-column: 10/11;
   }
 
-  .sub-link-wrapper {
+  .sub-link-container {
     grid-column: 11/13;
 
     .sub-link {
@@ -220,7 +226,7 @@
   }
 
   .project-list-wrapper-mobile-only {
-display: none;
+    display: none;
   }
 
 }

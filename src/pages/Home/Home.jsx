@@ -41,15 +41,19 @@ function Home() {
         <AnimatedArrow direction="down" animated={true} />
       </div>
 
-      <div className="sub-link-wrapper">
-        <Link className="sub-link" to="/about">
+      <div className="sub-link-container">
+        <div className="sub-link-wrapper">
           <AnimatedArrow className="arrow-sub-link" direction="right" />
-          More about me
-        </Link>
-        <Link className="sub-link" to="/projects">
+          <Link className="sub-link" to="/about">
+            More about me
+          </Link>
+        </div>
+        <div className="sub-link-wrapper">
           <AnimatedArrow className="arrow-sub-link" direction="right" />
-          See all projects
-        </Link>
+          <Link className="sub-link" to="/projects">
+            See all projects
+          </Link>
+        </div>
       </div>
 
       <div className="arrow-wrapper-bottom-desktop-only">
