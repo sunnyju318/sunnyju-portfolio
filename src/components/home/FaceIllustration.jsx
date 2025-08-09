@@ -18,38 +18,33 @@ function FaceIllustration() {
 
   /* == 성능최적화하기 == 메모이제이션, 불필요한 재생성 방지 :
   JSX안에서 [{}, {}, ..] 이런식으로 배열 데이터를 쓰면 
-  리렌더링 할때마다 새 배열이 생성된다. 내용이 아무리 같더라도 메모리 주소는 리렌더할때마다 달라진다 className="배열이나 객체는 값이 아닌 reference로 비교되기 때문이다.
+  리렌더링 할때마다 새 배열이 생성된다. 내용이 아무리 같더라도 메모리 주소는 리렌더할때마다 달라진다 
+  배열이나 객체는 값이 아닌 reference로 비교되기 때문이다.
   그래서 그 배열을 쓰는 useEffect에 반영되어 useEffect역시 새로 실행된다.
   여기서 useMemo가 처음 한번 생성된 그 메모리 주소를 기억해서 의존값이 바뀌지 않으면 같은 참조값을 반환한다. */
   const groups = useMemo(() => [
     {
       id: 'neck',
-      color: '#e1dad2',
       description: 'I used to drive a forklift in Australia.'
     },
     {
       id: 'hair',
-      color: '#e1dad2',
       description: 'I worked as a social worker in Korea.'
     },
     {
       id: 'hat-right',
-      color: '#e1dad2',
       description: 'I worked as a fashion designer in Korea.'
     },
     {
       id: 'hat-left',
-      color: '#e1dad2',
       description: 'I run a handmade jewelry brand.'
     },
     {
       id: 'right-face',
-      color: '#e1dad2',
       description: 'I started coding thanks to a flea market.'
     },
     {
       id: 'left-face',
-      color: '#e1dad2',
       description: 'I shifted from helping people to building technology for people.'
     }
   ], []);
