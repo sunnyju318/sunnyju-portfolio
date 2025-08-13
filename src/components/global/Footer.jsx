@@ -5,6 +5,10 @@ import FooterNavigation from "./FooterNavigation.jsx";
 
 
 function Footer({isScrolled, isContactOpen, setIsContactOpen}) {
+  const handleLogoClick = () =>{
+window.scroll({top:0, behavior: 'smooth'});
+  }; // 클릭시 상단으로 부드럽게 이동
+
   return (
     <footer>
       <div className="footer-wrapper">
@@ -48,7 +52,7 @@ function Footer({isScrolled, isContactOpen, setIsContactOpen}) {
         <div className="footer-copy">
           <small>© 2025 Sunny Ju. All rights reserved.</small>
         </div>
-        <Link to='/'>
+        <Link to='/' onClick={handleLogoClick}>
           <span className="footer-logo" aria-label="Go to home"></span>
         </Link>
         {/* 인라인 요소<link>안에 블록<div>요소를 넣는것은 HTML문법위반이므로 div에서 span으로 바꾸고 display: inline-block를 줘서 높이를 주는게 가능하도록 하였다 */}

@@ -73,10 +73,11 @@ function ProjectSplitView({
                     exit={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.2 }}
                   >
+
+                    View Full Project
                     <AnimatedArrow
                       className='featured-arrow-desktop'
                       direction='right' />
-                    View Full Project
                   </motion.span>
                 )}
             </AnimatePresence>
@@ -85,7 +86,6 @@ function ProjectSplitView({
         ))
         }
       </div >
-      <div className='tape-decoration'></div>
     </div>
   )
 };

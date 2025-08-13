@@ -28,10 +28,13 @@ button, input, select, textarea {
   font: inherit;
   color: inherit;
   outline: none;
+  -webkit-tap-highlight-color: transparent; 
+  // 모바일 터치 하이라이트 제거하기
 }
 
 /* Reset buttons */
 button {
+  all: unset;
   cursor: pointer;
 }
 

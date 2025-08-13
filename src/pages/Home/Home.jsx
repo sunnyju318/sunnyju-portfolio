@@ -43,16 +43,16 @@ function Home() {
 
       <div className="sub-link-container">
         <div className="sub-link-wrapper">
-          <AnimatedArrow className="arrow-sub-link" direction="right" />
           <Link className="sub-link" to="/about">
             More about me
           </Link>
+          <AnimatedArrow className="arrow-sub-link" direction="right" />
         </div>
         <div className="sub-link-wrapper">
-          <AnimatedArrow className="arrow-sub-link" direction="right" />
           <Link className="sub-link" to="/projects">
             See all projects
           </Link>
+          <AnimatedArrow className="arrow-sub-link" direction="right" />
         </div>
       </div>
 

@@ -8,12 +8,6 @@
   align-items: center;
   gap: 8rem;
   position: relative;
-
-  .tape-decoration{
-    @include mixins.tape-decoration;
-    left: 300px;
-    top: -50px;
-  }
 }
 
 // 왼쪽 프리뷰 박스

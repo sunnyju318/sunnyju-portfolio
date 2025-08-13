@@ -68,12 +68,12 @@
   margin: 3rem auto 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 1rem;
   grid-column: 1/-1;
 
   .sub-link-wrapper {
     display: inline-flex;
-    justify-content: flex-start;
     align-items: center;
     gap: 1rem;
   }

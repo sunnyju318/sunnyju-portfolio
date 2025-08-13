@@ -116,8 +116,9 @@
 .contact-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   color: vars.$text-body-dark-alt;
+  overflow: hidden;
 
   .horizontal-line {
     margin-top: 2rem;
@@ -130,12 +131,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 3rem;
-
-    .contact-sub-title {
-      font-weight: vars.$font-weight-medium;
-      font-size: vars.$font-size-lg;
-    }
+    gap: 2rem;
 
     a {
       display: flex;
@@ -151,6 +147,12 @@
         @include mixins.social-icon;
       }
     }
+  }
+
+  .contact-sub-title {
+    font-weight: vars.$font-weight-medium;
+    font-size: vars.$font-size-lg;
+    display: none;
   }
 
   .contact-arrow {
@@ -172,6 +174,10 @@
   .contact-list {
     .email-address {
       font-size: vars.$font-size-lg;
+    }
+
+    .contact-sub-title {
+      display: block;
     }
   }
 

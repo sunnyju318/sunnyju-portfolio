@@ -10,6 +10,7 @@ import Sandbox from './pages/Sandbox/Sandbox.jsx';
 import Contact from './pages/Contact/Contact.jsx';
 import NotFound from './pages/NotFound/NotFound.jsx';
 import WorkDetail from './pages/Projects/WorkDetail.jsx';
+import ScrollToTop from './components/global/ScrollToTop.jsx';
 
 import './styles/global.scss';
 
@@ -17,11 +18,13 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop /> 
+      {/* 브라우저라우터 안에 바로 넣으면 모든 페이지 이동에서 자동으로 작동한다 */}
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path='projects' element={<Projects />}/>
-          <Route path='projects/detail/:id' element={<WorkDetail/>}/>
+          <Route path='projects' element={<Projects />} />
+          <Route path='projects/detail/:id' element={<WorkDetail />} />
           {/* :id 
           URL 경로에 들어가는 데이터늬 고유값(ID)를 의미한다. 
           즉, 이 디테일 페이지에서 어떤 데이터를 보여줄지 구분하는 key 역할을 한다.

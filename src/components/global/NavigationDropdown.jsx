@@ -103,7 +103,7 @@ function NavigationDropdown({ isMenuOpen, onToggle, onClose, contactOnly = false
                     sunnyju318@naver.com
                     <AnimatedArrow
                       className='contact-arrow'
-                      direction='left' />
+                      direction='right' />
                   </a>
                   <p className='contact-sub-title'>Email</p>
                 </div>

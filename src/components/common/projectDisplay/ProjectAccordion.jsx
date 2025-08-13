@@ -69,10 +69,10 @@ function ProjectAccordion({
                   exit={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2 }}
                 >
+                  <Link to={`/projects/detail/${project.id}`}>View Full Project</Link>
                   <AnimatedArrow
                     className='featured-arrow'
                     direction='right' />
-                  <Link to={`/projects/detail/${project.id}`}>View Full Project</Link>
                 </motion.span>
               )}
           </AnimatePresence>
