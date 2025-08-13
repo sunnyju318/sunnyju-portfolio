@@ -7,28 +7,38 @@
 }
 
 .projects-title {
-  margin-top: 5rem;
+  margin-top: 4rem;
   display: flex;
   gap: 2rem;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   grid-column: 1/-1;
+
+  h1 {
+    font-size: vars.$font-size-5xl-clamp;
+
+    .projects-title-highlight {
+      color: vars.$text-primary-accent;
+    }
+  }
 }
 
 .my-projects-mobile-only {
-  margin-top: 10rem;
+  margin-top: 3rem;
   grid-column: 1/-1;
 }
 
 .my-projects-desktop-only {
-  margin-top: 10rem;
+  margin-top: 7rem;
   grid-column: 1/-1;
   display: none;
 }
 
 // Tablet
 @include mixins.respond-to('md') {
-
+  .my-projects-mobile-only {
+    margin-top: 4rem;
+  }
 }
 
 

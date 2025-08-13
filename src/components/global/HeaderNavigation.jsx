@@ -1,14 +1,14 @@
 
 import { Link } from "react-router-dom";
 import './HeaderNavigation.scss';
-import MobileNavigation from "./MobileNavigation";
+import NavigationDropdown from "./NavigationDropdown.jsx";
 import { useState } from "react";
 
-function HeaderNavigation() {
-  const [isOpen, setIsOpen] = useState(false);
+function HeaderNavigation({isScrolled, isContactOpen, setIsContactOpen}) {
+
 
   const onClose = () => {
-    setIsOpen(false);
+    setIsContactOpen(false);
   };
 
   // Link는 내부 페이지 이동용이고 a는 다른 사이트 연결용이다
@@ -29,21 +29,21 @@ function HeaderNavigation() {
 
       <div className="menu-icons-header">
         <button
-          className="nav-link-button"
-          onClick={() => setIsOpen(!isOpen)}
+          className={`nav-link-button ${isScrolled ? 'scrolled' : ''}`}
+          onClick={() => setIsContactOpen(!isContactOpen)}
         >
           Contact
         </button>
 
-        <MobileNavigation 
-        isOpen={isOpen}
-        onToggle={() => setIsOpen(!isOpen)} 
+        <NavigationDropdown 
+        isMenuOpen={isContactOpen}
+        onToggle={() => setIsContactOpen(!isContactOpen)} 
         onClose={onClose}
         contactOnly={true}
         />
 
         <a
-          className="nav-link-button"
+          className={`nav-link-button ${isScrolled ? 'scrolled' : ''}`}
           href="#"
           target="_blank"
           rel="noopener noreferrer"

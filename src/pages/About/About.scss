@@ -41,7 +41,7 @@
   object-position: center top;
 }
 
-// desktop
+
 .hero-desktop-content {
   grid-column: 1/-1;
   display: none; // mobile에서는 안보이게 함
@@ -87,6 +87,13 @@
   }
 }
 
+.stack-wrapper {
+  grid-column: 1/-1;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.8rem;
+}
+
 .section-body-about-me {
   grid-column: 1/-1;
   display: flex;
@@ -96,11 +103,21 @@
 }
 
 .hero-arrow-wrapper-bottom {
-  margin: 5rem 0;
+  color: vars.$text-heading-dark-alt;
+  margin: 7rem 0 5rem;
   grid-column: 1/-1;
   @include mixins.flex-center;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
+
+  .journey-title {
+    font-size: vars.$font-size-lg;
+    font-weight: vars.$font-weight-medium;
+  }
+
+  .about-arrow-bottom {
+    margin-top: 1rem;
+  }
 }
 
 .section-title {
@@ -113,18 +130,18 @@
 
 .new-york,
 .sydney,
-.vancouver{
+.vancouver {
   text-align: start;
 }
 
 .brisbane,
-.korea{
+.korea {
   text-align: end;
 }
 
 .section-image {
-  margin: 1rem 0 5rem;
-  height: 220px;
+  margin: 1rem 0 4rem;
+  height: 240px;
   overflow: hidden;
   grid-column: 1/-1;
 
@@ -136,7 +153,6 @@
 }
 
 .ending-quote {
-  margin-bottom: 5rem;
   grid-column: 1/-1;
   text-align: center;
   font-size: vars.$font-size-xl;
@@ -147,13 +163,22 @@
 // Tablet
 @include mixins.respond-to('md') {
   .hero-desktop-content {
+    grid-column: 2/8;
     display: block;
-    margin: 3rem 0;
+    margin: 2.5rem 0;
+
+    .hero-desktop-heading {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 1rem;
+      font-size: vars.$font-size-4xl-clamp;
+    }
   }
 
   .hero-wrapper {
-    grid-column: 3/7;
-    height: 57vh;
+    border-radius: 50px;
+    grid-column: 2/8;
+    height: 50vh;
   }
 
   .hero-mobile-content {
@@ -161,15 +186,25 @@
   }
 
   .section-title-about-me {
-    grid-column: 3/7;
+    margin: 4rem 0;
+
+    h2 {
+      display: inline-flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    grid-column: 2/8;
   }
 
   .section-body-about-me {
-    grid-column: 3/7;
+    display: flex;
+    flex-direction: row;
+    grid-column: 2/8;
   }
 
   .section-image {
-    margin: 1rem 0 9rem;
+    margin: 1rem 0 8rem;
     height: 400px;
   }
 
@@ -180,33 +215,74 @@
   }
 
   .hero-arrow-wrapper-bottom {
-    margin: 7rem 0;
+    margin: 6rem 0;
   }
 
   .ending-quote {
-    margin-bottom: 7rem;
-}
+    margin-bottom: 3rem;
+  }
+
+  .stack-wrapper {
+    grid-column: 2/8;
+  }
 }
 
 // Desktop
 @include mixins.respond-to('lg') {
+  .hero-desktop-content {
+    grid-column: 3/11;
+
+    .hero-desktop-heading {
+      font-size: vars.$font-size-5xl-clamp;
+    }
+  }
+
   .hero-wrapper {
-    grid-column: 4/10;
-    height: 54vh;
+    grid-column: 3/11;
+    height: 60vh;
   }
 
 
   .section-title-about-me {
-    grid-column: 4/10;
+    grid-column: 3/11;
   }
 
   .section-body-about-me {
-    grid-column: 4/10;
+    grid-column: 3/11;
+    font-size: vars.$font-size-lg;
   }
 
   .section-title {
     h2 {
       font-size: vars.$font-size-12xl-clamp;
     }
+  }
+
+  .section-image {
+    margin: 1rem 0 8rem;
+    height: 500px;
+  }
+
+  .hero-arrow-wrapper-bottom {
+    margin: 8rem 0 5rem;
+    font-size: vars.$font-size-lg;
+    gap: 0.7rem;
+
+    .journey-title {
+      font-size: vars.$font-size-xl;
+      font-weight: vars.$font-weight-medium;
+    }
+
+    .about-arrow-bottom {
+      margin-top: 1rem;
+    }
+  }
+
+  .stack-wrapper {
+    grid-column: 3/11;
+  }
+
+  .tap-guide-mobile {
+    display: none;
   }
 }

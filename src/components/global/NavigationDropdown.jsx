@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import './MobileNavigation.scss';
+import './NavigationDropdown.scss';
 import { Link } from 'react-router-dom';
-import AnimatedArrow from '../common/animatedArrow/AnimatedArrow';
+import AnimatedArrow from '../common/AnimatedArrow/AnimatedArrow.jsx';
 import { motion } from 'framer-motion';
 
 
-function MobileNavigation({ isOpen, onToggle, onClose, contactOnly = false }) {
+function NavigationDropdown({ isMenuOpen, onToggle, onClose, contactOnly = false }) {
 
 
   const [expandedItem, setExpandedItem] = useState(contactOnly ? 'contact' : null);
@@ -21,10 +21,10 @@ function MobileNavigation({ isOpen, onToggle, onClose, contactOnly = false }) {
       {/* (a || b) && c : a와 b 둘중 하나라도 참이면 c를 실행해라. 
 여기서 contactOnly앞에 !가 붙은 이유는 초기세팅을 contactOnly = false  이렇게 했기때문이다. 
 즉, 컨텍트온니가(!이 붙어서 거짓을 참으로 바꿈) 참이거나 isOpen이 참일경우 아래 버튼을 실행해라 라는 뜻. */}
-      {(!contactOnly || isOpen) && (
+      {(!contactOnly || isMenuOpen) && (
         <button
           className={`hamburger 
-            ${isOpen ? 'open' : ''}
+            ${isMenuOpen ? 'open' : ''}
             ${contactOnly ? 'contact-mode' : ''}
             `}
           // 기본적으로 hamburger이라는 클래스를 가지고 있으며 메뉴가 열렸을때는 open이라는 클래스도 추가로 갖는다
@@ -50,7 +50,7 @@ function MobileNavigation({ isOpen, onToggle, onClose, contactOnly = false }) {
       )}
 
       {/* 모바일 풀스크린 메뉴 */}
-      <div className={`mobile-menu-overlay ${isOpen ? 'open' : ''}`}>
+      <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`}>
         {/* 기본적으로 mobile-menu-overlay 라는 클래스명을 가짐
        isMobileMenuOpen ? 'open' : '' // isMobileMenuOpen 이게 true 일때(열렸을때)는 open이라는 클래스를 붙이고 false이면(닫혔으면) 붙이지 마세요. // 삼항연산자 : 조건이 true일때 ~하라. 는 구조이다
        */}
@@ -82,7 +82,7 @@ function MobileNavigation({ isOpen, onToggle, onClose, contactOnly = false }) {
             </ul>
           )}
 
-          <li>
+          <div className='nav-link-contact'>
             <button className="nav-link" onClick={handleContactClick}>
               Contact
             </button>
@@ -97,47 +97,45 @@ function MobileNavigation({ isOpen, onToggle, onClose, contactOnly = false }) {
                 className='contact-wrapper'>
                 <div className='horizontal-line' />
                 <div className='contact-list'>
-                  <p className='contact-sub-title'>Email</p>
-                  <a href='mailto:sunnyju318@naver.com'>
+                  <a
+                    className='email-address'
+                    href='mailto:sunnyju318@naver.com'>
+                    sunnyju318@naver.com
                     <AnimatedArrow
                       className='contact-arrow'
-                      direction='right' />
-                    sunnyju318@naver.com</a>
+                      direction='left' />
+                  </a>
+                  <p className='contact-sub-title'>Email</p>
                 </div>
                 <div className='contact-list'>
-                  <p className='contact-sub-title'>Socials</p>
-                  <div>
+                  <div className='social-icon-wrapper'>
                     <a
                       href="https://www.linkedin.com/in/jisun-ju/"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="LinkedIn Profile"
+                      className='social-icon'
                     >
-                      <AnimatedArrow
-                        className='contact-arrow'
-                        direction='right' />
-                      LinkedIn
+                      in
                     </a>
                     <a
                       href="https://github.com/sunnyju318"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="GitHub Profile"
+                      aria-label="GitHub Profile" className='social-icon'
                     >
-                      <AnimatedArrow
-                        className='contact-arrow'
-                        direction='right' />
-                      GitHub
+                      git
                     </a>
                   </div>
+                  <p className='contact-sub-title'>Socials</p>
                 </div>
               </motion.div>
             )}
-          </li>
+          </div>
         </nav>
       </div>
     </>
   )
 }
 
-export default MobileNavigation;
+export default NavigationDropdown;

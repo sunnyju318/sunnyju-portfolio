@@ -2,10 +2,13 @@ import './ProjectAccordion.scss';
 import { useState } from 'react';
 import { worksData } from '../../../data/worksData';
 import { motion, AnimatePresence } from 'framer-motion';
-import AnimatedArrow from '../animatedArrow/AnimatedArrow';
+import AnimatedArrow from '../AnimatedArrow/AnimatedArrow.jsx';
 import { Link } from 'react-router-dom';
 
-function ProjectAccordion() {
+function ProjectAccordion({
+  title = "FEATURED PROJECTS",
+  isFeatured = true
+}) {
   const [expandedItem, setExpandedItem] = useState(null);
   // 초기값이 null인 이유는 클릭되었냐 안되었냐라는 단순 구분이 아니라 여러개의 아이템중 어떤 아이템이 열렸는지를 구체적으로 확인하기 위해서다. 현재는 null이므로 아무것도 열리지 않은 상태이다. false의 상태와 같은것.
 
@@ -15,12 +18,16 @@ function ProjectAccordion() {
   // 지금 클릭한 아이템(expandedItem)이 현재 열려있는 아이템(index)와 같다면 null(아무것도 없는상태 즉, 다시 닫아라)을 반환하고 그게 아니라면(다른 index를 클릭했다면) 그거만 열리게 해라.
 
   // isFeatured가 true인 프로젝트만 가져오기
-  const featuredProjects = worksData.filter(project => project.isFeatured);
+  // const featuredProjects = worksData.filter(project => project.isFeatured);
+
+  const featuredProjects = isFeatured ?
+  worksData.filter(project => project.isFeatured) : worksData;
 
   return (
     <div className="featured-project-list-wrapper">
       <div className='list-heading'>
-        <h3>FEATURED PROJECTS</h3>
+        <h3>{title}</h3>
+        {/* 직접 텍스트를 넣은 Featured Projects로 하드코딩 되어있어서 프롭스를 넘겨줘도 제목이 변하지 않았다. 하드코딩을 props로 받은 title를 사용하도록 수정하였다. */}
       </div>
 
       {featuredProjects.map((project, index) => (

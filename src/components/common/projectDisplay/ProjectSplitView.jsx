@@ -1,8 +1,8 @@
 import './ProjectSplitView.scss';
 import { useState } from 'react';
-import { worksData } from '../../../data/worksData';
+import { worksData } from '../../../data/worksData.jsx';
 import { motion, AnimatePresence } from 'framer-motion';
-import AnimatedArrow from '../animatedArrow/AnimatedArrow';
+import AnimatedArrow from '../AnimatedArrow/AnimatedArrow.jsx';
 import { Link } from 'react-router-dom';
 
 // Projects 페이지에서 제목변경을 위해 title를 props로 가져감
@@ -30,8 +30,8 @@ function ProjectSplitView({
       </div>
 
       <div className="featured-project-list-wrapper-desktop">
-        <div className='list-heading-desktop'>
-          <h3>{title}</h3>
+        <div className='list-heading-wrapper-desktop'>
+          <h2 className='list-heading-desktop'>{title}</h2>
         </div>
 
         {featuredProjects.map((project, index) => (
@@ -85,6 +85,7 @@ function ProjectSplitView({
         ))
         }
       </div >
+      <div className='tape-decoration'></div>
     </div>
   )
 };

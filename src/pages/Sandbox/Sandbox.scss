@@ -32,9 +32,5 @@
   gap: 1rem;
   font-size: vars.$font-size-lg;
   color: vars.$text-primary-accent;
-  transition: color 0.3s ease;
-}
-
-.back-to-home:hover{
-  color: vars.$text-heading-dark-alt;
+  @include mixins.hover-underline;
 }

@@ -2,7 +2,7 @@
 @use '../../styles/base/mixin.scss' as mixins;
 
 .menu-navigation-header {
-  display: none;
+  display: none; // 모바일 사이즈에서 숨김
   gap: 2rem;
   align-items: center;
 
@@ -14,23 +14,7 @@
       color: vars.$nav-text-desktop;
       font-weight: vars.$font-weight-medium;
       position: relative;
-    }
-
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: vars.$nav-text-desktop;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-
-    .nav-link:hover::before {
-      transform: scaleX(1);
+      @include mixins.hover-underline;
     }
   }
 
@@ -43,13 +27,24 @@
     gap: 1rem;
     align-items: center;
 
-    .nav-link-button{
+    .nav-link-button {
       color: vars.$near-black;
       background: vars.$bg-button;
       font-weight: vars.$font-weight-semibold;
-      padding: 0.3rem 0.5rem;
-      border-radius: 10px;
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+      &.scrolled {
+        padding: 0.2rem 0.7rem;
+        transition: 0.5s ease;
+      }
     }
+
+    .nav-link-button:hover {
+      background: vars.$bg-button-hover;
+    }
+
+
   }
 }
 

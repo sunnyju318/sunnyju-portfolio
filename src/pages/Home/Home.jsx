@@ -1,9 +1,9 @@
 import "./Home.scss";
-import AnimatedArrow from "../../components/common/animatedArrow/AnimatedArrow";
-import FaceIllustration from "../../components/home/FaceIllustration";
+import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
+import FaceIllustration from "../../components/home/FaceIllustration.jsx";
 import { Link } from "react-router-dom";
-import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion";
-import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView";
+import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion.jsx";
+import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView.jsx";
 
 
 function Home() {
@@ -41,15 +41,19 @@ function Home() {
         <AnimatedArrow direction="down" animated={true} />
       </div>
 
-      <div className="sub-link-wrapper">
-        <Link className="sub-link" to="/about">
+      <div className="sub-link-container">
+        <div className="sub-link-wrapper">
           <AnimatedArrow className="arrow-sub-link" direction="right" />
-          More about me
-        </Link>
-        <Link className="sub-link" to="/projects">
+          <Link className="sub-link" to="/about">
+            More about me
+          </Link>
+        </div>
+        <div className="sub-link-wrapper">
           <AnimatedArrow className="arrow-sub-link" direction="right" />
-          See all projects
-        </Link>
+          <Link className="sub-link" to="/projects">
+            See all projects
+          </Link>
+        </div>
       </div>
 
       <div className="arrow-wrapper-bottom-desktop-only">
