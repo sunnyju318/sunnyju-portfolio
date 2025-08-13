@@ -34,21 +34,24 @@ function WorkDetail() {
       <h1 className="project-title">{work.title}</h1>
 
       <div className="project-links">
-        <a href={work.links.liveDemo} target="_blank" rel="noopener noreferrer">
-          Live Demo
+        <div className='project-links-wrapper'>
+          <a href={work.links.liveDemo} target="_blank" rel="noopener noreferrer" className='sub-link'>
+            Live Demo
+          </a>
           <AnimatedArrow direction='right' className='arrow-sub-link' />
-
-        </a>
-        <a href={work.links.viewCode} target="_blank" rel="noopener noreferrer">
-          Github
+        </div>
+        <div className='project-links-wrapper'>
+          <a href={work.links.viewCode} target="_blank" rel="noopener noreferrer" className='sub-link'>
+            Github
+          </a>
           <AnimatedArrow direction='right' className='arrow-sub-link' />
-
-        </a>
-        <a href={work.links.logDetail} target="_blank" rel="noopener noreferrer">
-          Project Log
+        </div>
+        <div className='project-links-wrapper'>
+          <a href={work.links.logDetail} target="_blank" rel="noopener noreferrer" className='sub-link'>
+            Project Log
+          </a>
           <AnimatedArrow direction='right' className='arrow-sub-link' />
-
-        </a>
+        </div>
       </div>
 
       <div className="preview-box">
@@ -77,13 +80,13 @@ function WorkDetail() {
       </div>
 
       {/* 오른쪽: 코드 스니펫 */}
-      <CodeBlock codeSnippets={work.codeSnippets} className="code-box-desktop"/>
+      <CodeBlock codeSnippets={work.codeSnippets} className="code-box-desktop" />
 
 
       {/* 4. 디스크립션 파트 (4개 섹션) */}
       <div className="description-sections" >
 
-        <section className="section">
+        <section className="section overview">
           <h2>Overview</h2>
           <p>{work.sections.overview}</p>
         </section>
@@ -97,7 +100,7 @@ function WorkDetail() {
           </ul>
         </section>
 
-        <section className="section">
+        <section className="section notes">
           <h2>Design & Development Notes</h2>
           <ul>
             {work.sections.designAndDevelopment.map((item, index) => (
@@ -106,7 +109,7 @@ function WorkDetail() {
           </ul>
         </section>
 
-        <section className="section">
+        <section className="section challenges">
           <h2>Challenges & Learnings</h2>
           <ul>
             {work.sections.challengesAndLearnings.map((item, index) => (
@@ -121,11 +124,16 @@ function WorkDetail() {
         {/* 초반에 Link대신 a를 사용하였을때 로컬에서는 작동하였으나 퍼블리시후 작동하지 않았다. 
         내부 페이지 이므로 a 대신 Link 를 사용한 후 해결되었다. */}
         <Link to={`/projects/detail/${work.nextProject.id}`}>
+
           <h2>{work.nextProject.title}</h2>
           <div className='next-project-title-wrapper'>
+            <div className='next-project-title'>
             View Next Project
-            <AnimatedArrow direction='right' animated={true} className='arrow-next-project' />
+              </div>
+            <AnimatedArrow direction='right' className='arrow-next-project' />
           </div>
+
+
         </Link>
       </div>
     </div>
