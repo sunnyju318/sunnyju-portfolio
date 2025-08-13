@@ -69,7 +69,7 @@ function ProjectAccordion({
                   exit={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Link to={`/projects/detail/${project.id}`}>View Full Project</Link>
+                  <Link to={`/projects/detail/${project.id}`}>View Project</Link>
                   <AnimatedArrow
                     className='featured-arrow'
                     direction='right' />
@@ -105,8 +105,10 @@ function ProjectAccordion({
                   />
                   {/* 이미지에 반드시 alt 포함할것 */}
                 </div>
+                <div className='list-text-wrapper'>
                 <p>{project.tech}</p>
                 <p>{project.shortDescription}</p>
+                </div>
               </motion.div>
             )
           }

@@ -15,11 +15,10 @@
   display: flex;
   flex-direction: row;
   color: vars.$footer-text-primary;
-  font-size: 1.25rem;
   font-weight: vars.$font-weight-medium;
 
   //디폴트
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   gap: 2rem;
 
   .footer-col {
@@ -35,6 +34,7 @@
   .footer-nav-wrapper {
     margin-bottom: 0rem;
     gap: 3rem;
+    font-size: vars.$font-size-lg;
 
     .footer-col {
       display: flex;
