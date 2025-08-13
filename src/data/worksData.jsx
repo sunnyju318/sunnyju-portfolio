@@ -1,11 +1,12 @@
 // data/worksData.js
 import preloader from '../assets/video/preloader-preview.mp4';
-import infoStory from '../assets/video/info-story-preview.mp4';
+import infoStory from '../assets/video/infostory-preview.mp4';
 import preloaderImg from '../assets/images/home/preloader.jpg';
 import infoStoriesImg from '../assets/images/home/info-stories.jpg';
 import easyMealImg from '../assets/images/home/easy-meal.jpg';
 
 export const worksData = [
+
   {
     id: 1,
     // useParams()로 받은 id와 비교해서 해당 프로젝트를 찾을 때 사용함
