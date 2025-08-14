@@ -1,0 +1,62 @@
+@use '../../styles/base/mixin.scss' as mixins;
+@use '../../styles/base/variables.scss' as vars;
+
+.notfound-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  background: linear-gradient(190deg, vars.$bg-gradient-start 25%, vars.$bg-gradient-mid 60%, vars.$bg-gradient-end 140%);
+
+  img {
+    width: 200px;
+    height: auto;
+  }
+
+  p {
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-medium;
+    color: vars.$text-primary-accent;
+    width: 70%;
+    text-align: center;
+  }
+
+  .not-found-back-to-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: vars.$font-size-lg;
+    color: vars.$text-primary-accent;
+    @include mixins.hover-underline;
+  }
+}
+
+
+// Tablet
+@include mixins.respond-to('md') {
+  .notfound-wrapper {
+    img {
+      width: 400px;
+    }
+
+    p {
+      font-size: vars.$font-size-lg;
+    }
+  }
+}
+
+
+// Desktop
+@include mixins.respond-to('lg') {
+  .notfound-wrapper {
+    img {
+      width: 700px;
+    }
+  }
+}
