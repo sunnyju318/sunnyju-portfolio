@@ -324,22 +324,22 @@ if (!story) return <p>Loading...</p>
  
       research: {
         title: "User Research & Journey Mapping",
-        image: "/public/assets/images/work/easymeal/journey-map.jpg",
+        image: "/assets/images/work/easymeal/journey-map.jpg",
         description: "Conducted in-depth user interviews and created journey maps to uncover key pain points, such as time constraints and meal planning challenges faced by busy professionals."
       },
       architecture: {
         title: "Information Architecture", 
-        image: "/public/assets/images/work/easymeal/sitemap.jpg",  
+        image: "/assets/images/work/easymeal/sitemap.jpg",  
         description: "Designed user flows and information architecture to enable intuitive navigation, seamlessly guiding users through filtering options and meal discovery."
       },
       wireframes: {
         title: "Wireframes & Prototyping",
-        image: "/public/assets/images/work/easymeal/wireframe.jpg",  
+        image: "/assets/images/work/easymeal/wireframe.jpg",  
         description: "Developed low-fidelity wireframes and interactive prototypes to validate core features, including budget-based filtering and refrigerator ingredient matching."
       },
       designSystem: {
         title: "Visual Design System",
-        image: "/public/assets/images/work/easymeal/design-system.jpg",
+        image: "/assets/images/work/easymeal/design-system.jpg",
         description: "Built a cohesive design system with fresh, health-focused color palettes and consistent UI components, ensuring a unified user experience across all touchpoints."
       },
 
