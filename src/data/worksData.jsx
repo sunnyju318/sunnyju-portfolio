@@ -1,9 +1,12 @@
 // data/worksData.js
 import preloader from '../assets/video/preloader-preview.mp4';
 import infoStory from '../assets/video/infostory-preview.mp4';
-import preloaderImg from '../assets/images/home/preloader.jpg';
-import infoStoriesImg from '../assets/images/home/info-stories.jpg';
-import easyMealImg from '../assets/images/home/easy-meal.jpg';
+import preloaderImg from '../assets/images/work/preloader/preloader.jpg';
+import infoStoriesImg from '../assets/images/work/infostory/info-stories.jpg';
+import easyMealImg from '../assets/images/work/easymeal/easy-meal.jpg';
+import easymeal from '../assets/video/easymeal-preview.mp4';
+import pinpal from '../assets/video/pinpal-preview.mp4';
+import pinpalImg from '../assets/images/work/pinpal/pinpal.jpg';
 
 export const worksData = [
 
@@ -151,7 +154,7 @@ body {
     sections: {
       overview: "A CSS-only loading animation with a glowing moon, falling stardust, and hand-drawn stars. This preloader was designed to set a calm, introspective mood before entering a site.",
       roleAndStack: {
-        role: ["Concept, design, and full implementation"],
+        role: ["placeholder"],
         stack: ["HTML", "CSS", "SVG", "Adobe Illustrator"]
       },
       designAndDevelopment: [
@@ -267,7 +270,7 @@ if (!story) return <p>Loading...</p>
     sections: {
       overview: "An interactive infographic series exploring environmental stories through animated, educational content. Users navigate through climate change narratives with intuitive grid-based layouts and smooth page transitions, designed to make complex environmental data accessible and engaging.",
       roleAndStack: {
-        role: ["Concept, design, and full implementation"],
+        role: ["placeholder"],
         stack: ["React", "SCSS"]
       },
       designAndDevelopment: [
@@ -298,93 +301,60 @@ if (!story) return <p>Loading...</p>
     tech: "Figma / Illustrator",
     shortDescription: "A meal planning app designed for busy individuals, offering both free meal plans and premium nutritionist-curated options. Features like budget-based and fridge-ingredient filtering enable a streamlined and intuitive user experience.",
     links: {
-      liveDemo: "https://example.com/demo",
-      viewCode: "https://github.com/username/preloader",
-      logDetail: "https://example.com/log"
+      liveDemo: "https://www.figma.com/proto/XycfcXoMgJYg0F8oo1FGV0/High-Fidelity-Prototype?node-id=1-522&t=fKmRUdyywFnGES0N-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A568",
+      viewCode: "#",
+      logDetail: "#"
     },
     preview: {
       type: "video",
-      src: preloader
+      src: easymeal
     },
     thumbnail: easyMealImg,
-    codeSnippets: [
-      {
-        tab: "HTML",
-        language: "html",
-        code: `<div class="preloader">
-  <div class="moon"></div>
-  <div class="stars">
-    <svg class="star" viewBox="0 0 24 24">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-    </svg>
-  </div>
-</div>`
-      },
-      {
-        tab: "CSS",
-        language: "css",
-        code: `.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  z-index: 9999;
-}
 
-.moon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffd700, #ffed4e);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-  animation: moonGlow 2s ease-in-out infinite alternate;
-}
+    codeSnippets: [], // 빈 배열로 남겨두기
 
-@keyframes moonGlow {
-  from { transform: translateY(0px); opacity: 0.8; }
-  to { transform: translateY(-10px); opacity: 1; }
-}`
-      },
-      {
-        tab: "JS",
-        language: "javascript",
-        code: `// jQuery
-$(window).on('load', function() {
-  $('.preloader').fadeOut(1000, function() {
-    $(this).remove();
-  });
-});
-
-// Vanilla JS
-window.addEventListener('load', () => {
-  const preloader = document.querySelector('.preloader');
-  preloader.style.opacity = '0';
-  preloader.style.transition = 'opacity 1s ease';
-  
-  setTimeout(() => {
-    preloader.remove();
-  }, 1000);
-});`
-      }
-    ],
     sections: {
-      overview: "A CSS-only loading animation with a glowing moon rising meteors and hand-drawn stars. This preloader was designed to set a calm, introspective mood before entering a site.",
+      overview: "A meal planning app designed for busy modern lifestyles, offering free meal plans as well as premium options curated by professional nutritionists. Featuring budget-based filtering and a “use-what's-in-your-fridge” function, it delivers a practical and intuitive user experience.",
       roleAndStack: {
-        role: ["Concept, design, and full implementation"],
-        stack: ["HTML", "CSS", "JavaScript", "SVG", "Adobe Illustrator"]
+        role: ["placeholder"],
+        stack: ["Figma", "Adobe Illustrator"]
       },
+
+    // 디자인 프로젝트용 추가 데이터
+ 
+      research: {
+        title: "User Research & Journey Mapping",
+        image: "/public/assets/images/work/easymeal/journey-map.jpg",
+        description: "Conducted in-depth user interviews and created journey maps to uncover key pain points, such as time constraints and meal planning challenges faced by busy professionals."
+      },
+      architecture: {
+        title: "Information Architecture", 
+        image: "/public/assets/images/work/easymeal/sitemap.jpg",  
+        description: "Designed user flows and information architecture to enable intuitive navigation, seamlessly guiding users through filtering options and meal discovery."
+      },
+      wireframes: {
+        title: "Wireframes & Prototyping",
+        image: "/public/assets/images/work/easymeal/wireframe.jpg",  
+        description: "Developed low-fidelity wireframes and interactive prototypes to validate core features, including budget-based filtering and refrigerator ingredient matching."
+      },
+      designSystem: {
+        title: "Visual Design System",
+        image: "/public/assets/images/work/easymeal/design-system.jpg",
+        description: "Built a cohesive design system with fresh, health-focused color palettes and consistent UI components, ensuring a unified user experience across all touchpoints."
+      },
+
       designAndDevelopment: [
-        "Used @keyframes for glowing moon + meteor effect",
-        "Inline SVGs created from hand-drawn stars",
-        "Custom bezier curves for smooth fade-in/out",
-        "Dark background and soft motion evoke a peaceful tone"
+        "Conducted user research to define personas and map user journeys.",
+        "Developed information architecture and created interactive wireframe prototypes.",
+        "Established a cohesive design system, including color palette, typography, and iconography.",
+        "Designed an intuitive smart filtering experience based on budget and available ingredients.",
+        "Performed prototype-based usability testing to refine and optimize the interface."
       ],
       challengesAndLearnings: [
-        "Positioning and layering inline SVGs responsively",
-        "Timing multiple animations smoothly",
-        "Gained cleaner control over CSS-only motion design"
+        "Designed intuitive interfaces to simplify complex filtering options.",
+        "Structured information hierarchy to serve both free and premium user groups effectively.",
+        "Optimized navigation patterns for mobile environments to enhance usability.",
+        "Explored effective visual representation techniques for nutritional information and meal plan data."
       ]
     },
     nextProject: {
@@ -399,95 +369,606 @@ window.addEventListener('load', () => {
     isFeatured: false,
     category: "Web Development",
     tech: "html / css / javascript",
-    shortDescription: "A meal planning app designed for busy individuals, offering both free meal plans and premium nutritionist-curated options. Features like budget-based and fridge-ingredient filtering enable a streamlined and intuitive user experience.",
+    shortDescription: "A responsive landing page for a travel meetup platform, featuring animated text, scroll-based map interactions, and smooth plane animations to enhance storytelling and brand engagement.",
     links: {
-      liveDemo: "https://example.com/demo",
-      viewCode: "https://github.com/username/preloader",
-      logDetail: "https://example.com/log"
+      liveDemo: "https://sunnyju318.github.io/pinpal-landing-dev/",
+      viewCode: "https://github.com/sunnyju318/pinpal-landing-dev",
+      logDetail: "#"
     },
     preview: {
       type: "video",
-      src: preloader
+      src: pinpal
     },
-    thumbnail: easyMealImg,
+    thumbnail: pinpalImg,
     codeSnippets: [
       {
         tab: "HTML",
         language: "html",
-        code: `<div class="preloader">
-  <div class="moon"></div>
-  <div class="stars">
-    <svg class="star" viewBox="0 0 24 24">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-    </svg>
+        code: `<!-- Header Section -->
+<header>
+  <div class="logo-group">
+    <a href="#" class="logo-icon">
+      <img class="logo-icon-img" src="img/icons/logo.png" alt="logo of icon">
+    </a>
+    <a href="#" class="logo-text">
+      <img src="img/icons/text-logo.png" alt="logo of text">
+    </a>
   </div>
-</div>`
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="header-btn" type="button">Sign Up</button>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>
+    <span class="block">Where Every Journey </span>
+    <span class="block">Meets <span class="hero-text">a Friend</span></span>
+  </h1>
+  <p class="b1">
+    <span class="block">Mobile app designed to connect</span>
+    <span class="block">travelers with local events and</span>
+    <span class="block">like-minded adventurers.</span>
+  </p>
+
+  <div class="download-icons-container">
+    <a href="https://www.apple.com/app-store/" target="_blank" class="download-icons">
+      <img src="img/icons/app-store.svg" alt="App store download icon">
+    </a>
+    <a href="https://play.google.com/store" target="_blank" class="download-icons">
+      <img src="img/icons/google-store.svg" alt="Google play download icon">
+    </a>
+  </div>
+
+  <div class="social-media-container">
+    <a href="#" class="social-media-icons">
+      <img src="img/icons/youtube.png" alt="youtube icon">
+    </a>
+    <a href="#" class="social-media-icons">
+      <img src="img/icons/instagram.png" alt="instagram icon">
+    </a>
+    <a href="#" class="social-media-icons facebook-icon">
+      <img src="img/icons/facebook.png" alt="facebook icon">
+    </a>
+    <a href="#" class="social-media-icons">
+      <img src="img/icons/tiktok.png" alt="tiktok icon">
+    </a>
+  </div>
+</section>
+
+<!-- Features Overview Section -->
+<section class="features-overview">
+  <h2>What You Can Do with PinPal</h2>
+  <p>
+    <span class="block">Save memories, discover places, and make meaningful connections.</span>
+    <span class="block">PinPal makes every journey easier.</span>
+  </p>
+
+  <div class="features-card-container">
+    <div class="features-card profile-screen">
+      <img src="img/features/page1.png" alt="">
+    </div>
+    <div class="features-card message-screen">
+      <img src="img/features/page2.png" alt="">
+    </div>
+    <div class="features-card explore-screen">
+      <img src="img/features/page3.png" alt="">
+    </div>
+    <div class="features-card event-detail-screen">
+      <img src="img/features/page4.png" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- Promo Video Section -->
+<div class="promo-video">
+  <video autoplay muted loop playsinline class="hero-bg">
+    <source src="img/travel-video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<!-- Travel Categories Section -->
+<section class="travel-categories">
+  <h2>Find Your Perfect Travel Style</h2>
+  <p>
+    <span class="block">Whether you're an explorer, a culture lover, or a thrill-seeker.</span>
+    <span class="block">PinPal helps you discover events and people that match your travel personality.</span>
+  </p>
+  
+  <div class="travel-categories-container">
+    <div class="travel-card">
+      <h3>Explore Together</h3>
+      <div class="travel-card-img">
+        <img src="img/travel-categories/explore.jpg" alt="">
+      </div>
+      <button type="button">Find Friends</button>
+    </div>
+
+    <div class="travel-card">
+      <h3>Real Experiences</h3>
+      <div class="travel-card-img">
+        <img src="img/travel-categories/experience.jpg" alt="">
+      </div>
+      <button type="button">Find Events</button>
+    </div>
+
+    <div class="travel-card">
+      <h3>Adventure Awaits</h3>
+      <div class="travel-card-img">
+        <img src="img/travel-categories/adventure.jpg" alt="">
+      </div>
+      <button type="button">Find Adventures</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+  <div class="footer-contents">
+    <a href="#" class="footer-logo">
+      <img src="img/icons/logo.png" alt="logo image" class="footer-logo">
+    </a>
+    <p class="rights-top">© 2025 PinPal. All rights reserved.</p>
+    
+    <nav aria-label="Footer navigation">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    
+    <ul class="footer-links">
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="legal.html">Legal</a></li>
+    </ul>
+
+    <div class="social_media_icons">
+      <a href="#" class="social-media-icons">
+        <img src="img/icons/youtube.png" alt="youtube icon">
+      </a>
+      <a href="#" class="social-media-icons">
+        <img src="img/icons/instagram.png" alt="instagram icon">
+      </a>
+      <a href="#" class="social-media-icons facebook-icon">
+        <img src="img/icons/facebook.png" alt="facebook icon">
+      </a>
+      <a href="#" class="social-media-icons">
+        <img src="img/icons/tiktok.png" alt="tiktok icon">
+      </a>
+    </div>
+    <p class="rights-bottom">© 2025 PinPal. All rights reserved.</p>
+  </div>
+</footer>`
       },
       {
         tab: "CSS",
         language: "css",
-        code: `.preloader {
+        code: `/* Global Layout */
+body {
+  width: 100%;
+  flex-direction: column;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Header */
+header {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FAFAFA;
+  padding: 1rem 2rem;
+  z-index: 2;
   position: fixed;
+  transition: all ease 0.3s;
+}
+
+.logo-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo-icon {
+  width: 2rem;
+}
+
+.logo-text {
+  width: 5rem;
+}
+
+header nav ul {
+  display: flex;
+  gap: 5rem;
+}
+
+header nav ul li a:hover {
+  color: #D72638;
+}
+
+/* Buttons */
+button {
+  background-color: #D72638;
+  color: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: 2rem;
+}
+
+.header-btn:hover {
+  background-color: #b22130;
+}
+
+/* Common */
+.block {
+  display: block;
+}
+
+/* Hero Section */
+.hero {
+  margin-top: 150px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero h1,
+.hero p {
+  text-align: center;
+}
+
+.hero-text {
+  color: #b22130;
+}
+
+.download-icons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 2rem 0 1rem;
+}
+
+.download-icons {
+  width: 250px;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.download-icons-container a:hover {
+  transform: scale(1.1);
+}
+
+.social-media-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.social-media-icons {
+  width: 60px;
+}
+
+.social-media-container a:hover {
+  transform: scale(1.1);
+}
+
+/* Features Overview */
+.features-overview {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.features-overview p,
+.features-overview h2 {
+  text-align: center;
+}
+
+.features-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.features-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Promo Video */
+.promo-video {
+  width: 100%;
+  height: 70vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.promo-video video {
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  z-index: 9999;
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
 }
 
-.moon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffd700, #ffed4e);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-  animation: moonGlow 2s ease-in-out infinite alternate;
+/* Travel Categories */
+.travel-categories {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes moonGlow {
-  from { transform: translateY(0px); opacity: 0.8; }
-  to { transform: translateY(-10px); opacity: 1; }
+.travel-categories p,
+.travel-categories h2 {
+  text-align: center;
+}
+
+.travel-categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.travel-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.travel-card-img {
+  width: 400px;
+  height: 400px;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.travel-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.travel-card button {
+  background: rgba(34, 49, 39, 0.7);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 200px;
+  border-radius: 2rem 2rem 0 0;
+  position: absolute;
+  bottom: 0;
+}
+
+.travel-card button:hover {
+  background-color: #223127;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 2rem;
+  background-color: #FAFAFA;
+  margin-top: 6rem;
+  z-index: 1;
+  position: relative;
+}
+
+.footer-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+footer ul li a:hover {
+  color: #D72638;
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .logo-group .logo-text {
+    transform: translate(0, -60px);
+  }
+
+  .logo-group .logo-icon {
+    max-width: 2rem;
+    min-width: 2rem;
+  }
+
+  header {
+    padding: 1rem 1rem;
+  }
+
+  nav {
+    display: none;
+  }
+
+  footer ul,
+  footer nav,
+  footer .footer-logo,
+  footer .rights-top {
+    display: none;
+  }
+
+  footer .rights-bottom {
+    display: block;
+  }
+
+  .footer-contents {
+    gap: 1rem;
+  }
 }`
       },
       {
         tab: "JS",
         language: "javascript",
-        code: `// jQuery
-$(window).on('load', function() {
-  $('.preloader').fadeOut(1000, function() {
-    $(this).remove();
-  });
-});
+        code: `// main.js - 모듈 통합
+import { handleScrollHeader } from './modules/scrollHeader.js';
+import { textAnimationHero } from './modules/textAnimation.js';
+import { planeAnimationFeatures } from './modules/planeAnimation.js';
 
-// Vanilla JS
-window.addEventListener('load', () => {
-  const preloader = document.querySelector('.preloader');
-  preloader.style.opacity = '0';
-  preloader.style.transition = 'opacity 1s ease';
-  
-  setTimeout(() => {
-    preloader.remove();
-  }, 1000);
-});`
+handleScrollHeader();
+textAnimationHero();
+planeAnimationFeatures();
+
+// scrollHeader.js - 스크롤 이벤트 처리
+export function handleScrollHeader() {
+  const header = document.querySelector("header");
+  const headerBtn = document.querySelector(".header-btn");
+  const headerLogoIcon = document.querySelector(".logo-icon-img");
+  const mapRight = document.querySelector(".map_right");
+  const mapLeft = document.querySelector(".map_left");
+  const stPin = document.querySelector(".st-pin");
+  const ndPin = document.querySelector(".nd-pin");
+  const rdPin = document.querySelector(".rd-pin");
+
+  window.addEventListener("scroll", () => {
+    const isScrolled = window.scrollY > 50;
+    const isScrolledLater = window.scrollY > 150;
+
+    // 헤더 스타일 변경
+    header.classList.toggle("scrolled-header-bg", isScrolled);
+    headerBtn.classList.toggle("scrolled-header-btn", isScrolled);
+    headerLogoIcon.classList.toggle("scrolled-header-logoicon", isScrolled);
+    
+    // 맵 애니메이션
+    mapRight.classList.toggle("map_right_scrolled", isScrolledLater);
+    mapLeft.classList.toggle("map_left_scrolled", isScrolledLater);
+    
+    // 핀 숨김/표시
+    if (isScrolledLater) {
+      stPin.classList.add("st-pin-hide");
+      ndPin.classList.add("nd-pin-hide");
+      rdPin.classList.add("rd-pin-hide");
+    } else {
+      stPin.classList.remove("st-pin-hide");
+      ndPin.classList.remove("nd-pin-hide");
+      rdPin.classList.remove("rd-pin-hide");
+    }
+  });
+}
+
+// textAnimation.js - 텍스트 타이핑 애니메이션
+export function textAnimationHero() {
+  gsap.registerPlugin(TextPlugin); 
+  const words = ["a Local", "a Memory", "a Laugh", "a Moment", "a Friend"];
+  let current = 0;
+
+  const changeText = () => {
+    gsap.to(".hero-text", {
+      text: words[current],
+      duration: 1,
+      ease: "power2.inOut",
+      onComplete: () => {
+        current = (current + 1) % words.length;
+        setTimeout(changeText, 1000);
+      }
+    });
+  };
+
+  changeText();
+}
+
+// planeAnimation.js - 비행기 애니메이션
+export function planeAnimationFeatures() {
+  const flight = gsap.timeline({
+    repeat: -1,
+  });
+
+  // 첫 번째 비행기 애니메이션
+  flight.to(".flight", {
+    x: -300,
+    y: -550,
+    duration: 7,
+  })
+  .to(".flight", {
+    rotation: -30,
+    duration: 0.5,
+  })
+  .to(".flight", {
+    x: -1900,
+    y: -50,
+    duration: 15,
+  }, "+=0.2");
+
+  // 두 번째 비행기 애니메이션 (동시 실행)
+  flight.fromTo(".flight-travel-categories",
+    { x: -100, y: 0 },
+    { x: 1850, y: 500, duration: 20 },
+    0 // 타임라인 시작점에서 실행
+  );
+}`
       }
     ],
     sections: {
-      overview: "A CSS-only loading animation with a glowing moon rising meteors and hand-drawn stars. This preloader was designed to set a calm, introspective mood before entering a site.",
+      overview: "A collaborative project where I served as the developer, responsible for building a landing page with interactive animations, scroll-triggered map transitions, and dynamic hero text to engage users.",
       roleAndStack: {
-        role: ["Concept, design, and full implementation"],
-        stack: ["HTML", "CSS", "JavaScript", "SVG", "Adobe Illustrator"]
+        role: ["Front-End Development"],
+        stack: ["HTML", "CSS", "JavaScript"]
       },
       designAndDevelopment: [
-        "Used @keyframes for glowing moon + meteor effect",
-        "Inline SVGs created from hand-drawn stars",
-        "Custom bezier curves for smooth fade-in/out",
-        "Dark background and soft motion evoke a peaceful tone"
+        "Implemented GSAP-powered hero text animations with looping word transitions",
+        "Built scroll-triggered map and pin animations for storytelling",
+        "Developed plane animation path for visual engagement"
       ],
       challengesAndLearnings: [
-        "Positioning and layering inline SVGs responsively",
-        "Timing multiple animations smoothly",
-        "Gained cleaner control over CSS-only motion design"
+        "Coordinating multiple animations while maintaining performance",
+        "Timing GSAP animations to feel natural and fluid",
+        "Using scroll position effectively for interactive storytelling"
       ]
     },
     nextProject: {

@@ -1,4 +1,3 @@
-
 import { useParams } from 'react-router-dom';
 import { worksData } from '../../data/worksData';
 import './WorkDetail.scss';
@@ -9,16 +8,15 @@ import { Link } from 'react-router-dom';
 function WorkDetail() {
   const { id } = useParams(); // URL에서 id 파라미터 받아오기
 
-  console.log(id);
-
+  // console.log(id);
   // id로 해당 프로젝트 찾기
   const work = worksData.find(w => w.id === parseInt(id));
 
-  console.log(work);
+  // console.log(work);
   // parseInt(id) : id가 "1" 일때 숫자 1로 바꿔줌
   // 즉, 정수를 숫자로 바꿔줌, useParms는 문자열반 반환하기때문에 필요한 과정임
 
-  // 프로젝트를 찾지 못한 경우
+  // 프로젝트를 찾지 못한 경우, guard clause
   if (!work) {
     return (
       <div>
@@ -27,25 +25,32 @@ function WorkDetail() {
       </div>
     );
   }
+  // 디자인 프로젝트인지 확인하기
+  const isDesignProject = work.category === "UX/UI Design";
 
   return (
     <div className="work-detail-wrapper">
-
+      {/* 공통헤더 부분 */}
       <h1 className="project-title">{work.title}</h1>
 
       <div className="project-links">
         <div className='project-links-wrapper'>
           <a href={work.links.liveDemo} target="_blank" rel="noopener noreferrer" className='sub-link'>
-            Live Demo
+            {!isDesignProject ? 'Live Demo' : 'Prototype'}
           </a>
           <AnimatedArrow direction='right' className='arrow-sub-link' />
         </div>
-        <div className='project-links-wrapper'>
-          <a href={work.links.viewCode} target="_blank" rel="noopener noreferrer" className='sub-link'>
-            Github
-          </a>
-          <AnimatedArrow direction='right' className='arrow-sub-link' />
-        </div>
+
+        {!isDesignProject && (
+          <div className='project-links-wrapper'>
+            <a href={work.links.viewCode} target="_blank" rel="noopener noreferrer" className='sub-link'>
+              Github
+            </a>
+            <AnimatedArrow direction='right' className='arrow-sub-link' />
+          </div>
+        )}
+        {/* 만약 이 프로젝트가 디자인 프로젝트가 아니라면 깃허브로 가는 링크를 보여줘라 */}
+
         <div className='project-links-wrapper'>
           <a href={work.links.logDetail} target="_blank" rel="noopener noreferrer" className='sub-link'>
             Project Log
@@ -54,37 +59,46 @@ function WorkDetail() {
         </div>
       </div>
 
-      <div className="preview-box">
-        {/* 
+      {/* 조건부 레이아웃 부분 - 히어로 이미지나 프리뷰만 */}
+      {isDesignProject ? (
+        /* UX/UI 디자인 프로젝트 - 히어로 이미지만 */
+        <div className="design-project-layout">
+          <div className="hero-preview">
+            {work.preview.type === "video" ? (
+              <video autoPlay muted loop playsInline>
+                <source src={work.preview.src} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={work.preview.src} alt={`${work.title} hero image`} />
+            )}
+          </div>
+        </div>
+      ) : (
+        /* 개발 프로젝트 레이아웃 */
+        <>
+          <div className="preview-box">
+            {/* 
           {work.preview.type === "video"
           ? (<video>...</video>)
           : (<img />)
           삼항연산자, work.preview의 type가 비디오면 비디오를 보여주고
           아니면 이미지를 보여주라는 뜻  
             */}
-        {work.preview.type === "video" ? (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline>
-            {/* playInline: 모바일에서 비디오가 전체화면으로 강제전환되는 것을 막아주는 속성이다. 즉 비디오를 인라인(페이지 안)에서 재생하다록 요청한다는 의미 */}
-            <source src={work.preview.src}
-              type="video/mp4" />
-          </video>
-          // 보여줄 비디오 정보
-        ) : (
-          <img src={work.preview.src} alt={`${work.title} preview`} />
-          // 보여줄 이미지 정보
-        )}
-      </div>
+            {work.preview.type === "video" ? (
+              <video autoPlay muted loop playsInline>
+                {/* playInline: 모바일에서 비디오가 전체화면으로 강제전환되는 것을 막아주는 속성이다. 즉 비디오를 인라인(페이지 안)에서 재생하다록 요청한다는 의미 */}
+                <source src={work.preview.src} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={work.preview.src} alt={`${work.title} preview`} />
+            )}
+          </div>
+          <CodeBlock codeSnippets={work.codeSnippets} className="code-box-desktop" />
+        </>
+      )}
 
-      {/* 오른쪽: 코드 스니펫 */}
-      <CodeBlock codeSnippets={work.codeSnippets} className="code-box-desktop" />
-
-
-      {/* 4. 디스크립션 파트 (4개 섹션) */}
-      <div className="description-sections" >
+      {/* 디스크립션 섹션들 */}
+      <div className="description-sections">
 
         <section className="section overview">
           <h2>Overview</h2>
@@ -92,7 +106,8 @@ function WorkDetail() {
         </section>
 
         <section className="section stack">
-          <h2>Stack</h2>
+          <h2>{isDesignProject ? 'Tools' : 'Stack'}</h2>
+          {/* 개발과 디자인 스택 제목 구분하기 */}
           <ul>
             {work.sections.roleAndStack.stack.map((item, index) => (
               <li key={index}>{item}</li>
@@ -100,8 +115,59 @@ function WorkDetail() {
           </ul>
         </section>
 
+        {/* 디자인 프로세스 카드들 */}
+        {isDesignProject && work.sections.research && (
+          // isDesignProject가 true이고 work.sections.research가 존재할때만 아래 섹션을 렌더링 할것
+          <section className="section research">
+            <div className="process-image">
+              <img src={work.sections.research.image} alt={work.sections.research.title} />
+            </div>
+            <div>
+              <h2>{work.sections.research.title}</h2>
+              <p>{work.sections.research.description}</p>
+            </div>
+          </section>
+        )}
+
+        {isDesignProject && work.sections.architecture && (
+          <section className="section architecture">
+            <div className="process-image">
+              <img src={work.sections.architecture.image} alt={work.sections.architecture.title} />
+            </div>
+            <div>
+              <h2>{work.sections.architecture.title}</h2>
+              <p>{work.sections.architecture.description}</p>
+            </div>
+          </section>
+        )}
+
+        {isDesignProject && work.sections.wireframes && (
+          <section className="section wireframes">
+            <div className="process-image">
+              <img src={work.sections.wireframes.image} alt={work.sections.wireframes.title} />
+            </div>
+            <div>
+              <h2>{work.sections.wireframes.title}</h2>
+              <p>{work.sections.wireframes.description}</p>
+            </div>
+          </section>
+        )}
+
+        {isDesignProject && work.sections.designSystem && (
+          <section className="section design-system">
+            <div className="process-image">
+              <img src={work.sections.designSystem.image} alt={work.sections.designSystem.title} />
+            </div>
+            <div>
+              <h2>{work.sections.designSystem.title}</h2>
+              <p>{work.sections.designSystem.description}</p>
+            </div>
+          </section>
+        )}
+
         <section className="section notes">
-          <h2>Design & Development Notes</h2>
+          <h2>{isDesignProject ? 'Design Process' : 'Design & Dev Notes'}</h2>
+          {/* 개발과 디자인 스택 제목 구분하기 */}
           <ul>
             {work.sections.designAndDevelopment.map((item, index) => (
               <li key={index}>{item}</li>
@@ -119,21 +185,18 @@ function WorkDetail() {
         </section>
       </div>
 
-      {/* 5. 넥스트 프로젝트 버튼 */}
+      {/* 넥스트 프로젝트 버튼 */}
       <div className="next-project">
         {/* 초반에 Link대신 a를 사용하였을때 로컬에서는 작동하였으나 퍼블리시후 작동하지 않았다. 
         내부 페이지 이므로 a 대신 Link 를 사용한 후 해결되었다. */}
         <Link to={`/projects/detail/${work.nextProject.id}`}>
-
           <h2>{work.nextProject.title}</h2>
           <div className='next-project-title-wrapper'>
             <div className='next-project-title'>
-            View Next Project
-              </div>
+              View Next Project
+            </div>
             <AnimatedArrow direction='right' className='arrow-next-project' />
           </div>
-
-
         </Link>
       </div>
     </div>
