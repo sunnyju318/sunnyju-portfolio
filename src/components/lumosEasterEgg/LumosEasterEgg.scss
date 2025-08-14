@@ -1,0 +1,45 @@
+@use '../../styles/base/variables.scss' as vars;
+@use '../../styles/base/mixin.scss' as mixins;
+
+.lumos-text {
+  position: fixed;
+  color: vars.$text-body-dark-alt;
+  cursor: pointer;
+  z-index: 9999;
+  user-select: none;
+  opacity: 0.3;
+  transition: opacity 0.5s ease-in-out;
+  font-family: serif;
+  text-shadow:
+  0 0 6px rgba(vars.$text-body-dark-alt, 0.4),
+  0 0 12px rgba(vars.$text-body-dark-alt, 0.3),
+  0 0 20px rgba(vars.$text-body-dark-alt, 0.2);
+}
+
+.lumos-light {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 200, 0.05) 20%, 
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 10000;
+  animation: lumosGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes lumosGlow {
+  from {
+    /* transform 제거하고 opacity와 filter만 사용 */
+    opacity: 0.6;
+    filter: brightness(0.8);
+  }
+  to {
+    opacity: 0.9;
+    filter: brightness(1.2);
+  }
+}

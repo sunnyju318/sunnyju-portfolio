@@ -2,6 +2,7 @@ import './FaceIllustration.scss';
 import FaceSvg from '../../assets/images/face-illustration.svg?react';
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import useGlobalMouseTracking from '../common/hooks/useGlobalMouseTracking';
 
 function FaceIllustration() {
   const svgRef = useRef(null);
@@ -15,6 +16,8 @@ function FaceIllustration() {
   const [isPaused, setIsPaused] = useState(false);
   // 마우스 호버시 자동순환 애니메이션을 멈출지 계속할지 제어하는 용도, 초기값은 false로 기본적으로 움직이는 상태임
 
+  // 전역 마우스 추적 훅 사용
+  const mousePosition = useGlobalMouseTracking();
 
   /* == 성능최적화하기 == 메모이제이션, 불필요한 재생성 방지 :
   JSX안에서 [{}, {}, ..] 이런식으로 배열 데이터를 쓰면 
@@ -70,6 +73,8 @@ function FaceIllustration() {
     // && : 두 눈 모두 캐싱되어 있으면 true, 하나라도 없으면 false
   }, []);
 
+
+  
   /* throttle : 마우스를 움직이면 초당 수백번 mousemove가 발생하고 그때마다 handleMouseMove()가 실행된다. 
   너무 자주 실행되는 이벤트를 일정시간 간격으로만 실행되도록 제한하는것이 throttle이다. 성능최적화를 위한것.
   useRef를 사용하는 이유는 값이 리렌더링과 상관없이 유지되야 하기 때문이다. 순수한 저장소로만 사용하려는 것.
