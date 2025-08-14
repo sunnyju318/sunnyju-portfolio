@@ -4,7 +4,7 @@ import './Footer.scss';
 import FooterNavigation from "./FooterNavigation.jsx";
 
 
-function Footer({isScrolled, isContactOpen, setIsContactOpen}) {
+function Footer({isScrolled, isContactOpen, setIsContactOpen, setIsMenuOpen}) {
   const handleLogoClick = () =>{
 window.scroll({top:0, behavior: 'smooth'});
   }; // 클릭시 상단으로 부드럽게 이동
@@ -23,6 +23,7 @@ window.scroll({top:0, behavior: 'smooth'});
         isScrolled={isScrolled}
         setIsContactOpen={setIsContactOpen} 
         isContactOpen={isContactOpen}
+        setIsMenuOpen={setIsMenuOpen}
         />
         <div className='social-icon-wrapper'>
           <a

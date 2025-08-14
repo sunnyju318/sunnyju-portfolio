@@ -21,19 +21,19 @@ function About() {
   const globalImg = useMemo(() => [
     {
       id: 'new-york',
-      description: 'Spent three months wandering through Manhattan — from sunsets at Battery Park, to crossing the Brooklyn Bridge at dusk, and walking back beneath the glowing city skyline. It was here I vowed to one day work.'
+      description: 'Spent three months wandering through Manhattan. From sunsets at Battery Park, to crossing the Brooklyn Bridge at dusk, it was here I vowed to one day work.'
     },
     {
       id: 'brisbane',
-      description: 'Spent five years in the city where my handmade brand, BirdyJ, began — running stalls at local markets and even driving a forklift. During the pandemic shutdown, I saw the limitations of offline markets, which sparked my journey into building online platforms and, eventually, development.'
+      description: 'Over the course of five years, I launched my brand, BirdyJ, eventually running stalls at local markets. During the pandemic shutdown, I saw the limitations of offline markets. This sparked my journey into building online platforms and development.'
     },
     {
       id: 'sydney',
-      description: 'A city where I really let go and played for the first time — wandering with my soul friend, strolling the beach, and rooting for each other as we walked into our future together. A shiny memory.'
+      description: 'A city where I really let go and played for the first time. Exploring with my soul friend, strolling the beach, and rooting for each other as we walked into our future together. A shiny memory.'
     },
     {
       id: 'korea',
-      description: 'I grew up in a small rural town in Korea, with a mother who never once said no to my dreams. Her unwavering belief in me gave me the confidence and adaptability I carry wherever I go.'
+      description: 'I grew up in a small rural town in Korea, with a mother who never said no to my dreams. Her unwavering belief in me gave me the confidence and adaptability I carry wherever I go.'
     },
     {
       id: 'vancouver',
@@ -141,7 +141,7 @@ function About() {
       <div className='section-body-about-me'>
         <div>
           <p>I'm a <span className='highlight'>front-end developer</span> with a passion for creating thoughtful, human-centered digital experiences.</p>
-          <p>With a background in handmade jewelry and fashion, I focus on <span className='highlight'>usability, clarity, and beauty</span> in everything I create—it's not just about how it looks, but how it works.</p>
+          <p>With a background in handmade jewelry and fashion, I focus on <span className='highlight'>usability, clarity, and beauty</span> in everything I create, it's not just about how it looks, but how it works.</p>
         </div>
         <div>
           <p>Having lived and worked in Korea, Australia, the U.S., and now Canada, I bring a <span className='highlight'>flexible and global perspective</span> to every project.</p>
@@ -153,6 +153,15 @@ function About() {
         <p className='journey-title'>See My Journey</p>
         <p className='tap-guide-mobile'> Tap the Photo</p>
         <AnimatedArrow animated={true} className='about-arrow-bottom' />
+      </div>
+
+
+      <div className='section-title korea'>
+        <h2>KOREA</h2>
+      </div>
+
+      <div className='section-image'>
+        <img src={koreaImg} id='korea' alt="Korea Image" loading="lazy" />
       </div>
 
       <div className='section-title new-york'>
@@ -178,14 +187,6 @@ function About() {
 
       <div className='section-image'>
         <img src={sydneyImg} id='sydney' alt="Sydney Image" loading="lazy" />
-      </div>
-
-      <div className='section-title korea'>
-        <h2>KOREA</h2>
-      </div>
-
-      <div className='section-image'>
-        <img src={koreaImg} id='korea' alt="Korea Image" loading="lazy" />
       </div>
 
       <div className='section-title vancouver'>
@@ -223,7 +224,7 @@ function About() {
             <h4 style={{
               margin: '0 0 8px 0',
               textTransform: 'uppercase',
-              fontSize: '24px',
+              fontSize: '20px',
               fontWeight: 'bold',
               color: '#e1dad2'
             }}>
@@ -231,7 +232,7 @@ function About() {
             </h4>
             <p style={{
               margin: 0,
-              fontSize: '20px',
+              fontSize: '16px',
               lineHeight: '1.5',
               color: '#e1dad2'
             }}>

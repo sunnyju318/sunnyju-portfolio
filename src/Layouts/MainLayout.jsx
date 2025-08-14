@@ -67,6 +67,7 @@ function MainLayout() {
         isMenuOpen={isMenuOpen}
         setIsContactOpen={setIsContactOpen} 
         isContactOpen={isContactOpen}
+        setIsMenuOpen={setIsMenuOpen}
         />
     </div>
   )

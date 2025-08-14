@@ -129,14 +129,14 @@
 }
 
 .new-york,
-.sydney,
-.vancouver {
-  text-align: start;
+.sydney {
+  text-align: right;
 }
 
 .brisbane,
-.korea {
-  text-align: end;
+.korea,
+.vancouver {
+  text-align: left;
 }
 
 .section-image {
