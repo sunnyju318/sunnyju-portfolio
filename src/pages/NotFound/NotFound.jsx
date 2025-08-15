@@ -8,7 +8,7 @@ function NotFound() {
   return (
     <>
       {/* React 19 네이티브 메타데이터 */}
-      <title>404 Not Found — Sunny Ju | Front-end Developer</title>
+      <title>unny Ju | 404</title>
       <meta
         name="description"
         content="The page you're looking for doesn't exist. Return to Sunny Ju's portfolio homepage to explore featured work and designs."

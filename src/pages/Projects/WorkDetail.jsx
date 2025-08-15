@@ -49,7 +49,7 @@ function WorkDetail() {
   return (
     <>
       {/* React 19 Native Metadata (SEO + Open Graph + Twitter) */}
-      <title>{`${work.title} — Sunny Ju`}</title>
+      <title>{`Sunny Ju | ${work.title}`}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonicalUrl} />
 

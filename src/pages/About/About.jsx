@@ -77,7 +77,7 @@ function About() {
   return (
     <>
       {/* React 19 네이티브 메타데이터 */}
-      <title>About — Sunny Ju | Front-end Developer</title>
+      <title>Sunny Ju | About</title>
       <meta
         name="description"
         content="Learn more about Sunny Ju, a Vancouver-based front-end developer blending code and design for impactful user experiences."

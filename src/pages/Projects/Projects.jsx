@@ -8,7 +8,7 @@ function Projects() {
   return (
     <>
       {/* React 19 네이티브 메타데이터 */}
-      <title>Projects — Sunny Ju | Front-end Developer</title>
+      <title>Sunny Ju | Projects</title>
       <meta
         name="description"
         content="Explore Sunny Ju's featured projects, showcasing thoughtful UI, animation, and creative code implementations."

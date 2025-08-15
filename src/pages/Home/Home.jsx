@@ -9,7 +9,7 @@ function Home() {
   return (
     <>
       {/* React 19 네이티브 메타데이터 */}
-      <title>Sunny Ju — Front-end Developer | Portfolio</title>
+      <title>Sunny Ju</title>
       <meta
         name="description"
         content="Vancouver-based front-end developer blending code x design. Explore featured work, thoughtful UI, and delightful interactions."

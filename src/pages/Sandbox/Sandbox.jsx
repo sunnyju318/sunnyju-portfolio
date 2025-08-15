@@ -6,7 +6,7 @@ function Sandbox() {
   return (
     <>
       {/* React 19 Native Metadata */}
-      <title>Sandbox — Sunny Ju | Front-end Experiments</title>
+      <title>Sunny Ju | Sandbox</title>
       <meta
         name="description"
         content="A playground of UI experiments, micro-interactions, and performance tests by Sunny Ju."
