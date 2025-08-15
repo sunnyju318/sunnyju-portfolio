@@ -99,7 +99,7 @@ function ProjectAccordion({
                 <div className='list-img-wrapper'>
                   <img
                     src={project.thumbnail}
-                    alt={`${project.title} preview`}
+                    alt={`${project.title} Preview thumbnail of the project`}
                     loading='lazy'
                     // 브라우저가 해당 이미지를 보일때까지 기다렸다가 로드함, 초기 로딩속도가 빨라지고 트래픽도 줄일수 있음
                   />

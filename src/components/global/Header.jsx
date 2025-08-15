@@ -29,7 +29,10 @@ function Header({ isScrolled, isMenuOpen, setIsMenuOpen, isContactOpen, setIsCon
     <header className={isScrolled ? 'scrolled' : ''}>
       {/* isScrolled, 즉 스크롤이 되면 header에 className="scrolled"가 붙고 아니면 클레스가 없다. */}
       <div className="header-content">
-        <Link to="/" className="logo-header">
+        <Link to="/" 
+        className="logo-header"
+        aria-label="Go to home, Sunny Ju Portfolio"
+        >
           <div className="logo-text">
             <span className="jisun">JISUN</span>
             <span className="sunny">SUNNY</span>

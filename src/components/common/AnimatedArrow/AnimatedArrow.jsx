@@ -75,6 +75,9 @@ function AnimatedArrow({ direction = 'down', animated = false, className = '' })
       <ArrowIcon
         className='arrow-icon'
         style={{ transform: `rotate(${getRotation()}deg)` }}
+        role="img" // 이 svg가 단순 장식이 아니라 의미있는 이미지임을 명시
+        aria-label="Animated arrow icon" // alt 대신 스크린리더가 읽을수 있는 설명 제공
+        focusable="false" // 키보드 탭 이동시 불필요하게 포커스되지 않게 함
       />
 
     </motion.div>

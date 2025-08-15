@@ -74,7 +74,7 @@ function FaceIllustration() {
   }, []);
 
 
-  
+
   /* throttle : 마우스를 움직이면 초당 수백번 mousemove가 발생하고 그때마다 handleMouseMove()가 실행된다. 
   너무 자주 실행되는 이벤트를 일정시간 간격으로만 실행되도록 제한하는것이 throttle이다. 성능최적화를 위한것.
   useRef를 사용하는 이유는 값이 리렌더링과 상관없이 유지되야 하기 때문이다. 순수한 저장소로만 사용하려는 것.
@@ -323,7 +323,12 @@ useEffect(() => {
 
   return (
     <div className='face-wrapper'>
-      <FaceSvg ref={svgRef} className='face-svg' />
+      <FaceSvg
+        ref={svgRef}
+        className='face-svg'
+        aria-label="Face illustration graphic"
+        role="img"
+      />
       {/* ref={svgRef} : DOM 요소에 접근하기, id값 주듯이 주는것 */}
 
       <AnimatePresence>

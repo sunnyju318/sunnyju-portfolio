@@ -62,7 +62,12 @@ createFallingAnimation('.left-set .blur-3', '#left-curve3', 10);
 return (
   <div className="background-animation">
     <div className="line-set left-set">
-      <svg viewBox="0 0 237.21 841.89">
+      <svg 
+      viewBox="0 0 237.21 841.89"
+      role="img"
+      aria-label="Background animation with falling blur shapes"
+      focusable="false"
+      >
         
         <path id="left-curve1" d="M10.5 0v173.32a13.6 13.6 0 0 1-2.98 8.5l-4.05 5.07a13.62 13.62 0 0 0-2.98 8.5v107.36c0 2.9.93 5.73 2.64 8.07l4.71 6.42c1.72 2.34 2.64 5.17 2.64 8.07v516.57" />
         <path id="left-curve2" d="M123.61 0v603.32a13.6 13.6 0 0 1-2.98 8.5l-4.05 5.07a13.62 13.62 0 0 0-2.98 8.5v107.36c0 2.9.93 5.73 2.64 8.07l4.71 6.42c1.72 2.34 2.64 5.17 2.64 8.07v86.57" />
@@ -75,7 +80,12 @@ return (
     </div>
 
     <div className="line-set right-set">
-      <svg viewBox="0 0 237.21 841.89">
+      <svg 
+      viewBox="0 0 237.21 841.89"
+      role="img"
+      aria-label="Background animation with falling blur shapes"
+      focusable="false"
+      >
         
         <path id="right-curve1" d="M10.5 0v173.32a13.6 13.6 0 0 1-2.98 8.5l-4.05 5.07a13.62 13.62 0 0 0-2.98 8.5v107.36c0 2.9.93 5.73 2.64 8.07l4.71 6.42c1.72 2.34 2.64 5.17 2.64 8.07v516.57" />
         <path id="right-curve2" d="M123.61 0v603.32a13.6 13.6 0 0 1-2.98 8.5l-4.05 5.07a13.62 13.62 0 0 0-2.98 8.5v107.36c0 2.9.93 5.73 2.64 8.07l4.71 6.42c1.72 2.34 2.64 5.17 2.64 8.07v86.57" />
