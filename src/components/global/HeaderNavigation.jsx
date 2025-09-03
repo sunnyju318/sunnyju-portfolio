@@ -44,7 +44,7 @@ function HeaderNavigation({isScrolled, isContactOpen, setIsContactOpen}) {
 
         <a
           className={`nav-link-button ${isScrolled ? 'scrolled' : ''}`}
-          href="#"
+          href="/jisunju_resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="resume"
