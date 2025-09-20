@@ -17,20 +17,35 @@ function Home() {
       <link rel="canonical" href="https://jisun-ju.ca/" />
 
       {/* Open Graph (카톡/LinkedIn/페북 등) */}
-      <meta property="og:title" content="Sunny Ju — Front-end Developer | Portfolio" />
-      <meta property="og:description" content="Explore featured work, thoughtful UI, and delightful interactions." />
+      <meta
+        property="og:title"
+        content="Sunny Ju — Front-end Developer | Portfolio"
+      />
+      <meta
+        property="og:description"
+        content="Explore featured work, thoughtful UI, and delightful interactions."
+      />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://jisun-ju.ca/" />
-      <meta property="og:image" content="https://jisun-ju.ca/assets/images/og-image.jpg" />
-
+      <meta
+        property="og:image"
+        content="https://jisun-ju.ca/assets/images/og-image.jpg"
+      />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Sunny Ju — Front-end Developer | Portfolio" />
-      <meta name="twitter:description" content="Explore featured work, thoughtful UI, and delightful interactions." />
-      <meta name="twitter:image" content="https://jisun-ju.ca/assets/images/og-image.jpg" />
-
-
+      <meta
+        name="twitter:title"
+        content="Sunny Ju — Front-end Developer | Portfolio"
+      />
+      <meta
+        name="twitter:description"
+        content="Explore featured work, thoughtful UI, and delightful interactions."
+      />
+      <meta
+        name="twitter:image"
+        content="https://jisun-ju.ca/assets/images/og-image.jpg"
+      />
 
       {/* 콘텐츠 */}
       <div className="home-wrapper">
@@ -38,7 +53,10 @@ function Home() {
           <h1>
             Sunny <span className="last-name">Ju</span>
           </h1>
-          <h2>Front-end Developer</h2>
+          <h2>
+            Developer X <br />
+            Product Designer
+          </h2>
           <p>Code X Design</p>
         </div>
 

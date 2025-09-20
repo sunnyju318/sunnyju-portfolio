@@ -1,41 +1,36 @@
-
 import { Link } from "react-router-dom";
-import './FooterNavigation.scss';
+import "./FooterNavigation.scss";
 
-function FooterNavigation({ setIsContactOpen, isContactOpen, setIsMenuOpen
- }) {
+function FooterNavigation() {
   return (
     <nav className="footer-nav-wrapper">
       <div className="footer-col">
-        <Link to="/"
-          className="nav-plain">Home</Link>
-        <Link to="/projects" className="nav-highlight">Projects</Link>
+        <Link to="/" className="nav-plain">
+          Home
+        </Link>
+        <Link to="/projects" className="nav-highlight">
+          Projects
+        </Link>
       </div>
       <div className="footer-col">
-        <Link to="/about"
-          className="nav-plain">About</Link>
-        <Link to="/sandbox"
-          className="nav-plain">Sandbox</Link>
-        <button 
-        className="nav-highlight"
-          onClick={() => {
-            setIsContactOpen(!isContactOpen)
-            // setIsMenuOpen(true);
-            // console.log('컨택트 버튼 클릭됨!');
-            // console.log('현재 상태:', isContactOpen);
-            // console.log('변경될 상태:', !isContactOpen);
-            // 모바일 버전에서만 모달창 안나오는 건 관련 디버깅중
-            // 초기접근 :  setIsContactOpen(!isContactOpen) 이렇게만 있었고 .contact-mode 크래스가 반응형 태블릿부터 적용되 있었기 때문에 안열렸다.
-            // setIsMenuOpen(true); 를 추가해 모바일버전에서 컨텍트를 클릭하면 똑같이 햄버거 메뉴가 열리게 하였다.
-            // 두개의 모달창이 동시에 뜨는 문제 발생하여 일단 삭제함
-          }
-          }
+        <Link to="/about" className="nav-plain">
+          About
+        </Link>
+        <Link to="/sandbox" className="nav-plain">
+          Sandbox
+        </Link>
+        <a
+          className="nav-highlight"
+          href="/jisunju_resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="resume"
         >
-          Contact
-        </button>
+          Resume
+        </a>
       </div>
     </nav>
-  )
+  );
 }
 
 export default FooterNavigation;
