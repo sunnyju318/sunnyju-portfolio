@@ -7,10 +7,10 @@ import Home from './pages/Home/Home.jsx';
 import Projects from './pages/Projects/Projects.jsx';
 import About from './pages/About/About.jsx';
 import Sandbox from './pages/Sandbox/Sandbox.jsx';
-import Contact from './pages/Contact/Contact.jsx';
 import NotFound from './pages/NotFound/NotFound.jsx';
 import WorkDetail from './pages/Projects/WorkDetail.jsx';
 import ScrollToTop from './components/global/ScrollToTop.jsx';
+import LumosEasterEgg from './components/lumosEasterEgg/LumosEasterEgg.jsx';
 
 import './styles/global.scss';
 
@@ -19,6 +19,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop /> 
+      <LumosEasterEgg />
       {/* 브라우저라우터 안에 바로 넣으면 모든 페이지 이동에서 자동으로 작동한다 */}
       <Routes>
         <Route path='/' element={<MainLayout />}>
@@ -32,7 +33,6 @@ function App() {
           */}
           <Route path='about' element={<About />} />
           <Route path='sandbox' element={<Sandbox />} />
-          <Route path='contact' element={<Contact />} />
           {/* path는 웹표준 URL이 소문자를 사용하므로 소문자로 하는게 좋다. */}
         </Route>
         <Route path='*' element={<NotFound />} />

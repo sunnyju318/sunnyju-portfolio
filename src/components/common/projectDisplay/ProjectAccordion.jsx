@@ -69,7 +69,7 @@ function ProjectAccordion({
                   exit={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Link to={`/projects/detail/${project.id}`}>View Full Project</Link>
+                  <Link to={`/projects/detail/${project.id}`}>View Project</Link>
                   <AnimatedArrow
                     className='featured-arrow'
                     direction='right' />
@@ -99,14 +99,16 @@ function ProjectAccordion({
                 <div className='list-img-wrapper'>
                   <img
                     src={project.thumbnail}
-                    alt={`${project.title} preview`}
+                    alt={`${project.title} Preview thumbnail of the project`}
                     loading='lazy'
                     // 브라우저가 해당 이미지를 보일때까지 기다렸다가 로드함, 초기 로딩속도가 빨라지고 트래픽도 줄일수 있음
                   />
                   {/* 이미지에 반드시 alt 포함할것 */}
                 </div>
+                <div className='list-text-wrapper'>
                 <p>{project.tech}</p>
                 <p>{project.shortDescription}</p>
+                </div>
               </motion.div>
             )
           }

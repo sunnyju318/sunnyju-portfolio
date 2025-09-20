@@ -41,6 +41,7 @@
   }
 }
 
+// 개발 프로젝트 레이아웃
 .preview-box {
   min-height: 327px;
   grid-column: 1/-1;
@@ -67,6 +68,26 @@
   }
 }
 
+// 디자인 프로젝트 레이아웃
+.design-project-layout {
+  grid-column: 1/-1;
+
+  .hero-preview {
+    width: 100%;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img, video {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}
+
+
+// 공통 섹션 (일부는 디자인에만 나옴)
 .description-sections {
   grid-column: 1/-1;
   margin-bottom: 3rem;
@@ -85,6 +106,10 @@
       margin-bottom: 1rem;
       @include mixins.section-title-mobile-beige;
       line-height: vars.$line-height-sm;
+    }
+
+    .process-image{
+      margin-bottom: 2rem;
     }
   }
 
@@ -161,6 +186,8 @@
 
 // Tablet
 @include mixins.respond-to('md') {
+
+  // 개발 부분
   .preview-box {
     max-height: 327px;
     grid-column: 1/5;
@@ -170,9 +197,15 @@
     grid-column: 5/9;
   }
 
+  //디자인부분
+
+  // 공통부분
   .description-sections {
     @include mixins.grid-layout();
-    margin-bottom: 5rem;
+
+    & {
+      margin-bottom: 5rem;
+    }
 
     .section {
       margin-bottom: 0.2rem;
@@ -183,16 +216,32 @@
       }
 
       &.stack {
-        grid-column: 1/6;
+        grid-column: 6/9;
+      }
+
+      &.research {
+        grid-column: 1/5;
+      }
+
+      &.architecture {
+        grid-column: 5/9;
+      }
+
+      &.wireframes {
+        grid-column: 1/5;
+      }
+
+      &.design-system {
+        grid-column: 5/9;
       }
 
       &.notes {
-        grid-column: 6/9;
-        grid-row: 1/4;
+        grid-column: 1/5;
+
       }
 
       &.challenges {
-        grid-column: 1/6;
+        grid-column: 5/9;
       }
     }
   }
@@ -201,6 +250,8 @@
 
 // Desktop
 @include mixins.respond-to('lg') {
+
+  // 개발부분
   .preview-box {
     grid-column: 1/7;
   }
@@ -210,24 +261,40 @@
   }
 
   .description-sections {
-    margin-bottom: 6rem;
 
+    // 공통부분
     .section {
-      margin-bottom: 0.5rem;
-      padding: 3rem 3rem;
+      padding: 3rem 2.5rem;
       font-size: vars.$font-size-lg;
 
       &.overview {
-        grid-column: 1/7;
+        grid-column: 1/8;
       }
 
       &.stack {
+        grid-column: 8/13;
+      }
+
+      // 디자인부분
+      &.research {
+        grid-column: 1/7;
+      }
+
+      &.architecture {
         grid-column: 7/13;
       }
 
+      &.wireframes {
+        grid-column: 1/7;
+      }
+
+      &.design-system {
+        grid-column: 7/13;
+      }
+
+      // 공통부분
       &.notes {
         grid-column: 1/7;
-        grid-row: 2/3;
       }
 
       &.challenges {

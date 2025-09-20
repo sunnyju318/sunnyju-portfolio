@@ -9,13 +9,13 @@
 .projects-title {
   margin-top: 4rem;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: flex-start;
   align-items: center;
   grid-column: 1/-1;
 
   h1 {
-    font-size: vars.$font-size-5xl-clamp;
+    font-size: vars.$font-size-2xl;
 
     .projects-title-highlight {
       color: vars.$text-primary-accent;
@@ -39,8 +39,15 @@
   .my-projects-mobile-only {
     margin-top: 4rem;
   }
-}
 
+  .projects-title {
+    gap: 2rem;
+
+    h1 {
+      font-size: vars.$font-size-5xl-clamp;
+    }
+  }
+}
 
 // Desktop
 @include mixins.respond-to('lg') {
