@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import './Header.scss';
+import "./Header.scss";
 import HeaderNavigation from "./HeaderNavigation.jsx";
-import NavigationDropdown from './NavigationDropdown.jsx';
+import NavigationDropdown from "./NavigationDropdown.jsx";
 
-
-function Header({ isScrolled, isMenuOpen, setIsMenuOpen, isContactOpen, setIsContactOpen }) {
-
+function Header({
+  isScrolled,
+  isMenuOpen,
+  setIsMenuOpen,
+  isContactOpen,
+  setIsContactOpen,
+}) {
   const onToggle = (e) => {
     e?.preventDefault();
     e?.stopPropagation();
@@ -26,12 +29,13 @@ function Header({ isScrolled, isMenuOpen, setIsMenuOpen, isContactOpen, setIsCon
 
   // 여기서부터는 실제로 화면에 보여질 부분
   return (
-    <header className={isScrolled ? 'scrolled' : ''}>
+    <header className={isScrolled ? "scrolled" : ""}>
       {/* isScrolled, 즉 스크롤이 되면 header에 className="scrolled"가 붙고 아니면 클레스가 없다. */}
       <div className="header-content">
-        <Link to="/" 
-        className="logo-header"
-        aria-label="Go to home, Sunny Ju Portfolio"
+        <Link
+          to="/"
+          className="logo-header"
+          aria-label="Go to home, Sunny Ju Portfolio"
         >
           <div className="logo-text">
             <span className="jisun">JISUN</span>
@@ -43,7 +47,8 @@ function Header({ isScrolled, isMenuOpen, setIsMenuOpen, isContactOpen, setIsCon
         <HeaderNavigation
           isScrolled={isScrolled}
           isContactOpen={isContactOpen}
-          setIsContactOpen={setIsContactOpen} />
+          setIsContactOpen={setIsContactOpen}
+        />
 
         <NavigationDropdown
           isMenuOpen={isMenuOpen}

@@ -1,5 +1,5 @@
-@use '../../styles/base/variables.scss' as vars;
-@use '../../styles/base/mixin.scss' as mixins;
+@use "../../styles/base/variables.scss" as vars;
+@use "../../styles/base/mixin.scss" as mixins;
 
 .lumos-text {
   position: fixed;
@@ -10,10 +10,9 @@
   opacity: 0.3;
   transition: opacity 0.5s ease-in-out;
   font-family: serif;
-  text-shadow:
-  0 0 6px rgba(vars.$text-body-dark-alt, 0.4),
-  0 0 12px rgba(vars.$text-body-dark-alt, 0.3),
-  0 0 20px rgba(vars.$text-body-dark-alt, 0.2);
+  text-shadow: 0 0 6px rgba(vars.$text-body-dark-alt, 0.4),
+    0 0 12px rgba(vars.$text-body-dark-alt, 0.3),
+    0 0 20px rgba(vars.$text-body-dark-alt, 0.2);
 }
 
 .lumos-light {
@@ -22,9 +21,9 @@
   height: 300px;
   border-radius: 50%;
   background: radial-gradient(
-    circle, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    rgba(255, 255, 200, 0.05) 20%, 
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 200, 0.05) 20%,
     transparent 70%
   );
   pointer-events: none;

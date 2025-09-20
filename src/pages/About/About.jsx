@@ -34,7 +34,7 @@ function About() {
       // 나머지는 중간 체크포인트(디버그/안정성에 도움)
     };
 
-    // 에런가 나도 앱이 죽지 않도록 try/catch 넣기
+    // 에러가 나도 앱이 죽지 않도록 try/catch 넣기
     try {
       const cards = document.querySelectorAll(".city-card");
       if (!cards.length) return;
@@ -57,6 +57,8 @@ function About() {
           // r: 현재 보이는 비율(0.00 ~ 1.00 = 0% ~ 100%)
 
           // 개발 환경에서 지금 r이 얼마인지 로그로 확인(디버깅용)
+          // 개발 시: 스크롤할 때마다 "Card visibility: 0.45, visible: false" 같은 로그가 나와서 디버깅에 도움
+          // 실제 사이트: 사용자가 콘솔에서 불필요한 로그를 보지 않음
           if (process.env.NODE_ENV === "development") {
             console.log(
               `Card visibility: ${r.toFixed(2)}, visible: ${
