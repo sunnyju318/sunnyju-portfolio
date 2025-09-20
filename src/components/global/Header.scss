@@ -1,5 +1,5 @@
-@use '../../styles/base/variables.scss' as vars;
-@use '../../styles/base/mixin.scss' as mixins;
+@use "../../styles/base/variables.scss" as vars;
+@use "../../styles/base/mixin.scss" as mixins;
 
 header {
   width: 100%;
@@ -31,7 +31,6 @@ header {
       color: vars.$logo-color-header;
       font-family: vars.$logo-font-family;
       font-weight: vars.$logo-font-weight;
-
 
       .logo-text {
         display: flex;
@@ -74,8 +73,7 @@ header {
   &.scrolled {
     background: vars.$bg-header;
     backdrop-filter: blur(5px);
-    box-shadow: 0 0 10px rgba(vars.$bg-header, 0.5);
-    
+
     .logo-header .logo-text {
       .jisun {
         transform: translateY(10px);
@@ -115,7 +113,7 @@ header {
 }
 
 //반응형
-@include mixins.respond-to('md') {
+@include mixins.respond-to("md") {
   header {
     .header-content {
       .logo-header {

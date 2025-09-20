@@ -1,11 +1,10 @@
-@use '../../styles/base/mixin.scss' as mixins;
-@use '../../styles/base/variables.scss' as vars;
+@use "../../styles/base/mixin.scss" as mixins;
+@use "../../styles/base/variables.scss" as vars;
 
 .about-wrapper {
   @include mixins.grid-layout();
   @include mixins.container();
 }
-
 
 /*
 사진과 텍스트 오버레이 하기 : 
@@ -40,7 +39,6 @@
   object-fit: cover;
   object-position: center top;
 }
-
 
 .hero-desktop-content {
   grid-column: 1/-1;
@@ -144,6 +142,7 @@
   height: 240px;
   overflow: hidden;
   grid-column: 1/-1;
+  position: relative;
 
   img {
     object-fit: cover;
@@ -160,8 +159,59 @@
   color: vars.$text-body-dark-alt;
 }
 
+.city-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.city-caption {
+  position: absolute;
+  @include mixins.flex-center;
+  width: 70%;
+  height: 100%;
+  padding: 1rem;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+  background: rgba(vars.$near-black, 0.7);
+
+  p {
+    margin: 0;
+    font-size: vars.$font-size-md;
+    line-height: vars.$line-height-normal;
+  }
+
+  .city-caption_van {
+    font-size: vars.$font-size-lg;
+  }
+
+  will-change: transform;
+  /*
+  브라우저에게 이 요소가 곧 애니메이션을 할 것이니 GPU 레이어릴 미리 준비해달라 알려주는 속성이다.
+
+  - will-change 없을때: 
+  스크롤 → 애니메이션 트리거 → GPU 레이어 생성 (지연) → 애니메이션 시작
+  - will-change 있을때:
+  페이지 로드 → GPU 레이어 미리 생성 → 스크롤 → 애니메이션 즉시 시작
+
+  과도하게 사용하면 오히려 메모리를 많이 사용하니 주의할것
+  */
+
+  // 초기 상태 (숨김)
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+
+  &.is-visible {
+    transform: translateX(0);
+  }
+}
+
 // Tablet
-@include mixins.respond-to('md') {
+@include mixins.respond-to("md") {
   .hero-desktop-content {
     grid-column: 2/8;
     display: block;
@@ -215,7 +265,12 @@
   }
 
   .hero-arrow-wrapper-bottom {
-    margin: 6rem 0;
+    margin: 7rem 0;
+
+    .journey-title {
+      font-size: vars.$font-size-2xl;
+      font-weight: vars.$font-weight-medium;
+    }
   }
 
   .ending-quote {
@@ -225,10 +280,23 @@
   .stack-wrapper {
     grid-column: 2/8;
   }
+
+  .city-caption {
+    width: 40%;
+    padding: 2rem;
+
+    p {
+      font-size: vars.$font-size-base;
+    }
+
+    .city-caption_van {
+      font-size: vars.$font-size-xl;
+    }
+  }
 }
 
 // Desktop
-@include mixins.respond-to('lg') {
+@include mixins.respond-to("lg") {
   .hero-desktop-content {
     grid-column: 3/11;
 
@@ -241,7 +309,6 @@
     grid-column: 3/11;
     height: 60vh;
   }
-
 
   .section-title-about-me {
     grid-column: 3/11;
@@ -264,14 +331,9 @@
   }
 
   .hero-arrow-wrapper-bottom {
-    margin: 8rem 0 5rem;
+    margin: 9rem;
     font-size: vars.$font-size-lg;
     gap: 0.7rem;
-
-    .journey-title {
-      font-size: vars.$font-size-xl;
-      font-weight: vars.$font-weight-medium;
-    }
 
     .about-arrow-bottom {
       margin-top: 1rem;
@@ -284,5 +346,18 @@
 
   .tap-guide-mobile {
     display: none;
+  }
+
+  .city-caption {
+    width: 32%;
+    padding: 3rem;
+
+    p {
+      font-size: vars.$font-size-lg;
+    }
+
+    .city-caption_van {
+      font-size: vars.$font-size-2xl;
+    }
   }
 }
