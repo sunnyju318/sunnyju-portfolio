@@ -1,0 +1,151 @@
+@use "../../styles/base/mixin.scss" as mixins;
+@use "../../styles/base/variables.scss" as vars;
+
+.sandbox-modal_wrapper {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+  background-color: rgba(vars.$near-black, 0);
+  animation: backdropFadeIn 0.1s ease-out forwards;
+}
+
+@keyframes backdropFadeIn {
+  to {
+    background-color: rgba(vars.$near-black, 0.6);
+  }
+}
+
+.modal-content {
+  margin-top: 3rem;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: vars.$dark-forest;
+  box-shadow: inset 0 0 50px rgba(vars.$near-black, 0.5);
+  width: 90%;
+  max-width: 900px;
+  padding: 1rem;
+  filter: drop-shadow(0 10px 20px rgba(vars.$near-black, 0.5));
+  // 아래서 서서히 올라오는 애니메이션
+  transform: translateY(30vh); // 살짝 아래서 시작
+  opacity: 0;
+  animation: slideUpFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  // overflow-y: auto; // 필요시 스크롤
+}
+
+@keyframes slideUpFade {
+  0% {
+    transform: translateY(30vh);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7; // 중간에서 살짝 보이기 시작
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  .modal-button {
+    border-radius: 8px;
+    padding: 0.2rem 0.5rem;
+    &:hover {
+      background-color: rgba(vars.$near-black, 0.8);
+    }
+  }
+}
+
+.modal-close {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  fill: vars.$nav-hamburger-open;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
+}
+
+.modal-image {
+  width: 100%;
+  max-height: 60vh;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: auto; // 100%에서 auto로 변경
+    height: auto;
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  video::-webkit-media-controls-current-time-display,
+  video::-webkit-media-controls-time-remaining-display {
+    color: vars.$scarlet-red;
+  }
+}
+
+.modal-info {
+  display: flex;
+  gap: 2rem;
+}
+
+.modal-info-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .modal-title {
+    color: vars.$text-heading-dark-alt;
+  }
+
+  .modal-stack {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 0.5rem;
+  }
+}
+
+.modal-info-right {
+  color: vars.$text-heading-dark-alt;
+  line-height: vars.$line-height-normal;
+  font-size: vars.$font-size-lg;
+}
