@@ -7,13 +7,16 @@ header {
   top: 0;
   left: 0;
   z-index: 100;
-  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: height 0.5s ease;
   // 총 시간 0.5s, ease-in-out과 비슷한 커스텀 버전
   // 초반에 height 대신 all이었으나 햄버거 메뉴 클릭시 오버레이되는 화면에 블러처리가 슬라이드인보다 0.5초 늦게 반영되는 버그를 확인한 후 all 대신 height에만 적용함
   height: 120px;
 
   &.scrolled {
     height: 50px;
+    background: vars.$near-black;
+    // 헤더와 햄버거메뉴 클릭시 나오는 오버레이화면과 블러효과가 중첩되면서 브라우저 렌더링 충돌이 일어남, 디자인적인 측면 개선까지 고려하여 헤더 배경에서는 글라스모피즘을 삭제하고 단색처리함
+    transition: height 0.5s ease, background-color 0.3s ease 0.4s;
   }
 
   // & : 현재 선택자(부모 셀럭터를 의미)
@@ -28,7 +31,7 @@ header {
     height: 100%;
 
     .logo-header {
-      font-size: vars.$font-size-lg;
+      font-size: vars.$font-size-base;
       color: vars.$logo-color-header;
       font-family: vars.$logo-font-family;
       font-weight: vars.$logo-font-weight;
@@ -38,7 +41,6 @@ header {
         flex-direction: column;
         position: relative;
         align-items: flex-start;
-        height: 5rem;
 
         .jisun,
         .sunny,
@@ -77,6 +79,7 @@ header {
   }
 
   .nav-link-button {
+    font-size: vars.$font-size-md;
     color: vars.$near-black;
     background: vars.$bg-button;
     font-weight: vars.$font-weight-semibold;
@@ -95,9 +98,6 @@ header {
 
   // 스크롤 시 애니메이션
   &.scrolled {
-    background: vars.$near-black;
-    // 헤더와 햄버거메뉴 클릭시 나오는 오버레이화면과 블러효과가 중첩되면서 브라우저 렌더링 충돌이 일어남, 디자인적인 측면 개선까지 고려하여 헤더 배경에서는 글라스모피즘을 삭제하고 단색처리함
-
     .logo-header .logo-text {
       .jisun {
         transform: translateY(10px);
