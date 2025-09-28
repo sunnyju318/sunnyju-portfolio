@@ -13,6 +13,7 @@ import {
   SiFigma,
   SiAdobeillustrator,
   SiAdobephotoshop,
+  SiAdobeaftereffects,
 } from "react-icons/si";
 
 function Sandbox() {
@@ -22,7 +23,7 @@ function Sandbox() {
     1280: 3, // xl
     1025: 2, // lg
     768: 2, // md
-    640: 1, // sm
+    640: 2, // sm
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,6 +59,10 @@ function Sandbox() {
         );
       case "Photoshop":
         return <SiAdobephotoshop size={25} color="#2a8dbd" title="Photoshop" />;
+      case "AfterEffects":
+        return (
+          <SiAdobeaftereffects size={25} color="#9999FF" title="AfterEffects" />
+        );
       case "SVG":
         return <span className="tech-text">SVG</span>;
       default:
