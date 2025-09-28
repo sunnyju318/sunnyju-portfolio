@@ -2,9 +2,8 @@ import "./FaceIllustration.scss";
 import FaceSvg from "../../assets/images/face-illustration.svg?react";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import useGlobalMouseTracking from "../common/hooks/useGlobalMouseTracking";
 
-function FaceIllustration() {
+function FaceIllustration({ isMenuOpen, isContactOpen }) {
   const svgRef = useRef(null);
   // DOM에 접근하기위해 useRef 사용하기, null로 초기화하고 컴포넌트가 렌더링 된 후에는 해당 DOM 요소가 여기에 저장된다.
   // 여기서는 svg에 접근하기 위해서이다.
@@ -15,9 +14,7 @@ function FaceIllustration() {
   // 마우스를 호버했을 시 그 상태를 추적하기 위함, 초기값은 null로 아무것도 호버되지 않은 상태임
   const [isPaused, setIsPaused] = useState(false);
   // 마우스 호버시 자동순환 애니메이션을 멈출지 계속할지 제어하는 용도, 초기값은 false로 기본적으로 움직이는 상태임
-
-  // 전역 마우스 추적 훅 사용
-  const mousePosition = useGlobalMouseTracking();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1025);
 
   /* == 성능최적화하기 == 메모이제이션, 불필요한 재생성 방지 :
   JSX안에서 [{}, {}, ..] 이런식으로 배열 데이터를 쓰면 
@@ -55,6 +52,39 @@ function FaceIllustration() {
     ],
     []
   );
+
+  // 다른 모달이 열리면 Face 모달 닫기
+  useEffect(() => {
+    if (isMenuOpen || isContactOpen) {
+      setHoveredGroup(null);
+      setIsPaused(false);
+    }
+  }, [isMenuOpen, isContactOpen]);
+
+  // 모바일에서 스크롤/터치 시 텍스트박스 닫기
+  useEffect(() => {
+    if (!hoveredGroup || !isMobile) return;
+
+    const handleScroll = () => {
+      setHoveredGroup(null);
+      setIsPaused(false);
+    };
+
+    const handleTouch = (e) => {
+      if (!e.target.closest(".hover-modal")) {
+        setHoveredGroup(null);
+        setIsPaused(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("touchstart", handleTouch);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchstart", handleTouch);
+    };
+  }, [hoveredGroup, isMobile]);
 
   // == 성능최적화하기 == 눈동자 애니메이션 :
 
@@ -165,6 +195,7 @@ function FaceIllustration() {
   // 눈동자 움직임 애니메이션을 초기화 및 클린업하기
   // 목적 : 컴포넌트가 마운트 되었을때 눈 요소를 찾아서 캐싱하고 마우스 이벤트를 등록 후에 컴포넌트가 언마운트 되었을때는 타이머, 이벤트, 애니메이션을 모두 정리해야 한다.
   useEffect(() => {
+    if (isMobile) return;
     const timer = setTimeout(() => {
       cacheEyeElements();
     }, 100);
@@ -192,7 +223,7 @@ function FaceIllustration() {
         cancelAnimationFrame(throttleRef.current.animationId);
       }
     };
-  }, [handleMouseMove, cacheEyeElements]);
+  }, [handleMouseMove, cacheEyeElements, isMobile]);
 
   /* 이니셜 접근 : 성능저하 문제 발생함
   1. 매번 DOM을 검색하는 문제 발생
@@ -233,9 +264,19 @@ useEffect(() => {
 }, []);
 */
 
+  // 화면 크기 변경 감지
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1025);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // 자동루핑 (호버시 정지)
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || isMobile) return;
     // 만약에 isPasued가 true이면 애니메이션을 일시정지한 상태이니 아래 코드를 실행하지 말고 여기서 끝내라는 뜻.
     const interval = setInterval(() => {
       setCurrentActiveGroup((prev) => (prev + 1) % groups.length);
@@ -250,7 +291,7 @@ useEffect(() => {
 
     return () => clearInterval(interval);
     // 컴포넌트가 사라지거나 isPaused 값이 바뀌면 clearInterval로 이전 타이머 정리하기
-  }, [isPaused, groups.length]);
+  }, [isPaused, groups.length, isMobile]);
   // dependency array : isPaused 이거나 groups.length중 하나라도 값이 바뀌면 유즈이펙트가 다시 실행됨
 
   // 그룹별로 호버이벤트 등록
@@ -376,6 +417,5 @@ useEffect(() => {
     </div>
   );
 }
-import { form } from "framer-motion/client";
 
 export default FaceIllustration;

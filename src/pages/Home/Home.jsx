@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion.jsx";
 import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView.jsx";
 
-function Home() {
+function Home({ isMenuOpen, isContactOpen }) {
   return (
     <>
       {/* React 19 네이티브 메타데이터 */}
@@ -69,7 +69,10 @@ function Home() {
         대안으로 내부 컨테이너를 추가하고 이미지 사이즈와 가운데정렬 코드를 분리함 */}
         <div className="faceillustration-wrapper">
           <div className="faceillustration-container">
-            <FaceIllustration />
+            <FaceIllustration
+              isMenuOpen={isMenuOpen}
+              isContactOpen={isContactOpen}
+            />
           </div>
         </div>
 
