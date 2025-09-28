@@ -40,27 +40,38 @@ function Header({
           <div className="logo-text">
             <span className="jisun">JISUN</span>
             <span className="sunny">SUNNY</span>
-            <span className="ju-dot">JU.</span>
+            <span className="ju-dot">JU</span>
           </div>
         </Link>
+        <div className="mobile-header-actions">
+          <HeaderNavigation
+            isScrolled={isScrolled}
+            isContactOpen={isContactOpen}
+            setIsContactOpen={setIsContactOpen}
+          />
 
-        <HeaderNavigation
-          isScrolled={isScrolled}
-          isContactOpen={isContactOpen}
-          setIsContactOpen={setIsContactOpen}
-        />
+          <a
+            className={`nav-link-button ${isScrolled ? "scrolled" : ""}`}
+            href="/jisunju_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="resume"
+          >
+            Resume
+          </a>
 
-        <NavigationDropdown
-          isMenuOpen={isMenuOpen}
-          onToggle={onToggle}
-          onClose={onClose}
-          contactOnly={false}
-        />
-        {/* 
+          <NavigationDropdown
+            isMenuOpen={isMenuOpen}
+            onToggle={onToggle}
+            onClose={onClose}
+            contactOnly={false}
+          />
+          {/* 
         1. isOpen : 현재 상태 데이터, true와 false 두개의 데이터를 가지고 있음
         2. onToggle : true와 false, 즉 열림과 닫힘 사이를 전환하는 함수(햄버거메뉴버튼)
         3. onClose: 무조건 닫는 함수(페이지링크버튼)
         */}
+        </div>
       </div>
     </header>
   );

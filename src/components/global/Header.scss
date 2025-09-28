@@ -70,6 +70,29 @@ header {
     }
   }
 
+  .mobile-header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-link-button {
+    color: vars.$near-black;
+    background: vars.$bg-button;
+    font-weight: vars.$font-weight-semibold;
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    &.scrolled {
+      padding: 0.2rem 0.7rem;
+      transition: 0.5s ease;
+    }
+  }
+
+  .nav-link-button:hover {
+    background: vars.$bg-button-hover;
+  }
+
   // 스크롤 시 애니메이션
   &.scrolled {
     background: vars.$near-black;
@@ -88,7 +111,7 @@ header {
 
       .sunny {
         &::after {
-          content: " JU.";
+          content: " JU";
           animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
           display: inline-block;
         }

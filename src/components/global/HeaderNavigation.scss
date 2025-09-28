@@ -1,5 +1,5 @@
-@use '../../styles/base/variables.scss' as vars;
-@use '../../styles/base/mixin.scss' as mixins;
+@use "../../styles/base/variables.scss" as vars;
+@use "../../styles/base/mixin.scss" as mixins;
 
 .menu-navigation-header {
   display: none; // 모바일 사이즈에서 숨김
@@ -26,30 +26,28 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+  }
 
-    .nav-link-button {
-      color: vars.$near-black;
-      background: vars.$bg-button;
-      font-weight: vars.$font-weight-semibold;
-      padding: 0.4rem 0.7rem;
-      border-radius: 6px;
-      transition: background 0.3s ease;
-      &.scrolled {
-        padding: 0.2rem 0.7rem;
-        transition: 0.5s ease;
-      }
+  .nav-link-button {
+    color: vars.$near-black;
+    background: vars.$bg-button;
+    font-weight: vars.$font-weight-semibold;
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    &.scrolled {
+      padding: 0.2rem 0.7rem;
+      transition: 0.5s ease;
     }
+  }
 
-    .nav-link-button:hover {
-      background: vars.$bg-button-hover;
-    }
-
-
+  .nav-link-button:hover {
+    background: vars.$bg-button-hover;
   }
 }
 
 //반응형
-@include mixins.respond-to('md') {
+@include mixins.respond-to("md") {
   .menu-navigation-header {
     display: flex;
   }

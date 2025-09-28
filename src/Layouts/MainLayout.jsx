@@ -51,8 +51,10 @@ function MainLayout() {
     };
     // 컴포넌트가 사라질때 scroll 이벤트를 clean up 해주는 코드.
     // 메모리 누수를 막기위해 꼭 필요함
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isContactOpen]);
   // [] : 컴포넌트가 처음 생길때 한번만 실행함
+  // 데스크탑 사이즈에서 헤더에 있는 컨텍트를 클릭했을때 스클롤 효과로 하이트가 변함, 확인해보니 isContactOpen를 의존성배열에 추가하지 않아서 생긴 일임, 추가함으로써 해결함
+
   return (
     <div className="main-layout">
       <BackgroundAnimation />
@@ -66,12 +68,7 @@ function MainLayout() {
       <main>
         <Outlet />
       </main>
-      <Footer
-        isMenuOpen={isMenuOpen}
-        setIsContactOpen={setIsContactOpen}
-        isContactOpen={isContactOpen}
-        setIsMenuOpen={setIsMenuOpen}
-      />
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,225 @@
+import "./SandboxModal.scss";
+import { AiFillGithub } from "react-icons/ai";
+import { FiExternalLink } from "react-icons/fi";
+import { useState, useEffect } from "react";
+import AnimatedArrow from "../common/AnimatedArrow/AnimatedArrow";
+
+export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
+  const [imageOrientation, setImageOrientation] = useState("landscape");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (isOpen) {
+      setImageOrientation("landscape"); // 모달 열릴 때 초기화
+      setCurrentImageIndex(0); // 모달 열릴때 첫번째 이미지로 초기화
+    }
+  }, [isOpen]);
+
+  // 키보드 네비게이션
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (!isOpen) return;
+
+      if (e.key === "ArrowLeft") {
+        prevImage();
+      } else if (e.key === "ArrowRight") {
+        nextImage();
+      } else if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [isOpen, currentImageIndex]);
+
+  if (!isOpen || !data) return null;
+
+  // 이미지 배열 가져오기 (기존 단일 이미지도 호환)
+  const getImages = () => {
+    if (data.images && Array.isArray(data.images)) {
+      return data.images;
+    } else if (data.largeImage) {
+      return [{ type: "image", src: data.largeImage }];
+    } else if (data.preview) {
+      return [{ type: "video", src: data.preview }];
+    }
+    return [{ type: "image", src: data.thumbnail }];
+  };
+
+  const images = getImages();
+  const currentImage = images[currentImageIndex];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+  };
+
+  const handleImageLoad = (e) => {
+    const { naturalWidth, naturalHeight } = e.target;
+    setImageOrientation(
+      naturalHeight > naturalWidth ? "portrait" : "landscape"
+    );
+  };
+
+  const handleVideoLoad = (e) => {
+    const { videoWidth, videoHeight } = e.target;
+    setImageOrientation(videoHeight > videoWidth ? "portrait" : "landscape");
+  };
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      // e.target: 실제로 클릭된 요소
+      // e.currentTarget: 이벤트 핸들러가 붙은 요소
+      onClose();
+    }
+  };
+
+  const renderCurrentMedia = () => {
+    if (!currentImage) return null;
+
+    if (currentImage.type === "video") {
+      return (
+        <video
+          src={currentImage.src}
+          controls
+          autoPlay
+          muted
+          onLoadedMetadata={handleVideoLoad}
+        />
+      );
+    } else {
+      return (
+        <img
+          src={currentImage.src}
+          alt={
+            currentImage.caption ||
+            `${data.title} - Image ${currentImageIndex + 1}`
+          }
+          onLoad={handleImageLoad}
+        />
+      );
+    }
+  };
+
+  return (
+    <div className="sandbox-modal_wrapper" onClick={handleBackdropClick}>
+      <div className={`modal-content ${imageOrientation}`}>
+        <div className="modal-header">
+          <div className="modal-links">
+            {data.links?.liveDemo && (
+              <a
+                href={data.links.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Live Demo"
+                className="modal-button"
+              >
+                <FiExternalLink size="2rem" color="#d13221" />
+              </a>
+            )}
+            {data.links?.viewCode && (
+              <a
+                href={data.links.viewCode}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="modal-button"
+              >
+                <AiFillGithub size="2rem" color="#d13221" />
+              </a>
+            )}
+          </div>
+          <button className="modal-close" onClick={onClose}>
+            <svg viewBox="0 0 93.76 93.76">
+              <g>
+                <path
+                  d="M4.15 4.15h20.06v20.06H4.15z"
+                  transform="rotate(45 14.188 14.177)"
+                />
+                <path
+                  d="M69.54 4.15H89.6v20.06H69.54z"
+                  transform="rotate(45 79.572 14.19)"
+                />
+                <path
+                  d="M36.85 36.85h20.06v20.06H36.85z"
+                  transform="rotate(45 46.882 46.88)"
+                />
+                <path
+                  d="M4.15 69.54h20.06V89.6H4.15z"
+                  transform="rotate(45 14.18 79.573)"
+                />
+                <path
+                  d="M69.54 69.54H89.6V89.6H69.54z"
+                  transform="rotate(45 79.571 79.57)"
+                />
+              </g>
+            </svg>
+          </button>
+        </div>
+
+        <div className="modal-body">
+          <div className="modal-image">
+            {renderCurrentMedia()}
+
+            {/* 캐러셀 컨트롤 - 이미지가 2개 이상일 때만 표시 */}
+            {images.length > 1 && (
+              <>
+                <button
+                  className="carousel-nav carousel-nav-prev"
+                  onClick={prevImage}
+                  aria-label="Previous image"
+                >
+                  <AnimatedArrow direction="left" className="animated-arrow" />
+                </button>
+
+                <button
+                  className="carousel-nav carousel-nav-next"
+                  onClick={nextImage}
+                  aria-label="Next image"
+                >
+                  <AnimatedArrow direction="right" className="animated-arrow" />
+                </button>
+
+                {/* 도트 인디케이터 */}
+                <div className="carousel-dots">
+                  {images.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`carousel-dot ${
+                        index === currentImageIndex ? "active" : ""
+                      }`}
+                      onClick={() => setCurrentImageIndex(index)}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="modal-info">
+            <div className="modal-info-left">
+              <h3 className="modal-title">{data.title}</h3>
+              <div className="modal-stack">
+                {data.stack?.map((tech, index) => (
+                  <span key={index} className="tech-tag">
+                    {getIcon(tech)}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="modal-info-right">
+              {/* 현재 이미지에 캡션이 있으면 표시, 없으면 기본 설명 */}
+              {currentImage?.caption || data.description}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
