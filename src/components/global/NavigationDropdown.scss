@@ -78,7 +78,7 @@
   justify-content: center;
   align-items: flex-end;
   padding-right: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
   overflow-y: auto;
   // 메뉴 아이템이 많아져서 화면 높이를 초과할 경우를 대비
   // 모바일 메뉴 내부에서만 스크롤이 가능하도록 함(배경은 고정)
@@ -105,6 +105,7 @@
 
 .nav-link-contact {
   text-align: end;
+  position: relative;
 }
 
 .mobile-menu-content .nav-link:hover {
@@ -124,6 +125,7 @@
   gap: 1.5rem;
   color: vars.$text-body-dark-alt;
   overflow: hidden;
+  position: absolute;
 
   .horizontal-line {
     margin-top: 2rem;
@@ -137,6 +139,16 @@
     align-items: center;
     justify-content: flex-end;
     gap: 2rem;
+
+    .email-address-container {
+      @include mixins.flex-center;
+      gap: 1rem;
+    }
+
+    .email-address {
+      font-size: vars.$font-size-lg;
+      @include mixins.hover-underline;
+    }
 
     a {
       display: flex;
@@ -167,19 +179,23 @@
 
 //반응형
 @include mixins.respond-to("md") {
+  .nav-link-contact {
+    // 데스크탑에서는 pointer-events 비활성화
+    .nav-link {
+      pointer-events: none;
+    }
+  }
+
   .mobile-menu-content {
     align-items: center;
   }
 
   .contact-wrapper {
-    min-width: 500px;
+    min-width: 400px;
+    width: 100%;
   }
 
   .contact-list {
-    .email-address {
-      font-size: vars.$font-size-lg;
-    }
-
     .contact-sub-title {
       display: block;
     }
@@ -195,7 +211,7 @@
       right: 50px;
       // %를 쓰면 부모요소에 영향을 받기 때문에 스크롤시 움직인다.
       // px를 사용하면 절대값이라 부모요소와 무관하여 뷰포트 기준으로 고정된다.
-      z-index: 300;
+      z-index: 301;
     }
   }
 

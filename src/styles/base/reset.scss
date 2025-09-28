@@ -1,35 +1,52 @@
-@use './variables.scss' as vars;
+@use "./variables.scss" as vars;
 
 /* Box sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Remove default margin & padding */
-body, h1, h2, h3, h4, h5, h6,
-p, figure, blockquote,
-ul, ol, li,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+ul,
+ol,
+li,
 textarea {
   margin: 0;
   padding: 0;
 }
 
 /* Remove list styles */
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
 /* Form elements */
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   border: none;
   background: none;
   font: inherit;
   color: inherit;
   outline: none;
-  -webkit-tap-highlight-color: transparent; 
+  -webkit-tap-highlight-color: transparent;
   // 모바일 터치 하이라이트 제거하기
+  -webkit-touch-callout: none;
+  // 추가: 길게 눌렀을 때 컨텍스트 메뉴 방지
 }
 
 /* Reset buttons */
@@ -42,10 +59,16 @@ button {
 a {
   text-decoration: none;
   color: inherit;
+  -webkit-tap-highlight-color: transparent; // 추가
+  -webkit-touch-callout: none; // 추가
 }
 
 /* Images and media */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
   height: auto;

@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(3px);
+  z-index: 500;
   background-color: rgba(vars.$near-black, 0);
   animation: backdropFadeIn 0.1s ease-out forwards;
 }
@@ -22,6 +23,7 @@
 }
 
 .modal-content {
+  z-index: 501;
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
@@ -173,7 +175,6 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  z-index: 10;
 
   &:hover {
     background-color: rgba(vars.$near-black, 0.9);
@@ -204,7 +205,6 @@
   transform: translateX(-50%);
   display: flex;
   gap: 0.8rem;
-  z-index: 10;
 }
 
 .carousel-dot {

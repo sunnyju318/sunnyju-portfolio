@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Footer.scss";
 import FooterNavigation from "./FooterNavigation.jsx";
+import { AiFillGithub } from "react-icons/ai";
 
 function Footer() {
   const handleLogoClick = () => {
@@ -35,7 +36,7 @@ function Footer() {
               aria-label="GitHub Profile"
               className="social-icon"
             >
-              git
+              <AiFillGithub size="2rem" />
             </a>
           </div>
         </div>

@@ -59,6 +59,7 @@ $font-main: "Montserrat", -apple-system, BlinkMacSystemFont, system-ui,
 실패하면 -apple-system시도(Mac/iPhone에서), 실패하면 BlinkMacSystemFont 시도(구버전 Mac), 
 실패하면 system-ui시도(최신 브라우저), 실패하면 마지막으로 sans-serif 사용(브라우저 기본폰트) */
 $font-code: "Fira Code", monospace;
+$font-gochi: "Gochi Hand", cursive;
 
 // Font Sizes
 $font-size-sm: 0.75rem; // 12px

@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import "./NavigationDropdown.scss";
 import { Link } from "react-router-dom";
 import AnimatedArrow from "../common/AnimatedArrow/AnimatedArrow.jsx";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { AiFillGithub } from "react-icons/ai";
 
 function NavigationDropdown({
   isMenuOpen,
@@ -33,6 +34,9 @@ function NavigationDropdown({
         document.body.style.paddingRight = `${scrollbarWidth}px`;
       }
     } else {
+      // 메뉴가 닫힐 때 Contact도 초기화
+      setExpandedItem(contactOnly ? "contact" : null);
+
       // 메뉴가 닫힐 때만 복원
       const savedY = scrollPosition.current;
 
@@ -45,10 +49,16 @@ function NavigationDropdown({
       // 스크롤 위치 복원 (한 번만)
       window.scrollTo(0, savedY);
     }
-  }, [isMenuOpen]);
+  }, [isMenuOpen, contactOnly]);
 
   const handleContactClick = () => {
     setExpandedItem(expandedItem === "contact" ? null : "contact");
+  };
+
+  // handleContactClick 아래에 추가
+  const handleLinkClick = () => {
+    setExpandedItem(null); // Contact 닫기
+    onClose(); // 메뉴 전체 닫기
   };
 
   return (
@@ -130,32 +140,63 @@ function NavigationDropdown({
       )}
 
       {/* 모바일 풀스크린 메뉴 */}
-      <div className={`mobile-menu-overlay ${isMenuOpen ? "open" : ""}`}>
+      <div
+        className={`mobile-menu-overlay ${isMenuOpen ? "open" : ""}`}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            setExpandedItem(null);
+          }
+        }}
+      >
         {/* 기본적으로 mobile-menu-overlay 라는 클래스명을 가짐
        isMobileMenuOpen ? 'open' : '' // isMobileMenuOpen 이게 true 일때(열렸을때)는 open이라는 클래스를 붙이고 false이면(닫혔으면) 붙이지 마세요. // 삼항연산자 : 조건이 true일때 ~하라. 는 구조이다
        */}
-        <nav className="mobile-menu-content">
+        <nav
+          className="mobile-menu-content"
+          onClick={(e) => {
+            // Contact 영역이 아닌 곳 클릭 시 Contact 닫기
+            if (window.innerWidth >= 768) return;
+            if (
+              !e.target.closest(".contact-wrapper") &&
+              !e.target.closest(".nav-link-contact button")
+            ) {
+              setExpandedItem(null);
+            }
+          }}
+        >
           {/* 만약 컨텍트온리가 아닌게(전체 메뉴가 다 나와야 하는게) 사실이라면 아래 내용을 실행할것./ 컨텍트는 이 조건문 밖으로 뺐음. 왜냐하면 데스크탑 버전에서는 컨텍트만 나와야 하기 때문 */}
           {!contactOnly && (
             <ul>
               <li>
-                <Link className="nav-link" to="/" onClick={onClose}>
+                <Link className="nav-link" to="/" onClick={handleLinkClick}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link className="nav-link" to="/projects" onClick={onClose}>
+                <Link
+                  className="nav-link"
+                  to="/projects"
+                  onClick={handleLinkClick}
+                >
                   {/*  onClick={() => setIsMobileMenuOpen(false)} : 클릭하면 해당 페이지로 이동하며 이 함수가 실행되어 false 즉, 토글이 닫힘 상태가 된다. (x자 빨간색에서 네모 베이지가 되는것) */}
                   Projects
                 </Link>
               </li>
               <li>
-                <Link className="nav-link" to="/about" onClick={onClose}>
+                <Link
+                  className="nav-link"
+                  to="/about"
+                  onClick={handleLinkClick}
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link className="nav-link" to="/sandbox" onClick={onClose}>
+                <Link
+                  className="nav-link"
+                  to="/sandbox"
+                  onClick={handleLinkClick}
+                >
                   Sandbox
                 </Link>
               </li>
@@ -166,55 +207,58 @@ function NavigationDropdown({
             <button className="nav-link" onClick={handleContactClick}>
               Contact
             </button>
-
-            {expandedItem === "contact" && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                // 높이가 0에서 auto(컨텐츠 크기만큼 늘어남)
-                className="contact-wrapper"
-              >
-                <div className="horizontal-line" />
-                <div className="contact-list">
-                  <a
-                    className="email-address"
-                    href="mailto:sunnyju318@naver.com"
-                  >
-                    sunnyju318@naver.com
-                    <AnimatedArrow
-                      className="contact-arrow"
-                      direction="right"
-                    />
-                  </a>
-                  <p className="contact-sub-title">Email</p>
-                </div>
-                <div className="contact-list">
-                  <div className="social-icon-wrapper">
-                    <a
-                      href="https://www.linkedin.com/in/jisun-ju/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="LinkedIn Profile"
-                      className="social-icon"
-                    >
-                      in
-                    </a>
-                    <a
-                      href="https://github.com/sunnyju318"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="GitHub Profile"
-                      className="social-icon"
-                    >
-                      git
-                    </a>
+            <AnimatePresence>
+              {expandedItem === "contact" && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  // 높이가 0에서 auto(컨텐츠 크기만큼 늘어남)
+                  className="contact-wrapper "
+                >
+                  <div className="horizontal-line" />
+                  <div className="contact-list">
+                    <div className="email-address-container">
+                      <a
+                        className="email-address"
+                        href="mailto:sunnyju318@naver.com"
+                      >
+                        Email Me
+                      </a>
+                      <AnimatedArrow
+                        className="contact-arrow"
+                        direction="right"
+                      />
+                    </div>
+                    <p className="contact-sub-title">Email</p>
                   </div>
-                  <p className="contact-sub-title">Socials</p>
-                </div>
-              </motion.div>
-            )}
+                  <div className="contact-list">
+                    <div className="social-icon-wrapper">
+                      <a
+                        href="https://www.linkedin.com/in/jisun-ju/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn Profile"
+                        className="social-icon"
+                      >
+                        in
+                      </a>
+                      <a
+                        href="https://github.com/sunnyju318"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub Profile"
+                        className="social-icon"
+                      >
+                        <AiFillGithub size="2rem" />
+                      </a>
+                    </div>
+                    <p className="contact-sub-title">Socials</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </nav>
       </div>

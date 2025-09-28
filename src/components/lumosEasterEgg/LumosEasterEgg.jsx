@@ -1,12 +1,13 @@
 // components/LumosEasterEgg.jsx
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import './LumosEasterEgg.scss';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import "./LumosEasterEgg.scss";
 
 const LumosEasterEgg = () => {
   const [lumosVisible, setLumosVisible] = useState(false);
   const [lumosPosition, setLumosPosition] = useState({ x: 0, y: 0 });
   const [lightEffect, setLightEffect] = useState(false);
-  
+  const [initialMousePos, setInitialMousePos] = useState({ x: 0, y: 0 });
+
   // 불빛 DOM 요소 참조
   const lightRef = useRef(null);
   const throttleRef = useRef({ lastTime: 0, animationId: null });
@@ -16,10 +17,10 @@ const LumosEasterEgg = () => {
     const margin = 100;
     const maxX = window.innerWidth - margin;
     const maxY = window.innerHeight - margin;
-    
+
     return {
       x: Math.random() * (maxX - margin) + margin,
-      y: Math.random() * (maxY - margin) + margin
+      y: Math.random() * (maxY - margin) + margin,
     };
   };
 
@@ -35,7 +36,7 @@ const LumosEasterEgg = () => {
 
       setLumosPosition(generateRandomPosition());
       setLumosVisible(true);
-      
+
       setTimeout(() => {
         setLumosVisible(false);
       }, 5000);
@@ -61,44 +62,55 @@ const LumosEasterEgg = () => {
   }, [lightEffect]);
 
   // Lumos 클릭 핸들러
-  const handleLumosClick = () => {
-    console.log('Lumos 클릭됨!'); // 디버깅용
+  const handleLumosClick = (e) => {
+    console.log("Lumos 클릭됨!"); // 디버깅용
     setLightEffect(true);
     setLumosVisible(false);
-    
+
+    // 클릭한 마우스 위치 저장
+    setInitialMousePos({ x: e.clientX, y: e.clientY });
+
+    setLightEffect(true);
+    setLumosVisible(false);
+
     setTimeout(() => {
-      console.log('불빛 꺼짐'); // 디버깅용
+      console.log("불빛 꺼짐"); // 디버깅용
       setLightEffect(false);
     }, 10000);
   };
 
   // 최적화된 마우스 추적 (직접 DOM 조작)
-  const handleMouseMove = useCallback((e) => {
-    if (!lightEffect || !lightRef.current) return;
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (!lightEffect || !lightRef.current) return;
 
-    const now = Date.now();
-    if (now - throttleRef.current.lastTime < 16) return;
-    throttleRef.current.lastTime = now;
-    
-    if (throttleRef.current.animationId) {
-      cancelAnimationFrame(throttleRef.current.animationId);
-    }
+      const now = Date.now();
+      if (now - throttleRef.current.lastTime < 16) return;
+      throttleRef.current.lastTime = now;
 
-    throttleRef.current.animationId = requestAnimationFrame(() => {
-      if (lightRef.current) {
-        lightRef.current.style.transform = `translate3d(${e.clientX - 50}px, ${e.clientY - 50}px, 0)`;
+      if (throttleRef.current.animationId) {
+        cancelAnimationFrame(throttleRef.current.animationId);
       }
-    });
-  }, [lightEffect]);
+
+      throttleRef.current.animationId = requestAnimationFrame(() => {
+        if (lightRef.current) {
+          lightRef.current.style.transform = `translate3d(${
+            e.clientX - 250 // 50 → 250으로 수정
+          }px, ${e.clientY - 250}px, 0)`;
+        }
+      });
+    },
+    [lightEffect]
+  );
 
   // 마우스 이벤트 등록
   useEffect(() => {
     if (lightEffect) {
-      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
     }
-    
+
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
       if (throttleRef.current.animationId) {
         cancelAnimationFrame(throttleRef.current.animationId);
       }
@@ -127,8 +139,11 @@ const LumosEasterEgg = () => {
           ref={lightRef}
           className="lumos-light"
           style={{
-            left: '0px',
-            top: '0px',
+            left: "0px",
+            top: "0px",
+            transform: `translate3d(${initialMousePos.x - 250}px, ${
+              initialMousePos.y - 250
+            }px, 0)`,
           }}
         />
       )}
