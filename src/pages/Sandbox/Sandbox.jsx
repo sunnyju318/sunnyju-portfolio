@@ -4,6 +4,7 @@ import SandboxCard from "../../components/sandbox/SandboxCard.jsx";
 import Masonry from "react-masonry-css";
 import SandboxModal from "../../components/sandbox/SandboxModal.jsx";
 import { useState } from "react";
+import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
 import {
   SiHtml5,
   SiCss3,
@@ -21,7 +22,7 @@ function Sandbox() {
     default: 4,
     1400: 3, // xxl
     1280: 3, // xl
-    1025: 2, // lg
+    1025: 3, // lg
     768: 2, // md
     640: 2, // sm
   };
@@ -107,6 +108,12 @@ function Sandbox() {
 
       {/* 콘텐츠 */}
       <div className="sandbox-wrapper">
+        <div className="projects-title">
+          <AnimatedArrow direction="right" animated={true} />
+          <h1>
+            SAND <span className="projects-title-highlight">BOX</span>
+          </h1>
+        </div>
         <Masonry
           breakpointCols={breakpointColumns}
           className="masonry-grid"

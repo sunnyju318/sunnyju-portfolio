@@ -26,11 +26,11 @@ function FaceIllustration({ isMenuOpen, isContactOpen }) {
     () => [
       {
         id: "neck",
-        description: "I used to drive a forklift in Australia.",
+        description: "I spent three months traveling in New York.",
       },
       {
         id: "hair",
-        description: "I worked as a social worker in Korea.",
+        description: "I hold a national social worker license in Korea.",
       },
       {
         id: "hat-right",
@@ -38,16 +38,15 @@ function FaceIllustration({ isMenuOpen, isContactOpen }) {
       },
       {
         id: "hat-left",
-        description: "I run a handmade jewelry brand.",
+        description: "I run a handmade lifestyle brand called BirdyJ.",
       },
       {
         id: "right-face",
-        description: "I started coding thanks to a flea market.",
+        description: "I used to drive a forklift in Australia.",
       },
       {
         id: "left-face",
-        description:
-          "I shifted from helping people to building technology for people.",
+        description: "I'm a big fan of Harry Potter.",
       },
     ],
     []

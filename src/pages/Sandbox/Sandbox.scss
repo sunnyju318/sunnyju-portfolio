@@ -6,7 +6,7 @@
   @include mixins.container();
 
   .masonry-grid {
-    margin-top: 5rem;
+    margin-top: 4rem;
     grid-column: 1/-1;
     // 전체 그리드 차지
     display: flex;
@@ -19,7 +19,16 @@
     background-clip: padding-box;
 
     > * {
-      margin-bottom: 20px;
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+// Tablet
+@include mixins.respond-to("md") {
+  .sandbox-wrapper {
+    .masonry-grid {
+      margin-top: 7rem;
     }
   }
 }
