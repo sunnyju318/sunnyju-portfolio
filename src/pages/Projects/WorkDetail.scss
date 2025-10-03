@@ -1,5 +1,5 @@
-@use '../../styles/base/mixin.scss' as mixins;
-@use '../../styles/base/variables.scss' as vars;
+@use "../../styles/base/mixin.scss" as mixins;
+@use "../../styles/base/variables.scss" as vars;
 
 .work-detail-wrapper {
   @include mixins.grid-layout();
@@ -23,27 +23,36 @@
   margin-bottom: 1.5rem;
   color: vars.$text-heading-dark-alt;
   font-size: vars.$font-size-lg;
+
+  .project-links-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .sub-link {
+      @include mixins.hover-underline;
+    }
+  }
+
+  &.more-link {
+    color: vars.$dark-forest;
+    font-weight: vars.$font-weight-medium;
+  }
 }
 
 .arrow-sub-link {
   svg {
     width: 20px;
   }
-}
-
-.project-links-wrapper {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-
-  .sub-link {
-    @include mixins.hover-underline;
+  &.more-arrow {
+    svg {
+      fill: vars.$dark-forest;
+    }
   }
 }
 
-// 개발 프로젝트 레이아웃
 .preview-box {
-  min-height: 327px;
+  height: 100%;
   grid-column: 1/-1;
   margin-bottom: 1rem;
   border-radius: 10px;
@@ -58,39 +67,14 @@
 
 .code-box {
   grid-column: 1/-1;
-  background-color: vars.$bg-code-block;
-  overflow: hidden;
-  margin-bottom: 4rem;
-  border-radius: 10px;
-
-  .code-content {
-    padding: 0.5rem;
-  }
 }
 
-// 디자인 프로젝트 레이아웃
-.design-project-layout {
-  grid-column: 1/-1;
-
-  .hero-preview {
-    width: 100%;
-    margin-bottom: 3rem;
-    border-radius: 10px;
-    overflow: hidden;
-
-    img, video {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-  }
-}
-
-
-// 공통 섹션 (일부는 디자인에만 나옴)
 .description-sections {
   grid-column: 1/-1;
-  margin-bottom: 3rem;
+
+  & {
+    margin-top: 2rem;
+  }
 
   .section {
     margin-bottom: 2rem;
@@ -101,15 +85,11 @@
     padding: 2rem 1rem;
     line-height: vars.$line-height-normal;
 
-    h2 {
+    .sections-heading {
       text-align: start;
       margin-bottom: 1rem;
       @include mixins.section-title-mobile-beige;
       line-height: vars.$line-height-sm;
-    }
-
-    .process-image{
-      margin-bottom: 2rem;
     }
   }
 
@@ -120,8 +100,9 @@
       gap: 0.5rem;
 
       li {
-        background-color: vars.$near-black;
-        color: vars.$muted-olive;
+        background-color: vars.$muted-olive;
+        box-shadow: inset 0 0 10px rgba(vars.$near-black, 0.5);
+        color: vars.$dusty-rose;
         padding: 0.5rem 1.5rem;
         border-radius: 10px;
         font-weight: vars.$font-weight-semibold;
@@ -129,7 +110,29 @@
     }
   }
 
-  .notes ul,
+  .design {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .design-contents {
+      display: flex;
+      flex-direction: column;
+    }
+    .design-images {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .dev ul,
   .challenges ul {
     counter-reset: item-counter; // 카운터 초기화
 
@@ -151,7 +154,9 @@
 .next-project {
   grid-column: 1/-1;
   text-align: end;
-
+  .sub-link {
+    @include mixins.hover-underline;
+  }
   a {
     font-size: vars.$font-size-3xl-clamp;
     font-weight: vars.$font-weight-semibold;
@@ -185,9 +190,7 @@
 }
 
 // Tablet
-@include mixins.respond-to('md') {
-
-  // 개발 부분
+@include mixins.respond-to("md") {
   .preview-box {
     max-height: 327px;
     grid-column: 1/5;
@@ -197,14 +200,11 @@
     grid-column: 5/9;
   }
 
-  //디자인부분
-
-  // 공통부분
   .description-sections {
     @include mixins.grid-layout();
 
     & {
-      margin-bottom: 5rem;
+      margin-top: 4rem;
     }
 
     .section {
@@ -212,32 +212,50 @@
       padding: 2rem 2rem;
 
       &.overview {
-        grid-column: 1/6;
+        grid-column: 1/5;
       }
 
       &.stack {
-        grid-column: 6/9;
-      }
-
-      &.research {
-        grid-column: 1/5;
-      }
-
-      &.architecture {
         grid-column: 5/9;
       }
 
-      &.wireframes {
-        grid-column: 1/5;
+      &.design {
+        grid-column: 1/-1;
+        flex-direction: row;
+
+        .design-images {
+          flex-direction: row;
+          overflow-x: auto;
+          overflow-y: hidden;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          cursor: grab;
+          // 스냅 스크롤
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          &.active {
+            cursor: grabbing;
+          }
+          img {
+            width: 75%;
+            min-width: 250px;
+            flex-shrink: 0;
+            user-select: none;
+            pointer-events: none;
+            //스냅 포인트
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+          }
+        }
       }
 
-      &.design-system {
-        grid-column: 5/9;
-      }
-
-      &.notes {
+      &.dev {
         grid-column: 1/5;
-
       }
 
       &.challenges {
@@ -247,11 +265,8 @@
   }
 }
 
-
 // Desktop
-@include mixins.respond-to('lg') {
-
-  // 개발부분
+@include mixins.respond-to("lg") {
   .preview-box {
     grid-column: 1/7;
   }
@@ -261,39 +276,19 @@
   }
 
   .description-sections {
-
-    // 공통부분
     .section {
       padding: 3rem 2.5rem;
       font-size: vars.$font-size-lg;
 
       &.overview {
-        grid-column: 1/8;
+        grid-column: 1/7;
       }
 
       &.stack {
-        grid-column: 8/13;
-      }
-
-      // 디자인부분
-      &.research {
-        grid-column: 1/7;
-      }
-
-      &.architecture {
         grid-column: 7/13;
       }
 
-      &.wireframes {
-        grid-column: 1/7;
-      }
-
-      &.design-system {
-        grid-column: 7/13;
-      }
-
-      // 공통부분
-      &.notes {
+      &.dev {
         grid-column: 1/7;
       }
 
@@ -303,5 +298,3 @@
     }
   }
 }
-
-// 데스크탑 사이즈 코드 내부 박스 하이트는 CodeBlock.scss에서 직접 처리함

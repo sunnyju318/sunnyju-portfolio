@@ -1,5 +1,5 @@
-@use '../../../styles/base/variables.scss' as vars;
-@use '../../../styles/base/mixin.scss' as mixins;
+@use "../../../styles/base/variables.scss" as vars;
+@use "../../../styles/base/mixin.scss" as mixins;
 
 .hljs {
   background-color: vars.$bg-code-block;
@@ -14,16 +14,42 @@
   font-weight: vars.$font-weight-regular;
 }
 
-.tab{
+.tab {
   color: vars.$text-heading-dark-primary;
   font-weight: vars.$font-weight-medium;
-  width: 80px;
+  min-width: 90px;
+  // width → min-width로 변경
+  flex-shrink: 0;
+  // 탭이 줄어들지 않도록
   padding: 0.3rem 0;
-  border-top-right-radius: 12px;
-  border-top-left-radius: 12px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   background-color: rgba(vars.$muted-olive, 0.3);
   text-align: center;
-  
+  font-size: vars.$font-size-sm;
+  white-space: nowrap;
+  // 탭 텍스트 줄바꿈 방지
+}
+
+.code-tabs {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  // iOS에서 부드러운 스크롤
+  scrollbar-width: none;
+  // Firefox 스크롤바 숨김
+
+  &::-webkit-scrollbar {
+    display: none;
+    // Chrome/Safari 스크롤바 숨김
+  }
+
+  // 스크롤 가능한 영역임을 암시하는 그림자 (선택사항)
+  // background: linear-gradient(to right,
+  //   transparent 0%,
+  //   rgba(0,0,0,0.05) 100%
+  // );
 }
 
 .tab.active {
@@ -32,18 +58,24 @@
   background-color: vars.$bg-button;
 }
 
-.code-content {
-  &.highlighting {
-  visibility: hidden;
+.code-box {
+  background-color: vars.$bg-code-block;
+  overflow: hidden;
+  border-radius: 10px;
+  .code-content {
+    &.highlighting {
+      visibility: hidden;
+      padding: 0.5rem;
+    }
   }
 }
 
 // Desktop
-@include mixins.respond-to('lg') {
+@include mixins.respond-to("lg") {
   .preview-box {
     max-height: 477px;
   }
-  
+
   .hljs {
     height: 400px;
   }
