@@ -119,7 +119,7 @@ function Sandbox() {
           className="masonry-grid"
           columnClassName="masonry-grid-column"
         >
-          {sandboxData.map((item) => (
+          {sandboxData.map((item, index) => (
             <SandboxCard
               key={item.id}
               title={item.title}
@@ -127,6 +127,7 @@ function Sandbox() {
               stack={item.stack}
               getIcon={getIcon}
               onClick={() => handleCardClick(item)}
+              loading={index < 9 ? "eager" : "lazy"}
             />
           ))}
         </Masonry>

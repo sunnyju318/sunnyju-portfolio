@@ -1,29 +1,48 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./HeaderNavigation.scss";
 import NavigationDropdown from "./NavigationDropdown.jsx";
-import { useState } from "react";
 
 function HeaderNavigation({ isScrolled, isContactOpen, setIsContactOpen }) {
   const onClose = () => {
     setIsContactOpen(false);
   };
 
+  const location = useLocation();
+
   // Link는 내부 페이지 이동용이고 a는 다른 사이트 연결용이다
   return (
     <nav className="menu-navigation-header">
       <ul>
         <li>
-          <Link className="nav-link" to="/projects">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/projects" ||
+              location.pathname.startsWith("/projects/")
+                ? "active"
+                : ""
+            }`}
+            to="/projects"
+          >
             Projects
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/about">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/about" ? "active" : ""
+            }`}
+            to="/about"
+          >
             About
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/sandbox">
+          <Link
+            className={`nav-link ${
+              location.pathname === "/sandbox" ? "active" : ""
+            }`}
+            to="/sandbox"
+          >
             Sandbox
           </Link>
         </li>

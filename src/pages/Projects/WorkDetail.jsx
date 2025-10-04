@@ -150,7 +150,14 @@ function WorkDetail() {
               <source src={work.preview.src} type="video/mp4" />
             </video>
           ) : (
-            <img src={work.preview.src} alt={`${work.title} Preview`} />
+            <img
+              src={work.preview.src}
+              alt={`${work.title} Preview`}
+              fetchpriority="high"
+              width="1200"
+              height="800"
+              decoding="async"
+            />
           )}
         </div>
 
@@ -233,6 +240,10 @@ function WorkDetail() {
                       src={img}
                       alt={`Design process ${index + 1}`}
                       draggable="false"
+                      loading="lazy"
+                      width="800"
+                      height="600"
+                      decoding="async"
                     />
                   ))}
                 </div>

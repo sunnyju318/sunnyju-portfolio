@@ -22,6 +22,9 @@ function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
             src={featuredProjects[expandedItem]?.thumbnail}
             alt={`${featuredProjects[expandedItem]?.title} Desktop preview thumbnail of the project`}
             // ?. : 자바스크립트 문법중 하나로 이 값이 존재하면 그 다음 속성을 읽고, 없으면 에러없이 undefined를 반환하라는 의미
+            width="800"
+            height="600"
+            decoding="async"
           />
         )}
       </div>

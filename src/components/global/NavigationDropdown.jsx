@@ -222,7 +222,7 @@ function NavigationDropdown({
                     <div className="email-address-container">
                       <a
                         className="email-address"
-                        href="mailto:sunnyju318@naver.com"
+                        href="mailto:sunnyju318@gmail.com"
                       >
                         Email Me
                       </a>

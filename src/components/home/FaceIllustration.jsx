@@ -1,5 +1,5 @@
 import "./FaceIllustration.scss";
-import FaceSvg from "../../assets/images/face-illustration.svg?react";
+import FaceSvg from "../../assets/illustrations/face-illustration.svg?react";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 

@@ -93,8 +93,11 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
                 <img
                   src={project.thumbnail}
                   alt={`${project.title} Preview thumbnail of the project`}
-                  loading="lazy"
+                  width="800"
+                  height="600"
+                  loading={index === 0 ? "eager" : "lazy"}
                   // 브라우저가 해당 이미지를 보일때까지 기다렸다가 로드함, 초기 로딩속도가 빨라지고 트래픽도 줄일수 있음
+                  decoding="async"
                 />
                 {/* 이미지에 반드시 alt 포함할것 */}
               </div>

@@ -1,10 +1,24 @@
 import "./SandboxCard.scss";
 
-export default function SandboxCard({ onClick, image, title, stack, getIcon }) {
+export default function SandboxCard({
+  onClick,
+  image,
+  title,
+  stack,
+  getIcon,
+  loading,
+}) {
   return (
     <div className="sandbox-card" onClick={onClick}>
       <div className="sandbox-card_image">
-        <img src={image} alt={`${title} Project`} />
+        <img
+          src={image}
+          alt={`${title} Project thumbnail`}
+          width="400"
+          height="300"
+          loading={loading}
+          decoding="async"
+        />
       </div>
       <div className="sandbox-card_content">
         <h3 className="sandbox-card_title">{title}</h3>
