@@ -18,12 +18,38 @@
 }
 
 .sandbox-card_image {
+  position: relative;
   width: 100%;
   overflow: hidden;
+
+  .skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(vars.$near-black, 0.1) 25%,
+      rgba(vars.$muted-olive, 0.2) 50%,
+      rgba(vars.$near-black, 0.1) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 

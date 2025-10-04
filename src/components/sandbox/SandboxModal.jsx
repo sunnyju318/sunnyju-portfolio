@@ -7,13 +7,21 @@ import AnimatedArrow from "../common/AnimatedArrow/AnimatedArrow";
 export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
   const [imageOrientation, setImageOrientation] = useState("landscape");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // 미디어 로딩
+  const [mediaLoaded, setMediaLoaded] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       setImageOrientation("landscape"); // 모달 열릴 때 초기화
       setCurrentImageIndex(0); // 모달 열릴때 첫번째 이미지로 초기화
+      setMediaLoaded(false); // 모달 열릴 때 초기화
     }
   }, [isOpen]);
+
+  // currentImageIndex 변경될 때마다 로딩 상태 초기화
+  useEffect(() => {
+    setMediaLoaded(false);
+  }, [currentImageIndex]);
 
   // 키보드 네비게이션
   useEffect(() => {
@@ -63,11 +71,13 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
     setImageOrientation(
       naturalHeight > naturalWidth ? "portrait" : "landscape"
     );
+    setMediaLoaded(true);
   };
 
   const handleVideoLoad = (e) => {
     const { videoWidth, videoHeight } = e.target;
     setImageOrientation(videoHeight > videoWidth ? "portrait" : "landscape");
+    setMediaLoaded(true);
   };
 
   const handleBackdropClick = (e) => {
@@ -84,12 +94,16 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
     if (currentImage.type === "video") {
       return (
         <video
+          key={currentImage.src}
+          // 비디오 변경 시 엘리먼트 재생성
+          // 비디오가 바뀔 때 이전 비디오를 제대로 정리함
           src={currentImage.src}
           controls
           autoPlay
           muted
           onLoadedMetadata={handleVideoLoad}
-          preload="auto"
+          preload="metadata"
+          playsInline // 모바일 최적화
         />
       );
     } else {
@@ -165,6 +179,12 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
 
         <div className="modal-body">
           <div className="modal-image">
+            {!mediaLoaded && (
+              <div className="loading-overlay">
+                <div className="spinner" />
+              </div>
+            )}
+
             {renderCurrentMedia()}
 
             {/* 캐러셀 컨트롤 - 이미지가 2개 이상일 때만 표시 */}
