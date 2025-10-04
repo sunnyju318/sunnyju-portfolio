@@ -10,7 +10,7 @@ import {
   SiAdobeillustrator,
   SiAdobephotoshop,
 } from "react-icons/si";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function About() {
   // 스크롤 진입 시 슬라이드 인, 벗어나면 슬라이드 아웃
@@ -100,6 +100,9 @@ function About() {
   }, []);
   // 의존성 배열: 마운트시 1회만 셋업
 
+  // 이미지 로딩
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <>
       {/* React 19 네이티브 메타데이터 */}
@@ -150,6 +153,12 @@ function About() {
           {/* <picture/> : 여러 해상도/ 조건에 따라 이미지를 다르게 보여주는 HTML 태그,
         <source>와 <img> 태그를 묶어주는 wrapper */}
           <picture className="hero-picture">
+            {!imageLoaded && (
+              // ↑ 이미지 로드 전에만 스피너 표시
+              <div className="loading-overlay">
+                <div className="spinner" />
+              </div>
+            )}
             <source
               media="(min-width: 768px)"
               // 뷰포트 너비가 768px 이상이면 이 이미지 사용
@@ -167,6 +176,7 @@ function About() {
               width="768"
               height="1024"
               decoding="async"
+              onLoad={() => setImageLoaded(true)}
             />
           </picture>
           {/* <source>는 여러개 사용할수 있으며 css media query 기반의 if-else-if 조건문처럼 작동한다.

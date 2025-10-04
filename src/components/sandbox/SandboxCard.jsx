@@ -1,4 +1,5 @@
 import "./SandboxCard.scss";
+import { useState } from "react";
 
 export default function SandboxCard({
   onClick,
@@ -8,9 +9,12 @@ export default function SandboxCard({
   getIcon,
   loading,
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <div className="sandbox-card" onClick={onClick}>
       <div className="sandbox-card_image">
+        {!imageLoaded && <div className="skeleton" />}
         <img
           src={image}
           alt={`${title} Project thumbnail`}
@@ -18,6 +22,7 @@ export default function SandboxCard({
           height="300"
           loading={loading}
           decoding="async"
+          onLoad={() => setImageLoaded(true)}
         />
       </div>
       <div className="sandbox-card_content">

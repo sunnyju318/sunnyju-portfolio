@@ -4,7 +4,7 @@ import "./WorkDetail.scss";
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
 import CodeBlock from "../../components/common/codeBlock/CodeBlock.jsx";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function WorkDetail() {
   const { id } = useParams(); // URL에서 id 파라미터 받아오기
@@ -81,6 +81,9 @@ function WorkDetail() {
   // Canonical URL 생성
   const canonicalUrl = `https://jisun-ju.ca/projects/detail/${work.id}`;
 
+  // 비디오 로딩상태 표시
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   return (
     <>
       {/* React 19 Native Metadata (SEO + Open Graph + Twitter) */}
@@ -146,9 +149,29 @@ function WorkDetail() {
 
         <div className="preview-box">
           {work.preview.type === "video" ? (
-            <video autoPlay muted loop playsInline>
-              <source src={work.preview.src} type="video/mp4" />
-            </video>
+            <>
+              {!videoLoaded && (
+                <div className="loading-overlay">
+                  <div className="spinner" />
+                </div>
+              )}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                // 비디오를 얼마나 미리 로드할지 결정하는 것으로
+                // none 아무것도 미리 안받음, metadata 길이나 크기 첫 프레임만 받음, auto 전체 다 받음으로 무거움
+                onLoadedData={() => {
+                  console.log("Loading..");
+                  setVideoLoaded(true);
+                }}
+                // 비디오 로드가 완료되면 재생
+              >
+                <source src={work.preview.src} type="video/mp4" />
+              </video>
+            </>
           ) : (
             <img
               src={work.preview.src}
