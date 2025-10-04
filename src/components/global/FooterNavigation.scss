@@ -1,5 +1,5 @@
-@use '../../styles/base/variables.scss' as vars;
-@use '../../styles/base/mixin.scss' as mixins;
+@use "../../styles/base/variables.scss" as vars;
+@use "../../styles/base/mixin.scss" as mixins;
 
 .footer-nav-wrapper {
   .nav-highlight {
@@ -8,7 +8,7 @@
     text-align: left;
   }
 
-  .nav-plain{
+  .nav-plain {
     @include mixins.hover-underline;
   }
 
@@ -18,7 +18,6 @@
   font-weight: vars.$font-weight-medium;
 
   //디폴트
-  margin-bottom: 5rem;
   gap: 2rem;
 
   .footer-col {
@@ -30,7 +29,7 @@
 }
 
 // 테블릿
-@include mixins.respond-to('md') {
+@include mixins.respond-to("md") {
   .footer-nav-wrapper {
     margin-bottom: 0rem;
     gap: 3rem;
@@ -45,7 +44,7 @@
 }
 
 // 데스크탑
-@include mixins.respond-to('lg') {
+@include mixins.respond-to("lg") {
   .footer-nav-wrapper {
     margin-bottom: 0rem;
     gap: 3rem;

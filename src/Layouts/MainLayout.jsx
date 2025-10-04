@@ -16,6 +16,7 @@ function MainLayout() {
   // isScrolled 라는 상태값을 만듬 = 초기값 false, 스크롤 안됨
   // 나중에 스크롤이 50px가 넘으면 true로 바꿔줄것.
   // setIsScrolled는 이 값을 바꾸는 함수
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // 현재 메뉴가 열려있는지 여부를 저장하는 state 값. true면 열리고 false면 닫힘.
   // 초기 상태값이 false 이므로 처음엔 기본적으로 메뉴가 닫혀있음
@@ -58,6 +59,7 @@ function MainLayout() {
   return (
     <div className="main-layout">
       <BackgroundAnimation />
+
       <Header
         isScrolled={isScrolled}
         isMenuOpen={isMenuOpen}

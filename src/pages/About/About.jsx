@@ -1,12 +1,5 @@
 import "./About.scss";
-import profileMobile from "../../assets/images/profile-mobile.jpg";
-import profileDesktop from "../../assets/images/profile-desktop.jpg";
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
-import newYorkImg from "../../assets/images/about/new-york.jpg";
-import brisbaneImg from "../../assets/images/about/brisbane.jpeg";
-import sydneyImg from "../../assets/images/about/sydney.jpg";
-import koreaImg from "../../assets/images/about/korea.jpg";
-import vancouverImg from "../../assets/images/about/vancouver.jpg";
 import {
   SiHtml5,
   SiCss3,
@@ -160,14 +153,20 @@ function About() {
             <source
               media="(min-width: 768px)"
               // 뷰포트 너비가 768px 이상이면 이 이미지 사용
-              srcSet={profileDesktop}
+              srcSet="/assets/images/about/profile-desktop.jpg"
               //  조건만족시 desktop 이미지를 로딩
+              width="1200"
+              height="800"
             />
             {/* 위 media 조건을 만족하지 못할경우 사용되는 기본이미지 */}
             <img
-              src={profileMobile}
+              src="/assets/images/about/profile-mobile.jpg"
               alt="Portrait of Sunny Ju, front-end developer"
               className="hero-mobile-image"
+              fetchpriority="high"
+              width="768"
+              height="1024"
+              decoding="async"
             />
           </picture>
           {/* <source>는 여러개 사용할수 있으며 css media query 기반의 if-else-if 조건문처럼 작동한다.
@@ -201,6 +200,7 @@ function About() {
           <SiCss3 size={32} color="#3b8dbd" title="CSS3" />
           <SiJavascript size={32} color="#d4c74e" title="JavaScript" />
           <SiReact size={32} color="#53b6c5" title="React" />
+          <SiReact size={32} color="#3DDC84" title="React Native" />
           <SiSass size={32} color="#b76387" title="SCSS" />
           <SiFigma size={32} color="#d95b40" title="Figma" />
           <SiAdobeillustrator size={32} color="#d2821b" title="Illustrator" />
@@ -253,9 +253,12 @@ function About() {
             JS에서 element.dataset.city 로 접근할 수 있음.
             지금은 필수는 아니지만, 추후 도시별 구분/디버깅에 유용 */}
             <img
-              src={koreaImg}
+              src="/assets/images/about/korea.jpg"
               alt="Scenic view representing Sunny Ju and hometown"
+              width="1920"
+              height="700"
               loading="lazy"
+              decoding="async"
             />
             {/* loading="lazy" : 이미지나 iframe을 필요할때만 로드하게 해주는 속성이다. 사용자가 화면을 아래로 스크롤해서 해당 이미지가 뷰포트에 가까워질때 브라우저가 그때 이미지를 로딩하는 방식이다. 페이지 속도를 향상시킬수 있다. */}
             <div className="city-caption">
@@ -275,9 +278,12 @@ function About() {
         <div className="section-image">
           <div className="city-card" data-city="new-york">
             <img
-              src={newYorkImg}
+              src="/assets/images/about/new-york.jpg"
               alt="Sunny Ju in the New York City"
+              width="1920"
+              height="700"
               loading="lazy"
+              decoding="async"
             />
             <div className="city-caption">
               <p>
@@ -296,9 +302,12 @@ function About() {
         <div className="section-image">
           <div className="city-card" data-city="brisbane">
             <img
-              src={brisbaneImg}
+              src="/assets/images/about/brisbane.jpg"
               alt="Market stall in Brisbane, Australia where Sunny launched BirdyJ brand"
+              width="1920"
+              height="700"
               loading="lazy"
+              decoding="async"
             />
             <div className="city-caption">
               <p>
@@ -318,9 +327,12 @@ function About() {
         <div className="section-image">
           <div className="city-card" data-city="sydney">
             <img
-              src={sydneyImg}
+              src="/assets/images/about/sydney.jpg"
               alt="Beachfront in Sydney, Australia during sunny afternoon"
+              width="1920"
+              height="700"
               loading="lazy"
+              decoding="async"
             />
             <div className="city-caption">
               <p>
@@ -340,9 +352,12 @@ function About() {
         <div className="section-image">
           <div className="city-card" data-city="vancouver">
             <img
-              src={vancouverImg}
+              src="/assets/images/about/vancouver.jpg"
               alt="Sunny Ju attending the Web Summit event in Vancouver, Canada"
+              width="1920"
+              height="700"
               loading="lazy"
+              decoding="async"
             />
             <div className="city-caption">
               <p className="city-caption_van">So, here I am!</p>

@@ -1,7 +1,8 @@
-@use '../../styles/base/variables.scss' as vars;
-@use '../../styles/base/mixin.scss' as mixins;
+@use "../../styles/base/variables.scss" as vars;
+@use "../../styles/base/mixin.scss" as mixins;
 
 footer {
+  margin-top: 8rem;
   width: 100%;
   color: vars.$footer-text-primary;
   z-index: 1; // 배경 애니메이션 앞으로 오기 위함
@@ -26,6 +27,9 @@ footer {
 }
 
 .footer-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 
   .footer-title {
@@ -34,9 +38,12 @@ footer {
   }
 
   .footer-sub {
-    margin-top: 0.5rem;
     font-size: vars.$font-size-lg;
     font-weight: vars.$font-weight-medium;
+  }
+
+  .footer-copy {
+    font-size: vars.$font-size-md;
   }
 }
 
@@ -49,14 +56,7 @@ footer {
   display: flex;
   gap: 2rem;
   justify-content: space-between;
-}
-
-.email-address {
-  display: none;
-}
-
-.footer-copy {
-  display: none;
+  margin-bottom: 3rem;
 }
 
 .footer-logo {
@@ -69,27 +69,96 @@ footer {
   height: 90px;
 }
 
-@include mixins.respond-to('md') {
-  .footer-wrapper {
-    .email-address {
-      display: inline-block;
-      width: fit-content;
-      text-align: left;
-      margin-top: 3rem;
-      font-size: vars.$font-size-lg;
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  h2 {
+    font-size: vars.$font-size-xl;
+  }
+}
 
-      &:hover {
-        color: vars.$muted-beige;
-      }
+.contact-form {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  width: 100%;
+  color: vars.$dark-forest;
+  align-items: flex-start;
+
+  .contact-form-input {
+    background-color: rgba(vars.$dark-forest, 0.4);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    width: 100%;
+    min-height: 50px;
+
+    &:focus {
+      background-color: vars.$muted-beige;
     }
 
+    &::placeholder {
+      color: rgba(vars.$muted-beige, 0.5);
+    }
+
+    // autofill 배경색 강제 변경
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px vars.$muted-beige inset !important;
+      box-shadow: 0 0 0 1000px vars.$muted-beige inset !important;
+      -webkit-text-fill-color: vars.$dark-forest !important;
+    }
+  }
+  input.contact-form-input {
+    width: 100%;
+  }
+
+  textarea.contact-form-input {
+    resize: vertical;
+    transition: min-height 0.1s ease;
+    width: 100%;
+
+    &:focus {
+      min-height: 150px;
+    }
+
+    &::placeholder {
+      padding-top: 10px;
+    }
+  }
+
+  .contact-form-button {
+    background-color: vars.$dark-forest;
+    color: vars.$dusty-rose;
+    font-weight: vars.$font-weight-medium;
+    padding: 1rem 0;
+    text-align: center;
+    border-radius: 10px;
+    transition: background-color 0.2s ease-in-out;
+    align-self: flex-start;
+    width: 100%;
+
+    &:hover {
+      background-color: vars.$near-black;
+    }
+  }
+}
+@include mixins.respond-to("md") {
+  footer {
+    margin-top: 10rem;
+  }
+
+  .footer-wrapper {
     .footer-title {
       font-size: vars.$font-size-3xl;
     }
-  
+
     .footer-text .footer-sub {
       font-size: vars.$font-size-2xl;
-      margin-top: 1rem;
     }
 
     .footer-icons svg {
@@ -102,34 +171,61 @@ footer {
     }
 
     .footer-copy {
-      display: block;
-      margin-bottom: 5rem;
-      font-size: vars.$font-size-lg;
+      font-size: vars.$font-size-base;
+      margin-top: 1rem;
     }
   }
 
   .footer-logo {
     height: 150px;
   }
-}
 
-@include mixins.respond-to('lg') {
-  
-  .footer-text .footer-sub {
-    margin-top: 1rem;
+  .contact-section {
+    gap: 2rem;
+    margin-bottom: 6rem;
   }
 
+  .contact-form {
+    flex-direction: row;
+
+    .contact-form-input {
+      min-height: 60px;
+    }
+
+    .contact-form-button {
+      padding: 1.3rem 0;
+      width: 15%;
+    }
+
+    input.contact-form-input {
+      width: 60%;
+    }
+
+    textarea.contact-form-input {
+      &::placeholder {
+        padding-top: 12px;
+      }
+    }
+  }
+}
+
+@include mixins.respond-to("lg") {
+  footer {
+    margin-top: 13rem;
+  }
   .footer-icons svg {
     width: 36px;
     height: 36px;
   }
 
-  .footer-copy {
-    display: block;
-    margin-bottom: 6rem;
-  }
-
   .footer-logo {
     height: 260px;
+  }
+
+  .contact-section {
+    margin-bottom: 7rem;
+    h2 {
+      font-size: vars.$font-size-2xl;
+    }
   }
 }

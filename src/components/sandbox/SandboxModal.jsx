@@ -89,6 +89,7 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
           autoPlay
           muted
           onLoadedMetadata={handleVideoLoad}
+          preload="auto"
         />
       );
     } else {
@@ -100,6 +101,7 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
             `${data.title} - Image ${currentImageIndex + 1}`
           }
           onLoad={handleImageLoad}
+          decoding="async"
         />
       );
     }
