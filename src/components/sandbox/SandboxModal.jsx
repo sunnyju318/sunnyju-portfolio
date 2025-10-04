@@ -19,8 +19,14 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
   }, [isOpen]);
 
   // currentImageIndex 변경될 때마다 로딩 상태 초기화
+  // SandboxModal.jsx - useEffect 수정
   useEffect(() => {
     setMediaLoaded(false);
+
+    // 이미지 변경 시 약간의 지연 후 렌더링
+    const timer = setTimeout(() => {}, 50);
+
+    return () => clearTimeout(timer);
   }, [currentImageIndex]);
 
   // 키보드 네비게이션
@@ -104,6 +110,7 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
           onLoadedMetadata={handleVideoLoad}
           preload="metadata"
           playsInline // 모바일 최적화
+          style={{ opacity: mediaLoaded ? 1 : 0 }}
         />
       );
     } else {
@@ -116,6 +123,7 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
           }
           onLoad={handleImageLoad}
           decoding="async"
+          style={{ opacity: mediaLoaded ? 1 : 0 }}
         />
       );
     }
