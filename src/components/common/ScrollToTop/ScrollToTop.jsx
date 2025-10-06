@@ -1,35 +1,39 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
 import "./ScrollToTop.scss";
 
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
-  const buttonRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
 
-      const boundary = document.getElementById("footer-boundary");
-      const button = buttonRef.current;
+      // 조건 1: 300px 이상 스크롤
+      const scrolledEnough = scrollY > 300;
 
-      if (boundary && button) {
-        const boundaryRect = boundary.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
+      // 조건 2: 페이지가 충분히 긴가? (최소 2배 이상 스크롤 가능)
+      const pageIsLongEnough = documentHeight > windowHeight * 3;
 
-        // 푸터 경계가 버튼 위치(화면 하단 80px)보다 위에 있으면
-        if (boundaryRect.top < windowHeight - 80) {
-          // 버튼을 푸터 위로 밀어올림
-          const offset = windowHeight - boundaryRect.top + 20;
-          button.style.bottom = `${offset}px`;
-        } else {
-          // 일반 위치
-          button.style.bottom = "2rem";
-        }
+      // 조건 3: 푸터가 화면에 안 보이는가?
+      const footer = document.getElementById("footer-boundary");
+      let footerNotVisible = true;
+
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        // 푸터 상단이 화면 하단보다 아래에 있으면 (아직 안 보임)
+        footerNotVisible = footerRect.top > windowHeight;
       }
+
+      // 세 조건 모두 만족해야 버튼 표시
+      setIsVisible(scrolledEnough && pageIsLongEnough && footerNotVisible);
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // 초기 실행
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -39,7 +43,6 @@ function ScrollToTop() {
 
   return (
     <button
-      ref={buttonRef}
       className={`scroll-to-top ${isVisible ? "visible" : ""}`}
       onClick={scrollToTop}
       aria-label="Scroll to top"

@@ -38,9 +38,76 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <title>Sunny Ju</title>
+
+  <!-- 초기 로딩 스크린 스타일 (inline) -->
+  <style>
+    /* 로딩 중 스크롤 방지 */
+    body.loading {
+      overflow: hidden;
+    }
+
+    #initial-loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      background-color: #040404;
+      z-index: 600;
+    }
+
+    .loading-logo {
+      width: 40px;
+      height: 40px;
+      animation: rotateAndPulse 1s ease-in-out infinite;
+    }
+
+    .loading-logo path {
+      fill: #d13221;
+    }
+
+    @keyframes rotateAndPulse {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      80% {
+        transform: rotate(360deg) scale(1);
+      }
+
+      90% {
+        transform: rotate(360deg) scale(1.3);
+      }
+
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="loading">
+  <div id="initial-loading-screen">
+    <svg viewBox="0 0 93.76 93.76" class="loading-logo" width="40" height="40">
+      <g id="loading-grid">
+        <path d="M4.15 4.15h20.06v20.06H4.15z" transform="rotate(45 14.188 14.177)" />
+        <path d="M36.85 4.15h20.06v20.06H36.85z" transform="rotate(45 46.874 14.186)" />
+        <path d="M69.54 4.15H89.6v20.06H69.54z" transform="rotate(45 79.572 14.19)" />
+        <path d="M4.15 36.85h20.06v20.06H4.15z" transform="rotate(45 14.184 46.875)" />
+        <path d="M36.85 36.85h20.06v20.06H36.85z" transform="rotate(45 46.882 46.88)" />
+        <path d="M69.54 36.85H89.6v20.06H69.54z" transform="rotate(45 79.563 46.876)" />
+        <path d="M4.15 69.54h20.06V89.6H4.15z" transform="rotate(45 14.18 79.573)" />
+        <path d="M36.85 69.54h20.06V89.6H36.85z" transform="rotate(45 46.873 79.565)" />
+        <path d="M69.54 69.54H89.6V89.6H69.54z" transform="rotate(45 79.571 79.57)" />
+      </g>
+    </svg>
+  </div>
+
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

@@ -172,7 +172,7 @@ function About() {
               src="/assets/images/about/profile-mobile.jpg"
               alt="Portrait of Sunny Ju, front-end developer"
               className="hero-mobile-image"
-              fetchpriority="high"
+              fetchPriority="high"
               width="768"
               height="1024"
               decoding="async"
