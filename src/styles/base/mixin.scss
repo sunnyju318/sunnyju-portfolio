@@ -193,17 +193,18 @@
 
 @mixin social-icon {
   @include flex-center;
-  color: vars.$text-light-bg;
+  color: vars.$scarlet-red;
   font-weight: vars.$font-weight-semibold;
-  background-color: vars.$bg-button;
+  background-color: vars.$near-black;
   width: 36px;
   height: 36px;
   border-radius: 5px;
   justify-content: center;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: vars.$bg-button-hover;
+    background-color: vars.$scarlet-red;
+    color: vars.$near-black;
   }
 }
 

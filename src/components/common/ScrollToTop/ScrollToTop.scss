@@ -1,0 +1,41 @@
+@use "../../../styles/base/mixin.scss" as mixins;
+@use "../../../styles/base/variables.scss" as vars;
+
+.scroll-to-top {
+  @include mixins.flex-center;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: vars.$near-black;
+  color: vars.$text-light-bg;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 600;
+
+  .scroll-arrow {
+    width: 25px;
+  }
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+// 1400px 이상 화면에서
+@media (min-width: 1400px) {
+  .scroll-to-top {
+    // 화면 중앙 기준으로 위치 조정
+    right: calc((100vw - 1400px) / 2 + 2rem);
+    // 화면 너비에서 1400px 빼고 반으로 나눈 다음 여백 추가
+  }
+}

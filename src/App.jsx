@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //Route 쓰기전에 터미널에서 "npm i react-router-dom" 먼저 설치할것
+import { useState, useEffect } from "react";
 
 import MainLayout from "./Layouts/MainLayout.jsx";
 import Home from "./pages/Home/Home.jsx";
@@ -9,17 +10,45 @@ import About from "./pages/About/About.jsx";
 import Sandbox from "./pages/Sandbox/Sandbox.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import WorkDetail from "./pages/Projects/WorkDetail.jsx";
-import ScrollToTop from "./components/global/ScrollToTop.jsx";
+import ScrollRestoration from "./components/global/ScrollRestoration.jsx";
 import LumosEasterEgg from "./components/lumosEasterEgg/LumosEasterEgg.jsx";
+import LoadingScreen from "./components/common/LoadingScreen/LoadingScreen.jsx";
+import ScrollToTop from "./components/common/ScrollToTop/ScrollToTop.jsx";
 
 import "./styles/global.scss";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const minDisplayTime = 1000;
+    const startTime = Date.now();
+
+    const handleLoad = () => {
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(0, minDisplayTime - elapsed);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, remaining);
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
+  }, []);
+
+  if (isLoading) return <LoadingScreen />;
+
   return (
     <BrowserRouter>
-      <ScrollToTop />
+      <ScrollRestoration />
       <LumosEasterEgg />
       {/* 브라우저라우터 안에 바로 넣으면 모든 페이지 이동에서 자동으로 작동한다 */}
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

@@ -100,9 +100,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  backdrop-filter: blur(5px);
-  box-shadow: inset 0 0 50px rgba(vars.$dark-forest, 0.3);
-  background: rgba(vars.$dark-forest, 0.01);
   @include mixins.loading-spinner;
 
   img {
