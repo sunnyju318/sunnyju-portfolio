@@ -18,7 +18,7 @@ import "./styles/global.scss";
 
 function App() {
   useEffect(() => {
-    const minDisplayTime = 900;
+    const minDisplayTime = 700;
     const startTime = Date.now();
 
     const removeLoadingScreen = () => {
