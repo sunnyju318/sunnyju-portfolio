@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// 새 페이지로 이동할때마다 항상 상단에서 시작하게 해주는 역할
 
-export default function ScrollToTop() {
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+export default function ScrollRestoration() {
   const { pathname } = useLocation();
   // useLocation으로 현재 URL 경로를 감지한다.
   // 페이지가 바뀔때마다 pathname이 변경된다.

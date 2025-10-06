@@ -10,9 +10,10 @@ import About from "./pages/About/About.jsx";
 import Sandbox from "./pages/Sandbox/Sandbox.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import WorkDetail from "./pages/Projects/WorkDetail.jsx";
-import ScrollToTop from "./components/global/ScrollToTop.jsx";
+import ScrollRestoration from "./components/global/ScrollRestoration.jsx";
 import LumosEasterEgg from "./components/lumosEasterEgg/LumosEasterEgg.jsx";
 import LoadingScreen from "./components/common/LoadingScreen/LoadingScreen.jsx";
+import ScrollToTop from "./components/common/ScrollToTop/ScrollToTop.jsx";
 
 import "./styles/global.scss";
 
@@ -44,9 +45,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ScrollToTop />
+      <ScrollRestoration />
       <LumosEasterEgg />
       {/* 브라우저라우터 안에 바로 넣으면 모든 페이지 이동에서 자동으로 작동한다 */}
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

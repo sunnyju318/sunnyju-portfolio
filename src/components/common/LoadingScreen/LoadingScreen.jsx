@@ -6,8 +6,8 @@ export default function LoadingScreen() {
       <svg
         viewBox="0 0 93.76 93.76"
         className="loading-logo"
-        width="50"
-        height="50"
+        width="40"
+        height="40"
       >
         <g id="loading-grid">
           <path

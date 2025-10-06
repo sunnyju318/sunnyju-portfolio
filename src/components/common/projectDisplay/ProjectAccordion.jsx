@@ -3,14 +3,20 @@ import { useState } from "react";
 import { worksData } from "../../../data/worksData";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
   const [expandedItem, setExpandedItem] = useState(0);
   // 초기값이 null인 이유는 클릭되었냐 안되었냐라는 단순 구분이 아니라 여러개의 아이템중 어떤 아이템이 열렸는지를 구체적으로 확인하기 위해서다. 현재는 null이므로 아무것도 열리지 않은 상태이다. false의 상태와 같은것.
 
-  const handleToggle = (index) => {
-    setExpandedItem(expandedItem === index ? null : index);
+  const navigate = useNavigate();
+
+  const handleToggle = (index, projectId) => {
+    if (expandedItem === index) {
+      navigate(`/projects/detail/${projectId}`);
+    } else {
+      setExpandedItem(index);
+    }
   };
   // 지금 클릭한 아이템(expandedItem)이 현재 열려있는 아이템(index)와 같다면 null(아무것도 없는상태 즉, 다시 닫아라)을 반환하고 그게 아니라면(다른 index를 클릭했다면) 그거만 열리게 해라.
 
@@ -32,7 +38,7 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
         <div
           key={project.id}
           className={`list-box ${expandedItem === index ? "list-item" : ""}`}
-          onClick={() => handleToggle(index)}
+          onClick={() => handleToggle(index, project.id)}
         >
           <AnimatePresence>
             <motion.span

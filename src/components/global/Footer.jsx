@@ -1,12 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Footer.scss";
 import FooterNavigation from "./FooterNavigation.jsx";
 import { AiFillGithub } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Footer() {
   const [formData, setFormData] = useState({ email: "", message: "" });
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("idle");
+  // idle | sending | success | error
+  const [isExpanded, setIsExpanded] = useState(false);
+  // 폼 텍스트 영역 확장 상태관리
+  const location = useLocation(); // 현재 경로 감지
+
+  useEffect(() => {
+    setFormData({ email: "", message: "" });
+    setStatus("");
+    setIsExpanded(false);
+  }, [location.pathname]);
+  // 페이지 전환시 폼 리셋
 
   const handleLogoClick = () => {
     window.scroll({ top: 0, behavior: "smooth" });
@@ -14,6 +25,9 @@ function Footer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setStatus("sending"); // 버튼을 비활성화 상태로
+    emailjs.init("OtRCujMzVnsbfqM2t");
 
     // EmailJS 초기화 (Public Key 넣기)
     emailjs.init("OtRCujMzVnsbfqM2t");
@@ -24,13 +38,28 @@ function Footer() {
       .then(() => {
         setStatus("success");
         setFormData({ email: "", message: "" });
-        alert("Message sent successfully!");
+        setIsExpanded(false);
+        // 2초 뒤 다시 "Send"로 복귀
+        setTimeout(() => {
+          setStatus("idle");
+        }, 2000);
       })
       .catch((error) => {
         setStatus("error");
         console.error("Failed to send:", error);
-        alert("Failed to send message. Please try again.");
+        // 에러도 2초 후 복귀
+        setTimeout(() => {
+          setStatus("idle");
+        }, 2000);
       });
+  };
+
+  // 텍스트에리아 포커스, 블러 제어
+  const handleFocus = () => setIsExpanded(true);
+  const handleBlur = () => {
+    if (!formData.message.trim()) {
+      setIsExpanded(false); // 내용 없으면 접기
+    }
   };
 
   return (
@@ -42,7 +71,7 @@ function Footer() {
           <p className="footer-copy">© 2025 Sunny Ju. All rights reserved.</p>
         </div>
 
-        <div className="footer-divider"></div>
+        <div className="footer-divider" id="footer-boundary"></div>
         <div className="footer-link">
           <FooterNavigation />
           <div className="social-icon-wrapper">
@@ -71,7 +100,7 @@ function Footer() {
           <h2>GET IN TOUCH {":)"}</h2>
           <form
             id="contact-form"
-            className="contact-form"
+            className={`contact-form ${isExpanded ? "expanded" : ""}`}
             onSubmit={handleSubmit}
           >
             <input
@@ -91,12 +120,24 @@ function Footer() {
               required
               className="contact-form-input"
               value={formData.message}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
               }
             />
-            <button type="submit" className="contact-form-button">
-              Send
+            <button
+              type="submit"
+              className={`contact-form-button ${status}`}
+              disabled={status === "sending"} // 전송 중에는 클릭 비활성화
+            >
+              {status === "sending"
+                ? "Sending..."
+                : status === "success"
+                ? "Sent!"
+                : status === "error"
+                ? "Failed"
+                : "Send"}
             </button>
           </form>
         </div>
