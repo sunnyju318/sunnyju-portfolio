@@ -52,7 +52,7 @@ export const sandboxData = [
   },
   {
     id: 103,
-    title: "What If an Ant Fell?",
+    title: "Falling Ant",
     category: "Animation",
     stack: ["AfterEffects", "Illustrator"],
     description:
@@ -69,7 +69,7 @@ export const sandboxData = [
   },
   {
     id: 104,
-    title: "Splash Screen Concept",
+    title: "Splash Screen",
     category: "Art",
     stack: ["Illustrator"],
     description:
@@ -86,7 +86,7 @@ export const sandboxData = [
   },
   {
     id: 105,
-    title: "Moscow Illustration",
+    title: "Moscow",
     category: "Art",
     stack: ["Illustrator"],
     description:
@@ -103,7 +103,7 @@ export const sandboxData = [
   },
   {
     id: 106,
-    title: "Typography Fan Art",
+    title: "Typo Fan Art",
     category: "Art",
     stack: ["Illustrator", "Photoshop"],
     description:
@@ -134,7 +134,7 @@ export const sandboxData = [
   },
   {
     id: 107,
-    title: "Ugly Potato Preloader",
+    title: "Ugly Preloader",
     category: "Development",
     stack: ["HTML", "CSS", "Illustrator"],
     description:

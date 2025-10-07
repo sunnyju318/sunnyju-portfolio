@@ -25,7 +25,14 @@ function MainLayout() {
   useEffect(() => {
     // 컴포넌트가 처음 나타날때 실행되는 코드영역
     const handleScroll = () => {
-      if (isMenuOpen || isContactOpen) return;
+      if (
+        isMenuOpen ||
+        isContactOpen ||
+        document.body.classList.contains("modal-open")
+      ) {
+        return;
+      }
+      // 모달이 열려있거나 메뉴가 열려있으면 스크롤 상태 변경 무시
       // 메뉴가 열려있으면 스크롤 상태를 변경하지 않도록 설정함.
       // 햄버거메뉴 클릭시 헤더가 스크롤 효과로 height가 변하는 모션을 방지하기 위함
 
