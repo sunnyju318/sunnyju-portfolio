@@ -17,6 +17,26 @@ function NavigationDropdown({
   // contactOnly가 true이면 처음부터 contact가 열려있도록 초기세팅을 함
   const scrollPosition = useRef(0); // 스크롤 위치 저장용
 
+  // 브라우저 뒤로가기 처리 로직 추가
+  useEffect(() => {
+    if (isMenuOpen) {
+      // 메뉴가 열릴 때: 히스토리에 가짜 항목 추가
+      window.history.pushState({ menuOpen: true }, "");
+
+      // 뒤로가기 버튼 누르면 실행될 함수
+      const handlePopState = (event) => {
+        onClose(); // 메뉴 닫기
+      };
+
+      window.addEventListener("popstate", handlePopState);
+
+      return () => {
+        // cleanup: 이벤트 리스너 제거
+        window.removeEventListener("popstate", handlePopState);
+      };
+    }
+  }, [isMenuOpen, onClose]);
+
   // 오버레이시 스크롤방지
   useEffect(() => {
     if (isMenuOpen) {

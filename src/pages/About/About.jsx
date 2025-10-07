@@ -11,8 +11,11 @@ import {
   SiAdobephotoshop,
 } from "react-icons/si";
 import { useEffect, useState } from "react";
+import TimeInVancouver from "../../components/about/TimeInVancouver.jsx";
 
 function About() {
+  const [isVancouverVisible, setIsVancouverVisible] = useState(false);
+
   // 스크롤 진입 시 슬라이드 인, 벗어나면 슬라이드 아웃
   useEffect(() => {
     // 상수 정의, 가시성 임계값 모듈화
@@ -49,30 +52,35 @@ function About() {
           const r = entry.intersectionRatio;
           // r: 현재 보이는 비율(0.00 ~ 1.00 = 0% ~ 100%)
 
+          const isVancouver = el.dataset.city === "vancouver";
+
           // 개발 환경에서 지금 r이 얼마인지 로그로 확인(디버깅용)
           // 개발 시: 스크롤할 때마다 "Card visibility: 0.45, visible: false" 같은 로그가 나와서 디버깅에 도움
           // 실제 사이트: 사용자가 콘솔에서 불필요한 로그를 보지 않음
           if (process.env.NODE_ENV === "development") {
-            console.log(
-              `Card visibility: ${r.toFixed(2)}, visible: ${
-                r >= THRESHOLDS.SHOW
-              }`
-            );
+            // console.log(
+            //   `Card visibility: ${r.toFixed(2)}, visible: ${
+            //     r >= THRESHOLDS.SHOW
+            //   }`
+            // );
           }
 
           // 모션 최소화 사용자는 항상 보이도록(토글로직 건너뜀)
           if (prefersReducedMotion) {
             caption.classList.add("is-visible");
+            if (isVancouver) setIsVancouverVisible(true);
             return;
           }
 
           // 열기 기준: 65% 이상 보이면 open
           if (r >= THRESHOLDS.SHOW) {
             caption.classList.add("is-visible");
+            if (isVancouver) setIsVancouverVisible(true);
           }
           // 닫기 기준: 45% 이하로 내려가면 close
           else if (r <= THRESHOLDS.HIDE) {
             caption.classList.remove("is-visible");
+            if (isVancouver) setIsVancouverVisible(false);
           }
           // 45% ~ 65% 구간에서는 아무것도 하지 않음(깜빡임 방지용 완충)
         });
@@ -172,7 +180,7 @@ function About() {
               src="/assets/images/about/profile-mobile.jpg"
               alt="Portrait of Sunny Ju, front-end developer"
               className="hero-mobile-image"
-              fetchpriority="high"
+              fetchPriority="high"
               width="768"
               height="1024"
               decoding="async"
@@ -319,13 +327,24 @@ function About() {
               loading="lazy"
               decoding="async"
             />
-            <div className="city-caption">
+            <div className="city-caption brisbane-contests">
               <p>
                 Over the course of five years, I launched my brand, BirdyJ,
                 eventually running stalls at local markets. During the pandemic
                 shutdown, I saw the limitations of offline markets. This sparked
                 my journey into building online platforms and development.
               </p>
+              <div className="birdyj-container">
+                <a
+                  href="https://idus.kr/FptpT"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="birdyj-link"
+                >
+                  Visit BirdyJ {"("}KR{"}"}
+                </a>
+                <AnimatedArrow direction="right" className="birdyj-arrow" />
+              </div>
             </div>
           </div>
         </div>
@@ -369,8 +388,12 @@ function About() {
               loading="lazy"
               decoding="async"
             />
-            <div className="city-caption">
+            <div className="city-caption vancouver-contents">
               <p className="city-caption_van">So, here I am!</p>
+              <div className="time-content">
+                <p>Since 2024 Aug</p>
+                {isVancouverVisible && <TimeInVancouver />}
+              </div>
             </div>
           </div>
         </div>

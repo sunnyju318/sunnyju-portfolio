@@ -12,36 +12,37 @@ import NotFound from "./pages/NotFound/NotFound.jsx";
 import WorkDetail from "./pages/Projects/WorkDetail.jsx";
 import ScrollRestoration from "./components/global/ScrollRestoration.jsx";
 import LumosEasterEgg from "./components/lumosEasterEgg/LumosEasterEgg.jsx";
-import LoadingScreen from "./components/common/LoadingScreen/LoadingScreen.jsx";
 import ScrollToTop from "./components/common/ScrollToTop/ScrollToTop.jsx";
 
 import "./styles/global.scss";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
-    const minDisplayTime = 1000;
+    const minDisplayTime = 700;
     const startTime = Date.now();
 
-    const handleLoad = () => {
+    const removeLoadingScreen = () => {
       const elapsed = Date.now() - startTime;
       const remaining = Math.max(0, minDisplayTime - elapsed);
 
       setTimeout(() => {
-        setIsLoading(false);
+        const loadingScreen = document.getElementById("initial-loading-screen");
+        if (loadingScreen) {
+          // DOM에서 완전히 제거
+          loadingScreen.remove();
+          document.body.classList.remove("loading");
+        }
       }, remaining);
     };
 
+    // 페이지 로드 완료되면 로딩 스크린 제거
     if (document.readyState === "complete") {
-      handleLoad();
+      removeLoadingScreen();
     } else {
-      window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
+      window.addEventListener("load", removeLoadingScreen);
+      return () => window.removeEventListener("load", removeLoadingScreen);
     }
   }, []);
-
-  if (isLoading) return <LoadingScreen />;
 
   return (
     <BrowserRouter>

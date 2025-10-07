@@ -6,8 +6,8 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background-color: vars.$near-black;
   color: vars.$text-light-bg;
@@ -15,6 +15,7 @@
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
+  transition: all 0.1s ease; // 부드러운 등장/사라짐
   z-index: 600;
 
   .scroll-arrow {
@@ -31,11 +32,18 @@
   }
 }
 
-// 1400px 이상 화면에서
-@media (min-width: 1400px) {
+// Tablet
+@include mixins.respond-to("md") {
   .scroll-to-top {
-    // 화면 중앙 기준으로 위치 조정
+    @include mixins.flex-center;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+// 1400px 이상 화면에서
+@include mixins.respond-to("xxl") {
+  .scroll-to-top {
     right: calc((100vw - 1400px) / 2 + 2rem);
-    // 화면 너비에서 1400px 빼고 반으로 나눈 다음 여백 추가
   }
 }

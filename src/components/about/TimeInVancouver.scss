@@ -1,0 +1,52 @@
+@use "../../styles/base/mixin.scss" as mixins;
+@use "../../styles/base/variables.scss" as vars;
+
+.time-in-vancouver {
+  .counter-text {
+    font-family: vars.$font-clock;
+    font-weight: vars.$font-weight-semibold;
+    letter-spacing: 0.9px;
+    font-size: vars.$font-size-lg;
+    text-align: center;
+
+    .number {
+      color: vars.$muted-beige;
+    }
+
+    .unit {
+      color: vars.$dusty-rose;
+      margin-left: 0.5rem;
+      font-size: vars.$font-size-md;
+    }
+
+    .separator {
+      color: rgba(vars.$dusty-rose, 0.4);
+    }
+  }
+}
+
+// Tablet
+@include mixins.respond-to("md") {
+  .time-in-vancouver {
+    .counter-text {
+      font-size: vars.$font-size-xl;
+
+      .unit {
+        font-size: vars.$font-size-base;
+      }
+    }
+  }
+}
+
+// 데스크탑
+@include mixins.respond-to("lg") {
+  .time-in-vancouver {
+    .counter-text {
+      font-size: vars.$font-size-2xl;
+
+      .unit {
+        font-size: vars.$font-size-lg;
+      }
+    }
+  }
+}

@@ -47,6 +47,67 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [isOpen, currentImageIndex]);
 
+  useEffect(() => {
+    if (isOpen) {
+      // 모달 열릴 때 history에 state 추가
+      window.history.pushState({ modal: true }, "");
+
+      // 뒤로가기 이벤트 리스너
+      const handlePopState = (e) => {
+        onClose();
+      };
+
+      window.addEventListener("popstate", handlePopState);
+
+      return () => {
+        window.removeEventListener("popstate", handlePopState);
+      };
+    } else {
+      // 모달이 닫힐 때 history에서 제거 (중복 방지)
+      if (window.history.state?.modal) {
+        window.history.back();
+      }
+    }
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (isOpen) {
+      const scrollY = window.scrollY;
+
+      // modal-open 클래스 추가
+      document.body.classList.add("modal-open");
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+    } else {
+      const scrollY = document.body.style.top;
+
+      // modal-open 클래스 제거
+      document.body.classList.remove("modal-open");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
+
+    return () => {
+      document.body.classList.remove("modal-open");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!isOpen || !data) return null;
 
   // 이미지 배열 가져오기 (기존 단일 이미지도 호환)

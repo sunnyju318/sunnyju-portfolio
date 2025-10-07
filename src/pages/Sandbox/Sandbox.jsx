@@ -64,8 +64,6 @@ function Sandbox() {
         return (
           <SiAdobeaftereffects size={25} color="#9999FF" title="AfterEffects" />
         );
-      case "SVG":
-        return <span className="tech-text">SVG</span>;
       default:
         return <span className="tech-text">{tech}</span>;
     }

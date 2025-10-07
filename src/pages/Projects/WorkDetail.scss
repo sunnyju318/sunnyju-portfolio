@@ -178,6 +178,9 @@
     .design-contents {
       display: flex;
       flex-direction: column;
+      p {
+        margin-bottom: 1rem;
+      }
     }
     .design-images {
       display: flex;

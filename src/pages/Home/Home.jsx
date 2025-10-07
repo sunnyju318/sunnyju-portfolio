@@ -4,6 +4,7 @@ import FaceIllustration from "../../components/home/FaceIllustration.jsx";
 import { Link } from "react-router-dom";
 import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion.jsx";
 import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView.jsx";
+import VancouverClock from "../../components/home/VancouverClock.jsx";
 
 function Home({ isMenuOpen, isContactOpen }) {
   return (
@@ -58,6 +59,7 @@ function Home({ isMenuOpen, isContactOpen }) {
             Product Designer
           </h2>
           <p>Code X Design</p>
+          <VancouverClock className="vancouver-clock" />
         </div>
 
         <div className="arrow-wrapper-top-mobile-only">

@@ -1,0 +1,109 @@
+@use "../../styles/base/mixin.scss" as mixins;
+@use "../../styles/base/variables.scss" as vars;
+
+.vancouver-clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .clock-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: vars.$near-black;
+    border: solid 0.5px rgba(vars.$dusty-rose, 0.4);
+    border-radius: 50px;
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-medium;
+    width: 230px;
+
+    .vancouver-place-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .icon {
+        min-width: 12px;
+        margin-right: 1rem;
+        svg {
+          fill: vars.$scarlet-red;
+          animation: spinY 3s ease-in-out infinite;
+        }
+      }
+
+      @keyframes spinY {
+        from {
+          transform: rotateY(0deg);
+        }
+        to {
+          transform: rotateY(360deg);
+        }
+      }
+    }
+
+    .divider {
+      color: rgba(vars.$dusty-rose, 0.3);
+    }
+
+    .vancouver-clock-container,
+    .vancouver-place {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .location {
+        color: vars.$dusty-rose;
+      }
+
+      .time {
+        color: vars.$scarlet-red;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}
+
+// Tablet
+@include mixins.respond-to("md") {
+  .vancouver-clock {
+    .clock-container {
+      flex-direction: column;
+      width: 180px;
+
+      .divider {
+        display: none;
+      }
+
+      .vancouver-clock-container,
+      .vancouver-place {
+        flex-direction: row;
+        gap: 0.3rem;
+      }
+    }
+  }
+}
+
+// 데스크탑
+@include mixins.respond-to("lg") {
+  .vancouver-clock {
+    .clock-container {
+      flex-direction: row;
+      gap: 0.9rem;
+      padding: 0.6rem 1rem;
+      font-size: vars.$font-size-md;
+      width: 270px;
+
+      .divider {
+        display: block;
+      }
+
+      .vancouver-clock-container,
+      .vancouver-place {
+        flex-direction: column;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
