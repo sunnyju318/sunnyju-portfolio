@@ -149,4 +149,61 @@ export const sandboxData = [
     largeImage: null,
     preview: "assets/images/sandbox/development/potato-preloader_large.mp4",
   },
+  {
+    id: 108,
+    title: "Rain GSAP",
+    category: "Development",
+    stack: ["HTML", "CSS", "JavaScript", "Photoshop"],
+    description:
+      "A rainy-night animation built with GSAP and CSS. The scene combines hand-edited Photoshop images with dynamic lighting effects.",
+
+    links: {
+      liveDemo: "https://sunnyju318.github.io/gsap_random_keyframes/",
+      viewCode: "https://github.com/sunnyju318/gsap_random_keyframes",
+    },
+
+    thumbnail: "assets/images/sandbox/development/rain-gsap_thumb.gif",
+    largeImage: null,
+    preview: "assets/images/sandbox/development/rain-gsap_large.mp4",
+  },
+  {
+    id: 109,
+    title: "Little Prince",
+    category: "Development",
+    stack: ["HTML", "CSS", "Illustrator", "Photoshop"],
+    description: "A Little Prince-themed animation built with HTML and CSS.",
+
+    links: {
+      liveDemo: "https://sunnyju318.github.io/little-prince-animated-page",
+      viewCode: "https://github.com/sunnyju318/little-prince-animated-page",
+    },
+
+    images: [
+      {
+        type: "image",
+        src: "assets/images/sandbox/development/little-prince_boy.webp",
+        caption:
+          "A motion illustration recreated in Adobe Illustrator, based on an AI-generated image.",
+      },
+      {
+        type: "image",
+        src: "assets/images/sandbox/development/little-prince_gif.gif",
+        caption:
+          "An animated GIF produced in Photoshop using the frame timeline feature.",
+      },
+      {
+        type: "image",
+        src: "assets/images/sandbox/development/little-prince_background.webp",
+        caption:
+          "A cosmic background scene designed in Illustrator and Photoshop.",
+      },
+      {
+        type: "video",
+        src: "assets/images/sandbox/development/little-prince_large.mp4",
+        caption: "A Little Prince-themed animation built with HTML and CSS.",
+      },
+    ],
+
+    thumbnail: "assets/images/sandbox/development/little-prince_thumb.gif",
+  },
 ];

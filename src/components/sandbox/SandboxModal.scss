@@ -116,6 +116,7 @@
     height: auto;
     max-height: 45vh;
     border-radius: 10px;
+    object-fit: cover;
     cursor: pointer;
     display: block;
   }
@@ -128,13 +129,14 @@
 
 .modal-info {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .modal-info-left {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 0 0 20%;
 
   .modal-title {
     color: vars.$text-heading-dark-alt;
@@ -144,9 +146,13 @@
   .modal-stack {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: start;
     align-items: start;
     gap: 0.5rem;
+    .tech-tag {
+      width: 18px;
+    }
   }
 }
 
@@ -154,6 +160,7 @@
   color: vars.$text-heading-dark-alt;
   line-height: vars.$line-height-normal;
   font-size: vars.$font-size-base;
+  flex: 0 0 80%;
 }
 
 .modal-body {
@@ -241,6 +248,11 @@
     .modal-title {
       font-size: vars.$font-size-lg;
     }
+    .modal-stack {
+      .tech-tag {
+        width: 25px;
+      }
+    }
   }
 
   .modal-info-right {
@@ -303,9 +315,7 @@
       }
     }
   }
-}
 
-@include mixins.respond-to("lg") {
   // 도트 인디케이터
   .carousel-dots {
     right: 5rem;
@@ -318,6 +328,17 @@
 
     .animated-arrow {
       width: 2rem;
+    }
+  }
+
+  .modal-info-left {
+    .modal-title {
+      font-size: vars.$font-size-lg;
+    }
+    .modal-stack {
+      .tech-tag {
+        width: 25px;
+      }
     }
   }
 }
