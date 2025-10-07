@@ -3,10 +3,24 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./LumosEasterEgg.scss";
 
 const LumosEasterEgg = () => {
+  const [isDesktop, setIsDesktop] = useState(false);
   const [lumosVisible, setLumosVisible] = useState(false);
   const [lumosPosition, setLumosPosition] = useState({ x: 0, y: 0 });
   const [lightEffect, setLightEffect] = useState(false);
   const [initialMousePos, setInitialMousePos] = useState({ x: 0, y: 0 });
+
+  // 화면 크기 변경 감지
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1025);
+    };
+
+    // 초기 상태도 즉시 반영
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // 불빛 DOM 요소 참조
   const lightRef = useRef(null);
@@ -25,11 +39,12 @@ const LumosEasterEgg = () => {
   };
 
   // Lumos 텍스트 주기적으로 나타났다 사라지기
+
   useEffect(() => {
     let timeoutId;
 
     const showLumos = () => {
-      if (lightEffect) {
+      if (lightEffect || !isDesktop) {
         scheduleNext();
         return;
       }
@@ -59,7 +74,7 @@ const LumosEasterEgg = () => {
         clearTimeout(timeoutId);
       }
     };
-  }, [lightEffect]);
+  }, [lightEffect, isDesktop]);
 
   // Lumos 클릭 핸들러
   const handleLumosClick = (e) => {
@@ -120,7 +135,7 @@ const LumosEasterEgg = () => {
   return (
     <>
       {/* Lumos 텍스트 */}
-      {lumosVisible && (
+      {isDesktop && lumosVisible && (
         <span
           onClick={handleLumosClick}
           className="lumos-text"
@@ -134,7 +149,7 @@ const LumosEasterEgg = () => {
       )}
 
       {/* 마우스 불빛 효과 */}
-      {lightEffect && (
+      {isDesktop && lightEffect && (
         <div
           ref={lightRef}
           className="lumos-light"

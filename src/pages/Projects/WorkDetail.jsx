@@ -396,7 +396,7 @@ function WorkDetail() {
             </Link>
           ) : (
             <div className="project-nav-link prev disabled">
-              <h2 className="project-nav-title">-</h2>
+              <h2 className="project-nav-title">No Previous</h2>
               <div className="project-title-wrapper">
                 <AnimatedArrow direction="left" className="project-nav-arrow" />
                 <div className="project-nav">Previous Project</div>

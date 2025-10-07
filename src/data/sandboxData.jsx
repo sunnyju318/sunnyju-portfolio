@@ -180,6 +180,11 @@ export const sandboxData = [
 
     images: [
       {
+        type: "video",
+        src: "assets/images/sandbox/development/little-prince_large.mp4",
+        caption: "A Little Prince-themed animation built with HTML and CSS.",
+      },
+      {
         type: "image",
         src: "assets/images/sandbox/development/little-prince_boy.webp",
         caption:
@@ -196,11 +201,6 @@ export const sandboxData = [
         src: "assets/images/sandbox/development/little-prince_background.webp",
         caption:
           "A cosmic background scene designed in Illustrator and Photoshop.",
-      },
-      {
-        type: "video",
-        src: "assets/images/sandbox/development/little-prince_large.mp4",
-        caption: "A Little Prince-themed animation built with HTML and CSS.",
       },
     ],
 

@@ -59,6 +59,7 @@
 
       .time {
         color: vars.$scarlet-red;
+        letter-spacing: 1px;
       }
     }
   }
@@ -92,7 +93,7 @@
       gap: 0.9rem;
       padding: 0.6rem 1rem;
       font-size: vars.$font-size-md;
-      width: 265px;
+      width: 270px;
 
       .divider {
         display: block;

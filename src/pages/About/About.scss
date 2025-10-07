@@ -249,9 +249,10 @@
     .birdyj-link {
       color: vars.$scarlet-red;
       @include mixins.hover-underline;
+      font-size: vars.$font-size-md;
     }
     .birdyj-arrow {
-      width: 20px;
+      width: 15px;
     }
   }
 }
@@ -321,6 +322,7 @@
 
   .ending-quote {
     margin-bottom: 3rem;
+    font-size: vars.$font-size-2xl;
   }
 
   .stack-wrapper {

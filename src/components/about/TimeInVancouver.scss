@@ -39,7 +39,7 @@
 }
 
 // 데스크탑
-@include mixins.respond-to("md") {
+@include mixins.respond-to("lg") {
   .time-in-vancouver {
     .counter-text {
       font-size: vars.$font-size-2xl;
