@@ -1,47 +1,49 @@
 @use "../../styles/base/variables.scss" as vars;
 @use "../../styles/base/mixin.scss" as mixins;
 
-.lumos-text {
-  position: fixed;
-  color: vars.$text-body-dark-alt;
-  cursor: pointer;
-  z-index: 5;
-  user-select: none;
-  opacity: 0.15;
-  transition: opacity 0.5s ease-in-out;
-  font-family: vars.$font-gochi;
-  border: solid 0.7px vars.$text-body-dark-alt;
-  padding: 1.1rem 0.5rem;
-  border-radius: 50%;
-  text-shadow: 0 0 6px rgba(vars.$text-body-dark-alt, 0.4),
-    0 0 12px rgba(vars.$text-body-dark-alt, 0.3),
-    0 0 20px rgba(vars.$text-body-dark-alt, 0.2);
-  &:hover {
-    opacity: 1;
-    text-shadow: 0 0 5px vars.$text-body-dark-alt,
-      0 0 10px vars.$text-body-dark-alt, 0 0 20px vars.$text-body-dark-alt;
-  }
-}
+.lumos {
+  &__text {
+    position: fixed;
+    color: vars.$text-body-secondary;
+    cursor: pointer;
+    z-index: 5;
+    user-select: none;
+    opacity: 0.15;
+    transition: opacity 0.5s ease-in-out;
+    font-family: vars.$font-lumos;
+    border: solid 0.7px vars.$text-body-secondary;
+    padding: 1.1rem 0.5rem;
+    border-radius: 50%;
+    text-shadow: 0 0 6px rgba(vars.$text-body-secondary, 0.4),
+      0 0 12px rgba(vars.$text-body-secondary, 0.3),
+      0 0 20px rgba(vars.$text-body-secondary, 0.2);
 
-.lumos-light {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(247, 120, 61, 0.1) 0%,
-    rgba(250, 222, 100, 0.05) 20%,
-    transparent 60%
-  );
-  pointer-events: none;
-  z-index: 5;
-  animation: lumosGlow 3s ease-in-out infinite alternate;
+    &:hover {
+      opacity: 1;
+      text-shadow: 0 0 5px vars.$text-body-secondary,
+        0 0 10px vars.$text-body-secondary, 0 0 20px vars.$text-body-secondary;
+    }
+  }
+
+  &__light {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(247, 120, 61, 0.1) 0%,
+      rgba(250, 222, 100, 0.05) 20%,
+      transparent 60%
+    );
+    pointer-events: none;
+    z-index: 5;
+    animation: lumosGlow 3s ease-in-out infinite alternate;
+  }
 }
 
 @keyframes lumosGlow {
   from {
-    /* transform 제거하고 opacity와 filter만 사용 */
     opacity: 0.8;
     filter: brightness(1.3);
   }

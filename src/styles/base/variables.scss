@@ -19,15 +19,20 @@ $bg-button-hover: $scarlet-red-dark;
 $bg-code-block: $near-black;
 
 // Text Colors
-$text-heading-dark-primary: $muted-beige;
-$text-heading-dark-alt: $dusty-rose;
-$text-heading-light: $dark-forest;
+$text-heading-primary: $muted-beige; // 큰제목
+$text-heading-secondary: $dusty-rose; // 부제목
+$text-heading-list: $dusty-rose; // 리스트 제목
+$text-heading-nav: $dark-forest; // 네비게이션 제목
 
-$text-body-dark-primary: $muted-beige;
-$text-body-dark-alt: $dusty-rose;
-$text-body-light: $dark-forest;
+$text-body-primary: $muted-beige; // 메인 바디
+$text-body-secondary: $dusty-rose; // 세컨 바디
 
-$text-primary-accent: $scarlet-red;
+$text-highlight-primary: $scarlet-red; // 메인 강조
+$text-highlight-secondary: $near-black; // 세컨 강조
+
+$text-footer: $dark-forest; // 푸터
+
+// Button Colors
 $text-light-bg: $near-black;
 
 // Navigation Colors
@@ -55,65 +60,45 @@ $box-shadow-soft: 1px 1px 0 $shadow-color;
 // Font Families
 $font-main: "Montserrat", -apple-system, BlinkMacSystemFont, system-ui,
   sans-serif;
+$font-code: "Fira Code", monospace;
+$font-lumos: "Gochi Hand", cursive;
+$font-clock: "Roboto Condensed", sans-serif;
 /* 웹폰트+시스템 폰트 조합으로 성능과 사용자 경험을 모두 고려한 접근 : Montserrat 시도후 성공하면 사용, 
 실패하면 -apple-system시도(Mac/iPhone에서), 실패하면 BlinkMacSystemFont 시도(구버전 Mac), 
 실패하면 system-ui시도(최신 브라우저), 실패하면 마지막으로 sans-serif 사용(브라우저 기본폰트) */
-$font-code: "Fira Code", monospace;
-$font-gochi: "Gochi Hand", cursive;
-$font-clock: "Roboto Condensed", sans-serif;
 
 // Font Sizes
-$font-size-sm: 0.75rem; // 12px
-$font-size-md: 0.875rem; // 14px
-$font-size-base: 1rem; // 16px
-$font-size-lg: 1.25rem; // 20px
-$font-size-xl: 1.5rem; // 24px
-$font-size-2xl: 2rem; // 32px
-$font-size-3xl: 2.5rem; // 40px
-$font-size-4xl: 3rem; // 48px
-$font-size-5xl: 3.5rem; // 56px
-$font-size-6xl: 4rem; // 64px
-$font-size-7xl: 5rem; // 80px
-$font-size-8xl: 6rem; // 96px
-$font-size-9xl: 7rem; // 112px
-$font-size-10xl: 8rem; // 128px
-$font-size-11xl: 9rem; // 144px
-$font-size-10xl: 8rem; // 128px
-$font-size-11xl: 9rem; // 144px
-$font-size-12xl: 10rem; // 160px
-
-// Font Sizes with clamp()
-$font-size-body-clamp: clamp(1rem, 1.5vw, 1.125rem); // 16px ~ 18px
-$font-size-2xl-clamp: clamp(1rem, 2.5vw, 1.25rem); // 16px ~ 20px
-$font-size-2_5xl-clamp: clamp(1.375rem, 3vw, 2rem); // 22px ~ 32px
-$font-size-3xl-clamp: clamp(1.75rem, 4vw, 2.5rem); // 28px ~ 40px
-$font-size-4xl-clamp: clamp(2rem, 5vw, 3rem); // 32px ~ 48px
-$font-size-5xl-clamp: clamp(2.25rem, 6vw, 3.5rem); // 36px ~ 56px
-$font-size-6xl-clamp: clamp(2.5rem, 7vw, 4rem); // 40px ~ 64px
-$font-size-7xl-clamp: clamp(3rem, 8vw, 5rem); // 48px ~ 80px
-$font-size-8xl-clamp: clamp(3.5rem, 9vw, 6rem); // 56px ~ 96px
-$font-size-9xl-clamp: clamp(4rem, 10vw, 7rem); // 64px ~ 112px
-$font-size-10xl-clamp: clamp(4.5rem, 11vw, 8rem); // 72px ~ 128px
-$font-size-11xl-clamp: clamp(5rem, 12vw, 9rem); // 80px ~ 144px
-$font-size-10xl-clamp: clamp(4.5rem, 11vw, 8rem); // 72px ~ 128px
-$font-size-11xl-clamp: clamp(5rem, 12vw, 9rem); // 80px ~ 144px
-$font-size-12xl-clamp: clamp(5.5rem, 13vw, 10rem); // 88px ~ 160px
-
-// Desktop version
-$font-size-body-large: clamp(1.125rem, 2vw, 1.7rem);
-$font-size-3xl-large: clamp(4rem, 6vw, 5rem);
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px (standard)
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem; // 20px
+$font-size-2xl: 1.5rem; // 24px
+$font-size-3xl: 2rem; // 32px
+$font-size-4xl: 2.5rem; // 40px
+$font-size-5xl: 3rem; // 48px
+$font-size-6xl: 3.5rem; // 56px
+$font-size-7xl: 4rem; // 64px
+$font-size-8xl: 5rem; // 80px
+$font-size-9xl: 6rem; // 96px
+$font-size-10xl: 7rem; // 112px
+$font-size-11xl: 8rem; // 128px
+$font-size-12xl: 9rem; // 144px
+$font-size-13xl: 10rem; // 160px
 
 // Font Weights
 $font-weight-light: 300;
-$font-weight-regular: 400;
+$font-weight-regular: 400; // (standard)
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 // Line Heights
+$line-height-xs: 1.1;
 $line-height-sm: 1.3;
-$line-height-normal: 1.6;
+$line-height-normal: 1.6; // (standard)
 $line-height-lg: 2;
+$line-height-xl: 2.4;
 
 // Letter Spacing
 

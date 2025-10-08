@@ -41,17 +41,17 @@ function Projects() {
 
       {/* 콘텐츠 */}
       <div className="projects-wrapper">
-        <div className="projects-title">
+        <div className="projects-wrapper__title">
           <AnimatedArrow direction="right" animated={true} />
           <h1>
-            {" "}
-            ALL <span className="projects-title-highlight">PROJECTS</span>
+            ALL{" "}
+            <span className="projects-wrapper__title-highlight">PROJECTS</span>
           </h1>
         </div>
-        <div className="my-projects-desktop-only">
+        <div className="projects-wrapper__list projects-wrapper__list--desktop">
           <ProjectSplitView title="PROJECTS" isFeatured={false} />
         </div>
-        <div className="my-projects-mobile-only">
+        <div className="projects-wrapper__list projects-wrapper__list--mobile">
           <ProjectAccodian title="PROJECTS" isFeatured={false} />
         </div>
       </div>

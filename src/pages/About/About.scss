@@ -4,440 +4,434 @@
 .about-wrapper {
   @include mixins.grid-layout();
   @include mixins.container();
-}
 
-/*
-사진과 텍스트 오버레이 하기 : 
-1. 사진과 텍스트 부모컨테이너에 display: grid를 준다.
-2. 사진과 텍스트 부모컨테이너에 position: relative를 준다.
-3. 사진과 텍스트 각각에 grid-column: 1/-1;을 줘서 같은 그리드 안에 있게 한다.
-4. 텍스트에 z-index: 1을 줌으로써 텍스트가 사진위에 오버레이되게 한다.*/
-.hero-wrapper {
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  position: relative;
-  grid-column: 1/-1;
-  height: 85vh;
-}
-
-.highlight {
-  color: vars.$text-primary-accent;
-}
-
-.hero-picture {
-  grid-area: 1/1;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  backdrop-filter: blur(5px);
-  box-shadow: inset 0 0 50px rgba(vars.$dark-forest, 0.3);
-  background: rgba(vars.$dark-forest, 0.01);
-  @include mixins.loading-spinner;
-}
-
-.hero-mobile-image {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center top;
-}
-
-.hero-desktop-content {
-  grid-column: 1/-1;
-  display: none; // mobile에서는 안보이게 함
-
-  .hero-desktop-heading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
-
-//시멘틱 구조를 위해 mobile 버전에서 h1을 p로 바꿈으로써 h1이 중복되지 않도록 하였다.
-.hero-mobile-content {
-  padding: 7rem 0 1.5rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1;
-  grid-area: 1/1;
-  font-size: vars.$font-size-2xl;
-  font-weight: vars.$font-weight-bold;
-
-  .hero-mobile-heading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
-
-.section-title-about-me {
-  margin: 5rem 0;
-  grid-column: 1/-1;
-
-  h2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
-
-.stack-wrapper {
-  grid-column: 1/-1;
-  margin-bottom: 1rem;
-  display: flex;
-  gap: 0.8rem;
-}
-
-.section-body-about-me {
-  grid-column: 1/-1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  line-height: vars.$line-height-normal;
-}
-
-.hero-arrow-wrapper-bottom {
-  color: vars.$text-heading-dark-alt;
-  margin: 7rem 0 5rem;
-  grid-column: 1/-1;
-  @include mixins.flex-center;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  .journey-title {
-    font-size: vars.$font-size-lg;
-    font-weight: vars.$font-weight-medium;
+  // Highlight (재사용되는 요소)
+  &__highlight {
+    color: vars.$text-highlight-primary;
   }
 
-  .about-arrow-bottom {
-    margin-top: 1rem;
+  /*
+  사진과 텍스트 오버레이 하기 : 
+  1. 사진과 텍스트 부모컨테이너에 display: grid를 준다.
+  2. 사진과 텍스트 부모컨테이너에 position: relative를 준다.
+  3. 사진과 텍스트 각각에 grid-column: 1/-1;을 줘서 같은 그리드 안에 있게 한다.
+  4. 텍스트에 z-index: 1을 줌으로써 텍스트가 사진위에 오버레이되게 한다.*/
+  &__hero {
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    position: relative;
+    grid-column: 1/-1;
+    height: 85vh;
   }
-}
 
-.section-title {
-  grid-column: 1/-1;
-
-  h2 {
-    font-size: vars.$font-size-7xl-clamp;
-  }
-}
-
-.new-york,
-.sydney {
-  text-align: right;
-}
-
-.brisbane,
-.korea,
-.vancouver {
-  text-align: left;
-}
-
-.section-image {
-  margin: 1rem 0 4rem;
-  height: 260px;
-  overflow: hidden;
-  grid-column: 1/-1;
-  position: relative;
-
-  img {
-    object-fit: cover;
-    width: 100%;
+  &__hero-picture {
+    grid-area: 1/1;
     height: 100%;
+    width: 100%;
+    position: relative;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 0 50px rgba(vars.$dark-forest, 0.3);
+    background: rgba(vars.$dark-forest, 0.01);
+    @include mixins.loading-spinner;
   }
-}
 
-.ending-quote {
-  grid-column: 1/-1;
-  text-align: center;
-  font-size: vars.$font-size-xl;
-  font-weight: vars.$font-weight-semibold;
-  color: vars.$text-body-dark-alt;
-}
+  &__hero-image--mobile {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
 
-.city-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+  &__hero-content--desktop {
+    grid-column: 1/-1;
+    display: none; // mobile에서는 안보이게 함
+  }
 
-.city-caption {
-  position: absolute;
-  @include mixins.flex-center;
-  width: 70%;
-  height: 100%;
-  padding: 1rem;
-  bottom: 0;
-  right: 0;
-  z-index: 10;
-  backdrop-filter: blur(5px);
-  background: rgba(vars.$near-black, 0.8);
+  //시멘틱 구조를 위해 mobile 버전에서 h1을 p로 바꿈으로써 h1이 중복되지 않도록 하였다.
+  &__hero-content--mobile {
+    padding: 7rem 0 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    grid-area: 1/1;
+    font-size: vars.$font-size-3xl;
+    font-weight: vars.$font-weight-bold;
+  }
 
-  p {
-    margin: 0;
-    font-size: vars.$font-size-md;
+  &__hero-heading--desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__hero-heading--mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  // About Me Intro Section
+  &__intro-title {
+    margin: 5rem 0;
+    grid-column: 1/-1;
+
+    h2 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+
+  &__stack {
+    grid-column: 1/-1;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  &__intro-body {
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     line-height: vars.$line-height-normal;
   }
 
-  will-change: transform;
-  /*
-  브라우저에게 이 요소가 곧 애니메이션을 할 것이니 GPU 레이어릴 미리 준비해달라 알려주는 속성이다.
-
-  - will-change 없을때: 
-  스크롤 → 애니메이션 트리거 → GPU 레이어 생성 (지연) → 애니메이션 시작
-  - will-change 있을때:
-  페이지 로드 → GPU 레이어 미리 생성 → 스크롤 → 애니메이션 즉시 시작
-
-  과도하게 사용하면 오히려 메모리를 많이 사용하니 주의할것
-  */
-
-  // 초기 상태 (숨김)
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-
-  &.is-visible {
-    transform: translateX(0);
+  // Journey Section
+  &__journey {
+    color: vars.$text-heading-list;
+    margin: 7rem 0 5rem;
+    grid-column: 1/-1;
+    @include mixins.flex-center;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  &.brisbane-contests {
+  &__journey-title {
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-medium;
+  }
+
+  &__journey-arrow {
+    margin-top: 1rem;
+  }
+
+  // Section Title (도시 이름)
+  &__section-title {
+    grid-column: 1/-1;
+
+    h2 {
+      font-size: vars.$font-size-5xl;
+    }
+  }
+
+  &__section-title--new-york,
+  &__section-title--sydney {
+    text-align: right;
+  }
+
+  &__section-title--brisbane,
+  &__section-title--korea,
+  &__section-title--vancouver {
+    text-align: left;
+  }
+
+  // Section Image (도시 이미지)
+  &__section-image {
+    margin: 1rem 0 4rem;
+    height: 260px;
+    overflow: hidden;
+    grid-column: 1/-1;
+    position: relative;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // City Card
+  &__city-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  // City Caption
+  &__city-caption {
+    position: absolute;
+    @include mixins.flex-center;
+    width: 70%;
+    height: 100%;
+    padding: 1rem;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    background: rgba(vars.$near-black, 0.8);
+    will-change: transform;
+    /*
+    브라우저에게 이 요소가 곧 애니메이션을 할 것이니 GPU 레이어릴 미리 준비해달라 알려주는 속성이다.
+
+    - will-change 없을때: 
+    스크롤 → 애니메이션 트리거 → GPU 레이어 생성 (지연) → 애니메이션 시작
+    - will-change 있을때:
+    페이지 로드 → GPU 레이어 미리 생성 → 스크롤 → 애니메이션 즉시 시작
+
+    과도하게 사용하면 오히려 메모리를 많이 사용하니 주의할것
+    */
+
+    // 초기 상태 (숨김)
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+
+    &.is-visible {
+      transform: translateX(0);
+    }
+
+    p {
+      margin: 0;
+      font-size: vars.$font-size-sm;
+      line-height: vars.$line-height-normal;
+    }
+  }
+
+  &__city-caption--brisbane {
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 0.3rem;
   }
 
-  &.vancouver-contents {
+  &__city-caption--vancouver {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    .city-caption_van {
-      font-size: vars.$font-size-base;
-    }
-
-    .time-content {
-      margin-top: 1.5rem;
-      color: vars.$dusty-rose;
-      font-weight: vars.$font-weight-medium;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-    }
   }
 
-  .birdyj-container {
+  &__city-caption-title {
+    font-size: vars.$font-size-base;
+  }
+
+  &__city-caption-time {
+    margin-top: 1.5rem;
+    color: vars.$dusty-rose;
+    font-weight: vars.$font-weight-medium;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  // BirdyJ Link
+  &__birdyj {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+  }
 
-    .birdyj-link {
-      color: vars.$scarlet-red;
-      @include mixins.hover-underline;
-      font-size: vars.$font-size-md;
-    }
-    .birdyj-arrow {
-      width: 15px;
-    }
+  &__birdyj-link {
+    color: vars.$scarlet-red;
+    @include mixins.hover-underline;
+    font-size: vars.$font-size-sm;
+  }
+
+  &__birdyj-arrow {
+    width: 15px;
+  }
+
+  // Ending Quote
+  &__ending-quote {
+    grid-column: 1/-1;
+    text-align: center;
+    font-size: vars.$font-size-2xl;
+    font-weight: vars.$font-weight-semibold;
+    color: vars.$text-body-secondary;
   }
 }
 
 // Tablet
 @include mixins.respond-to("md") {
-  .hero-desktop-content {
-    grid-column: 2/8;
-    display: block;
-    margin: 2.5rem 0;
+  .about-wrapper {
+    &__hero {
+      border-radius: 50px;
+      grid-column: 2/8;
+      height: 50vh;
+    }
 
-    .hero-desktop-heading {
+    &__hero-content--desktop {
+      grid-column: 2/8;
+      display: block;
+      margin: 2.5rem 0;
+    }
+
+    &__hero-content--mobile {
+      display: none;
+    }
+
+    &__hero-heading--desktop {
       flex-direction: row;
       justify-content: flex-start;
       gap: 1rem;
-      font-size: vars.$font-size-4xl-clamp;
+      font-size: vars.$font-size-5xl;
     }
-  }
 
-  .hero-wrapper {
-    border-radius: 50px;
-    grid-column: 2/8;
-    height: 50vh;
-  }
+    &__intro-title {
+      margin: 4rem 0;
+      grid-column: 2/8;
 
-  .hero-mobile-content {
-    display: none;
-  }
+      h2 {
+        display: inline-flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+    }
 
-  .section-title-about-me {
-    margin: 4rem 0;
-
-    h2 {
-      display: inline-flex;
+    &__intro-body {
+      display: flex;
       flex-direction: row;
-      gap: 1rem;
+      grid-column: 2/8;
     }
 
-    grid-column: 2/8;
-  }
-
-  .section-body-about-me {
-    display: flex;
-    flex-direction: row;
-    grid-column: 2/8;
-  }
-
-  .section-image {
-    margin: 1rem 0 8rem;
-    height: 400px;
-  }
-
-  .section-title {
-    h2 {
-      font-size: vars.$font-size-12xl-clamp;
+    &__section-image {
+      margin: 1rem 0 8rem;
+      height: 400px;
     }
-  }
 
-  .hero-arrow-wrapper-bottom {
-    margin: 7rem 0;
+    &__section-title h2 {
+      font-size: vars.$font-size-9xl;
+    }
 
-    .journey-title {
-      font-size: vars.$font-size-2xl;
+    &__journey {
+      margin: 7rem 0;
+    }
+
+    &__journey-title {
+      font-size: vars.$font-size-3xl;
       font-weight: vars.$font-weight-medium;
     }
-  }
 
-  .ending-quote {
-    margin-bottom: 3rem;
-    font-size: vars.$font-size-2xl;
-  }
-
-  .stack-wrapper {
-    grid-column: 2/8;
-  }
-
-  .city-caption {
-    width: 40%;
-    padding: 2rem;
-
-    p {
-      font-size: vars.$font-size-base;
+    &__ending-quote {
+      margin-bottom: 3rem;
+      font-size: vars.$font-size-3xl;
     }
 
-    .city-caption_van {
-      font-size: vars.$font-size-xl;
+    &__stack {
+      grid-column: 2/8;
     }
 
-    &.brisbane-contests {
+    &__city-caption {
+      width: 40%;
+      padding: 2rem;
+
+      p {
+        font-size: vars.$font-size-base;
+      }
+    }
+
+    &__city-caption--brisbane {
       gap: 1rem;
     }
 
-    &.vancouver-contents {
-      .city-caption_van {
-        font-size: vars.$font-size-lg;
-      }
+    &__city-caption-title {
+      font-size: vars.$font-size-2xl;
+    }
 
-      .time-content {
-        margin-top: 1.5rem;
-        gap: 0.8rem;
-      }
+    &__city-caption-time {
+      margin-top: 1.5rem;
+      gap: 0.8rem;
     }
   }
 }
 
 // Desktop
 @include mixins.respond-to("lg") {
-  .hero-desktop-content {
-    grid-column: 3/11;
-
-    .hero-desktop-heading {
-      font-size: vars.$font-size-5xl-clamp;
+  .about-wrapper {
+    &__hero {
+      grid-column: 3/11;
+      height: 60vh;
     }
-  }
 
-  .hero-wrapper {
-    grid-column: 3/11;
-    height: 60vh;
-  }
-
-  .section-title-about-me {
-    grid-column: 3/11;
-  }
-
-  .section-body-about-me {
-    grid-column: 3/11;
-    font-size: vars.$font-size-lg;
-  }
-
-  .section-title {
-    h2 {
-      font-size: vars.$font-size-12xl-clamp;
+    &__hero-content--desktop {
+      grid-column: 3/11;
     }
-  }
 
-  .section-image {
-    margin: 1rem 0 8rem;
-    height: 500px;
-  }
+    &__hero-heading--desktop {
+      font-size: vars.$font-size-6xl;
+    }
 
-  .hero-arrow-wrapper-bottom {
-    margin: 9rem;
-    font-size: vars.$font-size-lg;
-    gap: 0.7rem;
+    &__intro-title {
+      grid-column: 3/11;
+    }
 
-    .about-arrow-bottom {
+    &__intro-body {
+      grid-column: 3/11;
+      font-size: vars.$font-size-xl;
+    }
+
+    &__section-title h2 {
+      font-size: vars.$font-size-12xl;
+    }
+
+    &__section-image {
+      margin: 1rem 0 8rem;
+      height: 500px;
+    }
+
+    &__journey {
+      margin: 9rem;
+      font-size: vars.$font-size-xl;
+      gap: 0.7rem;
+    }
+
+    &__journey-arrow {
       margin-top: 1rem;
     }
-  }
 
-  .stack-wrapper {
-    grid-column: 3/11;
-  }
-
-  .tap-guide-mobile {
-    display: none;
-  }
-
-  .city-caption {
-    width: 32%;
-    padding: 3rem;
-
-    p {
-      font-size: vars.$font-size-lg;
+    &__stack {
+      grid-column: 3/11;
     }
 
-    .city-caption_van {
-      font-size: vars.$font-size-2xl;
+    .tap-guide-mobile {
+      display: none;
     }
 
-    .birdyj-container {
-      .birdyj-link {
-        font-size: vars.$font-size-lg;
+    &__city-caption {
+      width: 32%;
+      padding: 3rem;
+
+      p {
+        font-size: vars.$font-size-xl;
       }
     }
 
-    &.vancouver-contents {
-      .city-caption_van {
-        font-size: vars.$font-size-2xl;
-      }
+    &__city-caption-title {
+      font-size: vars.$font-size-3xl;
+    }
 
-      .time-content {
-        margin-top: 3rem;
-        gap: 1rem;
-      }
+    &__city-caption-time {
+      margin-top: 3rem;
+      gap: 1rem;
+    }
+
+    &__birdyj-link {
+      font-size: vars.$font-size-xl;
     }
   }
 }

@@ -89,9 +89,9 @@ function NavigationDropdown({
 즉, 컨텍트온니가(!이 붙어서 거짓을 참으로 바꿈) 참이거나 isOpen이 참일경우 아래 버튼을 실행해라 라는 뜻. */}
       {(!contactOnly || isMenuOpen) && (
         <button
-          className={`hamburger 
-            ${isMenuOpen ? "open" : ""}
-            ${contactOnly ? "contact-mode" : ""}
+          className={`navigation-dropdown__hamburger 
+            ${isMenuOpen ? "navigation-dropdown__hamburger--open" : ""}
+            ${contactOnly ? "navigation-dropdown__hamburger--contact-mode" : ""}
             `}
           // 기본적으로 hamburger이라는 클래스를 가지고 있으며 메뉴가 열렸을때는 open이라는 클래스도 추가로 갖는다
           onClick={contactOnly ? onClose : onToggle}
@@ -161,7 +161,9 @@ function NavigationDropdown({
 
       {/* 모바일 풀스크린 메뉴 */}
       <div
-        className={`mobile-menu-overlay ${isMenuOpen ? "open" : ""}`}
+        className={`navigation-dropdown__overlay ${
+          isMenuOpen ? "navigation-dropdown__overlay--open" : ""
+        }`}
         onClick={(e) => {
           if (e.target === e.currentTarget) {
             setExpandedItem(null);
@@ -172,13 +174,13 @@ function NavigationDropdown({
        isMobileMenuOpen ? 'open' : '' // isMobileMenuOpen 이게 true 일때(열렸을때)는 open이라는 클래스를 붙이고 false이면(닫혔으면) 붙이지 마세요. // 삼항연산자 : 조건이 true일때 ~하라. 는 구조이다
        */}
         <nav
-          className="mobile-menu-content"
+          className="navigation-dropdown__menu"
           onClick={(e) => {
             // Contact 영역이 아닌 곳 클릭 시 Contact 닫기
             if (window.innerWidth >= 768) return;
             if (
-              !e.target.closest(".contact-wrapper") &&
-              !e.target.closest(".nav-link-contact button")
+              !e.target.closest(".navigation-dropdown__contact-wrapper") &&
+              !e.target.closest(".navigation-dropdown__contact button")
             ) {
               setExpandedItem(null);
             }
@@ -188,13 +190,17 @@ function NavigationDropdown({
           {!contactOnly && (
             <ul>
               <li>
-                <Link className="nav-link" to="/" onClick={handleLinkClick}>
+                <Link
+                  className="navigation-dropdown__link"
+                  to="/"
+                  onClick={handleLinkClick}
+                >
                   Home
                 </Link>
               </li>
               <li>
                 <Link
-                  className="nav-link"
+                  className="navigation-dropdown__link"
                   to="/projects"
                   onClick={handleLinkClick}
                 >
@@ -204,7 +210,7 @@ function NavigationDropdown({
               </li>
               <li>
                 <Link
-                  className="nav-link"
+                  className="navigation-dropdown__link"
                   to="/about"
                   onClick={handleLinkClick}
                 >
@@ -213,7 +219,7 @@ function NavigationDropdown({
               </li>
               <li>
                 <Link
-                  className="nav-link"
+                  className="navigation-dropdown__link"
                   to="/sandbox"
                   onClick={handleLinkClick}
                 >
@@ -223,8 +229,11 @@ function NavigationDropdown({
             </ul>
           )}
 
-          <div className="nav-link-contact">
-            <button className="nav-link" onClick={handleContactClick}>
+          <div className="navigation-dropdown__contact">
+            <button
+              className="navigation-dropdown__link"
+              onClick={handleContactClick}
+            >
               Contact
             </button>
             <AnimatePresence>
@@ -235,32 +244,34 @@ function NavigationDropdown({
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   // 높이가 0에서 auto(컨텐츠 크기만큼 늘어남)
-                  className="contact-wrapper "
+                  className="navigation-dropdown__contact-wrapper "
                 >
-                  <div className="horizontal-line" />
-                  <div className="contact-list">
-                    <div className="email-address-container">
+                  <div className="navigation-dropdown__contact-line" />
+                  <div className="navigation-dropdown__contact-list">
+                    <div className="navigation-dropdown__email-container">
                       <a
-                        className="email-address"
+                        className="navigation-dropdown__email-address"
                         href="mailto:sunnyju318@gmail.com"
                       >
                         Email Me
                       </a>
                       <AnimatedArrow
-                        className="contact-arrow"
+                        className="navigation-dropdown__contact-arrow"
                         direction="right"
                       />
                     </div>
-                    <p className="contact-sub-title">Email</p>
+                    <p className="navigation-dropdown__contact-subtitle">
+                      Email
+                    </p>
                   </div>
-                  <div className="contact-list">
-                    <div className="social-icon-wrapper">
+                  <div className="navigation-dropdown__contact-list">
+                    <div className="navigation-dropdown__social-wrapper">
                       <a
                         href="https://www.linkedin.com/in/jisun-ju/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="LinkedIn Profile"
-                        className="social-icon"
+                        className="navigation-dropdown__social-icon"
                       >
                         in
                       </a>
@@ -269,12 +280,14 @@ function NavigationDropdown({
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="GitHub Profile"
-                        className="social-icon"
+                        className="navigation-dropdown__social-icon"
                       >
                         <AiFillGithub size="2rem" />
                       </a>
                     </div>
-                    <p className="contact-sub-title">Socials</p>
+                    <p className="navigation-dropdown__contact-subtitle">
+                      Socials
+                    </p>
                   </div>
                 </motion.div>
               )}

@@ -119,7 +119,7 @@ $muted-beige: #e1dad2;
 
 // Semantic Color Usage
 $bg-gradient-start: $near-black;
-$text-heading-dark-alt: $dusty-rose;
+$text-heading-list: $dusty-rose;
 $bg-button: $scarlet-red;
 
 // Breakpoint System

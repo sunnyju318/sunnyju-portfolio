@@ -70,7 +70,7 @@ function FaceIllustration({ isMenuOpen, isContactOpen }) {
     };
 
     const handleTouch = (e) => {
-      if (!e.target.closest(".hover-modal")) {
+      if (!e.target.closest(".face-wrapper__modal")) {
         setHoveredGroup(null);
         setIsPaused(false);
       }
@@ -372,7 +372,7 @@ useEffect(() => {
     <div className="face-wrapper">
       <FaceSvg
         ref={svgRef}
-        className="face-svg"
+        className="face-wrapper__svg"
         aria-label="Face illustration graphic"
         role="img"
       />
@@ -381,7 +381,7 @@ useEffect(() => {
       <AnimatePresence>
         {hoveredGroup && (
           <motion.div
-            className="hover-modal"
+            className="face-wrapper__modal"
             initial={{ opacity: 0, y: 30, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.8 }}
@@ -389,24 +389,6 @@ useEffect(() => {
               type: "spring",
               stiffness: 400,
               damping: 25,
-            }}
-            style={{
-              position: "fixed",
-              top: "30%",
-              left: "30%",
-              transform: "translate(-50%, -50%)",
-              zIndex: 9999,
-              pointerEvents: "none",
-
-              background: "rgba(4, 4, 4, 0.5)",
-              backdropFilter: "blur(10px)",
-              color: "#e1dad2",
-              padding: "20px 30px",
-              borderRadius: "16px",
-              border: "1px solid rgba(225, 218, 210, 0.15)",
-              boxShadow: "0 25px 80px rgba(0, 0, 0, 0.6)",
-              maxWidth: "400px",
-              lineHeight: "32px",
             }}
           >
             <p>{hoveredGroup.description}</p>

@@ -138,7 +138,7 @@ const LumosEasterEgg = () => {
       {isDesktop && lumosVisible && (
         <span
           onClick={handleLumosClick}
-          className="lumos-text"
+          className="lumos__text"
           style={{
             left: `${lumosPosition.x}px`,
             top: `${lumosPosition.y}px`,
@@ -152,7 +152,7 @@ const LumosEasterEgg = () => {
       {isDesktop && lightEffect && (
         <div
           ref={lightRef}
-          className="lumos-light"
+          className="lumos__light"
           style={{
             left: "0px",
             top: "0px",

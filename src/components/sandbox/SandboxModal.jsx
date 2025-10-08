@@ -191,17 +191,23 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
   };
 
   return (
-    <div className="sandbox-modal_wrapper" onClick={handleBackdropClick}>
-      <div className={`modal-content ${imageOrientation}`}>
-        <div className="modal-header">
-          <div className="modal-links">
+    <div className="sandbox-modal" onClick={handleBackdropClick}>
+      <div
+        className={`sandbox-modal__content ${
+          imageOrientation === "portrait"
+            ? "sandbox-modal__content--portrait"
+            : ""
+        }`}
+      >
+        <div className="sandbox-modal__header">
+          <div className="sandbox-modal__links">
             {data.links?.liveDemo && (
               <a
                 href={data.links.liveDemo}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Live Demo"
-                className="modal-button"
+                className="sandbox-modal__button"
               >
                 <FiExternalLink size="2rem" color="#d13221" />
               </a>
@@ -212,13 +218,13 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="modal-button"
+                className="sandbox-modal__button"
               >
                 <AiFillGithub size="2rem" color="#d13221" />
               </a>
             )}
           </div>
-          <button className="modal-close" onClick={onClose}>
+          <button className="sandbox-modal__close" onClick={onClose}>
             <svg viewBox="0 0 93.76 93.76">
               <g>
                 <path
@@ -246,8 +252,8 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
           </button>
         </div>
 
-        <div className="modal-body">
-          <div className="modal-image">
+        <div className="sandbox-modal__body">
+          <div className="sandbox-modal__image">
             {!mediaLoaded && (
               <div className="loading-overlay">
                 <div className="spinner" />
@@ -260,28 +266,36 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
             {images.length > 1 && (
               <>
                 <button
-                  className="carousel-nav carousel-nav-prev"
+                  className="sandbox-modal__carousel-nav sandbox-modal__carousel-nav--prev"
                   onClick={prevImage}
                   aria-label="Previous image"
                 >
-                  <AnimatedArrow direction="left" className="animated-arrow" />
+                  <AnimatedArrow
+                    direction="left"
+                    className="sandbox-modal__carousel-arrow"
+                  />
                 </button>
 
                 <button
-                  className="carousel-nav carousel-nav-next"
+                  className="sandbox-modal__carousel-nav sandbox-modal__carousel-nav--next"
                   onClick={nextImage}
                   aria-label="Next image"
                 >
-                  <AnimatedArrow direction="right" className="animated-arrow" />
+                  <AnimatedArrow
+                    direction="right"
+                    className="sandbox-modal__carousel-arrow"
+                  />
                 </button>
 
                 {/* 도트 인디케이터 */}
-                <div className="carousel-dots">
+                <div className="sandbox-modal__carousel-dots">
                   {images.map((_, index) => (
                     <button
                       key={index}
-                      className={`carousel-dot ${
-                        index === currentImageIndex ? "active" : ""
+                      className={`sandbox-modal__carousel-dot ${
+                        index === currentImageIndex
+                          ? "sandbox-modal__carousel-dot--active"
+                          : ""
                       }`}
                       onClick={() => setCurrentImageIndex(index)}
                       aria-label={`Go to image ${index + 1}`}
@@ -292,19 +306,19 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
             )}
           </div>
 
-          <div className="modal-info">
-            <div className="modal-info-left">
-              <h3 className="modal-title">{data.title}</h3>
-              <div className="modal-stack">
+          <div className="sandbox-modal__info">
+            <div className="sandbox-modal__info-left">
+              <h3 className="sandbox-modal__title">{data.title}</h3>
+              <div className="sandbox-modal__stack">
                 {data.stack?.map((tech, index) => (
-                  <span key={index} className="tech-tag">
+                  <span key={index} className="sandbox-modal__tag">
                     {getIcon(tech)}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="modal-info-right">
+            <div className="sandbox-modal__info-right">
               {/* 현재 이미지에 캡션이 있으면 표시, 없으면 기본 설명 */}
               {currentImage?.caption || data.description}
             </div>

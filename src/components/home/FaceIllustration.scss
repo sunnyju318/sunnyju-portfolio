@@ -1,10 +1,34 @@
-@use '../../styles/base/variables.scss' as vars;
-@use '../../styles/base/mixin.scss' as mixins;
+@use "../../styles/base/variables.scss" as vars;
+@use "../../styles/base/mixin.scss" as mixins;
 
 .face-wrapper {
   @include mixins.flex-center;
-}
 
-.face-svg {
-  width: 80%;
+  &__svg {
+    width: 80%;
+  }
+
+  &__modal {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+    max-width: 400px;
+    padding: 20px 30px;
+    line-height: vars.$line-height-normal;
+
+    // 스타일링
+    background: rgba(vars.$near-black, 0.5);
+    backdrop-filter: blur(10px);
+    color: vars.$muted-beige;
+    border-radius: 16px;
+    border: 1px solid rgba(vars.$dusty-rose, 0.2);
+    box-shadow: 0 25px 80px rgba(vars.$near-black, 0.6);
+
+    p {
+      margin: 0;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./VancouverClock.scss";
 
-export default function VancouverClock() {
+export default function VancouverClock({ className }) {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -39,25 +39,25 @@ export default function VancouverClock() {
   const { weekday, hour, minute, second, dayPeriod } = formatTime(time);
 
   return (
-    <div className="vancouver-clock">
-      <div className="clock-container">
-        <div className="vancouver-place-container">
-          <span className="icon">
+    <div className={`vancouver-clock ${className || ""}`}>
+      <div className="vancouver-clock__container">
+        <div className="vancouver-clock__place-wrapper">
+          <span className="vancouver-clock__icon">
             <svg viewBox="0 0 90 123.75">
               <path d="M45 0C20.15 0 0 25.77 0 50.62s45 73.12 45 73.12 45-48.27 45-73.12S69.85 0 45 0m.56 68.26c-10.36 0-18.76-8.4-18.76-18.76s8.4-18.76 18.76-18.76 18.76 8.4 18.76 18.76-8.4 18.76-18.76 18.76" />
             </svg>
           </span>
-          <div className="vancouver-place">
-            <span className="location">Vancouver, </span>
-            <span className="location"> BC</span>
+          <div className="vancouver-clock__place">
+            <span className="vancouver-clock__location">Vancouver, </span>
+            <span className="vancouver-clock__location"> BC</span>
           </div>
         </div>
 
-        <span className="divider">{"|"}</span>
+        <span className="vancouver-clock__divider">{"|"}</span>
 
-        <div className="vancouver-clock-container">
-          <span className="time">{weekday}</span>
-          <span className="time">
+        <div className="vancouver-clock__time-wrapper">
+          <span className="vancouver-clock__time">{weekday}</span>
+          <span className="vancouver-clock__time">
             {hour}:{minute}:{second} {dayPeriod}
           </span>
         </div>

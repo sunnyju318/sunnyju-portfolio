@@ -11,14 +11,14 @@ function HeaderNavigation({ isScrolled, isContactOpen, setIsContactOpen }) {
 
   // Link는 내부 페이지 이동용이고 a는 다른 사이트 연결용이다
   return (
-    <nav className="menu-navigation-header">
+    <nav className="header-navigation">
       <ul>
         <li>
           <Link
-            className={`nav-link ${
+            className={`header-navigation__link ${
               location.pathname === "/projects" ||
               location.pathname.startsWith("/projects/")
-                ? "active"
+                ? "header-navigation__link--active"
                 : ""
             }`}
             to="/projects"
@@ -28,8 +28,10 @@ function HeaderNavigation({ isScrolled, isContactOpen, setIsContactOpen }) {
         </li>
         <li>
           <Link
-            className={`nav-link ${
-              location.pathname === "/about" ? "active" : ""
+            className={`header-navigation__link ${
+              location.pathname === "/about"
+                ? "header-navigation__link--active"
+                : ""
             }`}
             to="/about"
           >
@@ -38,8 +40,10 @@ function HeaderNavigation({ isScrolled, isContactOpen, setIsContactOpen }) {
         </li>
         <li>
           <Link
-            className={`nav-link ${
-              location.pathname === "/sandbox" ? "active" : ""
+            className={`header-navigation__link ${
+              location.pathname === "/sandbox"
+                ? "header-navigation__link--active"
+                : ""
             }`}
             to="/sandbox"
           >
@@ -49,9 +53,11 @@ function HeaderNavigation({ isScrolled, isContactOpen, setIsContactOpen }) {
         {/* Link는 내부적으로 <a> 태그를 렌더링한다. */}
       </ul>
 
-      <div className="menu-icons-header">
+      <div className="header-navigation__icons">
         <button
-          className={`nav-link-button ${isScrolled ? "scrolled" : ""}`}
+          className={`header-navigation__button ${
+            isScrolled ? "header-navigation__button--scrolled" : ""
+          }`}
           onClick={() => setIsContactOpen(!isContactOpen)}
         >
           Contact

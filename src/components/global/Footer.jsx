@@ -63,24 +63,26 @@ function Footer() {
   };
 
   return (
-    <footer>
-      <div className="footer-wrapper">
-        <div className="footer-text">
-          <p className="footer-title">Hi, I'm Jisun Ju</p>
-          <p className="footer-sub">But you can call me SUNNY</p>
-          <p className="footer-copy">© 2025 Sunny Ju. All rights reserved.</p>
+    <footer className="footer">
+      <div className="footer__wrapper">
+        <div className="footer__text">
+          <p className="footer__title">Hi, I'm Jisun Ju</p>
+          <p className="footer__subtitle">But you can call me SUNNY</p>
+          <p className="footer__copyright">
+            © 2025 Sunny Ju. All rights reserved.
+          </p>
         </div>
 
-        <div className="footer-divider" id="footer-boundary"></div>
-        <div className="footer-link">
+        <div className="footer__divider" id="footer-boundary"></div>
+        <div className="footer__link">
           <FooterNavigation />
-          <div className="social-icon-wrapper">
+          <div className="footer__social-wrapper">
             <a
               href="https://www.linkedin.com/in/jisun-ju/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="social-icon"
+              className="footer__social-icon"
             >
               in
             </a>
@@ -89,18 +91,20 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="social-icon"
+              className="footer__social-icon"
             >
               <AiFillGithub size="2rem" />
             </a>
           </div>
         </div>
 
-        <div className="contact-section">
+        <div className="footer__contact-section">
           <h2>GET IN TOUCH {":)"}</h2>
           <form
             id="contact-form"
-            className={`contact-form ${isExpanded ? "expanded" : ""}`}
+            className={`footer__contact-form ${
+              isExpanded ? "footer__contact-form--expanded" : ""
+            }`}
             onSubmit={handleSubmit}
           >
             <input
@@ -108,7 +112,7 @@ function Footer() {
               name="email"
               placeholder="Email"
               required
-              className="contact-form-input"
+              className="footer__contact-input"
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -118,7 +122,7 @@ function Footer() {
               name="message"
               placeholder="Message"
               required
-              className="contact-form-input"
+              className="footer__contact-input"
               value={formData.message}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -128,7 +132,9 @@ function Footer() {
             />
             <button
               type="submit"
-              className={`contact-form-button ${status}`}
+              className={`footer__contact-button ${
+                status ? `footer__contact-button--${status}` : ""
+              }`}
               disabled={status === "sending"} // 전송 중에는 클릭 비활성화
             >
               {status === "sending"
@@ -143,7 +149,7 @@ function Footer() {
         </div>
 
         <Link to="/" onClick={handleLogoClick}>
-          <span className="footer-logo" aria-label="Go to home"></span>
+          <span className="footer__logo" aria-label="Go to home"></span>
         </Link>
         {/* 인라인 요소<link>안에 블록<div>요소를 넣는것은 HTML문법위반이므로 div에서 span으로 바꾸고 display: inline-block를 줘서 높이를 주는게 가능하도록 하였다 */}
       </div>

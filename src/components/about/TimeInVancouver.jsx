@@ -21,17 +21,14 @@ function TimeInVancouver() {
 
       setTimeElapsed(
         <>
-          <span className="number">{days}</span>
-          <span className="unit">days</span>
-          <span className="separator"> : </span>
-          <span className="number">{hours}</span>
-          {/* <span className="unit">h</span> */}
-          <span className="separator"> : </span>
-          <span className="number">{minutes}</span>
-          {/* <span className="unit">m</span> */}
-          <span className="separator"> : </span>
-          <span className="number">{seconds}</span>
-          {/* <span className="unit">s</span> */}
+          <span className="time-vancouver__number">{days}</span>
+          <span className="time-vancouver__unit">days</span>
+          <span className="time-vancouver__separator"> {"|"} </span>
+          <span className="time-vancouver__number">{hours}</span>
+          <span className="time-vancouver__separator"> : </span>
+          <span className="time-vancouver__number">{minutes}</span>
+          <span className="time-vancouver__separator"> : </span>
+          <span className="time-vancouver__number">{seconds}</span>
         </>
       );
     };
@@ -43,8 +40,8 @@ function TimeInVancouver() {
   }, []);
 
   return (
-    <div className="time-in-vancouver">
-      <p className="counter-text">{timeElapsed}</p>
+    <div className="time-vancouver">
+      <p className="time-vancouver__text">{timeElapsed}</p>
     </div>
   );
 }

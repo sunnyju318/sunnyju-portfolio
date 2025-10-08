@@ -18,18 +18,18 @@
   transition: all 0.1s ease; // 부드러운 등장/사라짐
   z-index: 600;
 
-  .scroll-arrow {
-    width: 25px;
-  }
-
-  &.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-
   &:hover {
     transform: translateY(-5px);
   }
+}
+
+.scroll-to-top__arrow {
+  width: 25px;
+}
+
+.scroll-to-top--visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 // Tablet

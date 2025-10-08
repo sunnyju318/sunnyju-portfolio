@@ -106,16 +106,17 @@ function Sandbox() {
 
       {/* 콘텐츠 */}
       <div className="sandbox-wrapper">
-        <div className="projects-title">
+        <div className="sandbox-wrapper__title">
           <AnimatedArrow direction="right" animated={true} />
           <h1>
-            SAND <span className="projects-title-highlight">BOX</span>
+            SAND <span className="sandbox-wrapper__title-highlight">BOX</span>
           </h1>
         </div>
+
         <Masonry
           breakpointCols={breakpointColumns}
-          className="masonry-grid"
-          columnClassName="masonry-grid-column"
+          className="sandbox-wrapper__masonry-grid"
+          columnClassName="sandbox-wrapper__grid-column"
         >
           {sandboxData.map((item, index) => (
             <SandboxCard

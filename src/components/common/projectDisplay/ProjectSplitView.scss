@@ -1,8 +1,8 @@
-@use '../../../styles/base/mixin.scss' as mixins;
-@use '../../../styles/base/variables.scss' as vars;
+@use "../../../styles/base/mixin.scss" as mixins;
+@use "../../../styles/base/variables.scss" as vars;
 
 // 전체 컨테이너
-.project-split-view-wrapper {
+.project-split-view {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 // 왼쪽 프리뷰 박스
-.preview-box-desktop {
+.project-split-view__preview {
   aspect-ratio: 5 / 3.2;
   width: 50%;
   border-radius: 20px;
@@ -22,72 +22,71 @@
   user-select: none;
   @include mixins.flex-center;
   position: relative;
-
-  .preview-img-desktop {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
+.project-split-view__preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 // 오른쪽 리스트 박스
-.featured-project-list-wrapper-desktop {
+.project-split-view__list {
   height: 100%;
   width: 50%;
   display: flex;
   flex-direction: column;
+}
 
-  .list-heading-wrapper-desktop {
-    padding: 1rem 0;
-    border-bottom: solid 1px vars.$dusty-rose;
-    display: flex;
-    color: vars.$dusty-rose;
+.project-split-view__list-heading-wrapper {
+  padding: 1rem 0;
+  border-bottom: solid 1px vars.$dusty-rose;
+  display: flex;
+  color: vars.$dusty-rose;
+}
+
+.project-split-view__list-heading {
+  font-size: vars.$font-size-4xl;
+}
+
+.project-split-view__list-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  cursor: pointer;
+  padding: 1rem 0;
+  gap: 1rem;
+  border-bottom: solid 1px vars.$dusty-rose;
+  min-height: 70px; // 고정 높이 설정
+  align-items: center; // 세로 중앙 정렬
+
+  span:nth-child(1) {
+    font-weight: vars.$font-weight-medium;
+    font-size: vars.$font-size-xl;
+    grid-column: 1/2;
+    text-align: start;
   }
 
-  .list-heading-desktop {
-    font-size: vars.$font-size-3xl-clamp;
+  span:nth-child(2) {
+    grid-column: 2/-1;
+    text-align: end;
   }
+}
 
-  .list-box-desktop {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    cursor: pointer;
-    padding: 1rem 0;
-    gap: 1rem;
-    border-bottom: solid 1px vars.$dusty-rose;
-    min-height: 70px; // 고정 높이 설정
-    align-items: center; // 세로 중앙 정렬
+.project-split-view__project-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 
-    span:nth-child(1) {
-      font-weight: vars.$font-weight-medium;
-      font-size: vars.$font-size-lg;
-      grid-column: 1/2;
-      text-align: start;
-    }
+.project-split-view__view-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  color: vars.$text-highlight-primary;
+  font-weight: 500;
+}
 
-    span:nth-child(2) {
-      grid-column: 2/-1;
-      text-align: end;
-    }
-  }
-
-  .featured-project-title-desktop {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .view-full-project-desktop {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1rem;
-    color: vars.$text-primary-accent;
-    font-weight: 500;
-
-    .featured-arrow-desktop {
-      width: 20px;
-    }
-  }
+.project-split-view__arrow {
+  width: 20px;
 }

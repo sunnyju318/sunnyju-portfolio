@@ -7,7 +7,7 @@ function NotFound() {
   return (
     <>
       {/* React 19 네이티브 메타데이터 */}
-      <title>unny Ju | 404</title>
+      <title>Sunny Ju | 404</title>
       <meta
         name="description"
         content="The page you're looking for doesn't exist. Return to Sunny Ju's portfolio homepage to explore featured work and designs."
@@ -40,16 +40,19 @@ function NotFound() {
       />
 
       {/* 콘텐츠 */}
-      <div className="notfound-wrapper">
+      <div className="notfound">
         <img
           src={nopage}
           alt="404 illustration - Page not found"
+          className="notfound__image"
           width="500"
           height="500"
           decoding="async"
         />
-        <p>Oops… The page you're looking for doesn't exist.</p>
-        <Link to="/" className="not-found-back-to-home">
+        <p className="notfound__text">
+          Oops… The page you're looking for doesn't exist.
+        </p>
+        <Link to="/" className="notfound__link">
           <AnimatedArrow animated={true} />
           Back to Home
         </Link>
