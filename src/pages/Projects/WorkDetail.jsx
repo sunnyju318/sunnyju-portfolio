@@ -117,102 +117,103 @@ function WorkDetail() {
       <meta name="twitter:image" content={ogImage} />
 
       {/* 컨텐츠 */}
-      <div className="work-detail-wrapper">
+      <div className="work-detail">
         {/* 헤더 */}
 
-        <div className="project-nav-container-top">
+        <div className="work-detail__nav-top">
           {prevProject ? (
             <Link
               to={`/projects/detail/${prevProject.id}`}
-              className="project-nav-link-top"
+              className="work-detail__nav-link"
             >
               <AnimatedArrow
                 direction="left"
-                className="project-nav-arrow-top"
+                className="work-detail__nav-arrow work-detail__nav-arrow--top"
               />
             </Link>
           ) : (
-            <div
-              className={`project-nav-link-top ${
-                !prevProject ? "disabled" : ""
-              }`}
-            >
+            <div className="work-detail__nav-link work-detail__nav-link--disabled">
               <AnimatedArrow
                 direction="left"
-                className="project-nav-arrow-top"
+                className="work-detail__nav-arrow work-detail__nav-arrow--top"
               />
             </div>
           )}
 
-          <Link to="/projects" className="projects-list">
+          <Link to="/projects" className="work-detail__projects-list">
             PROJECTS LIST
           </Link>
 
           {nextProject ? (
             <Link
               to={`/projects/detail/${nextProject.id}`}
-              className="project-nav-link-top"
+              className="work-detail__nav-link"
             >
               <AnimatedArrow
                 direction="right"
-                className="project-nav-arrow-top"
+                className="work-detail__nav-arrow work-detail__nav-arrow--top"
               />
             </Link>
           ) : (
-            <div
-              className={`project-nav-link-top ${
-                !nextProject ? "disabled" : ""
-              }`}
-            >
+            <div className="work-detail__nav-link work-detail__nav-link--disabled">
               <AnimatedArrow
                 direction="right"
-                className="project-nav-arrow-top"
+                className="work-detail__nav-arrow work-detail__nav-arrow--top"
               />
             </div>
           )}
         </div>
 
-        <h1 className="project-title">{work.title}</h1>
+        <h1 className="work-detail__title">{work.title}</h1>
 
-        <div className="project-links">
-          <div className="project-links-wrapper">
+        <div className="work-detail__links">
+          <div className="work-detail__links-wrapper">
             <a
               href={work.links.liveDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="sub-link"
+              className="work-detail__link"
             >
               Live Demo
             </a>
-            <AnimatedArrow direction="right" className="arrow-sub-link" />
+            <AnimatedArrow
+              direction="right"
+              className="work-detail__link-arrow"
+            />
           </div>
 
-          <div className="project-links-wrapper">
+          <div className="work-detail__links-wrapper">
             <a
               href={work.links.viewCode}
               target="_blank"
               rel="noopener noreferrer"
-              className="sub-link"
+              className="work-detail__link"
             >
               GitHub
             </a>
-            <AnimatedArrow direction="right" className="arrow-sub-link" />
+            <AnimatedArrow
+              direction="right"
+              className="work-detail__link-arrow"
+            />
           </div>
 
-          <div className="project-links-wrapper">
+          <div className="work-detail__links-wrapper">
             <a
               href={work.links.logDetail}
               target="_blank"
               rel="noopener noreferrer"
-              className="sub-link"
+              className="work-detail__link"
             >
               Project Log
             </a>
-            <AnimatedArrow direction="right" className="arrow-sub-link" />
+            <AnimatedArrow
+              direction="right"
+              className="work-detail__link-arrow"
+            />
           </div>
         </div>
 
-        <div className="preview-box">
+        <div className="work-detail__preview">
           <a
             href={work.links.liveDemo}
             target="_blank"
@@ -255,21 +256,21 @@ function WorkDetail() {
           </a>
         </div>
 
-        <div className="code-box">
+        <div className="work-detail__code">
           {work.codeSnippets && work.codeSnippets.length > 0 && (
             <CodeBlock codeSnippets={work.codeSnippets} />
           )}
         </div>
 
         {/* 디스크립션 섹션들 */}
-        <div className="description-sections">
-          <section className="section overview">
-            <h2 className="sections-heading">Overview</h2>
+        <div className="work-detail__sections">
+          <section className="work-detail__section work-detail__section--overview">
+            <h2 className="work-detail__section-heading">Overview</h2>
             <p>{work.sections.overview}</p>
           </section>
 
-          <section className="section stack">
-            <h2 className="sections-heading">Stack</h2>
+          <section className="work-detail__section work-detail__section--stack">
+            <h2 className="work-detail__section-heading">Stack</h2>
             <ul>
               {work.sections.stack.map((item, index) => (
                 <li key={index}>{item}</li>
@@ -278,17 +279,17 @@ function WorkDetail() {
           </section>
 
           {work.sections.designProcess && (
-            <section className="section design">
-              <div className="design-contents">
-                <h2 className="sections-heading">Design Process</h2>
+            <section className="work-detail__section work-detail__section--design">
+              <div className="work-detail__design-contents">
+                <h2 className="work-detail__section-heading">Design Process</h2>
                 <p>{work.sections.designProcess.description}</p>
 
-                <div className="project-links">
-                  <div className="project-links-wrapper">
+                <div className="work-detail__links">
+                  <div className="work-detail__links-wrapper">
                     {work.sections.designProcess.figmaLink && (
                       <a
                         href={work.sections.designProcess.figmaLink}
-                        className="sub-link"
+                        className="work-detail__link"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="prototype"
@@ -298,12 +299,12 @@ function WorkDetail() {
                     )}
                     <AnimatedArrow
                       direction="right"
-                      className="arrow-sub-link"
+                      className="work-detail__link-arrow"
                     />
                   </div>
-                  <div className="project-links-wrapper">
+                  <div className="work-detail__links-wrapper">
                     <a
-                      className="sub-link"
+                      className="work-detail__link"
                       href="/jisunju_brand-guide.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -313,7 +314,7 @@ function WorkDetail() {
                     </a>
                     <AnimatedArrow
                       direction="right"
-                      className="arrow-sub-link"
+                      className="work-detail__link-arrow"
                     />
                   </div>
                 </div>
@@ -321,7 +322,7 @@ function WorkDetail() {
 
               {work.sections.designProcess.images?.length > 0 && (
                 <div
-                  className="design-images"
+                  className="work-detail__design-images"
                   ref={designImagesRef}
                   onMouseDown={handleMouseDown}
                   onMouseLeave={handleMouseLeave}
@@ -345,8 +346,10 @@ function WorkDetail() {
             </section>
           )}
 
-          <section className="section dev">
-            <h2 className="sections-heading">Development Highlights</h2>
+          <section className="work-detail__section work-detail__section--dev">
+            <h2 className="work-detail__section-heading">
+              Development Highlights
+            </h2>
             <ul>
               {work.sections.developmentHighlights.map((item, index) => (
                 <li key={index}>{item}</li>
@@ -354,8 +357,10 @@ function WorkDetail() {
             </ul>
           </section>
 
-          <section className="section challenges">
-            <h2 className="sections-heading">Challenges & Learnings</h2>
+          <section className="work-detail__section work-detail__section--challenges">
+            <h2 className="work-detail__section-heading">
+              Challenges & Learnings
+            </h2>
             <ul>
               {work.sections.challengesAndLearnings.map((item, index) => (
                 <li key={index}>{item}</li>
@@ -364,42 +369,48 @@ function WorkDetail() {
           </section>
         </div>
 
-        <div className="project-links more-link">
-          <div className="project-links-wrapper ">
+        <div className="work-detail__links work-detail__links--more">
+          <div className="work-detail__links-wrapper">
             <a
               href={work.links.logDetail}
               target="_blank"
               rel="noopener noreferrer"
-              className="sub-link"
+              className="work-detail__link"
             >
               More About This Project
             </a>
             <AnimatedArrow
               direction="right"
-              className="arrow-sub-link more-arrow"
+              className="work-detail__link-arrow work-detail__link-arrow--more"
             />
           </div>
         </div>
 
         {/* 프로젝트 네비게이션 */}
-        <div className="project-nav-container-bottom">
+        <div className="work-detail__nav-bottom">
           {prevProject ? (
             <Link
               to={`/projects/detail/${prevProject.id}`}
-              className="project-nav-link prev"
+              className="work-detail__nav-item work-detail__nav-item--prev"
             >
-              <h2 className="project-nav-title">{prevProject.title}</h2>
-              <div className="project-title-wrapper">
-                <AnimatedArrow direction="left" className="project-nav-arrow" />
-                <div className="project-nav">Previous Project</div>
+              <h2 className="work-detail__nav-title">{prevProject.title}</h2>
+              <div className="work-detail__nav-text-wrapper">
+                <AnimatedArrow
+                  direction="left"
+                  className="work-detail__nav-arrow"
+                />
+                <div className="work-detail__nav-text">Previous Project</div>
               </div>
             </Link>
           ) : (
-            <div className="project-nav-link prev disabled">
-              <h2 className="project-nav-title">No Previous</h2>
-              <div className="project-title-wrapper">
-                <AnimatedArrow direction="left" className="project-nav-arrow" />
-                <div className="project-nav">Previous Project</div>
+            <div className="work-detail__nav-item work-detail__nav-item--prev work-detail__nav-item--disabled">
+              <h2 className="work-detail__nav-title">No Previous</h2>
+              <div className="work-detail__nav-text-wrapper">
+                <AnimatedArrow
+                  direction="left"
+                  className="work-detail__nav-arrow"
+                />
+                <div className="work-detail__nav-text">Previous Project</div>
               </div>
             </div>
           )}
@@ -407,25 +418,25 @@ function WorkDetail() {
           {nextProject ? (
             <Link
               to={`/projects/detail/${nextProject.id}`}
-              className="project-nav-link next"
+              className="work-detail__nav-item work-detail__nav-item--next"
             >
-              <h2 className="project-nav-title">{nextProject.title}</h2>
-              <div className="project-title-wrapper">
-                <div className="project-nav">Next Project</div>
+              <h2 className="work-detail__nav-title">{nextProject.title}</h2>
+              <div className="work-detail__nav-text-wrapper">
+                <div className="work-detail__nav-text">Next Project</div>
                 <AnimatedArrow
                   direction="right"
-                  className="project-nav-arrow"
+                  className="work-detail__nav-arrow"
                 />
               </div>
             </Link>
           ) : (
-            <div className="project-nav-link next disabled">
-              <h2 className="project-nav-title">COMING SOON</h2>
-              <div className="project-title-wrapper">
-                <div className="project-nav">Next Project</div>
+            <div className="work-detail__nav-item work-detail__nav-item--next work-detail__nav-item--disabled">
+              <h2 className="work-detail__nav-title">COMING SOON</h2>
+              <div className="work-detail__nav-text-wrapper">
+                <div className="work-detail__nav-text">Next Project</div>
                 <AnimatedArrow
                   direction="right"
-                  className="project-nav-arrow"
+                  className="work-detail__nav-arrow"
                 />
               </div>
             </div>

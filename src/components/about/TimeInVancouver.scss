@@ -1,52 +1,52 @@
 @use "../../styles/base/mixin.scss" as mixins;
 @use "../../styles/base/variables.scss" as vars;
 
-.time-in-vancouver {
-  .counter-text {
+.time-vancouver {
+  &__text {
     font-family: vars.$font-clock;
     font-weight: vars.$font-weight-semibold;
     letter-spacing: 0.9px;
-    font-size: vars.$font-size-lg;
     text-align: center;
+  }
 
-    .number {
-      color: vars.$muted-beige;
-    }
+  &__number {
+    color: vars.$muted-beige;
+    font-size: vars.$font-size-2xl;
+  }
 
-    .unit {
-      color: vars.$dusty-rose;
-      margin-left: 0.5rem;
-      font-size: vars.$font-size-md;
-    }
+  &__unit {
+    color: vars.$dusty-rose;
+    margin-left: 0.5rem;
+    font-size: vars.$font-size-base;
+  }
 
-    .separator {
-      color: rgba(vars.$dusty-rose, 0.4);
-    }
+  &__separator {
+    color: rgba(vars.$dusty-rose, 0.4);
   }
 }
 
 // Tablet
 @include mixins.respond-to("md") {
-  .time-in-vancouver {
-    .counter-text {
-      font-size: vars.$font-size-xl;
+  .time-vancouver {
+    &__number {
+      font-size: vars.$font-size-3xl;
+    }
 
-      .unit {
-        font-size: vars.$font-size-base;
-      }
+    &__unit {
+      font-size: vars.$font-size-xl;
     }
   }
 }
 
 // 데스크탑
 @include mixins.respond-to("lg") {
-  .time-in-vancouver {
-    .counter-text {
-      font-size: vars.$font-size-2xl;
+  .time-vancouver {
+    &__number {
+      font-size: vars.$font-size-4xl;
+    }
 
-      .unit {
-        font-size: vars.$font-size-lg;
-      }
+    &__unit {
+      font-size: vars.$font-size-2xl;
     }
   }
 }

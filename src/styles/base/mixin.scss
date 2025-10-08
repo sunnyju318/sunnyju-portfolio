@@ -151,15 +151,15 @@
 }
 
 @mixin section-title-mobile-beige {
-  color: vars.$text-heading-dark-alt;
-  font-size: vars.$font-size-3xl;
+  color: vars.$text-heading-secondary;
+  font-size: vars.$font-size-4xl;
   font-weight: vars.$font-weight-semibold;
   line-height: 4rem;
 }
 
 @mixin section-title-tablet-beige {
-  color: vars.$text-heading-dark-alt;
-  font-size: vars.$font-size-4xl;
+  color: vars.$text-heading-secondary;
+  font-size: vars.$font-size-5xl;
   font-weight: vars.$font-weight-semibold;
   line-height: 4rem;
 }

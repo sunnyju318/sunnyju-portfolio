@@ -13,8 +13,9 @@ export default function SandboxCard({
 
   return (
     <div className="sandbox-card" onClick={onClick}>
-      <div className="sandbox-card_image">
-        {!imageLoaded && <div className="skeleton" />}
+      {/* 이미지 영역 */}
+      <div className="sandbox-card__image">
+        {!imageLoaded && <div className="sandbox-card__image-skeleton" />}
         <img
           src={image}
           alt={`${title} Project thumbnail`}
@@ -25,11 +26,13 @@ export default function SandboxCard({
           onLoad={() => setImageLoaded(true)}
         />
       </div>
-      <div className="sandbox-card_content">
-        <h3 className="sandbox-card_title">{title}</h3>
-        <div className="sandbox-card_stack">
+
+      {/* 콘텐츠 영역 */}
+      <div className="sandbox-card__content">
+        <h3 className="sandbox-card__title">{title}</h3>
+        <div className="sandbox-card__stack">
           {stack?.map((tech, index) => (
-            <span key={index} className="tech-tag">
+            <span key={index} className="sandbox-card__tag">
               {getIcon(tech)}
             </span>
           ))}

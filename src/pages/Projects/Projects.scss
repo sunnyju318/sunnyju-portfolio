@@ -1,61 +1,67 @@
-@use '../../styles/base/mixin.scss' as mixins;
-@use '../../styles/base/variables.scss' as vars;
+@use "../../styles/base/mixin.scss" as mixins;
+@use "../../styles/base/variables.scss" as vars;
 
 .projects-wrapper {
   @include mixins.grid-layout();
   @include mixins.container();
-}
 
-.projects-title {
-  margin-top: 4rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-start;
-  align-items: center;
-  grid-column: 1/-1;
-
-  h1 {
-    font-size: vars.$font-size-2xl;
-
-    .projects-title-highlight {
-      color: vars.$text-primary-accent;
-    }
+  &__title {
+    margin-top: 4rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    grid-column: 1/-1;
   }
-}
 
-.my-projects-mobile-only {
-  margin-top: 3rem;
-  grid-column: 1/-1;
-}
+  &__title h1 {
+    font-size: vars.$font-size-3xl;
+  }
 
-.my-projects-desktop-only {
-  margin-top: 7rem;
-  grid-column: 1/-1;
-  display: none;
+  &__title-highlight {
+    color: vars.$text-highlight-primary;
+  }
+
+  &__list {
+    grid-column: 1/-1;
+  }
+
+  &__list--mobile {
+    margin-top: 3rem;
+  }
+
+  &__list--desktop {
+    margin-top: 7rem;
+    display: none;
+  }
 }
 
 // Tablet
-@include mixins.respond-to('md') {
-  .my-projects-mobile-only {
-    margin-top: 4rem;
-  }
+@include mixins.respond-to("md") {
+  .projects-wrapper {
+    &__list--mobile {
+      margin-top: 4rem;
+    }
 
-  .projects-title {
-    gap: 2rem;
+    &__title {
+      gap: 2rem;
+    }
 
-    h1 {
-      font-size: vars.$font-size-5xl-clamp;
+    &__title h1 {
+      font-size: vars.$font-size-6xl;
     }
   }
 }
 
 // Desktop
-@include mixins.respond-to('lg') {
-  .my-projects-mobile-only {
-    display: none;
-  }
+@include mixins.respond-to("lg") {
+  .projects-wrapper {
+    &__list--mobile {
+      display: none;
+    }
 
-  .my-projects-desktop-only {
-    display: block;
+    &__list--desktop {
+      display: block;
+    }
   }
 }

@@ -28,8 +28,8 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
     : worksData;
 
   return (
-    <div className="featured-project-list-wrapper">
-      <div className="list-heading">
+    <div className="project-accordion">
+      <div className="project-accordion__heading">
         <h3>{title}</h3>
         {/* 직접 텍스트를 넣은 Featured Projects로 하드코딩 되어있어서 프롭스를 넘겨줘도 제목이 변하지 않았다. 하드코딩을 props로 받은 title를 사용하도록 수정하였다. */}
       </div>
@@ -37,12 +37,14 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
       {featuredProjects.map((project, index) => (
         <div
           key={project.id}
-          className={`list-box ${expandedItem === index ? "list-item" : ""}`}
+          className={`project-accordion__item ${
+            expandedItem === index ? "project-accordion__item--expanded" : ""
+          }`}
           onClick={() => handleToggle(index, project.id)}
         >
           <AnimatePresence>
             <motion.span
-              className="featured-project-title"
+              className="project-accordion__title"
               animate={
                 expandedItem === index
                   ? {
@@ -63,7 +65,7 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
             ) : (
               <motion.span
                 key="view-full-project"
-                className="view-full-project"
+                className="project-accordion__view-link"
                 initial={{ opacity: 0, x: 0 }}
                 animate={{
                   opacity: [1, 1, 1],
@@ -73,7 +75,10 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
                 transition={{ duration: 0.2 }}
               >
                 <Link to={`/projects/detail/${project.id}`}>View Project</Link>
-                <AnimatedArrow className="featured-arrow" direction="right" />
+                <AnimatedArrow
+                  className="project-accordion__arrow"
+                  direction="right"
+                />
               </motion.span>
             )}
           </AnimatePresence>
@@ -81,7 +86,7 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
           {/* 조건부 렌더링은 div가 생성, 삭제되기 때문에 nth-child가 예상대로 작동하지 않을수 있다. 클래스명으로 직접 타겟팅하는게 나은 선택이다. */}
           {expandedItem === index && (
             <motion.div
-              className="project-preview"
+              className="project-accordion__preview"
               initial={{ height: 0, opacity: 0 }}
               // 시작할때: 높이 0, 투명
               animate={{ height: "auto", opacity: 1 }}
@@ -95,7 +100,7 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
                 // 부드러운 easing
               }}
             >
-              <div className="list-img-wrapper">
+              <div className="project-accordion__img-wrapper">
                 <img
                   src={project.thumbnail}
                   alt={`${project.title} Preview thumbnail of the project`}
@@ -107,7 +112,7 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
                 />
                 {/* 이미지에 반드시 alt 포함할것 */}
               </div>
-              <div className="list-text-wrapper">
+              <div className="project-accordion__text-wrapper">
                 <p>{project.tech}</p>
                 <p>{project.shortDescription}</p>
               </div>

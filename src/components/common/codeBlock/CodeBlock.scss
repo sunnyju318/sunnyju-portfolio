@@ -14,24 +14,13 @@
   font-weight: vars.$font-weight-regular;
 }
 
-.tab {
-  color: vars.$text-heading-dark-primary;
-  font-weight: vars.$font-weight-medium;
-  min-width: 105px;
-  // width → min-width로 변경
-  flex-shrink: 0;
-  // 탭이 줄어들지 않도록
-  padding: 0.3rem 0;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  background-color: rgba(vars.$muted-olive, 0.3);
-  text-align: center;
-  font-size: vars.$font-size-md;
-  white-space: nowrap;
-  // 탭 텍스트 줄바꿈 방지
+.code-block {
+  background-color: vars.$bg-code-block;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-.code-tabs {
+.code-block__tabs {
   scroll-behavior: smooth;
   display: flex;
   overflow-x: auto;
@@ -53,21 +42,33 @@
   // );
 }
 
-.tab.active {
+.code-block__tab {
+  color: vars.$text-heading-primary;
+  font-weight: vars.$font-weight-medium;
+  min-width: 105px;
+  // width → min-width로 변경
+  flex-shrink: 0;
+  // 탭이 줄어들지 않도록
+  padding: 0.3rem 0;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: rgba(vars.$muted-olive, 0.3);
+  text-align: center;
+  font-size: vars.$font-size-sm;
+  white-space: nowrap;
+  // 탭 텍스트 줄바꿈 방지
+}
+
+.code-block__tab--active {
   color: vars.$text-light-bg;
   font-weight: vars.$font-weight-semibold;
   background-color: vars.$bg-button;
 }
 
-.code-box {
-  background-color: vars.$bg-code-block;
-  overflow: hidden;
-  border-radius: 10px;
-  .code-content {
-    &.highlighting {
-      visibility: hidden;
-      padding: 0.5rem;
-    }
+.code-block__content {
+  &--highlighting {
+    visibility: hidden;
+    padding: 0.5rem;
   }
 }
 
@@ -80,7 +81,7 @@
 
 // Desktop
 @include mixins.respond-to("lg") {
-  .preview-box {
+  .code-block__preview {
     max-height: 477px;
   }
 
@@ -88,7 +89,7 @@
     height: 400px;
   }
 
-  .tab {
+  .code-block__tab {
     min-width: 130px;
     font-size: vars.$font-size-base;
   }

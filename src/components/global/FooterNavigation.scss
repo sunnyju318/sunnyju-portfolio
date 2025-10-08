@@ -1,17 +1,7 @@
 @use "../../styles/base/variables.scss" as vars;
 @use "../../styles/base/mixin.scss" as mixins;
 
-.footer-nav-wrapper {
-  .nav-highlight {
-    color: vars.$footer-text-alt;
-    @include mixins.hover-underline;
-    text-align: left;
-  }
-
-  .nav-plain {
-    @include mixins.hover-underline;
-  }
-
+.footer-navigation {
   display: flex;
   flex-direction: row;
   color: vars.$footer-text-primary;
@@ -19,40 +9,50 @@
 
   //디폴트
   gap: 2rem;
+}
 
-  .footer-col {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-  }
+.footer-navigation__link {
+  @include mixins.hover-underline;
+}
+
+.footer-navigation__link--highlight {
+  color: vars.$footer-text-alt;
+  @include mixins.hover-underline;
+  text-align: left;
+}
+
+.footer-navigation__col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
 }
 
 // 테블릿
 @include mixins.respond-to("md") {
-  .footer-nav-wrapper {
+  .footer-navigation {
     margin-bottom: 0rem;
     gap: 3rem;
-    font-size: vars.$font-size-lg;
+    font-size: vars.$font-size-xl;
+  }
 
-    .footer-col {
-      display: flex;
-      flex-direction: row;
-      gap: 3rem;
-    }
+  .footer-navigation__col {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
   }
 }
 
 // 데스크탑
 @include mixins.respond-to("lg") {
-  .footer-nav-wrapper {
+  .footer-navigation {
     margin-bottom: 0rem;
     gap: 3rem;
+  }
 
-    .footer-col {
-      display: flex;
-      flex-direction: row;
-      gap: 3rem;
-    }
+  .footer-navigation__col {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
   }
 }

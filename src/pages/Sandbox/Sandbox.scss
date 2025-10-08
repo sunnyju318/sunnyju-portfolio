@@ -5,16 +5,32 @@
   @include mixins.grid-layout();
   @include mixins.container();
 
-  .masonry-grid {
+  &__title {
     margin-top: 4rem;
-    grid-column: 1/-1;
-    // 전체 그리드 차지
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    grid-column: 1 / -1;
+
+    h1 {
+      font-size: vars.$font-size-3xl;
+    }
+
+    &-highlight {
+      color: vars.$text-highlight-primary;
+    }
+  }
+
+  &__masonry-grid {
+    margin-top: 4rem;
+    grid-column: 1 / -1; // 전체 그리드 차지
     display: flex;
     margin-left: -20px;
     width: auto;
   }
 
-  .masonry-grid-column {
+  &__grid-column {
     padding-left: 20px;
     background-clip: padding-box;
 
@@ -22,13 +38,17 @@
       margin-bottom: 2rem;
     }
   }
-}
 
-// Tablet
-@include mixins.respond-to("md") {
-  .sandbox-wrapper {
-    .masonry-grid {
+  // Tablet
+  @include mixins.respond-to("md") {
+    &__masonry-grid {
       margin-top: 7rem;
+    }
+
+    &__title {
+      h1 {
+        font-size: vars.$font-size-6xl;
+      }
     }
   }
 }

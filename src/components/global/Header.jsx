@@ -29,21 +29,21 @@ function Header({
 
   // 여기서부터는 실제로 화면에 보여질 부분
   return (
-    <header className={isScrolled ? "scrolled" : ""}>
+    <header className={`header ${isScrolled ? "header--scrolled" : ""}`}>
       {/* isScrolled, 즉 스크롤이 되면 header에 className="scrolled"가 붙고 아니면 클레스가 없다. */}
-      <div className="header-content">
+      <div className="header__content">
         <Link
           to="/"
-          className="logo-header"
+          className="header__logo"
           aria-label="Go to home, Sunny Ju Portfolio"
         >
-          <div className="logo-text">
-            <span className="jisun">JISUN</span>
-            <span className="sunny">SUNNY</span>
-            <span className="ju-dot">JU</span>
+          <div className="header__logo-text">
+            <span className="header__logo-jisun">JISUN</span>
+            <span className="header__logo-sunny">SUNNY</span>
+            <span className="header__logo-ju-dot">JU</span>
           </div>
         </Link>
-        <div className="mobile-header-actions">
+        <div className="header__actions">
           <HeaderNavigation
             isScrolled={isScrolled}
             isContactOpen={isContactOpen}
@@ -51,7 +51,9 @@ function Header({
           />
 
           <a
-            className={`nav-link-button ${isScrolled ? "scrolled" : ""}`}
+            className={`header__button ${
+              isScrolled ? "header__button--scrolled" : ""
+            }`}
             href="/jisunju_resume.pdf"
             target="_blank"
             rel="noopener noreferrer"

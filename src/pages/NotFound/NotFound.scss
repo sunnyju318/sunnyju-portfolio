@@ -1,7 +1,7 @@
-@use '../../styles/base/mixin.scss' as mixins;
-@use '../../styles/base/variables.scss' as vars;
+@use "../../styles/base/mixin.scss" as mixins;
+@use "../../styles/base/variables.scss" as vars;
 
-.notfound-wrapper {
+.notfound {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -9,53 +9,50 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  background: vars.$near-black;
 
-  background: linear-gradient(190deg, vars.$bg-gradient-start 25%, vars.$bg-gradient-mid 60%, vars.$bg-gradient-end 140%);
-
-  img {
+  &__image {
     width: 200px;
     height: auto;
   }
 
-  p {
+  &__text {
     font-size: vars.$font-size-base;
     font-weight: vars.$font-weight-medium;
-    color: vars.$text-primary-accent;
+    color: vars.$muted-beige;
     width: 70%;
     text-align: center;
   }
 
-  .not-found-back-to-home {
+  &__link {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    font-size: vars.$font-size-lg;
-    color: vars.$text-primary-accent;
+    font-size: vars.$font-size-xl;
+    color: vars.$scarlet-red;
     @include mixins.hover-underline;
   }
 }
 
-
 // Tablet
-@include mixins.respond-to('md') {
-  .notfound-wrapper {
-    img {
+@include mixins.respond-to("md") {
+  .notfound {
+    &__image {
       width: 400px;
     }
 
-    p {
-      font-size: vars.$font-size-lg;
+    &__text {
+      font-size: vars.$font-size-xl;
     }
   }
 }
 
-
 // Desktop
-@include mixins.respond-to('lg') {
-  .notfound-wrapper {
-    img {
+@include mixins.respond-to("lg") {
+  .notfound {
+    &__image {
       width: 700px;
     }
   }

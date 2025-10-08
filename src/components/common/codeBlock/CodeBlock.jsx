@@ -26,7 +26,7 @@ function CodeBlock({ codeSnippets }) {
     setIsHighlighting(true);
     const frame = requestAnimationFrame(() => {
       // 기존 하이라이트 제거 후 다시 적용
-      const codeElement = document.querySelector(".code-content code");
+      const codeElement = document.querySelector(".code-block__content code");
       if (codeElement) {
         // 기존 하이라이트 속성 제거
         codeElement.removeAttribute("data-highlighted");
@@ -68,12 +68,14 @@ function CodeBlock({ codeSnippets }) {
   };
 
   return (
-    <div className="code-box">
-      <div className="code-tabs" ref={tabsRef}>
+    <div className="code-block">
+      <div className="code-block__tabs" ref={tabsRef}>
         {codeSnippets.map((snippet, index) => (
           <button
             key={index}
-            className={`tab ${activeTab === index ? "active" : ""}`}
+            className={`code-block__tab ${
+              activeTab === index ? "code-block__tab--active" : ""
+            }`}
             onClick={() => handleTabClick(index)}
           >
             {snippet.tab}
@@ -81,7 +83,11 @@ function CodeBlock({ codeSnippets }) {
         ))}
       </div>
 
-      <div className={`code-content ${isHighlighting ? "highlighting" : ""}`}>
+      <div
+        className={`code-block__content ${
+          isHighlighting ? "code-block__content--highlighting" : ""
+        }`}
+      >
         <pre>
           <code className={`language-${codeSnippets[activeTab].language}`}>
             {codeSnippets[activeTab].code}

@@ -43,11 +43,11 @@ function ScrollToTop() {
 
   return (
     <button
-      className={`scroll-to-top ${isVisible ? "visible" : ""}`}
+      className={`scroll-to-top ${isVisible ? "scroll-to-top--visible" : ""}`}
       onClick={scrollToTop}
       aria-label="Scroll to top"
     >
-      <AnimatedArrow direction="up" className="scroll-arrow" />
+      <AnimatedArrow direction="up" className="scroll-to-top__arrow" />
     </button>
   );
 }

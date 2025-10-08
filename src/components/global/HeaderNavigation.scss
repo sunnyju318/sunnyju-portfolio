@@ -1,7 +1,7 @@
 @use "../../styles/base/variables.scss" as vars;
 @use "../../styles/base/mixin.scss" as mixins;
 
-.menu-navigation-header {
+.header-navigation {
   display: none; // 모바일 사이즈에서 숨김
   gap: 2rem;
   align-items: center;
@@ -9,46 +9,54 @@
   ul {
     display: flex;
     gap: 2rem;
-
-    .nav-link {
-      color: vars.$nav-text-desktop;
-      font-weight: vars.$font-weight-medium;
-      position: relative;
-      @include mixins.hover-underline;
-    }
   }
+}
 
-  // 스케일X는 가로 크기를 조절하는 거고,
-  // 처음엔 0이라서 안 보이다가 hover 하면 100%로 늘어난다.
-  // 오리진이 왼쪽이라서 왼쪽부터 오른쪽으로 나타난다.
+// 스케일X는 가로 크기를 조절하는 거고,
+// 처음엔 0이라서 안 보이다가 hover 하면 100%로 늘어난다.
+// 오리진이 왼쪽이라서 왼쪽부터 오른쪽으로 나타난다.
 
-  .menu-icons-header {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+.header-navigation__link {
+  color: vars.$nav-text-desktop;
+  font-weight: vars.$font-weight-medium;
+  position: relative;
+  @include mixins.hover-underline;
+}
+
+.header-navigation__link--active {
+  &::before {
+    transform: scaleX(1);
+    color: vars.$scarlet-red;
   }
+}
 
-  .nav-link-button {
-    color: vars.$near-black;
-    background: vars.$bg-button;
-    font-weight: vars.$font-weight-semibold;
-    padding: 0.4rem 0.7rem;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-    &.scrolled {
-      padding: 0.2rem 0.7rem;
-      transition: 0.5s ease;
-    }
-  }
+.header-navigation__icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 
-  .nav-link-button:hover {
+.header-navigation__button {
+  color: vars.$near-black;
+  background: vars.$bg-button;
+  font-weight: vars.$font-weight-semibold;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+
+  &:hover {
     background: vars.$bg-button-hover;
   }
 }
 
+.header-navigation__button--scrolled {
+  padding: 0.2rem 0.7rem;
+  transition: 0.5s ease;
+}
+
 //반응형
 @include mixins.respond-to("md") {
-  .menu-navigation-header {
+  .header-navigation {
     display: flex;
   }
 }

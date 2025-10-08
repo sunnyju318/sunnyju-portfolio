@@ -6,231 +6,240 @@
   @include mixins.container();
   /* grid-layout에 이미 display:grid가 포함되어 있기 때문에 이미 해당 컨테이너는 그리드 컨테이너이며 그걸 직접 자식들에게 적용하는 용도이다.
 즉, 자식 요소들이 각각 자기 내부에서 grid를 쓴다면 해당 컨테이너가 grid일 필요는 없다.*/
-}
 
-.hero-text {
-  margin-top: 1rem;
-  text-align: center;
-  grid-column: 1/-1;
-
-  h1 {
-    color: vars.$text-primary-accent;
-    font-size: vars.$font-size-3xl;
+  // Hero 섹션
+  &__hero {
+    margin-top: 1rem;
+    text-align: center;
+    grid-column: 1/-1;
   }
 
-  h2 {
+  &__hero h1 {
+    color: vars.$text-highlight-primary;
+    font-size: vars.$font-size-4xl;
+  }
+
+  &__hero h2 {
     margin-top: 1.5rem;
     color: vars.$scarlet-red-dark;
-    font-size: vars.$font-size-lg;
+    font-size: vars.$font-size-xl;
   }
 
-  p {
+  &__hero p {
     margin-top: 0.5rem;
     font-weight: vars.$font-weight-medium;
   }
 
-  .vancouver-clock {
+  &__hero-lastname {
+    display: block;
+    // 기본적으로는 보임, 태블릿에서 숨김
+  }
+
+  &__hero-clock {
     margin-top: 1.5rem;
   }
-}
 
-.arrow-wrapper-top-mobile-only {
-  margin: 3rem auto 0 auto;
-  grid-column: 1/-1;
-}
+  // arrow 각각 반응형에서 따로 제어하기위해 className를 따로 주었다.
+  &__arrow {
+    grid-column: 1/-1;
+  }
 
-.arrow-wrapper-top-desktop-only {
-  display: none;
-}
+  &__arrow--top-mobile {
+    margin: 3rem auto 0 auto;
+  }
 
-// arrow 각각 반응형에서 따로 제어하기위해 className를 따로 주었다.
+  &__arrow--top-desktop {
+    display: none;
+  }
 
-.faceillustration-wrapper {
-  grid-column: 1/-1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
+  &__arrow--bottom-mobile {
+    margin: 2rem auto 0 auto;
+  }
 
-.faceillustration-container {
-  width: 90%;
-  max-width: 90%;
-}
+  &__arrow--bottom-desktop {
+    margin: 1rem auto 0 auto;
+    display: none;
+  }
 
-.arrow-wrapper-bottom-mobile-only {
-  margin: 2rem auto 0 auto;
-  grid-column: 1/-1;
-}
+  // Face Illustration
+  &__face {
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
 
-.arrow-wrapper-bottom-desktop-only {
-  margin: 1rem auto 0 auto;
-  grid-column: 1/-1;
-  display: none;
-}
+  &__face-container {
+    width: 90%;
+    max-width: 90%;
+  }
 
-.sub-link-container {
-  margin: 3rem auto 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1rem;
-  grid-column: 1/-1;
+  // Sublinks
+  &__sublinks {
+    margin: 3rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    grid-column: 1/-1;
+  }
 
-  .sub-link-wrapper {
+  &__sublinks-item {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
   }
 
-  .arrow-sub-link {
-    svg {
-      fill: vars.$text-heading-dark-alt;
-      width: 20px;
-    }
+  &__sublinks-arrow svg {
+    fill: vars.$text-heading-list;
+    width: 20px;
   }
 
-  .sub-link {
-    font-size: vars.$font-size-lg;
-    color: vars.$text-heading-dark-alt;
+  &__sublinks-link {
+    font-size: vars.$font-size-xl;
+    color: vars.$text-heading-list;
     user-select: none;
     @include mixins.hover-underline;
 
     // flex는 블록요소처럼 줄 전체 차지
     // inline-flex는 인라인 요소처럼 다른요소 옆에 올수 있음
   }
-}
 
-.project-list-wrapper-mobile-only {
-  margin: 4rem 0 0;
-  grid-column: 1/-1;
-}
+  // Projects
+  &__projects {
+    grid-column: 1/-1;
+  }
 
-.project-list-wrapper-desktopn-only {
-  display: none;
-  margin: 8rem 0 0;
-  grid-column: 1/-1;
+  &__projects--mobile {
+    margin: 4rem 0 0;
+  }
+
+  &__projects--desktop {
+    display: none;
+    margin: 8rem 0 0;
+  }
 }
 
 // Tablet
 @include mixins.respond-to("md") {
-  .arrow-wrapper-top-mobile-only {
-    display: none;
-  }
-
-  .arrow-wrapper-bottom-mobile-only {
-    display: none;
-  }
-
-  .hero-text {
-    grid-column: 1/3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    text-align: end;
-
-    h1 {
-      font-size: vars.$font-size-3xl;
+  .home-wrapper {
+    &__arrow--top-mobile {
+      display: none;
     }
 
-    h2 {
+    &__arrow--bottom-mobile {
+      display: none;
+    }
+
+    &__arrow--bottom-desktop {
+      display: block;
+    }
+
+    &__hero {
+      grid-column: 1/3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: end;
+    }
+
+    &__hero h1 {
+      font-size: vars.$font-size-4xl;
+    }
+
+    &__hero h2 {
       font-size: vars.$font-size-base;
     }
 
-    p {
+    &__hero p {
       margin-top: 1rem;
       font-size: vars.$font-size-base;
     }
 
-    .last-name {
+    &__hero-lastname {
       display: none;
     }
 
-    .vancouver-clock {
+    &__hero-clock {
       margin-top: 1.7rem;
     }
-  }
 
-  .faceillustration-wrapper {
-    grid-column: 3/7;
-    margin: 5rem 0 2rem 0;
-  }
+    &__face {
+      grid-column: 3/7;
+      margin: 5rem 0 2rem 0;
+    }
 
-  .faceillustration-container {
-    width: 90%;
-    max-width: 90%;
-  }
+    &__face-container {
+      width: 90%;
+      max-width: 90%;
+    }
 
-  .sub-link-container {
-    align-items: flex-start;
-    justify-content: center;
-    grid-column: 7/9;
+    &__sublinks {
+      align-items: flex-start;
+      justify-content: center;
+      grid-column: 7/9;
+    }
 
-    .sub-link {
+    &__sublinks-link {
       font-size: vars.$font-size-base;
     }
-  }
-
-  .arrow-wrapper-bottom-desktop-only {
-    display: block;
   }
 }
 
 // Desktop
 @include mixins.respond-to("lg") {
-  .arrow-wrapper-top-desktop-only {
-    margin-top: 4rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    grid-column: 6/7;
-  }
+  .home-wrapper {
+    &__arrow--top-desktop {
+      margin-top: 4rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      grid-column: 10/11;
+    }
 
-  .hero-text {
-    grid-column: 1/4;
+    &__hero {
+      grid-column: 1/4;
+    }
 
-    h1 {
+    &__hero h1 {
       text-align: end;
-      font-size: vars.$font-size-3xl-large;
+      font-size: vars.$font-size-7xl;
     }
 
-    h2 {
-      font-size: vars.$font-size-body-large;
+    &__hero h2 {
+      font-size: vars.$font-size-2xl;
     }
 
-    p {
+    &__hero p {
       font-size: vars.$font-size-xl;
     }
-  }
 
-  .faceillustration-wrapper {
-    grid-column: 4/10;
-    margin: 5rem 0 2rem 0;
-  }
-
-  .faceillustration-container {
-    width: 80%;
-    max-width: 80%;
-  }
-
-  .arrow-wrapper-top-desktop-only {
-    grid-column: 10/11;
-  }
-
-  .sub-link-container {
-    grid-column: 11/13;
-
-    .sub-link {
-      font-size: vars.$font-size-lg;
+    &__face {
+      grid-column: 4/10;
+      margin: 5rem 0 2rem 0;
     }
-  }
 
-  .project-list-wrapper-desktopn-only {
-    display: block;
-  }
+    &__face-container {
+      width: 80%;
+      max-width: 80%;
+    }
 
-  .project-list-wrapper-mobile-only {
-    display: none;
+    &__sublinks {
+      grid-column: 11/13;
+    }
+
+    &__sublinks-link {
+      font-size: vars.$font-size-xl;
+    }
+
+    &__projects--desktop {
+      display: block;
+    }
+
+    &__projects--mobile {
+      display: none;
+    }
   }
 }

@@ -14,11 +14,11 @@ function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
     : worksData;
 
   return (
-    <div className="project-split-view-wrapper">
-      <div className="preview-box-desktop">
+    <div className="project-split-view">
+      <div className="project-split-view__preview">
         {expandedItem !== null && (
           <img
-            className="preview-img-desktop"
+            className="project-split-view__preview-img"
             src={featuredProjects[expandedItem]?.thumbnail}
             alt={`${featuredProjects[expandedItem]?.title} Desktop preview thumbnail of the project`}
             // ?. : 자바스크립트 문법중 하나로 이 값이 존재하면 그 다음 속성을 읽고, 없으면 에러없이 undefined를 반환하라는 의미
@@ -29,21 +29,21 @@ function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
         )}
       </div>
 
-      <div className="featured-project-list-wrapper-desktop">
-        <div className="list-heading-wrapper-desktop">
-          <h2 className="list-heading-desktop">{title}</h2>
+      <div className="project-split-view__list">
+        <div className="project-split-view__list-heading-wrapper">
+          <h2 className="project-split-view__list-heading">{title}</h2>
         </div>
 
         {featuredProjects.map((project, index) => (
           <Link
             to={`/projects/detail/${project.id}`}
             key={project.id}
-            className="list-box-desktop"
+            className="project-split-view__list-item"
             onMouseEnter={() => setExpandedItem(index)}
             onMouseLeave={() => setExpandedItem(null)}
           >
             <motion.span
-              className="featured-project-title-desktop"
+              className="project-split-view__project-title"
               animate={
                 expandedItem === index
                   ? {
@@ -63,7 +63,7 @@ function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
               ) : (
                 <motion.span
                   key="view-full-project"
-                  className="view-full-project-desktop"
+                  className="project-split-view__view-link"
                   initial={{ opacity: 0, x: 0 }}
                   animate={{
                     opacity: [1, 1, 1],
@@ -74,7 +74,7 @@ function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
                 >
                   View Full Project
                   <AnimatedArrow
-                    className="featured-arrow-desktop"
+                    className="project-split-view__arrow"
                     direction="right"
                   />
                 </motion.span>

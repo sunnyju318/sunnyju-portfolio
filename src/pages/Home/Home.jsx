@@ -50,27 +50,27 @@ function Home({ isMenuOpen, isContactOpen }) {
 
       {/* 콘텐츠 */}
       <div className="home-wrapper">
-        <div className="hero-text">
+        <div className="home-wrapper__hero">
           <h1>
-            Sunny <span className="last-name">Ju</span>
+            Sunny <span className="home-wrapper__hero-lastname">Ju</span>
           </h1>
           <h2>
             Developer X <br />
             Product Designer
           </h2>
           <p>Code X Design</p>
-          <VancouverClock className="vancouver-clock" />
+          <VancouverClock className="home-wrapper__hero-clock" />
         </div>
 
-        <div className="arrow-wrapper-top-mobile-only">
+        <div className="home-wrapper__arrow home-wrapper__arrow--top-mobile">
           <AnimatedArrow direction="down" animated={true} />
         </div>
 
         {/* 그리드 컬럼 시스템에서 가로 사이즈를 100% 이하로 주었더니 
         margin: 0 auto;나 플렉스로 가운데 정렬시 이미지 사이즈가 변하는 현상 발생,
         대안으로 내부 컨테이너를 추가하고 이미지 사이즈와 가운데정렬 코드를 분리함 */}
-        <div className="faceillustration-wrapper">
-          <div className="faceillustration-container">
+        <div className="home-wrapper__face">
+          <div className="home-wrapper__face-container">
             <FaceIllustration
               isMenuOpen={isMenuOpen}
               isContactOpen={isContactOpen}
@@ -78,38 +78,44 @@ function Home({ isMenuOpen, isContactOpen }) {
           </div>
         </div>
 
-        <div className="arrow-wrapper-top-desktop-only">
+        <div className="home-wrapper__arrow home-wrapper__arrow--top-desktop">
           <AnimatedArrow direction="left" animated={true} />
         </div>
 
-        <div className="arrow-wrapper-bottom-mobile-only">
+        <div className="home-wrapper__arrow home-wrapper__arrow--bottom-mobile">
           <AnimatedArrow direction="down" animated={true} />
         </div>
 
-        <div className="sub-link-container">
-          <div className="sub-link-wrapper">
-            <Link className="sub-link" to="/about">
+        <div className="home-wrapper__sublinks">
+          <div className="home-wrapper__sublinks-item">
+            <Link className="home-wrapper__sublinks-link" to="/about">
               More about me
             </Link>
-            <AnimatedArrow className="arrow-sub-link" direction="right" />
+            <AnimatedArrow
+              className="home-wrapper__sublinks-arrow"
+              direction="right"
+            />
           </div>
-          <div className="sub-link-wrapper">
-            <Link className="sub-link" to="/projects">
+          <div className="home-wrapper__sublinks-item">
+            <Link className="home-wrapper__sublinks-link" to="/projects">
               See all projects
             </Link>
-            <AnimatedArrow className="arrow-sub-link" direction="right" />
+            <AnimatedArrow
+              className="home-wrapper__sublinks-arrow"
+              direction="right"
+            />
           </div>
         </div>
 
-        <div className="arrow-wrapper-bottom-desktop-only">
+        <div className="home-wrapper__arrow home-wrapper__arrow--bottom-desktop">
           <AnimatedArrow direction="down" animated={true} />
         </div>
 
-        <div className="project-list-wrapper-mobile-only">
+        <div className="home-wrapper__projects home-wrapper__projects--mobile">
           <ProjectAccordion />
         </div>
 
-        <div className="project-list-wrapper-desktopn-only">
+        <div className="home-wrapper__projects home-wrapper__projects--desktop">
           <ProjectSplitView />
         </div>
       </div>

@@ -1,7 +1,7 @@
 @use "../../styles/base/variables.scss" as vars;
 @use "../../styles/base/mixin.scss" as mixins;
 
-header {
+.header {
   width: 100%;
   position: fixed;
   top: 0;
@@ -11,111 +11,110 @@ header {
   // 총 시간 0.5s, ease-in-out과 비슷한 커스텀 버전
   // 초반에 height 대신 all이었으나 햄버거 메뉴 클릭시 오버레이되는 화면에 블러처리가 슬라이드인보다 0.5초 늦게 반영되는 버그를 확인한 후 all 대신 height에만 적용함
   height: 120px;
+}
 
-  &.scrolled {
-    height: 50px;
-    background: vars.$near-black;
-    // 헤더와 햄버거메뉴 클릭시 나오는 오버레이화면과 블러효과가 중첩되면서 브라우저 렌더링 충돌이 일어남, 디자인적인 측면 개선까지 고려하여 헤더 배경에서는 글라스모피즘을 삭제하고 단색처리함
-    transition: height 0.5s ease, background-color 0.3s ease 0.4s;
+// & : 현재 선택자(부모 셀럭터를 의미)
+// header {&.class} : 현재 선택자 header에 class가 붙었을때 적용
+// header {.class} : 현재 선택자 header 안에 class라는 클래스가 있음
+
+.header--scrolled {
+  height: 50px;
+  background: vars.$near-black;
+  // 헤더와 햄버거메뉴 클릭시 나오는 오버레이화면과 블러효과가 중첩되면서 브라우저 렌더링 충돌이 일어남, 디자인적인 측면 개선까지 고려하여 헤더 배경에서는 글라스모피즘을 삭제하고 단색처리함
+  transition: height 0.5s ease, background-color 0.3s ease 0.4s;
+}
+
+.header__content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  @include mixins.flex-between;
+  height: 100%;
+}
+
+.header__logo {
+  font-size: vars.$font-size-base;
+  color: vars.$logo-color-header;
+  font-family: vars.$logo-font-family;
+  font-weight: vars.$logo-font-weight;
+}
+
+.header__logo-text {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: flex-start;
+}
+
+.header__logo-jisun,
+.header__logo-sunny,
+.header__logo-ju-dot {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.header__logo-jisun {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.header__logo-sunny {
+  transform: translateX(0);
+  opacity: 1;
+
+  &::after {
+    content: "";
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
+}
 
-  // & : 현재 선택자(부모 셀럭터를 의미)
-  // header {&.class} : 현재 선택자 header에 class가 붙었을때 적용
-  // header {.class} : 현재 선택자 header 안에 class라는 클래스가 있음
+.header__logo-ju-dot {
+  transform: translateX(0);
+  opacity: 1;
+}
 
-  .header-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem;
-    @include mixins.flex-between;
-    height: 100%;
+.header__actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 
-    .logo-header {
-      font-size: vars.$font-size-base;
-      color: vars.$logo-color-header;
-      font-family: vars.$logo-font-family;
-      font-weight: vars.$logo-font-weight;
+.header__button {
+  font-size: vars.$font-size-sm;
+  color: vars.$near-black;
+  background: vars.$bg-button;
+  font-weight: vars.$font-weight-semibold;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 
-      .logo-text {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        align-items: flex-start;
-
-        .jisun,
-        .sunny,
-        .ju-dot {
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          white-space: nowrap;
-        }
-
-        .jisun {
-          transform: translateX(0);
-          opacity: 1;
-        }
-
-        .sunny {
-          transform: translateX(0);
-          opacity: 1;
-
-          &::after {
-            content: "";
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-        }
-
-        .ju-dot {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-    }
-  }
-
-  .mobile-header-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .nav-link-button {
-    font-size: vars.$font-size-md;
-    color: vars.$near-black;
-    background: vars.$bg-button;
-    font-weight: vars.$font-weight-semibold;
-    padding: 0.4rem 0.7rem;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-    &.scrolled {
-      padding: 0.2rem 0.7rem;
-      transition: 0.5s ease;
-    }
-  }
-
-  .nav-link-button:hover {
+  &:hover {
     background: vars.$bg-button-hover;
   }
+}
 
-  // 스크롤 시 애니메이션
-  &.scrolled {
-    .logo-header .logo-text {
-      .jisun {
-        transform: translateY(10px);
-        opacity: 0;
-      }
+.header__button--scrolled {
+  padding: 0.2rem 0.7rem;
+  transition: 0.5s ease;
+}
 
-      .ju-dot {
-        transform: translateY(0px);
-        opacity: 0;
-      }
+// 스크롤 시 애니메이션
+.header--scrolled {
+  .header__logo-jisun {
+    transform: translateY(10px);
+    opacity: 0;
+  }
 
-      .sunny {
-        &::after {
-          content: " JU";
-          animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
-          display: inline-block;
-        }
-      }
+  .header__logo-ju-dot {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+
+  .header__logo-sunny {
+    &::after {
+      content: " JU";
+      animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+      display: inline-block;
     }
   }
 }
@@ -138,15 +137,11 @@ header {
 
 //반응형
 @include mixins.respond-to("md") {
-  header {
-    .header-content {
-      .logo-header {
-        font-size: vars.$font-size-xl;
-      }
-    }
+  .header__logo {
+    font-size: vars.$font-size-2xl;
+  }
 
-    .nav-link-button {
-      font-size: vars.$font-size-base;
-    }
+  .header__button {
+    font-size: vars.$font-size-base;
   }
 }

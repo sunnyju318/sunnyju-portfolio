@@ -3,7 +3,7 @@
 
 // hanburger menu
 
-.hamburger {
+.navigation-dropdown__hamburger {
   display: block;
   background: transparent;
   border: none;
@@ -12,44 +12,46 @@
   height: 25px;
   position: relative;
   z-index: 300;
-}
 
-.hamburger svg {
-  width: 100%;
-  height: 100%;
-}
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 
-// 햄버거 메뉴 기본 색상
-.hamburger .cls-1 {
-  fill: vars.$nav-hamburger-closed;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  // 햄버거 메뉴 기본 색상
+  .cls-1 {
+    fill: vars.$nav-hamburger-closed;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 //헴버거 메뉴 클릭하여 열렸을때 색상
-.hamburger.open .cls-1 {
-  fill: vars.$nav-hamburger-open;
-}
+.navigation-dropdown__hamburger--open {
+  .cls-1 {
+    fill: vars.$nav-hamburger-open;
+  }
 
-// 클릭시 x자로 남는 색상
-.hamburger.open #Rec-1,
-.hamburger.open #Rec-3,
-.hamburger.open #Rec-5,
-.hamburger.open #Rec-7,
-.hamburger.open #Rec-9 {
-  opacity: 1;
-  fill: vars.$nav-hamburger-open;
-}
+  // 클릭시 x자로 남는 색상
+  #Rec-1,
+  #Rec-3,
+  #Rec-5,
+  #Rec-7,
+  #Rec-9 {
+    opacity: 1;
+    fill: vars.$nav-hamburger-open;
+  }
 
-//클릭시 지워지는 색상
-.hamburger.open #Rec-2,
-.hamburger.open #Rec-4,
-.hamburger.open #Rec-6,
-.hamburger.open #Rec-8 {
-  opacity: 0;
+  //클릭시 지워지는 색상
+  #Rec-2,
+  #Rec-4,
+  #Rec-6,
+  #Rec-8 {
+    opacity: 0;
+  }
 }
 
 // 모바일 메뉴 오버레이
-.mobile-menu-overlay {
+.navigation-dropdown__overlay {
   position: fixed;
   inset: 0; // top/right/bottom/left: 0;
   width: 100%;
@@ -66,11 +68,11 @@
   // 혹시 body 스크롤 방지가 안되는 경우를 대비한 fallback
 }
 
-.mobile-menu-overlay.open {
+.navigation-dropdown__overlay--open {
   transform: translateX(0);
 }
 
-.mobile-menu-content {
+.navigation-dropdown__menu {
   width: 100%;
   height: 100%;
   display: flex;
@@ -83,128 +85,126 @@
   // 메뉴 아이템이 많아져서 화면 높이를 초과할 경우를 대비
   // 모바일 메뉴 내부에서만 스크롤이 가능하도록 함(배경은 고정)
   // 작은 화면에서도 모든 메뉴에 접근이 가능하도록 보장
+
+  ul {
+    text-align: end;
+    width: 80%;
+  }
+
+  li {
+    margin: 2rem 0;
+  }
 }
 
-.mobile-menu-content ul {
-  text-align: end;
-  width: 80%;
-}
-
-.mobile-menu-content li {
-  margin: 2rem 0;
-}
-
-.mobile-menu-content .nav-link {
-  color: vars.$text-heading-dark-primary;
-  font-size: vars.$font-size-2xl;
+.navigation-dropdown__link {
+  color: vars.$text-heading-primary;
+  font-size: vars.$font-size-3xl;
   font-weight: vars.$font-weight-light;
   letter-spacing: 2px;
   transition: color 0.3s ease;
   padding: 0;
-}
 
-.nav-link-contact {
-  text-align: end;
-  position: relative;
-}
+  &:hover {
+    color: vars.$text-heading-list;
+  }
 
-.mobile-menu-content .nav-link:hover {
-  color: vars.$text-heading-dark-alt;
-}
-
-.mobile-menu-content .nav-link::before {
-  display: none;
+  &::before {
+    display: none;
+  }
 }
 
 // 현재 데스크탑 네비게이션에서 준 호버 효과를 모바일 메뉴에서는 제거한다.
 // 모바일 메뉴에서도 같은 .nav-link 클래스를 사용하기 때문에 문제가될수 있기 때문이다.
 
-.contact-wrapper {
+.navigation-dropdown__contact {
+  text-align: end;
+  position: relative;
+}
+
+.navigation-dropdown__contact-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  color: vars.$text-body-dark-alt;
+  color: vars.$text-body-secondary;
   overflow: hidden;
   position: absolute;
+}
 
-  .horizontal-line {
-    margin-top: 1.5rem;
-    width: 100%;
-    height: 1px;
-    background-color: vars.$scarlet-red;
-  }
+.navigation-dropdown__contact-line {
+  margin-top: 1.5rem;
+  width: 100%;
+  height: 1px;
+  background-color: vars.$scarlet-red;
+}
 
-  .contact-list {
+.navigation-dropdown__contact-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+
+  a {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
-
-    .email-address-container {
-      @include mixins.flex-center;
-      gap: 1rem;
-    }
-
-    .email-address {
-      font-size: vars.$font-size-lg;
-      @include mixins.hover-underline;
-    }
-
-    a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .social-icon-wrapper {
-      display: flex;
-      gap: 1rem;
-
-      .social-icon {
-        @include mixins.social-icon;
-      }
-    }
+    gap: 0.5rem;
   }
+}
 
-  .contact-sub-title {
-    font-weight: vars.$font-weight-medium;
-    font-size: vars.$font-size-lg;
-    display: none;
-  }
+.navigation-dropdown__email-container {
+  @include mixins.flex-center;
+  gap: 1rem;
+}
 
-  .contact-arrow {
-    width: 20px;
-  }
+.navigation-dropdown__email-address {
+  font-size: vars.$font-size-xl;
+  @include mixins.hover-underline;
+}
+
+.navigation-dropdown__social-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.navigation-dropdown__social-icon {
+  @include mixins.social-icon;
+}
+
+.navigation-dropdown__contact-subtitle {
+  font-weight: vars.$font-weight-medium;
+  font-size: vars.$font-size-xl;
+  display: none;
+}
+
+.navigation-dropdown__contact-arrow {
+  width: 20px;
 }
 
 //반응형
 @include mixins.respond-to("md") {
-  .nav-link-contact {
+  .navigation-dropdown__contact {
     // 데스크탑에서는 pointer-events 비활성화
-    .nav-link {
+    .navigation-dropdown__link {
       pointer-events: none;
     }
   }
 
-  .mobile-menu-content {
+  .navigation-dropdown__menu {
     align-items: center;
   }
 
-  .contact-wrapper {
+  .navigation-dropdown__contact-wrapper {
     min-width: 400px;
     width: 100%;
   }
 
-  .contact-list {
-    .contact-sub-title {
-      display: block;
-    }
+  .navigation-dropdown__contact-subtitle {
+    display: block;
   }
 
-  .hamburger {
+  .navigation-dropdown__hamburger {
     display: none;
 
-    &.contact-mode {
+    &--contact-mode {
       display: block;
       position: fixed;
       top: 50px;
@@ -217,7 +217,7 @@
 
   // 컨텍트를 클릭하면 contact-mode 라는 클래스가 붙는다
 
-  .menu-navigation-header {
+  .navigation-dropdown__header {
     display: flex;
   }
 }
