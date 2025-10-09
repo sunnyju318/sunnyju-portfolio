@@ -1,5 +1,7 @@
 @use "./variables.scss" as vars;
 @use "sass:map";
+// 패러미터가 없는 mixin은 @include 쓸때 ()가 없어도 된다.
+
 // map-get() → @use "sass:map" + map.get() : map 사용방식이 바뀜
 // Sass는 최근 버전부터 전역 함수 사용을 줄이고, **모듈 방식(@use)**을 도입해서 더 명확한 코딩 스타일을 강제하고 있다.
 
@@ -7,7 +9,7 @@
 
 // **** respond-to()는 디자인 시스템에 정해진 breakpoint map을 참조하는 방식이고 grid-span()은 반복해서 다양하게 적용될수 있는 값을 직접 넣는 스타일용 방식이다.
 
-/* === Responsive Mixins === */
+// =============== Responsive ===============
 
 // respond-to : 모바일 우선 접근법
 // 미디어쿼리라고 생각하면 된다
@@ -44,24 +46,7 @@
   }
 }
 
-/* === Grid Column Span Mixins === */
-
-// 지금의 식으로는 모바일대응만 자동화 가능
-// 태블릿까지 대응하는 새로운 mixin에 대해서는 더 공부해 볼것
-// 아직 이해가 가지 않으니 나중에 다시 공부할것
-
-@mixin grid-span($columns, $total: 12) {
-  grid-column: span $columns;
-
-  @if $total != 12 {
-    // 작은 화면에서 다른 총 컬럼 수 처리
-    @include respond-below("md") {
-      grid-column: span min($columns, $total);
-    }
-  }
-}
-
-/* === Container Mixins === */
+// =============== Container ===============
 
 /* 전체 컨테이너를 가운데 정렬한 뒤
 최대 가로사이즈를 제한하고 반응형에 맞게
@@ -98,7 +83,8 @@
   // 화면이 넓어질수록 패딩도 점점 넓어지게 해준다
 }
 
-/* === Grid Layout Mixins === */
+// =============== Grid Layout ===============
+
 @mixin grid-layout($columns: 12, $gap: 1rem) {
   // $columns : 총 컬럼수를 정해주는 패러미터, 기본값은 12
   // $gap : 갭을 정해주는 패러미터, 기본값은 1rem
@@ -120,24 +106,10 @@
 }
 // 내부 컨텐츠들은 grid-column으로 몇칸 차지할지 정해줄것.
 
-/* === Responsive Auto Grid Layout Mixins === */
+// =============== Flex Utility Mixins ===============
 
-// 나중에 다시 공부하기
-// 사용처 예 : 프로젝트 카드목록, 이미지 갤러리, 블로그 썸네일목록 등
-@mixin auto-grid($min-width: 300px, $gap: 1rem) {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
-  gap: $gap;
+// Flex
 
-  @include respond-below("md") {
-    grid-template-columns: 1fr;
-    gap: map.get(vars.$grid-gap, "sm");
-  }
-}
-
-/* === Flex Utility Mixins === */
-
-// 패러미터가 없는 mixin은 @include 쓸때 ()가 없어도 된다.
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -149,6 +121,14 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Section Title
 
 @mixin section-title-mobile-beige {
   color: vars.$text-heading-secondary;
@@ -164,7 +144,8 @@
   line-height: 4rem;
 }
 
-// 호버 언더라인 애니메이션
+// Hover Underline
+
 @mixin hover-underline {
   position: relative;
 
@@ -191,6 +172,16 @@
   }
 }
 
+// Surface Block
+
+@mixin surface-glass {
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 0 50px rgba(vars.$near-black, 0.5);
+  background: rgba(vars.$dark-forest, 0.01);
+}
+
+// Social Icon
+
 @mixin social-icon {
   @include flex-center;
   color: vars.$scarlet-red;
@@ -207,6 +198,8 @@
     color: vars.$near-black;
   }
 }
+
+// Loading Spinner
 
 @mixin loading-spinner {
   .loading-overlay {
@@ -231,4 +224,24 @@
       transform: rotate(360deg);
     }
   }
+}
+
+// Image
+
+@mixin image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+@mixin image-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+// Position
+
+@mixin absolute-fill {
+  position: absolute;
+  inset: 0;
 }

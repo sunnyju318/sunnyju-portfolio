@@ -82,7 +82,7 @@ table {
 
 /* Set base line-height and font smoothing */
 body {
-  $line-height-normal: 1.6;
+  line-height: vars.$line-height-normal;
   -webkit-font-smoothing: antialiased;
   //폰트를 더 얇고 부드럽게 해준다
   -moz-osx-font-smoothing: grayscale;

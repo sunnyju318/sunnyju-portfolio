@@ -1,17 +1,19 @@
 @use "../../styles/base/mixin.scss" as mixins;
 @use "../../styles/base/variables.scss" as vars;
 
+// ========== Mobile (default) ==========
+
 .sandbox-wrapper {
   @include mixins.grid-layout();
   @include mixins.container();
 
   &__title {
-    margin-top: 4rem;
+    grid-column: 1 / -1;
     display: flex;
-    gap: 1rem;
     justify-content: flex-start;
     align-items: center;
-    grid-column: 1 / -1;
+    margin-top: 4rem;
+    gap: 1rem;
 
     h1 {
       font-size: vars.$font-size-3xl;
@@ -23,15 +25,15 @@
   }
 
   &__masonry-grid {
-    margin-top: 4rem;
-    grid-column: 1 / -1; // 전체 그리드 차지
+    grid-column: 1 / -1;
+    /*  전체 그리드 차지 */
     display: flex;
-    margin-left: -20px;
     width: auto;
+    margin: 4rem 0 0 -1.25rem;
   }
 
   &__grid-column {
-    padding-left: 20px;
+    padding-left: 1.25rem;
     background-clip: padding-box;
 
     > * {
@@ -39,7 +41,8 @@
     }
   }
 
-  // Tablet
+  // =============== Tablet ===============
+
   @include mixins.respond-to("md") {
     &__masonry-grid {
       margin-top: 7rem;

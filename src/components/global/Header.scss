@@ -1,127 +1,130 @@
 @use "../../styles/base/variables.scss" as vars;
 @use "../../styles/base/mixin.scss" as mixins;
 
+// ========== Mobile (default) ==========
+
 .header {
-  width: 100%;
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
-  transition: height 0.5s ease;
-  // 총 시간 0.5s, ease-in-out과 비슷한 커스텀 버전
-  // 초반에 height 대신 all이었으나 햄버거 메뉴 클릭시 오버레이되는 화면에 블러처리가 슬라이드인보다 0.5초 늦게 반영되는 버그를 확인한 후 all 대신 height에만 적용함
+  width: 100%;
   height: 120px;
-}
+  transition: height 0.5s ease;
+  /* 총 시간 0.5s, ease-in-out과 비슷한 커스텀 버전
+  초반에 height 대신 all이었으나 햄버거 메뉴 클릭시 오버레이되는 화면에 블러처리가 슬라이드인보다 0.5초 늦게 반영되는 버그를 확인한 후 all 대신 height에만 적용함 */
 
-// & : 현재 선택자(부모 셀럭터를 의미)
-// header {&.class} : 현재 선택자 header에 class가 붙었을때 적용
-// header {.class} : 현재 선택자 header 안에 class라는 클래스가 있음
+  /* & : 현재 선택자(부모 셀럭터를 의미)
+   header {&.class} : 현재 선택자 header에 class가 붙었을때 적용
+   header {.class} : 현재 선택자 header 안에 class라는 클래스가 있음 */
 
-.header--scrolled {
-  height: 50px;
-  background: vars.$near-black;
-  // 헤더와 햄버거메뉴 클릭시 나오는 오버레이화면과 블러효과가 중첩되면서 브라우저 렌더링 충돌이 일어남, 디자인적인 측면 개선까지 고려하여 헤더 배경에서는 글라스모피즘을 삭제하고 단색처리함
-  transition: height 0.5s ease, background-color 0.3s ease 0.4s;
-}
+  &--scrolled {
+    height: 50px;
+    background: vars.$near-black;
+    /* 헤더와 햄버거메뉴 클릭시 나오는 오버레이화면과 블러효과가 중첩되면서 브라우저 렌더링 충돌이 일어남, 디자인적인 측면 개선까지 고려하여 헤더 배경에서는 글라스모피즘을 삭제하고 단색처리함 */
+    transition: height 0.5s ease, background-color 0.3s ease 0.4s;
 
-.header__content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem;
-  @include mixins.flex-between;
-  height: 100%;
-}
+    /* 스크롤 시 애니메이션 */
+    .header__logo-jisun {
+      transform: translateY(10px);
+      opacity: 0;
+    }
 
-.header__logo {
-  font-size: vars.$font-size-base;
-  color: vars.$logo-color-header;
-  font-family: vars.$logo-font-family;
-  font-weight: vars.$logo-font-weight;
-}
+    .header__logo-ju-dot {
+      transform: translateY(0px);
+      opacity: 0;
+    }
 
-.header__logo-text {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: flex-start;
-}
-
-.header__logo-jisun,
-.header__logo-sunny,
-.header__logo-ju-dot {
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
-}
-
-.header__logo-jisun {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.header__logo-sunny {
-  transform: translateX(0);
-  opacity: 1;
-
-  &::after {
-    content: "";
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-}
-
-.header__logo-ju-dot {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.header__actions {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.header__button {
-  font-size: vars.$font-size-sm;
-  color: vars.$near-black;
-  background: vars.$bg-button;
-  font-weight: vars.$font-weight-semibold;
-  padding: 0.4rem 0.7rem;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background: vars.$bg-button-hover;
-  }
-}
-
-.header__button--scrolled {
-  padding: 0.2rem 0.7rem;
-  transition: 0.5s ease;
-}
-
-// 스크롤 시 애니메이션
-.header--scrolled {
-  .header__logo-jisun {
-    transform: translateY(10px);
-    opacity: 0;
+    .header__logo-sunny {
+      &::after {
+        content: " JU";
+        animation: slideInRight 0.2s ease-in-out 0.2s both;
+        display: inline-block;
+      }
+    }
   }
 
-  .header__logo-ju-dot {
-    transform: translateY(0px);
-    opacity: 0;
+  &__content {
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    @include mixins.flex-between;
   }
 
-  .header__logo-sunny {
-    &::after {
-      content: " JU";
-      animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
-      display: inline-block;
+  &__logo {
+    color: vars.$dusty-rose;
+    font-weight: vars.$font-weight-bold;
+
+    &-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    &-jisun,
+    &-sunny,
+    &-ju-dot {
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+      line-height: vars.$line-height-xs;
+    }
+
+    &-jisun {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    &-sunny {
+      transform: translateX(0);
+      opacity: 1;
+
+      &::after {
+        content: "";
+        transition: all 0.6s ease-in-out;
+      }
+    }
+
+    &-ju-dot {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  // <---------- Resume Button ---------->
+
+  /* 모바일 버전에서 resume 버튼은 헤더네비게이션 밖에
+  남아야 하므로 헤더에서 별도로 스타일 지정함 */
+  &__button {
+    font-size: vars.$font-size-sm;
+    color: vars.$near-black;
+    background: vars.$scarlet-red;
+    font-weight: vars.$font-weight-semibold;
+    padding: 0.2rem 0.7rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: vars.$scarlet-red-dark;
+    }
+
+    &--scrolled {
+      padding: 0 0.7rem;
+      transition: 0.5s ease;
     }
   }
 }
 
-// 초기 접근에서 slideInRight의 transform이 작동하지 않음
-// ::after 가상요소는 기본적으로 display:inline 이기 때문임
-// ::after 에 display: inline-block; 을 줘서 해결함
+/* 초기 접근에서 slideInRight의 transform이 작동하지 않음
+ ::after 가상요소는 기본적으로 display:inline 이기 때문임
+ ::after 에 display: inline-block; 을 줘서 해결함 */
 
 @keyframes slideInRight {
   from {
@@ -135,7 +138,8 @@
   }
 }
 
-//반응형
+// =============== Tablet ===============
+
 @include mixins.respond-to("md") {
   .header__logo {
     font-size: vars.$font-size-2xl;
