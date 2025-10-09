@@ -1,75 +1,83 @@
 @use "../../styles/base/variables.scss" as vars;
 @use "../../styles/base/mixin.scss" as mixins;
 
-// hanburger menu
+// ========== Mobile (default) ==========
+
+// <---------- Hanburger Menu ---------->
 
 .navigation-dropdown__hamburger {
+  z-index: 300;
   display: block;
+  position: relative;
+  width: 25px;
+  height: 25px;
   background: transparent;
   border: none;
   cursor: pointer;
-  width: 25px;
-  height: 25px;
-  position: relative;
-  z-index: 300;
 
   svg {
     width: 100%;
     height: 100%;
   }
 
-  // 햄버거 메뉴 기본 색상
+  // Default Color
+
   .cls-1 {
-    fill: vars.$nav-hamburger-closed;
+    fill: vars.$dusty-rose;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  // Opened Color
+  &--open {
+    .cls-1 {
+      fill: vars.$scarlet-red;
+    }
+
+    // Close Button Color
+
+    #Rec-1,
+    #Rec-3,
+    #Rec-5,
+    #Rec-7,
+    #Rec-9 {
+      opacity: 1;
+      fill: vars.$scarlet-red;
+    }
+
+    // Deleted
+
+    #Rec-2,
+    #Rec-4,
+    #Rec-6,
+    #Rec-8 {
+      opacity: 0;
+    }
+  }
 }
 
-//헴버거 메뉴 클릭하여 열렸을때 색상
-.navigation-dropdown__hamburger--open {
-  .cls-1 {
-    fill: vars.$nav-hamburger-open;
-  }
+// <---------- Overlay ---------->
 
-  // 클릭시 x자로 남는 색상
-  #Rec-1,
-  #Rec-3,
-  #Rec-5,
-  #Rec-7,
-  #Rec-9 {
-    opacity: 1;
-    fill: vars.$nav-hamburger-open;
-  }
-
-  //클릭시 지워지는 색상
-  #Rec-2,
-  #Rec-4,
-  #Rec-6,
-  #Rec-8 {
-    opacity: 0;
-  }
-}
-
-// 모바일 메뉴 오버레이
+// Mobile Menu Overlay
 .navigation-dropdown__overlay {
+  z-index: 250;
   position: fixed;
-  inset: 0; // top/right/bottom/left: 0;
+  inset: 0;
+  /* top/right/bottom/left: 0; */
   width: 100%;
   background: rgba(vars.$near-black, 0.85);
   backdrop-filter: blur(8px);
-  z-index: 250;
 
   transform: translateX(100%);
-  // 코드를 오른쪽으로 자기 너비만큼 이동시키기
+  /* 코드를 오른쪽으로 자기 너비만큼 이동시키기 */
   transition: transform 0.3s ease-in-out;
   display: block;
   overflow: hidden;
-  // 모바일 메뉴 자체에도 스크롤이 발생하지 않도록 이중보장
-  // 혹시 body 스크롤 방지가 안되는 경우를 대비한 fallback
-}
+  /* 모바일 메뉴 자체에도 스크롤이 발생하지 않도록 이중보장
+  혹시 body 스크롤 방지가 안되는 경우를 대비한 fallback */
 
-.navigation-dropdown__overlay--open {
-  transform: translateX(0);
+  &--open {
+    transform: translateX(0);
+  }
 }
 
 .navigation-dropdown__menu {
@@ -79,12 +87,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  padding-right: 3rem;
-  padding-bottom: 4rem;
+  padding: 0 3rem 5rem 0;
   overflow-y: auto;
-  // 메뉴 아이템이 많아져서 화면 높이를 초과할 경우를 대비
-  // 모바일 메뉴 내부에서만 스크롤이 가능하도록 함(배경은 고정)
-  // 작은 화면에서도 모든 메뉴에 접근이 가능하도록 보장
+  /* 메뉴 아이템이 많아져서 화면 높이를 초과할 경우를 대비
+   모바일 메뉴 내부에서만 스크롤이 가능하도록 함(배경은 고정)
+   작은 화면에서도 모든 메뉴에 접근이 가능하도록 보장 */
 
   ul {
     text-align: end;
@@ -97,15 +104,15 @@
 }
 
 .navigation-dropdown__link {
-  color: vars.$text-heading-primary;
+  color: vars.$text-link-secondary;
   font-size: vars.$font-size-3xl;
   font-weight: vars.$font-weight-light;
-  letter-spacing: 2px;
+  letter-spacing: vars.$letter-spacing-wide-lg;
   transition: color 0.3s ease;
   padding: 0;
 
   &:hover {
-    color: vars.$text-heading-list;
+    color: vars.$text-link-primary;
   }
 
   &::before {
@@ -113,46 +120,58 @@
   }
 }
 
-// 현재 데스크탑 네비게이션에서 준 호버 효과를 모바일 메뉴에서는 제거한다.
-// 모바일 메뉴에서도 같은 .nav-link 클래스를 사용하기 때문에 문제가될수 있기 때문이다.
+/* 현재 데스크탑 네비게이션에서 준 호버 효과를 모바일 메뉴에서는 제거한다.
+ 모바일 메뉴에서도 같은 .nav-link 클래스를 사용하기 때문에 문제가될수 있기 때문이다. */
+
+// <---------- Contact ---------->
 
 .navigation-dropdown__contact {
   text-align: end;
   position: relative;
-}
 
-.navigation-dropdown__contact-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  color: vars.$text-body-secondary;
-  overflow: hidden;
-  position: absolute;
-}
+  &-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+  }
 
-.navigation-dropdown__contact-line {
-  margin-top: 1.5rem;
-  width: 100%;
-  height: 1px;
-  background-color: vars.$scarlet-red;
-}
+  &-line {
+    margin-top: 1rem;
+    width: 100%;
+    height: 1px;
+    background-color: vars.$scarlet-red;
+  }
 
-.navigation-dropdown__contact-list {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 2rem;
-
-  a {
+  &-list {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: flex-end;
+    gap: 2rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+
+  &-subtitle {
+    font-weight: vars.$font-weight-medium;
+    font-size: vars.$font-size-xl;
+    display: none;
+  }
+
+  &-arrow {
+    width: 20px;
   }
 }
 
 .navigation-dropdown__email-container {
-  @include mixins.flex-center;
   gap: 1rem;
+  color: vars.$text-link-primary;
+  @include mixins.flex-center;
 }
 
 .navigation-dropdown__email-address {
@@ -169,20 +188,11 @@
   @include mixins.social-icon;
 }
 
-.navigation-dropdown__contact-subtitle {
-  font-weight: vars.$font-weight-medium;
-  font-size: vars.$font-size-xl;
-  display: none;
-}
+// =============== Tablet ===============
 
-.navigation-dropdown__contact-arrow {
-  width: 20px;
-}
-
-//반응형
 @include mixins.respond-to("md") {
   .navigation-dropdown__contact {
-    // 데스크탑에서는 pointer-events 비활성화
+    /* 데스크탑에서는 pointer-events 비활성화 */
     .navigation-dropdown__link {
       pointer-events: none;
     }
@@ -205,17 +215,17 @@
     display: none;
 
     &--contact-mode {
+      z-index: 301;
       display: block;
       position: fixed;
       top: 50px;
       right: 50px;
-      // %를 쓰면 부모요소에 영향을 받기 때문에 스크롤시 움직인다.
-      // px를 사용하면 절대값이라 부모요소와 무관하여 뷰포트 기준으로 고정된다.
-      z-index: 301;
+      /* %를 쓰면 부모요소에 영향을 받기 때문에 스크롤시 움직인다.
+      px를 사용하면 절대값이라 부모요소와 무관하여 뷰포트 기준으로 고정된다. */
     }
   }
 
-  // 컨텍트를 클릭하면 contact-mode 라는 클래스가 붙는다
+  /* 컨텍트를 클릭하면 contact-mode 라는 클래스가 붙는다 */
 
   .navigation-dropdown__header {
     display: flex;

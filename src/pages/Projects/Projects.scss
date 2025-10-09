@@ -1,17 +1,19 @@
 @use "../../styles/base/mixin.scss" as mixins;
 @use "../../styles/base/variables.scss" as vars;
 
+// ========== Mobile (default) ==========
+
 .projects-wrapper {
   @include mixins.grid-layout();
   @include mixins.container();
 
   &__title {
-    margin-top: 4rem;
+    grid-column: 1/-1;
     display: flex;
-    gap: 1rem;
     justify-content: flex-start;
     align-items: center;
-    grid-column: 1/-1;
+    margin-top: 4rem;
+    gap: 1rem;
   }
 
   &__title h1 {
@@ -36,7 +38,8 @@
   }
 }
 
-// Tablet
+// =============== Tablet ===============
+
 @include mixins.respond-to("md") {
   .projects-wrapper {
     &__list--mobile {
@@ -53,7 +56,8 @@
   }
 }
 
-// Desktop
+// =============== Desktop ===============
+
 @include mixins.respond-to("lg") {
   .projects-wrapper {
     &__list--mobile {

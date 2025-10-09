@@ -1,58 +1,64 @@
 @use "../../../styles/base/variables.scss" as vars;
 @use "../../../styles/base/mixin.scss" as mixins;
 
+// ========== Mobile (default) ==========
+
 .background-animation {
+  z-index: 0;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 0;
-}
 
-.background-animation__line-set {
-  position: absolute;
-  width: clamp(300px, 25vw, 500px);
-  height: 100%;
-
-  svg {
-    width: 100%;
+  &__line-set {
+    position: absolute;
+    width: clamp(300px, 25vw, 500px);
     height: 100%;
+
+    svg {
+      width: 100%;
+      height: 100%;
+
+      path {
+        stroke: rgba(vars.$dusty-rose, 0.15);
+        stroke-width: 1.2;
+        fill: none;
+      }
+    }
+
+    &--left {
+      left: clamp(0px, -10vw, 50px);
+      /* 모바일에서는 화면 밖, 데스크탑에서는 안쪽 */
+    }
+
+    &--right {
+      right: clamp(-60px, -10vw, 50px);
+      display: none;
+    }
+  }
+
+  &__blur {
+    width: 1.5px;
+    height: 30px;
+    fill: vars.$dusty-rose;
+    filter: blur(2px);
   }
 }
 
-.background-animation__line-set svg path {
-  stroke: rgba(vars.$bg-animation, 0.15);
-  stroke-width: 1.2;
-  fill: none;
-}
+// =============== Tablet ===============
 
-.background-animation__line-set--left {
-  left: clamp(0px, -10vw, 50px);
-  // 모바일에서는 화면 밖, 데스크탑에서는 안쪽
-}
-
-.background-animation__line-set--right {
-  right: clamp(-60px, -10vw, 50px);
-  display: none;
-}
-
-// 블러 스타일
-.background-animation__blur {
-  width: 1.5px;
-  height: 30px;
-  fill: vars.$bg-animation;
-  filter: blur(2px);
-}
-
-//반응형
 @include mixins.respond-to("md") {
-  .background-animation__line-set--left {
-    left: 5vw;
-  }
+  .background-animation {
+    &__line-set {
+      &--left {
+        left: 5vw;
+      }
 
-  .background-animation__line-set--right {
-    display: block;
+      &--right {
+        display: block;
+      }
+    }
   }
 }

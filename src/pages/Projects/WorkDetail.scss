@@ -1,18 +1,22 @@
 @use "../../styles/base/mixin.scss" as mixins;
 @use "../../styles/base/variables.scss" as vars;
 
+// ========== Mobile (default) ==========
+
 .work-detail {
   @include mixins.grid-layout();
   @include mixins.container();
 
+  // <---------- Header ---------->
+
   // Top Navigation
+
   &__nav-top {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
     grid-column: 1/-1;
     display: flex;
     justify-content: end;
     align-items: center;
+    margin: 3rem 0;
     gap: 1.5rem;
   }
 
@@ -24,7 +28,7 @@
 
   &__projects-list {
     font-size: vars.$font-size-xl;
-    color: vars.$scarlet-red;
+    color: vars.$text-link-highlight;
     transition: all 0.3s ease;
 
     &:hover {
@@ -36,7 +40,7 @@
     width: 25px;
 
     svg {
-      fill: vars.$scarlet-red;
+      fill: vars.$arrow-icon-primary;
       transition: all 0.3s ease;
     }
 
@@ -46,28 +50,30 @@
   }
 
   // Title
+
   &__title {
     grid-column: 1/-1;
     text-align: start;
     font-size: vars.$font-size-6xl;
     margin-bottom: 2rem;
+    line-height: vars.$line-height-xs;
   }
 
   // Links
+
   &__links {
+    grid-column: 1/-1;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.5rem;
-    grid-column: 1/-1;
-    margin-bottom: 1.5rem;
-    color: vars.$text-heading-secondary;
+    color: vars.$text-link-primary;
     font-size: vars.$font-size-xl;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
   }
 
   &__links--more {
-    color: vars.$muted-beige;
-    font-size: vars.$font-size-base;
+    color: vars.$text-link-secondary;
     margin-top: 0.5rem;
   }
 
@@ -89,24 +95,21 @@
     fill: vars.$muted-beige;
   }
 
-  // Preview
+  // <---------- Contents ---------->
+
   &__preview {
-    height: 100%;
     grid-column: 1/-1;
+    position: relative;
+    height: 100%;
     margin-bottom: 1rem;
     border-radius: 10px;
     overflow: hidden;
-    position: relative;
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 50px rgba(vars.$dark-forest, 0.3);
-    background: rgba(vars.$dark-forest, 0.01);
     cursor: pointer;
+    @include mixins.surface-glass;
     @include mixins.loading-spinner;
 
     video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      @include mixins.image-cover;
     }
 
     &:hover::before {
@@ -114,23 +117,19 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background-color: rgba(vars.$near-black, 0.9);
       backdrop-filter: blur(5px);
-      color: vars.$scarlet-red;
+      color: vars.$text-link-highlight;
       font-size: vars.$font-size-2xl;
+      @include mixins.flex-center;
     }
   }
 
-  // Code
   &__code {
     grid-column: 1/-1;
     margin-top: 1rem;
   }
 
-  // Sections
   &__sections {
     grid-column: 1/-1;
   }
@@ -138,18 +137,14 @@
   &__section {
     margin-top: 2rem;
     border-radius: 20px;
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 50px rgba(vars.$near-black, 0.5);
-    background: rgba(vars.$dark-forest, 0.01);
     padding: 2rem 1rem;
-    line-height: vars.$line-height-normal;
+    @include mixins.surface-glass;
   }
 
   &__section-heading {
     text-align: start;
     margin-bottom: 1rem;
     @include mixins.section-title-mobile-beige;
-    line-height: vars.$line-height-sm;
   }
 
   &__section--stack ul {
@@ -160,7 +155,7 @@
     li {
       background-color: vars.$muted-olive;
       box-shadow: inset 0 0 10px rgba(vars.$near-black, 0.5);
-      color: vars.$dusty-rose;
+      color: vars.$text-body-secondary;
       padding: 0.5rem 1.5rem;
       border-radius: 10px;
       font-weight: vars.$font-weight-semibold;
@@ -186,12 +181,12 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    border-radius: 10px;
+    @include mixins.image-container;
 
     img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
       border-radius: 10px;
+      @include mixins.image-cover;
     }
   }
 
@@ -206,21 +201,20 @@
 
       &::before {
         content: counter(item-counter) ".";
-        position: absolute;
-        left: 0;
-        top: 0;
+        @include mixins.absolute-fill;
       }
     }
   }
 
-  // Bottom Navigation
+  // <---------- Bottom Navigation ---------->
+
   &__nav-bottom {
-    margin-top: 2rem;
     grid-column: 1/-1;
+    margin-top: 2rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem;
     justify-content: space-between;
+    gap: 3rem;
   }
 
   &__nav-item {
@@ -260,20 +254,22 @@
 
   &__nav-title {
     font-size: vars.$font-size-4xl;
-    color: vars.$text-heading-nav;
+    color: vars.$dark-forest;
     margin-bottom: 0.5rem;
+    text-align: end;
   }
 
   &__nav-arrow {
     width: 20px;
 
     svg {
-      fill: vars.$text-heading-secondary;
+      fill: vars.$arrow-icon-secondary;
     }
   }
 }
 
-// Tablet
+// =============== Tablet ===============
+
 @include mixins.respond-to("md") {
   .work-detail {
     &__title {
@@ -290,8 +286,8 @@
     }
 
     &__sections {
-      @include mixins.grid-layout();
       margin-top: 2rem;
+      @include mixins.grid-layout();
     }
 
     &__section {
@@ -312,7 +308,12 @@
       flex-direction: row;
     }
 
+    &__design-contents {
+      flex: 0 0 30%;
+    }
+
     &__design-images {
+      flex: 0 0 70%;
       flex-direction: row;
       overflow-x: auto;
       overflow-y: hidden;
@@ -381,7 +382,8 @@
   }
 }
 
-// Desktop
+// =============== Desktop ===============
+
 @include mixins.respond-to("lg") {
   .work-detail {
     &__title {

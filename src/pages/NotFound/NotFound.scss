@@ -1,15 +1,15 @@
 @use "../../styles/base/mixin.scss" as mixins;
 @use "../../styles/base/variables.scss" as vars;
 
+// ========== Mobile (default) ==========
+
 .notfound {
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 2rem;
   background: vars.$near-black;
+  justify-content: center;
+  @include mixins.flex-column-center;
 
   &__image {
     width: 200px;
@@ -17,26 +17,24 @@
   }
 
   &__text {
-    font-size: vars.$font-size-base;
     font-weight: vars.$font-weight-medium;
-    color: vars.$muted-beige;
+    color: vars.$text-body-primary;
     width: 70%;
     text-align: center;
   }
 
   &__link {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 1rem;
     font-size: vars.$font-size-xl;
-    color: vars.$scarlet-red;
+    color: vars.$text-link-highlight;
+    justify-content: center;
+    @include mixins.flex-column-center;
     @include mixins.hover-underline;
   }
 }
 
-// Tablet
+// =============== Tablet ===============
+
 @include mixins.respond-to("md") {
   .notfound {
     &__image {
@@ -49,7 +47,8 @@
   }
 }
 
-// Desktop
+// =============== Desktop ===============
+
 @include mixins.respond-to("lg") {
   .notfound {
     &__image {

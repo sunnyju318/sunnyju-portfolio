@@ -1,33 +1,40 @@
 @use "../../styles/base/mixin.scss" as mixins;
 @use "../../styles/base/variables.scss" as vars;
 
+// ========== Mobile (default) ==========
+
 .time-vancouver {
   &__text {
     font-family: vars.$font-clock;
     font-weight: vars.$font-weight-semibold;
-    letter-spacing: 0.9px;
-    text-align: center;
+    letter-spacing: vars.$letter-spacing-wide-md;
+    gap: 0.1rem;
+    @include mixins.flex-center;
   }
 
   &__number {
-    color: vars.$muted-beige;
+    color: vars.$text-body-primary;
     font-size: vars.$font-size-2xl;
   }
 
   &__unit {
-    color: vars.$dusty-rose;
-    margin-left: 0.5rem;
-    font-size: vars.$font-size-base;
+    color: vars.$text-body-secondary;
   }
 
   &__separator {
     color: rgba(vars.$dusty-rose, 0.4);
+    margin: 0 0.1rem;
   }
 }
 
-// Tablet
+// =============== Tablet ===============
+
 @include mixins.respond-to("md") {
   .time-vancouver {
+    &__text {
+      gap: 0.15rem;
+    }
+
     &__number {
       font-size: vars.$font-size-3xl;
     }
@@ -35,10 +42,15 @@
     &__unit {
       font-size: vars.$font-size-xl;
     }
+
+    &__separator {
+      margin: 0 0.2rem;
+    }
   }
 }
 
-// 데스크탑
+// =============== Desktop ===============
+
 @include mixins.respond-to("lg") {
   .time-vancouver {
     &__number {
@@ -47,6 +59,10 @@
 
     &__unit {
       font-size: vars.$font-size-2xl;
+    }
+
+    &__separator {
+      margin: 0 0.3rem;
     }
   }
 }

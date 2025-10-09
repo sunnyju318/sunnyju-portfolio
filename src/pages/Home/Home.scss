@@ -1,17 +1,21 @@
 @use "../../styles/base/mixin.scss" as mixins;
 @use "../../styles/base/variables.scss" as vars;
 
+// ========== Mobile (default) ==========
+
 .home-wrapper {
   @include mixins.grid-layout();
   @include mixins.container();
   /* grid-layout에 이미 display:grid가 포함되어 있기 때문에 이미 해당 컨테이너는 그리드 컨테이너이며 그걸 직접 자식들에게 적용하는 용도이다.
 즉, 자식 요소들이 각각 자기 내부에서 grid를 쓴다면 해당 컨테이너가 grid일 필요는 없다.*/
 
-  // Hero 섹션
+  // <---------- Hero ---------->
+
   &__hero {
+    grid-column: 1/-1;
     margin-top: 1rem;
     text-align: center;
-    grid-column: 1/-1;
+    line-height: vars.$line-height-xs;
   }
 
   &__hero h1 {
@@ -21,25 +25,26 @@
 
   &__hero h2 {
     margin-top: 1.5rem;
-    color: vars.$scarlet-red-dark;
+    color: vars.$text-highlight-secondary;
     font-size: vars.$font-size-xl;
   }
 
   &__hero p {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     font-weight: vars.$font-weight-medium;
   }
 
   &__hero-lastname {
-    display: block;
-    // 기본적으로는 보임, 태블릿에서 숨김
+    display: inline;
+    /* 기본적으로는 보임, 태블릿에서 숨김
+    block이 아닌 inline을 써야 가로정렬 된다 */
   }
 
   &__hero-clock {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
   }
 
-  // arrow 각각 반응형에서 따로 제어하기위해 className를 따로 주었다.
+  /* arrow 각각 반응형에서 따로 제어하기위해 className를 따로 주었다. */
   &__arrow {
     grid-column: 1/-1;
   }
@@ -62,12 +67,11 @@
   }
 
   // Face Illustration
+
   &__face {
     grid-column: 1/-1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 0 auto;
+    @include mixins.flex-center;
   }
 
   &__face-container {
@@ -76,13 +80,14 @@
   }
 
   // Sublinks
+
   &__sublinks {
-    margin: 3rem auto 0 auto;
+    grid-column: 1/-1;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin: 3rem auto 0 auto;
     gap: 1rem;
-    grid-column: 1/-1;
   }
 
   &__sublinks-item {
@@ -92,21 +97,22 @@
   }
 
   &__sublinks-arrow svg {
-    fill: vars.$text-heading-list;
+    fill: vars.$arrow-icon-secondary;
     width: 20px;
   }
 
   &__sublinks-link {
     font-size: vars.$font-size-xl;
-    color: vars.$text-heading-list;
+    color: vars.$text-link-primary;
     user-select: none;
     @include mixins.hover-underline;
 
-    // flex는 블록요소처럼 줄 전체 차지
-    // inline-flex는 인라인 요소처럼 다른요소 옆에 올수 있음
+    /* flex는 블록요소처럼 줄 전체 차지
+    inline-flex는 인라인 요소처럼 다른요소 옆에 올수 있음 */
   }
 
-  // Projects
+  // <---------- Featured Projects ---------->
+
   &__projects {
     grid-column: 1/-1;
   }
@@ -121,9 +127,14 @@
   }
 }
 
-// Tablet
+// =============== Tablet ===============
+
 @include mixins.respond-to("md") {
   .home-wrapper {
+    &__hero-lastname {
+      display: none;
+    }
+
     &__arrow--top-mobile {
       display: none;
     }
@@ -153,15 +164,6 @@
       font-size: vars.$font-size-base;
     }
 
-    &__hero p {
-      margin-top: 1rem;
-      font-size: vars.$font-size-base;
-    }
-
-    &__hero-lastname {
-      display: none;
-    }
-
     &__hero-clock {
       margin-top: 1.7rem;
     }
@@ -188,15 +190,24 @@
   }
 }
 
-// Desktop
+// =============== Desktop ===============
+
 @include mixins.respond-to("lg") {
   .home-wrapper {
+    &__projects--mobile {
+      display: none;
+    }
+
+    &__projects--desktop {
+      display: block;
+    }
+
     &__arrow--top-desktop {
-      margin-top: 4rem;
+      grid-column: 10/11;
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      grid-column: 10/11;
+      margin-top: 4rem;
     }
 
     &__hero {
@@ -232,14 +243,6 @@
 
     &__sublinks-link {
       font-size: vars.$font-size-xl;
-    }
-
-    &__projects--desktop {
-      display: block;
-    }
-
-    &__projects--mobile {
-      display: none;
     }
   }
 }

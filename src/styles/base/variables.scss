@@ -1,4 +1,5 @@
-/* === Core Color === */
+// =============== Core Color ===============
+
 $near-black: #040404;
 $dark-forest: #1a201e;
 $muted-olive: #3e433c;
@@ -7,57 +8,40 @@ $scarlet-red: #d13221;
 $muted-beige: #e1dad2;
 $scarlet-red-dark: #8b1103;
 
-/* === Semantic Color System === */
+// =============== Color System ===============
+
 // Background Colors
+
 $bg-gradient-start: $near-black;
 $bg-gradient-mid: $dark-forest;
 $bg-gradient-end: $dusty-rose;
-$bg-header: rgba($near-black, 0.5);
-$bg-animation: $dusty-rose;
-$bg-button: $scarlet-red;
-$bg-button-hover: $scarlet-red-dark;
-$bg-code-block: $near-black;
 
 // Text Colors
-$text-heading-primary: $muted-beige; // 큰제목
-$text-heading-secondary: $dusty-rose; // 부제목
-$text-heading-list: $dusty-rose; // 리스트 제목
-$text-heading-nav: $dark-forest; // 네비게이션 제목
 
-$text-body-primary: $muted-beige; // 메인 바디
-$text-body-secondary: $dusty-rose; // 세컨 바디
+$text-heading-primary: $muted-beige; // Primary heading
+$text-heading-secondary: $dusty-rose; // Secondary heading
+$text-heading-list: $dusty-rose; // List heading
+$text-body-primary: $muted-beige; // Primary body text
+$text-body-secondary: $dusty-rose; // Secondary body text
+$text-highlight-primary: $scarlet-red; // Primary highlight
+$text-highlight-secondary: $scarlet-red-dark; // Secondary highlight
+$text-footer: $dark-forest; // Footer text
 
-$text-highlight-primary: $scarlet-red; // 메인 강조
-$text-highlight-secondary: $near-black; // 세컨 강조
+// Link Colors
 
-$text-footer: $dark-forest; // 푸터
-
-// Button Colors
-$text-light-bg: $near-black;
-
-// Navigation Colors
-$nav-text-desktop: $dusty-rose;
-$nav-text-mobile: $muted-beige;
-$nav-hamburger-closed: $dusty-rose;
-$nav-hamburger-open: $scarlet-red;
-
-// Footer Text Colors
-$footer-text-primary: $dark-forest;
-$footer-text-alt: $muted-beige;
+$text-link-primary: $dusty-rose;
+$text-link-secondary: $muted-beige;
+$text-link-highlight: $scarlet-red;
 
 // Icon colors
-$header-icon: $scarlet-red;
-$arrow-icon: $scarlet-red;
-$footer-icon: $dark-forest;
 
-// Footer logo style
+$arrow-icon-primary: $scarlet-red;
+$arrow-icon-secondary: $dusty-rose;
 
-// Box shadow
-$shadow-color: rgba(181, 137, 113, 0.5);
-$box-shadow-soft: 1px 1px 0 $shadow-color;
+// =============== Typography ===============
 
-/* === Text === */
-// Font Families
+//Font Family
+
 $font-main: "Montserrat", -apple-system, BlinkMacSystemFont, system-ui,
   sans-serif;
 $font-code: "Fira Code", monospace;
@@ -68,6 +52,7 @@ $font-clock: "Roboto Condensed", sans-serif;
 실패하면 system-ui시도(최신 브라우저), 실패하면 마지막으로 sans-serif 사용(브라우저 기본폰트) */
 
 // Font Sizes
+
 $font-size-xs: 0.75rem; // 12px
 $font-size-sm: 0.875rem; // 14px
 $font-size-base: 1rem; // 16px (standard)
@@ -87,6 +72,7 @@ $font-size-12xl: 9rem; // 144px
 $font-size-13xl: 10rem; // 160px
 
 // Font Weights
+
 $font-weight-light: 300;
 $font-weight-regular: 400; // (standard)
 $font-weight-medium: 500;
@@ -94,37 +80,35 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 // Line Heights
-$line-height-xs: 1.1;
-$line-height-sm: 1.3;
+
+$line-height-xs: 1.2;
+$line-height-sm: 1.4;
 $line-height-normal: 1.6; // (standard)
 $line-height-lg: 2;
 $line-height-xl: 2.4;
 
 // Letter Spacing
 
-/* === Logo === */
-// Logo Style
-$logo-font-family: $font-main;
-$logo-font-weight: $font-weight-bold;
-$logo-color-header: $dusty-rose;
-$logo-color-footer: $dark-forest;
+$letter-spacing-tight: -0.5px;
+$letter-spacing-normal: 0px; // (standard)
+$letter-spacing-wide-sm: 0.5px;
+$letter-spacing-wide-md: 1px;
+$letter-spacing-wide-lg: 2px;
 
-/* === Layout === */
-// Layout System
+// =============== Layout System ===============
+
 $breakpoints: (
-  // 화면 크기 기준
   "sm": 640px,
   "md": 768px,
   "lg": 1025px,
   "xl": 1280px,
-  "xxl": 1400px
+  "xxl": 1400px,
 );
 
 $grid-columns: (
-  // 디자인 시스템 상의 컬럼 수
   "mobile": 4,
   "tablet": 8,
-  "desktop": 12
+  "desktop": 12,
 );
 
 $container-padding: (

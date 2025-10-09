@@ -1,119 +1,157 @@
 @use "../../styles/base/variables.scss" as vars;
 @use "../../styles/base/mixin.scss" as mixins;
 
+// ========== Mobile (default) ==========
+
 .footer {
+  z-index: 1;
   margin-top: 8rem;
   width: 100%;
-  color: vars.$footer-text-primary;
-  z-index: 1; // ë°°ê²½ ì• ë‹ˆë©"ì´ì…˜ ì•žìœ¼ë¡œ ì˜¤ê¸° ìœ„í•¨
-}
+  color: vars.$text-footer;
 
-.footer__wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  @include mixins.container();
-}
-
-.footer__social-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.8rem;
-}
-
-.footer__social-icon {
-  @include mixins.social-icon;
-}
-
-.footer__text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.footer__title {
-  font-size: vars.$font-size-3xl;
-  font-weight: vars.$font-weight-semibold;
-}
-
-.footer__subtitle {
-  font-size: vars.$font-size-xl;
-  font-weight: vars.$font-weight-medium;
-}
-
-.footer__copyright {
-  font-size: vars.$font-size-sm;
-}
-
-.footer__divider {
-  height: 1px;
-  background-color: vars.$dark-forest;
-}
-
-.footer__link {
-  display: flex;
-  gap: 2rem;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
-}
-
-.footer__logo {
-  display: inline-block;
-  background-image: url(../../assets/logos/footer-logo.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  width: 100%;
-  height: 90px;
-}
-
-.footer__contact-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1.5rem;
-  margin-bottom: 4rem;
-
-  h2 {
-    color: vars.$near-black;
-    font-size: vars.$font-size-2xl;
-  }
-}
-
-.footer__contact-form {
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  width: 100%;
-  color: vars.$dark-forest;
-  align-items: flex-start;
-}
-
-.footer__contact-input {
-  background-color: rgba(vars.$near-black, 0.4);
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  width: 100%;
-  min-height: 50px;
-
-  &:focus {
-    background-color: vars.$muted-beige;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include mixins.container();
   }
 
-  &::placeholder {
-    color: rgba(vars.$muted-beige, 0.5);
+  &__social-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
   }
 
-  // autofill ë°°ê²½ìƒ‰ ê°•ì œ ë³€ê²½
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px vars.$muted-beige inset !important;
-    box-shadow: 0 0 0 1000px vars.$muted-beige inset !important;
-    -webkit-text-fill-color: vars.$dark-forest !important;
+  &__social-icon {
+    @include mixins.social-icon;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    line-height: vars.$line-height-xs;
+  }
+
+  &__title {
+    font-size: vars.$font-size-3xl;
+    font-weight: vars.$font-weight-semibold;
+  }
+
+  &__subtitle {
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-medium;
+  }
+
+  &__copyright {
+    font-size: vars.$font-size-sm;
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: vars.$dark-forest;
+  }
+
+  &__link {
+    gap: 2rem;
+    margin-bottom: 3rem;
+    @include mixins.flex-between;
+  }
+
+  &__logo {
+    display: inline-block;
+    background-image: url(../../assets/logos/footer-logo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 90px;
+  }
+
+  &__contact-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+    line-height: vars.$line-height-xs;
+
+    h2 {
+      color: vars.$near-black;
+      font-size: vars.$font-size-2xl;
+    }
+  }
+
+  &__contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+    color: vars.$dark-forest;
+
+    &--expanded {
+      textarea.footer__contact-input {
+        min-height: 150px;
+        background-color: vars.$muted-beige;
+      }
+    }
+  }
+
+  &__contact-input {
+    width: 100%;
+    min-height: 50px;
+    background-color: rgba(vars.$near-black, 0.4);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+
+    &:focus {
+      background-color: vars.$muted-beige;
+    }
+
+    &::placeholder {
+      color: rgba(vars.$muted-beige, 0.5);
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px vars.$muted-beige inset !important;
+      box-shadow: 0 0 0 1000px vars.$muted-beige inset !important;
+      -webkit-text-fill-color: vars.$dark-forest !important;
+    }
+  }
+
+  &__contact-button {
+    width: 100%;
+    text-align: center;
+    align-self: flex-start;
+    background-color: vars.$near-black;
+    color: vars.$scarlet-red;
+    font-weight: vars.$font-weight-medium;
+    padding: 1rem 0;
+    border-radius: 10px;
+    transition: background-color 0.2s ease-in-out;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: vars.$scarlet-red-dark;
+    }
+
+    &--sending {
+      color: vars.$dusty-rose;
+    }
+
+    &--success {
+      color: vars.$muted-beige;
+    }
+
+    &--error {
+      background-color: vars.$scarlet-red;
+      color: vars.$near-black;
+    }
   }
 }
 
@@ -131,94 +169,59 @@ textarea.footer__contact-input {
   }
 
   &::placeholder {
-    padding-top: 10px;
+    padding-top: 0.6rem;
   }
 }
 
-.footer__contact-form--expanded {
-  textarea.footer__contact-input {
-    min-height: 150px; // ì²˜ìŒ í¬ì»¤ìŠ¤ ì‹œ í™•ìž¥ëœ ì‚¬ì´ì¦ˆ ìœ ì§€
-    background-color: vars.$muted-beige; // í¬ì»¤ìŠ¤ í•´ì œ í›„ì—ë„ ìƒ‰ ìœ ì§€
-  }
-}
-
-.footer__contact-button {
-  background-color: vars.$near-black;
-  color: vars.$scarlet-red;
-  font-weight: vars.$font-weight-medium;
-  padding: 1rem 0;
-  text-align: center;
-  border-radius: 10px;
-  transition: background-color 0.2s ease-in-out;
-  align-self: flex-start;
-  width: 100%;
-  transition: all 0.3s ease;
-
-  &:hover {
-    color: vars.$scarlet-red-dark;
-  }
-}
-
-.footer__contact-button--sending {
-  color: vars.$dusty-rose;
-}
-
-.footer__contact-button--success {
-  color: vars.$muted-beige;
-}
-
-.footer__contact-button--error {
-  background-color: vars.$scarlet-red;
-  color: vars.$near-black;
-}
+// =============== Tablet ===============
 
 @include mixins.respond-to("md") {
   .footer {
     margin-top: 10rem;
-  }
 
-  .footer__title {
-    font-size: vars.$font-size-4xl;
-  }
+    &__title {
+      font-size: vars.$font-size-4xl;
+    }
 
-  .footer__subtitle {
-    font-size: vars.$font-size-3xl;
-  }
+    &__subtitle {
+      font-size: vars.$font-size-3xl;
+    }
 
-  .footer__social-wrapper svg {
-    width: 32px;
-    height: 32px;
-  }
+    &__social-wrapper svg {
+      width: 32px;
+      height: 32px;
+    }
 
-  .footer__divider {
-    margin-bottom: 1.5rem;
-  }
+    &__divider {
+      margin-bottom: 1.5rem;
+    }
 
-  .footer__copyright {
-    font-size: vars.$font-size-base;
-    margin-top: 1rem;
-  }
+    &__copyright {
+      font-size: vars.$font-size-base;
+      margin-top: 1rem;
+    }
 
-  .footer__logo {
-    height: 150px;
-  }
+    &__logo {
+      height: 150px;
+    }
 
-  .footer__contact-section {
-    gap: 2rem;
-    margin-bottom: 6rem;
-  }
+    &__contact-section {
+      gap: 2rem;
+      margin-bottom: 6rem;
+    }
 
-  .footer__contact-form {
-    flex-direction: row;
-  }
+    &__contact-form {
+      flex-direction: row;
+    }
 
-  .footer__contact-input {
-    min-height: 60px;
-  }
+    &__contact-input {
+      min-height: 60px;
+    }
 
-  .footer__contact-button {
-    padding: 1.3rem 0;
-    width: 15%;
+    &__contact-button {
+      padding: 1.3rem 0;
+      width: 15%;
+    }
   }
 
   input.footer__contact-input {
@@ -227,30 +230,32 @@ textarea.footer__contact-input {
 
   textarea.footer__contact-input {
     &::placeholder {
-      padding-top: 12px;
+      padding-top: 0.7rem;
     }
   }
 }
 
+// =============== Desktop ===============
+
 @include mixins.respond-to("lg") {
   .footer {
     margin-top: 13rem;
-  }
 
-  .footer__social-wrapper svg {
-    width: 36px;
-    height: 36px;
-  }
+    &__social-wrapper svg {
+      width: 36px;
+      height: 36px;
+    }
 
-  .footer__logo {
-    height: 260px;
-  }
+    &__logo {
+      height: 260px;
+    }
 
-  .footer__contact-section {
-    margin-bottom: 7rem;
+    &__contact-section {
+      margin-bottom: 7rem;
 
-    h2 {
-      font-size: vars.$font-size-3xl;
+      h2 {
+        font-size: vars.$font-size-3xl;
+      }
     }
   }
 }

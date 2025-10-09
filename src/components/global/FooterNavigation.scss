@@ -1,58 +1,60 @@
 @use "../../styles/base/variables.scss" as vars;
 @use "../../styles/base/mixin.scss" as mixins;
 
+// ========== Mobile (default) ==========
+
 .footer-navigation {
   display: flex;
   flex-direction: row;
-  color: vars.$footer-text-primary;
+  color: vars.$text-footer;
   font-weight: vars.$font-weight-medium;
-
-  //디폴트
   gap: 2rem;
+
+  &__link {
+    @include mixins.hover-underline;
+
+    &--highlight {
+      color: vars.$text-link-secondary;
+      text-align: left;
+      @include mixins.hover-underline;
+    }
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
 }
 
-.footer-navigation__link {
-  @include mixins.hover-underline;
-}
+// =============== Tablet ===============
 
-.footer-navigation__link--highlight {
-  color: vars.$footer-text-alt;
-  @include mixins.hover-underline;
-  text-align: left;
-}
-
-.footer-navigation__col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.8rem;
-}
-
-// 테블릿
 @include mixins.respond-to("md") {
   .footer-navigation {
     margin-bottom: 0rem;
     gap: 3rem;
     font-size: vars.$font-size-xl;
-  }
 
-  .footer-navigation__col {
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
+    &__col {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+    }
   }
 }
 
-// 데스크탑
+// =============== Desktop ===============
+
 @include mixins.respond-to("lg") {
   .footer-navigation {
     margin-bottom: 0rem;
     gap: 3rem;
-  }
 
-  .footer-navigation__col {
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
+    &__col {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+    }
   }
 }

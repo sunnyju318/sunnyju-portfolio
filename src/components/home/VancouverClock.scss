@@ -1,15 +1,12 @@
 @use "../../styles/base/mixin.scss" as mixins;
 @use "../../styles/base/variables.scss" as vars;
 
+// ========== Mobile (default) ==========
+
 .vancouver-clock {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include mixins.flex-center;
 
   &__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
     background-color: vars.$near-black;
@@ -18,12 +15,11 @@
     font-size: vars.$font-size-xs;
     font-weight: vars.$font-weight-medium;
     width: 235px;
+    @include mixins.flex-center;
   }
 
   &__place-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include mixins.flex-center;
   }
 
   &__icon {
@@ -37,14 +33,12 @@
   }
 
   &__place {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    @include mixins.flex-column-center;
   }
 
   &__location {
-    color: vars.$dusty-rose;
+    color: vars.$text-body-secondary;
   }
 
   &__divider {
@@ -52,15 +46,13 @@
   }
 
   &__time-wrapper {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    @include mixins.flex-column-center;
   }
 
   &__time {
-    color: vars.$scarlet-red;
-    letter-spacing: 1px;
+    color: vars.$text-highlight-primary;
+    letter-spacing: vars.$letter-spacing-wide-md;
   }
 }
 
@@ -73,7 +65,8 @@
   }
 }
 
-// Tablet
+// =============== Tablet ===============
+
 @include mixins.respond-to("md") {
   .vancouver-clock {
     &__container {
@@ -93,7 +86,8 @@
   }
 }
 
-// Desktop
+// =============== Desktop ===============
+
 @include mixins.respond-to("lg") {
   .vancouver-clock {
     &__container {
@@ -111,7 +105,7 @@
     &__place,
     &__time-wrapper {
       flex-direction: column;
-      letter-spacing: 0.5px;
+      letter-spacing: vars.$letter-spacing-wide-sm;
     }
   }
 }

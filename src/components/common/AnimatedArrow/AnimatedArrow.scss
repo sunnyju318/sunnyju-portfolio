@@ -1,13 +1,13 @@
 @use "../../../styles/base/variables.scss" as vars;
 @use "../../../styles/base/mixin.scss" as mixins;
 
-// .animated-arrow{
-// @include mixins.flex-center;
-// }
-// home에서 주는 display와 충돌하여 제거함
+/* .animated-arrow{
+ @include mixins.flex-center;
+ }
+ home에서 주는 display와 충돌하여 제거함 */
 
 .animated-arrow__icon {
-  fill: vars.$arrow-icon;
+  fill: vars.$arrow-icon-primary;
   width: 36px;
   height: 36px;
 }
