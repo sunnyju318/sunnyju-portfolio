@@ -8,6 +8,7 @@ export const worksData = [
     tech: "React / SCSS / Framer Motion",
     shortDescription:
       "A portfolio website built with React and SCSS, featuring smooth animations and interactive storytelling.",
+    ogImage: "/assets/images/metadata/og_project-portfolio.jpg",
     links: {
       liveDemo: "https://jisun-ju.ca/",
       viewCode: "https://github.com/sunnyju318/sunnyju-portfolio",

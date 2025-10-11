@@ -5,47 +5,16 @@ import { Link } from "react-router-dom";
 import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion.jsx";
 import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView.jsx";
 import VancouverClock from "../../components/home/VancouverClock.jsx";
+import Metadata from "../../components/global/Metadata.jsx";
 
 function Home({ isMenuOpen, isContactOpen }) {
   return (
     <>
-      {/* React 19 네이티브 메타데이터 */}
-      <title>Sunny Ju</title>
-      <meta
-        name="description"
-        content="Vancouver-based front-end developer blending code x design. Explore featured work, thoughtful UI, and delightful interactions."
-      />
-      <link rel="canonical" href="https://jisun-ju.ca/" />
-
-      {/* Open Graph (카톡/LinkedIn/페북 등) */}
-      <meta
-        property="og:title"
-        content="Sunny Ju — Front-end Developer | Portfolio"
-      />
-      <meta
-        property="og:description"
-        content="Explore featured work, thoughtful UI, and delightful interactions."
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://jisun-ju.ca/" />
-      <meta
-        property="og:image"
-        content="https://jisun-ju.ca/assets/images/og-image.jpg"
-      />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta
-        name="twitter:title"
-        content="Sunny Ju — Front-end Developer | Portfolio"
-      />
-      <meta
-        name="twitter:description"
-        content="Explore featured work, thoughtful UI, and delightful interactions."
-      />
-      <meta
-        name="twitter:image"
-        content="https://jisun-ju.ca/assets/images/og-image.jpg"
+      <Metadata
+        title="Home"
+        description="Vancouver-based front-end developer blending code and UI/UX design to create thoughtful, engaging web experiences."
+        path="/"
+        ogImage="/assets/images/metadata/og_home.jpg"
       />
 
       {/* 콘텐츠 */}

@@ -12,6 +12,7 @@ import {
 } from "react-icons/si";
 import { useEffect, useState } from "react";
 import TimeInVancouver from "../../components/about/TimeInVancouver.jsx";
+import Metadata from "../../components/global/Metadata.jsx";
 
 function About() {
   const [isVancouverVisible, setIsVancouverVisible] = useState(false);
@@ -113,37 +114,11 @@ function About() {
 
   return (
     <>
-      {/* React 19 네이티브 메타데이터 */}
-      <title>Sunny Ju | About</title>
-      <meta
-        name="description"
-        content="Learn more about Sunny Ju, a Vancouver-based front-end developer blending code and design for impactful user experiences."
-      />
-      <link rel="canonical" href="https://jisun-ju.ca/about" />
-
-      {/* Open Graph */}
-      <meta property="og:title" content="About — Sunny Ju" />
-      <meta
-        property="og:description"
-        content="Learn more about Sunny Ju, a Vancouver-based front-end developer blending code and design for impactful user experiences."
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://jisun-ju.ca/about" />
-      <meta
-        property="og:image"
-        content="https://jisun-ju.ca/assets/images/about-og.jpg"
-      />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="About — Sunny Ju" />
-      <meta
-        name="twitter:description"
-        content="Learn more about Sunny Ju, a Vancouver-based front-end developer blending code and design for impactful user experiences."
-      />
-      <meta
-        name="twitter:image"
-        content="https://jisun-ju.ca/assets/images/about-og.jpg"
+      <Metadata
+        title="About"
+        description="I'm a front-end developer with a passion for creating thoughtful, human-centered digital experiences."
+        path="/about"
+        ogImage="/assets/images/metadata/og_about.jpg"
       />
 
       {/* 콘텐츠 */}

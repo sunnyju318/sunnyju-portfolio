@@ -5,6 +5,7 @@ import Masonry from "react-masonry-css";
 import SandboxModal from "../../components/sandbox/SandboxModal.jsx";
 import { useState } from "react";
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
+import Metadata from "../../components/global/Metadata.jsx";
 import {
   SiHtml5,
   SiCss3,
@@ -71,37 +72,11 @@ function Sandbox() {
 
   return (
     <>
-      {/* React 19 Native Metadata */}
-      <title>Sunny Ju | Sandbox</title>
-      <meta
-        name="description"
-        content="A playground of UI experiments, micro-interactions, and performance tests by Sunny Ju."
-      />
-      <link rel="canonical" href="https://jisun-ju.ca/sandbox" />
-
-      {/* Open Graph */}
-      <meta property="og:title" content="Sandbox — Sunny Ju" />
-      <meta
-        property="og:description"
-        content="A playground of UI experiments, micro-interactions, and performance tests by Sunny Ju."
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://jisun-ju.ca/sandbox" />
-      <meta
-        property="og:image"
-        content="https://jisun-ju.ca/assets/images/sandbox-og.jpg"
-      />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Sandbox — Sunny Ju" />
-      <meta
-        name="twitter:description"
-        content="A playground of UI experiments, micro-interactions, and performance tests by Sunny Ju."
-      />
-      <meta
-        name="twitter:image"
-        content="https://jisun-ju.ca/assets/images/sandbox-og.jpg"
+      <Metadata
+        title="Sandbox"
+        description="Experimental projects and creative coding explorations."
+        path="/sandbox"
+        ogImage="/assets/images/metadata/og_sandbox.jpg"
       />
 
       {/* 콘텐츠 */}

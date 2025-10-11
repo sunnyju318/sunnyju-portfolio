@@ -4,6 +4,7 @@ import "./WorkDetail.scss";
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
 import CodeBlock from "../../components/common/codeBlock/CodeBlock.jsx";
 import { useRef, useState } from "react";
+import Metadata from "../../components/global/Metadata.jsx";
 
 function WorkDetail() {
   const { id } = useParams(); // URL에서 id 파라미터 받아오기
@@ -79,42 +80,22 @@ function WorkDetail() {
   }
 
   // SEO를 위한 메타데이터 준비
-  const descRaw =
-    (work.shortDescription && String(work.shortDescription)) ||
-    (work.sections?.overview && String(work.sections.overview)) ||
-    (work.tech && `Built with ${String(work.tech)}.`) ||
+  const description =
+    work.shortDescription ||
+    work.sections?.overview ||
+    (work.tech && `Built with ${work.tech}.`) ||
     `${work.title} case study by Sunny Ju.`;
 
-  const description = descRaw.slice(0, 160);
-  const ogDescription = descRaw.slice(0, 200);
-
-  // SNS 미리보기 이미지는 이미지 파일이어야 하므로 thumbnail을 우선 사용
-  const ogImage =
-    (work.thumbnail && String(work.thumbnail)) ||
-    "https://jisun-ju.ca/assets/images/projects-og.jpg";
-
-  // Canonical URL 생성
-  const canonicalUrl = `https://jisun-ju.ca/projects/detail/${work.id}`;
+  const ogImage = work.ogImage || work.thumbnail;
 
   return (
     <>
-      {/* React 19 Native Metadata (SEO + Open Graph + Twitter) */}
-      <title>{`Sunny Ju | ${work.title}`}</title>
-      <meta name="description" content={description} />
-      <link rel="canonical" href={canonicalUrl} />
-
-      {/* Open Graph */}
-      <meta property="og:title" content={`${work.title} — Sunny Ju`} />
-      <meta property="og:description" content={ogDescription} />
-      <meta property="og:type" content="article" />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content={ogImage} />
-
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${work.title} — Sunny Ju`} />
-      <meta name="twitter:description" content={ogDescription} />
-      <meta name="twitter:image" content={ogImage} />
+      <Metadata
+        title={work.title}
+        description={description}
+        path={`/projects/detail/${work.id}`}
+        ogImage={ogImage}
+      />
 
       {/* 컨텐츠 */}
       <div className="work-detail">
