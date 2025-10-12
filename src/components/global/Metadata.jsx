@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 const BASE_URL = "https://jisun-ju.ca";
 const DEFAULT_OG_IMAGE = "/assets/images/metadata/og-home.jpg";
 
@@ -17,8 +18,16 @@ export default function Metadata({
     ? ogImage
     : `${BASE_URL}${ogImage}`;
 
+  // 👇 디버깅 코드 추가
+  console.log("Metadata rendered:", {
+    fullTitle,
+    description,
+    canonicalUrl,
+    ogImageUrl,
+  });
+
   return (
-    <>
+    <Helmet>
       {/*  React 19 native metadata */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
@@ -36,6 +45,6 @@ export default function Metadata({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImageUrl} />
-    </>
+    </Helmet>
   );
 }
