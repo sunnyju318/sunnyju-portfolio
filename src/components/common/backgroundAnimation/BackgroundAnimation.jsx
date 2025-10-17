@@ -14,6 +14,13 @@ function BackgroundAnimation() {
     const createFallingAnimation = (blurElement, pathId, delay = 0) => {
       // gsap.set() 메서드, 애니메이션 시작되기전 초기상태 세팅
       // 지정한 blur 요소를 화면에 보이지 않게 만들고, 나중에 따라갈 path경로도 미리 설정해 두기.
+
+      const path = document.querySelector(pathId);
+      if (!path) {
+        console.warn(`Path not found: ${pathId}`);
+        return;
+      }
+
       gsap.set(blurElement, {
         motionPath: {
           path: pathId,
