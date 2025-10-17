@@ -130,8 +130,7 @@ function SandboxModal({ isOpen, onClose, data, getIcon }) {
   // =============== Carousel Logic ===============
 
   const images = getImages();
-  const currentImage =
-    images && images.length > 0 ? images[currentImageIndex] : null;
+  const currentImage = images?.[currentImageIndex] ?? null;
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
