@@ -115,6 +115,8 @@ function SandboxModal({ isOpen, onClose, data, getIcon }) {
 
   // 이미지 배열 가져오기 (기존 단일 이미지도 호환)
   const getImages = () => {
+    if (!data) return [];
+
     if (data.images && Array.isArray(data.images)) {
       return data.images;
     } else if (data.largeImage) {
