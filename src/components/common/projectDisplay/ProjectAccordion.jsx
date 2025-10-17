@@ -1,9 +1,10 @@
 import "./ProjectAccordion.scss";
 import { useState } from "react";
-import { worksData } from "../../../data/worksData";
-import { motion, AnimatePresence } from "framer-motion";
-import AnimatedArrow from "../AnimatedArrow/AnimatedArrow.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+import { worksData } from "../../../data/worksData";
+import AnimatedArrow from "../AnimatedArrow/AnimatedArrow.jsx";
 
 function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
   const [expandedItem, setExpandedItem] = useState(0);
@@ -20,19 +21,24 @@ function ProjectAccordion({ title = "FEATURED PROJECTS", isFeatured = true }) {
   };
   // 지금 클릭한 아이템(expandedItem)이 현재 열려있는 아이템(index)와 같다면 null(아무것도 없는상태 즉, 다시 닫아라)을 반환하고 그게 아니라면(다른 index를 클릭했다면) 그거만 열리게 해라.
 
+  // =============== Data Filtering ===============
+
   // isFeatured가 true인 프로젝트만 가져오기
   // const featuredProjects = worksData.filter(project => project.isFeatured);
-
   const featuredProjects = isFeatured
     ? worksData.filter((project) => project.isFeatured)
     : worksData;
 
   return (
     <div className="project-accordion">
+      {/* =============== Heading =============== */}
+
       <div className="project-accordion__heading">
         <h3>{title}</h3>
         {/* 직접 텍스트를 넣은 Featured Projects로 하드코딩 되어있어서 프롭스를 넘겨줘도 제목이 변하지 않았다. 하드코딩을 props로 받은 title를 사용하도록 수정하였다. */}
       </div>
+
+      {/* =============== Accordion Item =============== */}
 
       {featuredProjects.map((project, index) => (
         <div

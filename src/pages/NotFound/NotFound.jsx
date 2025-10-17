@@ -1,6 +1,7 @@
 import "./NotFound.scss";
-import nopage from "../../assets/illustrations/nopage.svg";
 import { Link } from "react-router-dom";
+
+import nopage from "../../assets/illustrations/nopage.svg";
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow";
 import Metadata from "../../components/global/Metadata.jsx";
 
@@ -13,7 +14,6 @@ function NotFound() {
         path="/404"
       />
 
-      {/* 콘텐츠 */}
       <div className="notfound">
         <img
           src={nopage}

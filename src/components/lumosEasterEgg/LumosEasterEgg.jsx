@@ -1,6 +1,5 @@
-// components/LumosEasterEgg.jsx
-import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./LumosEasterEgg.scss";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 const LumosEasterEgg = () => {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -8,6 +7,8 @@ const LumosEasterEgg = () => {
   const [lumosPosition, setLumosPosition] = useState({ x: 0, y: 0 });
   const [lightEffect, setLightEffect] = useState(false);
   const [initialMousePos, setInitialMousePos] = useState({ x: 0, y: 0 });
+
+  // =============== Screen Size Detection ===============
 
   // 화면 크기 변경 감지
   useEffect(() => {
@@ -26,6 +27,8 @@ const LumosEasterEgg = () => {
   const lightRef = useRef(null);
   const throttleRef = useRef({ lastTime: 0, animationId: null });
 
+  // =============== Random Position Generator ===============
+
   // Lumos 텍스트 랜덤 위치 생성
   const generateRandomPosition = () => {
     const margin = 100;
@@ -38,8 +41,9 @@ const LumosEasterEgg = () => {
     };
   };
 
-  // Lumos 텍스트 주기적으로 나타났다 사라지기
+  // =============== Lumos Text Visibility Logic ===============
 
+  // Lumos 텍스트 주기적으로 나타났다 사라지기
   useEffect(() => {
     let timeoutId;
 
@@ -76,6 +80,8 @@ const LumosEasterEgg = () => {
     };
   }, [lightEffect, isDesktop]);
 
+  // =============== Event Handlers ===============
+
   // Lumos 클릭 핸들러
   const handleLumosClick = (e) => {
     console.log("Lumos 클릭됨!"); // 디버깅용
@@ -93,6 +99,8 @@ const LumosEasterEgg = () => {
       setLightEffect(false);
     }, 10000);
   };
+
+  // =============== Optimized Mouse Tracking ===============
 
   // 최적화된 마우스 추적 (직접 DOM 조작)
   const handleMouseMove = useCallback(

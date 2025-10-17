@@ -1,8 +1,9 @@
+import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+
 import Header from "../components/global/Header.jsx";
 import Footer from "../components/global/Footer.jsx";
 import BackgroundAnimation from "../components/common/backgroundAnimation/BackgroundAnimation.jsx";
-import React, { useState, useEffect } from "react";
 
 /*
 1. handleScroll을 활용해 조건식을 만든다. (50px 이상 스크롤되면 true, 같거나 작으면 false)
@@ -21,6 +22,8 @@ function MainLayout() {
   // 현재 메뉴가 열려있는지 여부를 저장하는 state 값. true면 열리고 false면 닫힘.
   // 초기 상태값이 false 이므로 처음엔 기본적으로 메뉴가 닫혀있음
   const [isContactOpen, setIsContactOpen] = useState(false);
+
+  // =============== Scroll & Resize Event Handlers ===============
 
   useEffect(() => {
     // 컴포넌트가 처음 나타날때 실행되는 코드영역

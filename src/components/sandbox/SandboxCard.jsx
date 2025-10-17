@@ -1,14 +1,7 @@
 import "./SandboxCard.scss";
 import { useState } from "react";
 
-export default function SandboxCard({
-  onClick,
-  image,
-  title,
-  stack,
-  getIcon,
-  loading,
-}) {
+function SandboxCard({ onClick, image, title, stack, getIcon, loading }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
@@ -41,3 +34,5 @@ export default function SandboxCard({
     </div>
   );
 }
+
+export default SandboxCard;

@@ -1,7 +1,8 @@
 import "./Home.scss";
+import { Link } from "react-router-dom";
+
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
 import FaceIllustration from "../../components/home/FaceIllustration.jsx";
-import { Link } from "react-router-dom";
 import ProjectAccordion from "../../components/common/projectDisplay/ProjectAccordion.jsx";
 import ProjectSplitView from "../../components/common/projectDisplay/ProjectSplitView.jsx";
 import VancouverClock from "../../components/home/VancouverClock.jsx";
@@ -17,8 +18,9 @@ function Home({ isMenuOpen, isContactOpen }) {
         ogImage="/assets/images/metadata/og_home.jpg"
       />
 
-      {/* 콘텐츠 */}
       <div className="home-wrapper">
+        {/* =============== Hero Section =============== */}
+
         <div className="home-wrapper__hero">
           <h1>
             Sunny <span className="home-wrapper__hero-lastname">Ju</span>
@@ -34,6 +36,8 @@ function Home({ isMenuOpen, isContactOpen }) {
         <div className="home-wrapper__arrow home-wrapper__arrow--top-mobile">
           <AnimatedArrow direction="down" animated={true} />
         </div>
+
+        {/* =============== Face Illustration =============== */}
 
         {/* 그리드 컬럼 시스템에서 가로 사이즈를 100% 이하로 주었더니 
         margin: 0 auto;나 플렉스로 가운데 정렬시 이미지 사이즈가 변하는 현상 발생,
@@ -54,6 +58,8 @@ function Home({ isMenuOpen, isContactOpen }) {
         <div className="home-wrapper__arrow home-wrapper__arrow--bottom-mobile">
           <AnimatedArrow direction="down" animated={true} />
         </div>
+
+        {/* =============== Navigation Links =============== */}
 
         <div className="home-wrapper__sublinks">
           <div className="home-wrapper__sublinks-item">
@@ -79,6 +85,8 @@ function Home({ isMenuOpen, isContactOpen }) {
         <div className="home-wrapper__arrow home-wrapper__arrow--bottom-desktop">
           <AnimatedArrow direction="down" animated={true} />
         </div>
+
+        {/* =============== Project Preview =============== */}
 
         <div className="home-wrapper__projects home-wrapper__projects--mobile">
           <ProjectAccordion />

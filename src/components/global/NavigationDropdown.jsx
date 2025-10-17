@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
 import "./NavigationDropdown.scss";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import AnimatedArrow from "../common/AnimatedArrow/AnimatedArrow.jsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { AiFillGithub } from "react-icons/ai";
+
+import AnimatedArrow from "../common/AnimatedArrow/AnimatedArrow.jsx";
 
 function NavigationDropdown({
   isMenuOpen,
@@ -16,6 +17,8 @@ function NavigationDropdown({
   );
   // contactOnly가 true이면 처음부터 contact가 열려있도록 초기세팅을 함
   const scrollPosition = useRef(0); // 스크롤 위치 저장용
+
+  // =============== Browser Back Butto Handler ===============
 
   // 브라우저 뒤로가기 처리 로직 추가
   useEffect(() => {
@@ -36,6 +39,8 @@ function NavigationDropdown({
       };
     }
   }, [isMenuOpen, onClose]);
+
+  // =============== Scroll Lock When Menu Open ===============
 
   // 오버레이시 스크롤방지
   useEffect(() => {
@@ -71,6 +76,8 @@ function NavigationDropdown({
     }
   }, [isMenuOpen, contactOnly]);
 
+  // =============== Event Handlers ===============
+
   const handleContactClick = () => {
     setExpandedItem(expandedItem === "contact" ? null : "contact");
   };
@@ -83,7 +90,8 @@ function NavigationDropdown({
 
   return (
     <>
-      {/* 햄버거 메뉴 버튼 */}
+      {/* =============== Hamburger Button =============== */}
+
       {/* (a || b) && c : a와 b 둘중 하나라도 참이면 c를 실행해라. 
 여기서 contactOnly앞에 !가 붙은 이유는 초기세팅을 contactOnly = false  이렇게 했기때문이다. 
 즉, 컨텍트온니가(!이 붙어서 거짓을 참으로 바꿈) 참이거나 isOpen이 참일경우 아래 버튼을 실행해라 라는 뜻. */}
@@ -159,7 +167,8 @@ function NavigationDropdown({
         </button>
       )}
 
-      {/* 모바일 풀스크린 메뉴 */}
+      {/* =============== Fullscreen Menu Overlay =============== */}
+
       <div
         className={`navigation-dropdown__overlay ${
           isMenuOpen ? "navigation-dropdown__overlay--open" : ""
@@ -186,6 +195,8 @@ function NavigationDropdown({
             }
           }}
         >
+          {/* =============== Main Navigation (Mobile Only)=============== */}
+
           {/* 만약 컨텍트온리가 아닌게(전체 메뉴가 다 나와야 하는게) 사실이라면 아래 내용을 실행할것./ 컨텍트는 이 조건문 밖으로 뺐음. 왜냐하면 데스크탑 버전에서는 컨텍트만 나와야 하기 때문 */}
           {!contactOnly && (
             <ul>
@@ -228,6 +239,8 @@ function NavigationDropdown({
               </li>
             </ul>
           )}
+
+          {/* =============== Contact Section =============== */}
 
           <div className="navigation-dropdown__contact">
             <button

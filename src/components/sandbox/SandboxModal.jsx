@@ -1,14 +1,17 @@
 import "./SandboxModal.scss";
+import { useState, useEffect } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
-import { useState, useEffect } from "react";
+
 import AnimatedArrow from "../common/AnimatedArrow/AnimatedArrow";
 
-export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
+function SandboxModal({ isOpen, onClose, data, getIcon }) {
   const [imageOrientation, setImageOrientation] = useState("landscape");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // 미디어 로딩
   const [mediaLoaded, setMediaLoaded] = useState(false);
+
+  // =============== Side Effects ===============
 
   useEffect(() => {
     if (isOpen) {
@@ -108,7 +111,7 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
     };
   }, [isOpen]);
 
-  if (!isOpen || !data) return null;
+  // =============== Helper Functions ===============
 
   // 이미지 배열 가져오기 (기존 단일 이미지도 호환)
   const getImages = () => {
@@ -122,6 +125,8 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
     return [{ type: "image", src: data.thumbnail }];
   };
 
+  // =============== Carousel Logic ===============
+
   const images = getImages();
   const currentImage = images[currentImageIndex];
 
@@ -132,6 +137,8 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
   };
+
+  // =============== Event Handers ===============
 
   const handleImageLoad = (e) => {
     const { naturalWidth, naturalHeight } = e.target;
@@ -154,6 +161,8 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
       onClose();
     }
   };
+
+  // =============== Media Renderer ===============
 
   const renderCurrentMedia = () => {
     if (!currentImage) return null;
@@ -190,6 +199,8 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
     }
   };
 
+  if (!isOpen || !data) return null;
+
   return (
     <div className="sandbox-modal" onClick={handleBackdropClick}>
       <div
@@ -199,6 +210,8 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
             : ""
         }`}
       >
+        {/* =============== Header =============== */}
+
         <div className="sandbox-modal__header">
           <div className="sandbox-modal__links">
             {data.links?.liveDemo && (
@@ -251,6 +264,8 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
             </svg>
           </button>
         </div>
+
+        {/* =============== Body =============== */}
 
         <div className="sandbox-modal__body">
           <div className="sandbox-modal__image">
@@ -328,3 +343,5 @@ export default function SandboxModal({ isOpen, onClose, data, getIcon }) {
     </div>
   );
 }
+
+export default SandboxModal;

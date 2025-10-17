@@ -1,5 +1,10 @@
 import "./About.scss";
+import { useEffect, useState } from "react";
+
+import TimeInVancouver from "../../components/about/TimeInVancouver.jsx";
+import Metadata from "../../components/global/Metadata.jsx";
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
+
 import {
   SiHtml5,
   SiCss3,
@@ -10,12 +15,11 @@ import {
   SiAdobeillustrator,
   SiAdobephotoshop,
 } from "react-icons/si";
-import { useEffect, useState } from "react";
-import TimeInVancouver from "../../components/about/TimeInVancouver.jsx";
-import Metadata from "../../components/global/Metadata.jsx";
 
 function About() {
   const [isVancouverVisible, setIsVancouverVisible] = useState(false);
+
+  // =============== Scroll - Triggered Reveal Animation ===============
 
   // 스크롤 진입 시 슬라이드 인, 벗어나면 슬라이드 아웃
   useEffect(() => {
@@ -121,8 +125,9 @@ function About() {
         ogImage="/assets/images/metadata/og_about.jpg"
       />
 
-      {/* 콘텐츠 */}
       <div className="about-wrapper">
+        {/* =============== Hero Section =============== */}
+
         {/* desktop 버전 */}
         <div className="about-wrapper__hero-content about-wrapper__hero-content--desktop">
           <h1 className="about-wrapper__hero-heading about-wrapper__hero-heading--desktop">
@@ -178,6 +183,8 @@ function About() {
             </div>
           </div>
         </div>
+
+        {/* =============== Intro Section =============== */}
 
         <div className="about-wrapper__intro-title">
           <h2>
@@ -235,6 +242,8 @@ function About() {
             </p>
           </div>
         </div>
+
+        {/* =============== Journey Section =============== */}
 
         <div className="about-wrapper__journey">
           <p className="about-wrapper__journey-title">See My Journey</p>
@@ -387,6 +396,8 @@ function About() {
             </div>
           </div>
         </div>
+
+        {/* =============== Ending =============== */}
 
         <div className="about-wrapper__ending-quote">
           <p>Still Surviving {":)"}</p>

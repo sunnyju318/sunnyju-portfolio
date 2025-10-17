@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
 import "./TimeInVancouver.scss";
+import { useEffect, useState } from "react";
 
 function TimeInVancouver() {
   const [timeElapsed, setTimeElapsed] = useState("");
 
   useEffect(() => {
-    // 밴쿠버 도착 날짜 (실제 날짜로 수정하세요)
+    // 밴쿠버 도착 날짜
     const startDate = new Date("2024-08-27T11:00:00-07:00"); // PDT 타임존
 
     const updateTime = () => {

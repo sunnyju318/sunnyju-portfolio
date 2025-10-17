@@ -14,7 +14,6 @@ function Projects() {
         ogImage="/assets/images/metadata/og_project.jpg"
       />
 
-      {/* 콘텐츠 */}
       <div className="projects-wrapper">
         <div className="projects-wrapper__title">
           <AnimatedArrow direction="right" animated={true} />

@@ -1,7 +1,8 @@
 import React from "react";
+import "./styles/global.scss";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //Route 쓰기전에 터미널에서 "npm i react-router-dom" 먼저 설치할것
-import { useState, useEffect } from "react";
 
 import MainLayout from "./Layouts/MainLayout.jsx";
 import Home from "./pages/Home/Home.jsx";
@@ -14,9 +15,9 @@ import ScrollRestoration from "./components/global/ScrollRestoration.jsx";
 import LumosEasterEgg from "./components/lumosEasterEgg/LumosEasterEgg.jsx";
 import ScrollToTop from "./components/common/ScrollToTop/ScrollToTop.jsx";
 
-import "./styles/global.scss";
-
 function App() {
+  // ========== Loading screen ==========
+
   useEffect(() => {
     const minDisplayTime = 700;
     const startTime = Date.now();

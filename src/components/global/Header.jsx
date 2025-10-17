@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import "./Header.scss";
+import { Link } from "react-router-dom";
 import HeaderNavigation from "./HeaderNavigation.jsx";
 import NavigationDropdown from "./NavigationDropdown.jsx";
 

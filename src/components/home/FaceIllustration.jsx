@@ -1,7 +1,8 @@
 import "./FaceIllustration.scss";
-import FaceSvg from "../../assets/illustrations/face-illustration.svg?react";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+import FaceSvg from "../../assets/illustrations/face-illustration.svg?react";
 
 function FaceIllustration({ isMenuOpen, isContactOpen }) {
   const svgRef = useRef(null);
@@ -15,6 +16,8 @@ function FaceIllustration({ isMenuOpen, isContactOpen }) {
   const [isPaused, setIsPaused] = useState(false);
   // 마우스 호버시 자동순환 애니메이션을 멈출지 계속할지 제어하는 용도, 초기값은 false로 기본적으로 움직이는 상태임
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1025);
+
+  // =============== Face Groups Data (Memoized) ===============
 
   /* == 성능최적화하기 == 메모이제이션, 불필요한 재생성 방지 :
   JSX안에서 [{}, {}, ..] 이런식으로 배열 데이터를 쓰면 
@@ -52,6 +55,8 @@ function FaceIllustration({ isMenuOpen, isContactOpen }) {
     []
   );
 
+  // =============== Modal State Management ===============
+
   // 다른 모달이 열리면 Face 모달 닫기
   useEffect(() => {
     if (isMenuOpen || isContactOpen) {
@@ -85,8 +90,9 @@ function FaceIllustration({ isMenuOpen, isContactOpen }) {
     };
   }, [hoveredGroup, isMobile]);
 
-  // == 성능최적화하기 == 눈동자 애니메이션 :
+  // =============== Eye Tracking Animation (Optimized) ===============
 
+  // == 성능최적화하기 == 눈동자 애니메이션 :
   // 캐싱하기 : 자주 사용하는 데이터를 미리 저장해두고 다음에는 다시 계산하거나 찾지않고 빠르게 꺼내 쓰는 것.
   const eyeElementsRef = useRef({ left: null, right: null });
   // 렌더링과 무관한 값 저장소
@@ -263,6 +269,8 @@ useEffect(() => {
 }, []);
 */
 
+  // =============== Screen Size Detection ===============
+
   // 화면 크기 변경 감지
   useEffect(() => {
     const handleResize = () => {
@@ -272,6 +280,8 @@ useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // =============== Auto-Cycle Animation ===============
 
   // 자동루핑 (호버시 정지)
   useEffect(() => {
@@ -292,6 +302,8 @@ useEffect(() => {
     // 컴포넌트가 사라지거나 isPaused 값이 바뀌면 clearInterval로 이전 타이머 정리하기
   }, [isPaused, groups.length, isMobile]);
   // dependency array : isPaused 이거나 groups.length중 하나라도 값이 바뀌면 유즈이펙트가 다시 실행됨
+
+  // =============== Hover Event Registration ===============
 
   // 그룹별로 호버이벤트 등록
   useEffect(() => {
@@ -330,6 +342,8 @@ useEffect(() => {
       cleanupFunctions.forEach((cleanup) => cleanup());
     };
   }, []);
+
+  // =============== Color Animation ===============
 
   // 색상 애니메이션 적용
   useEffect(() => {

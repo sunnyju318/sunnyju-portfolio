@@ -1,13 +1,16 @@
 import "./ProjectSplitView.scss";
 import { useState } from "react";
-import { worksData } from "../../../data/worksData.jsx";
-import { motion, AnimatePresence } from "framer-motion";
-import AnimatedArrow from "../AnimatedArrow/AnimatedArrow.jsx";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+import { worksData } from "../../../data/worksData.jsx";
+import AnimatedArrow from "../AnimatedArrow/AnimatedArrow.jsx";
 
 // Projects 페이지에서 제목변경을 위해 title를 props로 가져감
 function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
   const [expandedItem, setExpandedItem] = useState(0);
+
+  // =============== Data Filtering ===============
 
   const featuredProjects = isFeatured
     ? worksData.filter((project) => project.isFeatured)
@@ -15,6 +18,8 @@ function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
 
   return (
     <div className="project-split-view">
+      {/* =============== Image Preview (Left) =============== */}
+
       <div className="project-split-view__preview">
         {expandedItem !== null && (
           <img
@@ -28,6 +33,8 @@ function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
           />
         )}
       </div>
+
+      {/* =============== Project List (Right) =============== */}
 
       <div className="project-split-view__list">
         <div className="project-split-view__list-heading-wrapper">

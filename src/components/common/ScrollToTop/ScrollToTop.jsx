@@ -1,9 +1,11 @@
+import "./ScrollToTop.scss";
 import { useState, useEffect } from "react";
 import AnimatedArrow from "../AnimatedArrow/AnimatedArrow";
-import "./ScrollToTop.scss";
 
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+
+  // =============== Visibility Logic (3 Conditions) ===============
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +38,8 @@ function ScrollToTop() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // =============== Event Handler ===============
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

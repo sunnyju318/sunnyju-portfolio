@@ -1,9 +1,10 @@
-import { useParams, Link } from "react-router-dom";
-import { worksData } from "../../data/worksData";
 import "./WorkDetail.scss";
+import { useRef, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+
+import { worksData } from "../../data/worksData";
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
 import CodeBlock from "../../components/common/codeBlock/CodeBlock.jsx";
-import { useRef, useState } from "react";
 import Metadata from "../../components/global/Metadata.jsx";
 
 function WorkDetail() {
@@ -35,7 +36,8 @@ function WorkDetail() {
     );
   }
 
-  // 이미지 드레그 스크롤 이벤트
+  // =============== Drag Scroll Event Handlers ===============
+
   const handleMouseDown = (e) => {
     const slider = designImagesRef.current;
     if (!slider) return;
@@ -79,7 +81,8 @@ function WorkDetail() {
     );
   }
 
-  // SEO를 위한 메타데이터 준비
+  // =============== SEO Metadata Preparation ===============
+
   const description =
     work.shortDescription ||
     work.sections?.overview ||
@@ -97,10 +100,8 @@ function WorkDetail() {
         ogImage={ogImage}
       />
 
-      {/* 컨텐츠 */}
       <div className="work-detail">
-        {/* 헤더 */}
-
+        {/* =============== Top Navigation =============== */}
         <div className="work-detail__nav-top">
           {prevProject ? (
             <Link
@@ -145,7 +146,11 @@ function WorkDetail() {
           )}
         </div>
 
+        {/* =============== Header =============== */}
+
         <h1 className="work-detail__title">{work.title}</h1>
+
+        {/* =============== Project Links =============== */}
 
         <div className="work-detail__links">
           <div className="work-detail__links-wrapper">
@@ -194,6 +199,8 @@ function WorkDetail() {
           </div>
         </div>
 
+        {/* =============== Preview =============== */}
+
         <div className="work-detail__preview">
           <a
             href={work.links.liveDemo}
@@ -237,13 +244,16 @@ function WorkDetail() {
           </a>
         </div>
 
+        {/* =============== Code Snippets =============== */}
+
         <div className="work-detail__code">
           {work.codeSnippets && work.codeSnippets.length > 0 && (
             <CodeBlock codeSnippets={work.codeSnippets} />
           )}
         </div>
 
-        {/* 디스크립션 섹션들 */}
+        {/* =============== Description Sections =============== */}
+
         <div className="work-detail__sections">
           <section className="work-detail__section work-detail__section--overview">
             <h2 className="work-detail__section-heading">Overview</h2>
@@ -301,6 +311,8 @@ function WorkDetail() {
                 </div>
               </div>
 
+              {/* =============== Draggable Design Images Gallery =============== */}
+
               {work.sections.designProcess.images?.length > 0 && (
                 <div
                   className="work-detail__design-images"
@@ -327,6 +339,8 @@ function WorkDetail() {
             </section>
           )}
 
+          {/* =============== Development Highlights =============== */}
+
           <section className="work-detail__section work-detail__section--dev">
             <h2 className="work-detail__section-heading">
               Development Highlights
@@ -350,6 +364,8 @@ function WorkDetail() {
           </section>
         </div>
 
+        {/* =============== More Link =============== */}
+
         <div className="work-detail__links work-detail__links--more">
           <div className="work-detail__links-wrapper">
             <a
@@ -367,7 +383,8 @@ function WorkDetail() {
           </div>
         </div>
 
-        {/* 프로젝트 네비게이션 */}
+        {/* =============== Bottom Navigation =============== */}
+
         <div className="work-detail__nav-bottom">
           {prevProject ? (
             <Link

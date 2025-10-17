@@ -1,7 +1,8 @@
-import "highlight.js/styles/atom-one-dark.css";
-import hljs from "highlight.js";
 import "./CodeBlock.scss";
 import { useEffect, useState, useRef } from "react";
+
+import "highlight.js/styles/atom-one-dark.css";
+import hljs from "highlight.js";
 
 function CodeBlock({ codeSnippets }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -21,6 +22,8 @@ function CodeBlock({ codeSnippets }) {
   */
 
   // 유즈이펙트의 클린업과 비슷한 개념으로 한번 실행된 하이라이트의 흔적을 지우지 않으면 이미 하이라이트가 됐다고 생각해서 탭을 바꿀때 다시 실행하지 않으므로 기존 하이라이트를 제거 후 다시 적용하도록 하는것이다. 탭이동시 하이라이팅이 다시 적용되지 않음을 해결함.
+
+  // =============== Syntax Highlighting (Prevent Fouc) ===============
 
   useEffect(() => {
     setIsHighlighting(true);
@@ -47,9 +50,13 @@ function CodeBlock({ codeSnippets }) {
     return () => cancelAnimationFrame(frame);
   }, [activeTab, codeSnippets]);
 
+  // =============== Guard Clause ===============
+
   if (!codeSnippets || codeSnippets.length === 0) {
     return <div>There are no data.</div>;
   }
+
+  // =============== Event Handlers ===============
 
   const handleTabClick = (index) => {
     // 이전 탭보다 오른쪽으로 가면 +, 왼쪽으로 가면 -
@@ -69,6 +76,8 @@ function CodeBlock({ codeSnippets }) {
 
   return (
     <div className="code-block">
+      {/* =============== Tabs =============== */}
+
       <div className="code-block__tabs" ref={tabsRef}>
         {codeSnippets.map((snippet, index) => (
           <button
@@ -82,6 +91,8 @@ function CodeBlock({ codeSnippets }) {
           </button>
         ))}
       </div>
+
+      {/* =============== Code Content =============== */}
 
       <div
         className={`code-block__content ${

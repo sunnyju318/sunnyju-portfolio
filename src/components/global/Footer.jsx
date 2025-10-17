@@ -1,8 +1,9 @@
-import { Link, useLocation } from "react-router-dom";
 import "./Footer.scss";
-import FooterNavigation from "./FooterNavigation.jsx";
-import { AiFillGithub } from "react-icons/ai";
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { AiFillGithub } from "react-icons/ai";
+
+import FooterNavigation from "./FooterNavigation.jsx";
 
 function Footer() {
   const [formData, setFormData] = useState({ email: "", message: "" });
@@ -12,12 +13,16 @@ function Footer() {
   // 폼 텍스트 영역 확장 상태관리
   const location = useLocation(); // 현재 경로 감지
 
+  // =============== Form Reset on Page Change ===============
+
   useEffect(() => {
     setFormData({ email: "", message: "" });
     setStatus("");
     setIsExpanded(false);
   }, [location.pathname]);
   // 페이지 전환시 폼 리셋
+
+  // =============== Event Handlers ===============
 
   const handleLogoClick = () => {
     window.scroll({ top: 0, behavior: "smooth" });
@@ -65,6 +70,8 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__wrapper">
+        {/* =============== Footer Text =============== */}
+
         <div className="footer__text">
           <p className="footer__title">Hi, I'm Jisun Ju</p>
           <p className="footer__subtitle">But you can call me SUNNY</p>
@@ -73,7 +80,12 @@ function Footer() {
           </p>
         </div>
 
+        {/* =============== Divider =============== */}
+
         <div className="footer__divider" id="footer-boundary"></div>
+
+        {/* =============== Navigation & Socials =============== */}
+
         <div className="footer__link">
           <FooterNavigation />
           <div className="footer__social-wrapper">
@@ -97,6 +109,8 @@ function Footer() {
             </a>
           </div>
         </div>
+
+        {/* =============== Contact Form =============== */}
 
         <div className="footer__contact-section">
           <h2>GET IN TOUCH {":)"}</h2>
@@ -147,6 +161,8 @@ function Footer() {
             </button>
           </form>
         </div>
+
+        {/* =============== Logo (Scroll to Top) =============== */}
 
         <Link to="/" onClick={handleLogoClick}>
           <span className="footer__logo" aria-label="Go to home"></span>

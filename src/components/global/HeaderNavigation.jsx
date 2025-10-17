@@ -1,5 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
 import "./HeaderNavigation.scss";
+import { Link, useLocation } from "react-router-dom";
 import NavigationDropdown from "./NavigationDropdown.jsx";
 
 function HeaderNavigation({ isScrolled, isContactOpen, setIsContactOpen }) {

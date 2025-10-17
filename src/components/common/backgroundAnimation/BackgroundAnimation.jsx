@@ -7,7 +7,9 @@ import { useEffect } from "react";
 // GSAP 플러그인 등록하기
 gsap.registerPlugin(MotionPathPlugin);
 
-const BackgroundAnimation = () => {
+function BackgroundAnimation() {
+  // =============== GSAP Animation ===============
+
   useEffect(() => {
     const createFallingAnimation = (blurElement, pathId, delay = 0) => {
       // gsap.set() 메서드, 애니메이션 시작되기전 초기상태 세팅
@@ -37,8 +39,6 @@ const BackgroundAnimation = () => {
         repeatDelay: Math.random() * 10 + 5, // 5-15초 랜덤 딜레이
       });
     };
-
-    // ======== createFallingAnimation() 끝 =========
 
     // 애니메이션을 요소에 적용하기
     // createFallingAnimation = (blurElement, pathId, delay = 0) : 전체 함수 호출구조
@@ -81,6 +81,8 @@ const BackgroundAnimation = () => {
   // 블러들이 정확하게 패쓰를 따라 이동하지않고 고정된상태를 보여서 블러들을 전부 svg 안으로 이동시켜 해결함
   return (
     <div className="background-animation">
+      {/* =============== Left Set =============== */}
+
       <div className="background-animation__line-set background-animation__line-set--left">
         <svg
           viewBox="0 0 237.21 841.89"
@@ -106,6 +108,8 @@ const BackgroundAnimation = () => {
           <rect className="background-animation__blur background-animation__blur--3" />
         </svg>
       </div>
+
+      {/* =============== Right Set =============== */}
 
       <div className="background-animation__line-set background-animation__line-set--right">
         <svg
@@ -135,6 +139,6 @@ const BackgroundAnimation = () => {
       </div>
     </div>
   );
-};
+}
 
 export default BackgroundAnimation;

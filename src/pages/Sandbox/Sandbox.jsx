@@ -1,11 +1,13 @@
 import "./Sandbox.scss";
+import { useState } from "react";
 import { sandboxData } from "../../data/sandboxData";
+
 import SandboxCard from "../../components/sandbox/SandboxCard.jsx";
 import Masonry from "react-masonry-css";
 import SandboxModal from "../../components/sandbox/SandboxModal.jsx";
-import { useState } from "react";
 import AnimatedArrow from "../../components/common/AnimatedArrow/AnimatedArrow.jsx";
 import Metadata from "../../components/global/Metadata.jsx";
+
 import {
   SiHtml5,
   SiCss3,
@@ -19,6 +21,8 @@ import {
 } from "react-icons/si";
 
 function Sandbox() {
+  // =============== Masonry Layout ===============
+
   const breakpointColumns = {
     default: 4,
     1400: 3, // xxl
@@ -40,6 +44,8 @@ function Sandbox() {
     setIsModalOpen(false);
     setModalData(null);
   };
+
+  // =============== Tech Icon Mapper ===============
 
   const getIcon = (tech) => {
     switch (tech) {
@@ -79,7 +85,6 @@ function Sandbox() {
         ogImage="/assets/images/metadata/og_sandbox.jpg"
       />
 
-      {/* 콘텐츠 */}
       <div className="sandbox-wrapper">
         <div className="sandbox-wrapper__title">
           <AnimatedArrow direction="right" animated={true} />

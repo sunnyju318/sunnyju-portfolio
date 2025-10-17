@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
 import "./VancouverClock.scss";
+import { useState, useEffect } from "react";
 
-export default function VancouverClock({ className }) {
+function VancouverClock({ className }) {
   const [time, setTime] = useState(new Date());
+
+  // =============== Clock Tick Logic ===============
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -11,6 +13,8 @@ export default function VancouverClock({ className }) {
 
     return () => clearInterval(timer);
   }, []);
+
+  // =============== Time Formatter ===============
 
   const formatTime = (date) => {
     const options = {
@@ -65,3 +69,5 @@ export default function VancouverClock({ className }) {
     </div>
   );
 }
+
+export default VancouverClock;

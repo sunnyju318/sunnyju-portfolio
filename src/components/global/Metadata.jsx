@@ -1,7 +1,7 @@
 const BASE_URL = "https://jisun-ju.ca";
 const DEFAULT_OG_IMAGE = "/assets/images/metadata/og-home.jpg";
 
-export default function Metadata({
+function Metadata({
   title = "Sunny Ju",
   description = "Vancouver-based front-end developer blending code and UI/UX design to create thoughtful, engaging web experiences.",
   path = "/",
@@ -47,3 +47,5 @@ export default function Metadata({
     </>
   );
 }
+
+export default Metadata;
