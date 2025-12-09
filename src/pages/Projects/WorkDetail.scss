@@ -395,6 +395,15 @@
     object-fit: contain;
   }
 
+  // Performance & Future
+  &__section--performance {
+    grid-column: 1/-1;
+  }
+
+  &__section--next-steps {
+    grid-column: 1/-1;
+  }
+
   // <---------- Bottom Navigation ---------->
 
   &__nav-bottom {
@@ -647,11 +656,11 @@
     // Critical Design Decisions
 
     &__section--decision-text {
-      grid-column: 1/9;
+      grid-column: 1/8;
     }
 
     &__section--decision-image {
-      grid-column: 9/13;
+      grid-column: 8/13;
     }
 
     // Tech Overview
