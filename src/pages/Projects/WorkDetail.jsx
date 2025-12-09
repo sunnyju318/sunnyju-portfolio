@@ -283,46 +283,37 @@ function WorkDetail() {
         {/* =============== Preview =============== */}
 
         <div className="work-detail__preview">
-          <a
-            href={work.links.liveDemo}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {work.preview.type === "video" ? (
-              <>
-                {!videoLoaded && (
-                  <div className="loading-overlay">
-                    <div className="spinner" />
-                  </div>
-                )}
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  // 비디오를 얼마나 미리 로드할지 결정하는 것으로
-                  // none 아무것도 미리 안받음, metadata 길이나 크기 첫 프레임만 받음, auto 전체 다 받음으로 무거움
-                  onLoadedData={() => {
-                    console.log("Loading..");
-                    setVideoLoaded(true);
-                  }}
-                  // 비디오 로드가 완료되면 재생
-                >
-                  <source src={work.preview.src} type="video/mp4" />
-                </video>
-              </>
-            ) : (
-              <img
-                src={work.preview.src}
-                alt={`${work.title} Preview`}
-                fetchPriority="high"
-                width="1200"
-                height="800"
-                decoding="async"
-              />
-            )}
-          </a>
+          {work.preview.type === "video" ? (
+            <>
+              {!videoLoaded && (
+                <div className="loading-overlay">
+                  <div className="spinner" />
+                </div>
+              )}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                onLoadedData={() => {
+                  console.log("Loading..");
+                  setVideoLoaded(true);
+                }}
+              >
+                <source src={work.preview.src} type="video/mp4" />
+              </video>
+            </>
+          ) : (
+            <img
+              src={work.preview.src}
+              alt={`${work.title} Preview`}
+              fetchPriority="high"
+              width="1200"
+              height="800"
+              decoding="async"
+            />
+          )}
         </div>
 
         {/* =============== Code Snippets =============== */}
@@ -389,26 +380,59 @@ function WorkDetail() {
           <section className="work-detail__section work-detail__section--summary">
             <h3 className="work-detail__subsection-heading">Summary</h3>
 
-            <div className="work-detail__summary-item">
-              <span className="work-detail__meta-label">Project Type</span>
-              <p className="work-detail__meta-value">
-                {work.sections.summary.projectType}
-              </p>
-            </div>
+            {/* 개발 프로젝트 Summary */}
+            {!isDesignProject && (
+              <>
+                <div className="work-detail__summary-item">
+                  <span className="work-detail__meta-label">Problem</span>
+                  <p className="work-detail__meta-value">
+                    {work.sections.summary.problem}
+                  </p>
+                </div>
 
-            <div className="work-detail__summary-item">
-              <span className="work-detail__meta-label">Approach</span>
-              <p className="work-detail__meta-value">
-                {work.sections.summary.approach}
-              </p>
-            </div>
+                <div className="work-detail__summary-item">
+                  <span className="work-detail__meta-label">Goal</span>
+                  <p className="work-detail__meta-value">
+                    {work.sections.summary.goal}
+                  </p>
+                </div>
 
-            <div className="work-detail__summary-item">
-              <span className="work-detail__meta-label">Key Focus</span>
-              <p className="work-detail__meta-value">
-                {work.sections.summary.keyFocus}
-              </p>
-            </div>
+                <div className="work-detail__summary-item">
+                  <span className="work-detail__meta-label">
+                    Key Contribution
+                  </span>
+                  <p className="work-detail__meta-value">
+                    {work.sections.summary.keyContribution}
+                  </p>
+                </div>
+              </>
+            )}
+
+            {/* 디자인 프로젝트 Summary */}
+            {isDesignProject && (
+              <>
+                <div className="work-detail__summary-item">
+                  <span className="work-detail__meta-label">Project Type</span>
+                  <p className="work-detail__meta-value">
+                    {work.sections.summary.projectType}
+                  </p>
+                </div>
+
+                <div className="work-detail__summary-item">
+                  <span className="work-detail__meta-label">Approach</span>
+                  <p className="work-detail__meta-value">
+                    {work.sections.summary.approach}
+                  </p>
+                </div>
+
+                <div className="work-detail__summary-item">
+                  <span className="work-detail__meta-label">Key Focus</span>
+                  <p className="work-detail__meta-value">
+                    {work.sections.summary.keyFocus}
+                  </p>
+                </div>
+              </>
+            )}
           </section>
 
           {/* =============== Background =============== */}
@@ -543,65 +567,19 @@ function WorkDetail() {
                 <h3 className="work-detail__subsection-heading">Tech Stack</h3>
 
                 <div className="work-detail__tech-list">
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">Frontend</span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.techStack.frontend}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">Styling</span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.techStack.styling}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">Animation</span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.techStack.animation}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">Components</span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.techStack.components}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">
-                      Data Management
-                    </span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.techStack.dataManagement}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">Utilities</span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.techStack.utilities}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">Deployment</span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.techStack.deployment}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">
-                      Optimization
-                    </span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.techStack.optimization}
-                    </p>
-                  </div>
+                  {Object.entries(work.sections.techStack).map(
+                    ([key, value]) => (
+                      <div key={key} className="work-detail__tech-item">
+                        <span className="work-detail__meta-label">
+                          {key
+                            .replace(/([A-Z])/g, " $1")
+                            .replace(/^./, (str) => str.toUpperCase())
+                            .trim()}
+                        </span>
+                        <p className="work-detail__meta-value">{value}</p>
+                      </div>
+                    )
+                  )}
                 </div>
               </section>
 
@@ -612,41 +590,19 @@ function WorkDetail() {
                 </h3>
 
                 <div className="work-detail__tech-list">
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">
-                      Component Strategy
-                    </span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.architecturalChoices.componentStrategy}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">
-                      Data Architecture
-                    </span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.architecturalChoices.dataArchitecture}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">
-                      Styling Approach
-                    </span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.architecturalChoices.stylingApproach}
-                    </p>
-                  </div>
-
-                  <div className="work-detail__tech-item">
-                    <span className="work-detail__meta-label">
-                      State Management
-                    </span>
-                    <p className="work-detail__meta-value">
-                      {work.sections.architecturalChoices.stateManagement}
-                    </p>
-                  </div>
+                  {Object.entries(work.sections.architecturalChoices).map(
+                    ([key, value]) => (
+                      <div key={key} className="work-detail__tech-item">
+                        <span className="work-detail__meta-label">
+                          {key
+                            .replace(/([A-Z])/g, " $1")
+                            .replace(/^./, (str) => str.toUpperCase())
+                            .trim()}
+                        </span>
+                        <p className="work-detail__meta-value">{value}</p>
+                      </div>
+                    )
+                  )}
                 </div>
               </section>
             </>
@@ -915,59 +871,19 @@ function WorkDetail() {
                   </h3>
 
                   <div className="work-detail__tech-list">
-                    <div className="work-detail__tech-item">
-                      <span className="work-detail__meta-label">
-                        Component Architecture
-                      </span>
-                      <p className="work-detail__meta-value">
-                        {
-                          work.sections.developmentHighlights
-                            .componentArchitecture
-                        }
-                      </p>
-                    </div>
-
-                    <div className="work-detail__tech-item">
-                      <span className="work-detail__meta-label">
-                        Styling System
-                      </span>
-                      <p className="work-detail__meta-value">
-                        {work.sections.developmentHighlights.stylingSystem}
-                      </p>
-                    </div>
-
-                    <div className="work-detail__tech-item">
-                      <span className="work-detail__meta-label">
-                        Performance Optimization
-                      </span>
-                      <p className="work-detail__meta-value">
-                        {
-                          work.sections.developmentHighlights
-                            .performanceOptimization
-                        }
-                      </p>
-                    </div>
-
-                    <div className="work-detail__tech-item">
-                      <span className="work-detail__meta-label">
-                        Media Optimization
-                      </span>
-                      <p className="work-detail__meta-value">
-                        {work.sections.developmentHighlights.mediaOptimization}
-                      </p>
-                    </div>
-
-                    <div className="work-detail__tech-item">
-                      <span className="work-detail__meta-label">
-                        Accessibility Enhancements
-                      </span>
-                      <p className="work-detail__meta-value">
-                        {
-                          work.sections.developmentHighlights
-                            .accessibilityEnhancements
-                        }
-                      </p>
-                    </div>
+                    {Object.entries(work.sections.developmentHighlights).map(
+                      ([key, value]) => (
+                        <div key={key} className="work-detail__tech-item">
+                          <span className="work-detail__meta-label">
+                            {key
+                              .replace(/([A-Z])/g, " $1") // camelCase → spaced words
+                              .replace(/^./, (str) => str.toUpperCase()) // capitalize
+                              .trim()}
+                          </span>
+                          <p className="work-detail__meta-value">{value}</p>
+                        </div>
+                      )
+                    )}
                   </div>
                 </section>
               )}
@@ -980,38 +896,19 @@ function WorkDetail() {
                   </h3>
 
                   <div className="work-detail__tech-list">
-                    <div className="work-detail__tech-item">
-                      <span className="work-detail__meta-label">
-                        Animation Performance
-                      </span>
-                      <p className="work-detail__meta-value">
-                        {
-                          work.sections.challengesAndLearnings
-                            .animationPerformance
-                        }
-                      </p>
-                    </div>
-
-                    <div className="work-detail__tech-item">
-                      <span className="work-detail__meta-label">
-                        Mobile Accessibility
-                      </span>
-                      <p className="work-detail__meta-value">
-                        {
-                          work.sections.challengesAndLearnings
-                            .mobileAccessibility
-                        }
-                      </p>
-                    </div>
-
-                    <div className="work-detail__tech-item">
-                      <span className="work-detail__meta-label">
-                        Layout Stability
-                      </span>
-                      <p className="work-detail__meta-value">
-                        {work.sections.challengesAndLearnings.layoutStability}
-                      </p>
-                    </div>
+                    {Object.entries(work.sections.challengesAndLearnings).map(
+                      ([key, value]) => (
+                        <div key={key} className="work-detail__tech-item">
+                          <span className="work-detail__meta-label">
+                            {key
+                              .replace(/([A-Z])/g, " $1") // camelCase → spaced words
+                              .replace(/^./, (str) => str.toUpperCase()) // capitalize
+                              .trim()}
+                          </span>
+                          <p className="work-detail__meta-value">{value}</p>
+                        </div>
+                      )
+                    )}
                   </div>
                 </section>
               )}
@@ -1052,114 +949,52 @@ function WorkDetail() {
             </h2>
 
             {/* Performance Optimization */}
-            <section className="work-detail__section work-detail__section--performance">
-              <h3 className="work-detail__subsection-heading">
-                Performance Optimization
-              </h3>
+            {work.sections.performanceOptimization && (
+              <section className="work-detail__section work-detail__section--performance">
+                <h3 className="work-detail__subsection-heading">
+                  Performance Optimization
+                </h3>
 
-              <div className="work-detail__tech-list">
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">
-                    Lighthouse Scores
-                  </span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.performanceOptimization.lighthouseScores}
-                  </p>
+                <div className="work-detail__tech-list">
+                  {Object.entries(work.sections.performanceOptimization).map(
+                    ([key, value]) => (
+                      <div key={key} className="work-detail__tech-item">
+                        <span className="work-detail__meta-label">
+                          {key
+                            .replace(/([A-Z])/g, " $1")
+                            .replace(/^./, (str) => str.toUpperCase())
+                            .trim()}
+                        </span>
+                        <p className="work-detail__meta-value">{value}</p>
+                      </div>
+                    )
+                  )}
                 </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">
-                    Image Optimization
-                  </span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.performanceOptimization.imageOptimization}
-                  </p>
-                </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">
-                    Code Splitting
-                  </span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.performanceOptimization.codeSplitting}
-                  </p>
-                </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">
-                    Animation Optimization
-                  </span>
-                  <p className="work-detail__meta-value">
-                    {
-                      work.sections.performanceOptimization
-                        .animationOptimization
-                    }
-                  </p>
-                </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">
-                    Media Compression
-                  </span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.performanceOptimization.mediaCompression}
-                  </p>
-                </div>
-              </div>
-            </section>
+              </section>
+            )}
 
             {/* Next Steps */}
-            <section className="work-detail__section work-detail__section--next-steps">
-              <h3 className="work-detail__subsection-heading">Next Steps</h3>
+            {work.sections.nextSteps && (
+              <section className="work-detail__section work-detail__section--next-steps">
+                <h3 className="work-detail__subsection-heading">Next Steps</h3>
 
-              <div className="work-detail__tech-list">
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">Dark Mode</span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.nextSteps.darkMode}
-                  </p>
+                <div className="work-detail__tech-list">
+                  {Object.entries(work.sections.nextSteps).map(
+                    ([key, value]) => (
+                      <div key={key} className="work-detail__tech-item">
+                        <span className="work-detail__meta-label">
+                          {key
+                            .replace(/([A-Z])/g, " $1")
+                            .replace(/^./, (str) => str.toUpperCase())
+                            .trim()}
+                        </span>
+                        <p className="work-detail__meta-value">{value}</p>
+                      </div>
+                    )
+                  )}
                 </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">Blog Section</span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.nextSteps.blogSection}
-                  </p>
-                </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">Analytics</span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.nextSteps.analytics}
-                  </p>
-                </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">
-                    Interactive Playground
-                  </span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.nextSteps.interactivePlayground}
-                  </p>
-                </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">Accessibility</span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.nextSteps.accessibility}
-                  </p>
-                </div>
-
-                <div className="work-detail__tech-item">
-                  <span className="work-detail__meta-label">
-                    Internationalization
-                  </span>
-                  <p className="work-detail__meta-value">
-                    {work.sections.nextSteps.internationalization}
-                  </p>
-                </div>
-              </div>
-            </section>
+              </section>
+            )}
           </>
         )}
 

@@ -1,7 +1,493 @@
 export const worksData = [
   {
     id: 1,
-    title: "SKYFRAME",
+    title: "SKYFRAME | DEV",
+    isFeatured: true,
+    category: "Mobile App Development",
+    tech: "React Native / TypeScript / Supabase",
+    shortDescription:
+      "A visual-first Bluesky client with Pinterest-style layout and curation features, built as a comprehensive mobile development portfolio piece",
+    ogImage: "/assets/images/metadata/og_project-skyframe.jpg",
+    links: {
+      liveDemo: null, // App store deployment pending
+      github: "https://github.com/sunnyju318/skyframe",
+      techDocs:
+        "https://www.notion.so/SF-Log-01-28fb6c448610807ebe25dc8f327377ba?source=copy_link#28fb6c44861081a8882cf6147fd13491",
+      productBrief:
+        "https://www.notion.so/SF-Log-01-28fb6c448610807ebe25dc8f327377ba?source=copy_link#28fb6c448610805596dadb946fe2a2ad",
+      projectLog:
+        "https://www.notion.so/2-SkyFrame-28cb6c44861080728199dd567a974456?source=copy_link",
+    },
+    preview: {
+      type: "video",
+      src: "/assets/images/work/skyframedev/skyframedev_large.mp4",
+    },
+    thumbnail: "/assets/images/work/skyframe/skyframe_thumb.webp",
+
+    codeSnippets: [
+      {
+        tab: "Architecture",
+        language: "javascript",
+        code: `// Context-based state management with optimized re-renders
+  
+  // BoardContext.tsx - Supabase integration for board management
+  export function BoardProvider({ children }: BoardProviderProps) {
+    const { user } = useAuth();
+    const [boards, setBoards] = useState<BoardWithPosts[]>([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      if (user?.did) {
+        loadBoards();
+      }
+    }, [user?.did]);
+  
+    const loadBoards = async () => {
+      const { data: boardsData, error } = await supabase
+        .from("boards")
+        .select("*")
+        .eq("user_id", user.did)
+        .order("created_at", { ascending: false });
+  
+      if (error) throw error;
+  
+      // Fetch actual post data from Bluesky
+      const uniqueUris = [...new Set(boardPostsData.map(bp => bp.post_uri))];
+      const posts = await Promise.all(uniqueUris.map(uri => getPost(uri)));
+      
+      const boardsWithPosts = boardsData.map(board => ({
+        ...board,
+        posts: posts.filter(p => p !== undefined)
+      }));
+  
+      setBoards(boardsWithPosts);
+    };
+  
+    const savePostToBoard = async (boardId: string, post: BlueskyPost) => {
+      const { error } = await supabase
+        .from("board_posts")
+        .insert({ board_id: boardId, post_uri: post.uri });
+      
+      if (error) throw error;
+      await loadBoards();
+    };
+  
+    return (
+      <BoardContext.Provider value={{ boards, savePostToBoard, ... }}>
+        {children}
+      </BoardContext.Provider>
+    );
+  }`,
+      },
+      {
+        tab: "API",
+        language: "typescript",
+        code: `// Bluesky AT Protocol integration with proper error handling
+  
+  // blueskyApi.ts
+  export const getDiscoverFeed = async (
+    cursor?: string
+  ): Promise<BlueskyTimelineResponse> => {
+    try {
+      const response = await agent.api.app.bsky.feed.getTimeline({
+        limit: 50,
+        cursor,
+      });
+  
+      // Filter for image-only posts
+      const filteredFeed = response.data.feed.filter((item) => {
+        const embed = item.post.embed;
+        return embed && "images" in embed && embed.images?.length > 0;
+      });
+  
+      // Apply content moderation filters
+      const safeFeed = filterPosts(filteredFeed.map(item => item.post));
+  
+      return {
+        feed: safeFeed.map(post => ({ post })),
+        cursor: response.data.cursor,
+      };
+    } catch (error) {
+      console.error("Error fetching discover feed:", error);
+      throw error;
+    }
+  };
+  
+  // Follow/Unfollow with optimistic updates
+  export const followUser = async (did: string): Promise<string> => {
+    const response = await agent.api.app.bsky.graph.follow.create(
+      { repo: agent.session!.did },
+      { subject: did, createdAt: new Date().toISOString() }
+    );
+    return response.uri;
+  };
+  
+  export const likePost = async (uri: string, cid: string): Promise<string> => {
+    const response = await agent.api.app.bsky.feed.like.create(
+      { repo: agent.session!.did },
+      { subject: { uri, cid }, createdAt: new Date().toISOString() }
+    );
+    return response.uri;
+  };`,
+      },
+      {
+        tab: "Components",
+        language: "typescript",
+        code: `// PostCard with shimmer loading and masonry layout optimization
+  
+  export default function PostCard({ feedItem, isLeftColumn }: PostCardProps) {
+    const [imageLoading, setImageLoading] = useState(true);
+    const shimmerAnimation = useRef(new Animated.Value(0)).current;
+  
+    useEffect(() => {
+      if (!imageLoading) return;
+  
+      const loop = Animated.loop(
+        Animated.sequence([
+          Animated.timing(shimmerAnimation, {
+            toValue: 1,
+            duration: 1500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(shimmerAnimation, {
+            toValue: 0,
+            duration: 1500,
+            useNativeDriver: true,
+          }),
+        ])
+      );
+  
+      loop.start();
+      return () => loop.stop();
+    }, [imageLoading]);
+  
+    const translateX = shimmerAnimation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [-300, 300],
+    });
+  
+    const image = feedItem.post.embed?.images?.[0];
+    const aspectRatio = image?.aspectRatio 
+      ? image.aspectRatio.width / image.aspectRatio.height 
+      : 1;
+  
+    return (
+      <TouchableOpacity
+        style={{
+          marginRight: isLeftColumn ? 6 : 0,
+          marginLeft: isLeftColumn ? 0 : 6,
+        }}
+        onPress={() => navigation.push("PostDetail", { post: feedItem })}
+      >
+        <View style={{ aspectRatio, minHeight: 200 }}>
+          {imageLoading && (
+            <View style={StyleSheet.absoluteFillObject}>
+              <Animated.View style={{ transform: [{ translateX }] }}>
+                <LinearGradient colors={["#D6D6D6", "#E6E6E6", "#D6D6D6"]} />
+              </Animated.View>
+            </View>
+          )}
+          
+          <ExpoImage
+            source={{ uri: image.thumb }}
+            onLoad={() => setImageLoading(false)}
+            transition={200}
+          />
+        </View>
+      </TouchableOpacity>
+    );
+  }`,
+      },
+      {
+        tab: "Navigation",
+        language: "typescript",
+        code: `// Stack-based navigation with proper post-to-post browsing
+  
+  // HomeStack.tsx
+  export default function HomeStack() {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="HomeFeed" component={HomeScreen} />
+        <Stack.Screen name="PostDetail" component={PostDetailScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      </Stack.Navigator>
+    );
+  }
+  
+  // App.tsx - Provider hierarchy
+  export default function App() {
+    return (
+      <AuthProvider>
+        <BoardProvider>
+          <InteractionProvider>
+            <NavigationContainer>
+              <AppNavigator />
+            </NavigationContainer>
+          </InteractionProvider>
+        </BoardProvider>
+      </AuthProvider>
+    );
+  }
+  
+  // Type-safe navigation
+  export type HomeStackParamList = {
+    HomeFeed: undefined;
+    PostDetail: { post: BlueskyPost | BlueskyFeedItem };
+    Profile: { handle: string };
+  };`,
+      },
+      {
+        tab: "Database",
+        language: "sql",
+        code: `-- Supabase schema with Row Level Security
+  
+  -- Boards table
+  CREATE TABLE boards (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id TEXT NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT,
+    is_private BOOLEAN DEFAULT false,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+  );
+  
+  -- Board posts junction table
+  CREATE TABLE board_posts (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    board_id UUID REFERENCES boards(id) ON DELETE CASCADE,
+    post_uri TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    UNIQUE(board_id, post_uri)
+  );
+  
+  -- Row Level Security policies
+  ALTER TABLE boards ENABLE ROW LEVEL SECURITY;
+  ALTER TABLE board_posts ENABLE ROW LEVEL SECURITY;
+  
+  -- Users can only access their own boards
+  CREATE POLICY "Users can view own boards"
+    ON boards FOR SELECT
+    USING (user_id = current_setting('app.user_id'));
+  
+  CREATE POLICY "Users can create own boards"
+    ON boards FOR INSERT
+    WITH CHECK (user_id = current_setting('app.user_id'));
+  
+  CREATE POLICY "Users can update own boards"
+    ON boards FOR UPDATE
+    USING (user_id = current_setting('app.user_id'));
+  
+  -- Board posts inherit board permissions
+  CREATE POLICY "Users can manage own board posts"
+    ON board_posts FOR ALL
+    USING (
+      board_id IN (
+        SELECT id FROM boards 
+        WHERE user_id = current_setting('app.user_id')
+      )
+    );`,
+      },
+      {
+        tab: "Styling",
+        language: "javascript",
+        code: `// NativeWind (Tailwind CSS) design system configuration
+  
+  // tailwind.config.js
+  module.exports = {
+    content: ["./App.{js,jsx,ts,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            900: "#221F32",
+            700: "#4C4464",
+            500: "#766A95",
+            300: "#A18DC8",
+            100: "#C3B9E5",
+            50: "#E2E1F0",
+          },
+          gray: {
+            900: "#212529",
+            700: "#343434",
+            500: "#6C757D",
+            400: "#ADB5BD",
+            300: "#CED4DA",
+            200: "#DEE2E6",
+            100: "#F1F3F5",
+            50: "#F8F9FA",
+          },
+        },
+        fontFamily: {
+          sans: ["Poppins", "sans-serif"],
+        },
+        fontSize: {
+          display: ["32px", { lineHeight: "40px", fontWeight: "700" }],
+          h1: ["24px", { lineHeight: "32px", fontWeight: "600" }],
+          h2: ["20px", { lineHeight: "28px", fontWeight: "600" }],
+          h3: ["18px", { lineHeight: "24px", fontWeight: "500" }],
+          body: ["16px", { lineHeight: "24px", fontWeight: "400" }],
+        },
+        spacing: {
+          16: "16px",
+          20: "20px",
+          24: "24px",
+          32: "32px",
+          58: "58px",
+        },
+        borderRadius: {
+          xl: "14px",
+          20: "20px",
+          30: "30px",
+        },
+      },
+    },
+  };
+  
+  // Usage in components
+  <View className="flex-1 bg-white pt-58">
+    <Text className="text-h2 font-semibold text-gray-700">
+      SkyFrame
+    </Text>
+  </View>`,
+      },
+    ],
+
+    sections: {
+      meta: {
+        role: "Product Owner, UX/UI Designer, Mobile Developer",
+        stack: [
+          "React Native",
+          "TypeScript",
+          "Expo",
+          "Tailwind CSS",
+          "Supabase",
+          "AT Protocol",
+        ],
+        timeline: "Oct - Dec 2025 (10 weeks)",
+        timelineSteps: [
+          { phase: "MVP", completed: true },
+          { phase: "Boards", completed: true },
+          { phase: "Polish", completed: true },
+          { phase: "Deploy", completed: false },
+          { phase: "Phase2", completed: false },
+        ],
+        platform: "iOS / Android (React Native)",
+      },
+
+      summary: {
+        problem:
+          "Visual creators on Bluesky lack a dedicated image-focused client with curation features similar to Pinterest",
+        goal: "Create production-ready mobile app demonstrating full-stack mobile development and UX/UI design capabilities",
+        keyContribution:
+          "Solo development from product strategy to implementation, delivering image-only feed, board system, and Bluesky API integration in 8 weeks",
+      },
+
+      techStack: {
+        frontend:
+          "React Native 0.81 with Expo SDK 54 for cross-platform development",
+        typeScript:
+          "Strict TypeScript configuration for type safety and better developer experience",
+        styling:
+          "NativeWind 2.0 (Tailwind CSS for React Native) with custom design tokens and component-based styling",
+        stateManagement:
+          "Context API with three specialized contexts (Auth, Board, Interaction) for optimized re-renders",
+        navigation:
+          "React Navigation 7 with native stack navigators and proper type safety",
+        backend:
+          "Supabase for PostgreSQL database with Row Level Security policies for data protection",
+        api: "@atproto/api for Bluesky integration with session management and token persistence",
+        ui: "@react-native-seoul/masonry-list for Pinterest-style layouts, expo-image for optimized loading",
+        dataStorage:
+          "AsyncStorage for session persistence, Supabase for board/post data",
+        security:
+          "Environment variables for credentials, Row Level Security on database, proper token handling",
+      },
+
+      architecturalChoices: {
+        layeredArchitecture:
+          "Clear separation of concerns with contexts/ (state), services/ (API), screens/ (UI), components/ (reusable), types/ (TypeScript), utils/ (helpers)",
+        contextStrategy:
+          "Three specialized contexts instead of single global store to prevent unnecessary re-renders and maintain clear boundaries",
+        serviceLayer:
+          "Dedicated API service modules (blueskyApi.ts, authService.ts, supabaseClient.ts) to abstract implementation details from UI",
+        typeSystem:
+          "Comprehensive TypeScript types for Bluesky API responses, navigation params, and database schemas",
+        navigationArchitecture:
+          "Stack-based navigation per tab (HomeStack, SearchStack, ProfileStack) enabling proper post-to-post browsing within each context",
+      },
+
+      developmentHighlights: {
+        blueskyIntegration:
+          "Implemented complete Bluesky AT Protocol integration including authentication, timeline feeds, search, user profiles, and social interactions (follow, like, repost)",
+        boardSystem:
+          "Built Pinterest-style board/collection system with Supabase backend, supporting CRUD operations and real-time sync with Bluesky content",
+        imageFiltering:
+          "Developed content filtering system that extracts only posts with images, applies content moderation labels, and validates hashtag quality",
+        masonryLayout:
+          "Implemented optimized masonry layout with shimmer skeleton loading, proper aspect ratio preservation, and infinite scroll pagination",
+        modalInterfaces:
+          "Created Pinterest-inspired modal system for saving posts to boards with create/edit/delete functionality and visual feedback",
+        interactionSystem:
+          "Built global interaction context managing follow/unfollow, like/unlike, and repost/unrepost with optimistic UI updates",
+        securityImplementation:
+          "Configured Row Level Security policies on Supabase ensuring users can only access their own boards and posts",
+        navigationFlow:
+          "Designed navigation architecture supporting post-to-post browsing, profile navigation from any screen, and proper back stack management",
+      },
+
+      challengesAndLearnings: {
+        navigationComplexity:
+          "Initial navigation setup caused duplicate screens and broken back buttons. Resolved by implementing proper stack navigators per tab instead of shared PostDetail screen",
+        stateManagement:
+          "Managing interaction states (likes, follows, reposts) across components led to prop drilling. Solved with InteractionContext providing centralized state accessible from any component",
+        contentFiltering:
+          "Bluesky posts include various embed types (external links, quotes, videos). Had to implement robust type guards and filtering to ensure only image posts display correctly",
+        asyncDataFlow:
+          "Board posts reference Bluesky URIs requiring separate API calls to fetch actual post data. Implemented parallel Promise.all fetching with proper error handling",
+        typeScriptIntegration:
+          "React Navigation type safety required complex type definitions for nested navigators. Created comprehensive type system ensuring compile-time route param validation",
+        performanceOptimization:
+          "Initial masonry list had janky scrolling. Optimized with expo-image for lazy loading, proper key extraction, and avoiding unnecessary re-renders",
+      },
+
+      projectArchitecture:
+        "/assets/images/work/skyframedev/project_architecture.webp",
+
+      performanceOptimization: {
+        imageOptimization:
+          "Implemented expo-image with progressive loading, cached requests, and WebP support for 60% faster load times",
+        listPerformance:
+          "Optimized masonry layout with proper keyExtractor, getItemType, and removeClippedSubviews for smooth 60fps scrolling",
+        memoryManagement:
+          "Used Map data structures for O(1) lookups in interaction states, preventing array iterations on every render",
+        apiEfficiency:
+          "Batch post fetches using Promise.all, implemented cursor-based pagination, and deduplicated API requests",
+        contextOptimization:
+          "Split single app context into three specialized contexts to minimize component re-renders on state changes",
+      },
+
+      nextSteps: {
+        postCreation:
+          "Implement post creation functionality with image upload, hashtag suggestions, and draft saving (Phase 2 feature)",
+        aiIntegration:
+          "Add OpenAI Vision API integration for automatic hashtag suggestions based on image content analysis",
+        personalization:
+          "Develop user behavior tracking to personalize discover feed based on interaction history and saved boards",
+        offlineSupport:
+          "Implement offline-first architecture with local caching and background sync when connection restored",
+        appStoreDeployment:
+          "Prepare EAS Build configuration, app store assets, and submission for iOS App Store and Google Play Store",
+        advancedSearch:
+          "Add filters for date range, user, engagement metrics, and save search queries as custom feeds",
+        socialFeatures:
+          "Enable board sharing, collaborative boards, and in-app notifications for board activity",
+      },
+    },
+  },
+  {
+    id: 2,
+    title: "SKYFRAME | UXUI",
     isFeatured: true,
     category: "UXUI Design",
     tech: "Figma, Illustrator",
@@ -12,7 +498,8 @@ export const worksData = [
       prototype:
         "https://www.figma.com/proto/OZuSSoUvct6MBpTQHoWKgG/SkyFrame?page-id=278%3A1180&node-id=279-1031&p=f&viewport=136%2C25%2C0.14&t=k1WBaFTY2Zq3nmQU-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=279%3A1031&show-proto-sidebar=1",
       caseStudy: "/skyframe_case-study.pdf",
-      productBrief: "/skyframe_case-study.pdf",
+      productBrief:
+        "https://www.notion.so/SF-Log-01-28fb6c448610807ebe25dc8f327377ba?source=copy_link#28fb6c448610805596dadb946fe2a2ad",
       projectLog:
         "https://www.notion.so/2-SkyFrame-28cb6c44861080728199dd567a974456?source=copy_link",
     },
@@ -166,9 +653,9 @@ export const worksData = [
     // Array인 이유 : 항목이 리스트 형태이며 배열은 반복문 돌리기 좋고 리엑트에서 <ul><li>...</li></ul>로 쉽게 렌더링할수 있기 때문이다.
   },
   {
-    id: 2,
+    id: 3,
     // useParams()로 받은 id와 비교해서 해당 프로젝트를 찾을 때 사용함
-    title: "PORTFOLIO",
+    title: "PORTFOLIO | DEV",
     isFeatured: true, // featured에 들어갈 목록임을 표시
     category: "Web Development",
     tech: "React / SCSS / Framer Motion",
@@ -178,8 +665,6 @@ export const worksData = [
     links: {
       liveDemo: "https://jisun-ju.ca/",
       github: "https://github.com/sunnyju318/sunnyju-portfolio",
-      techDocs: "skyframe_case-study.pdf",
-      productBrief: "skyframe_case-study.pdf",
       projectLog:
         "https://www.notion.so/5-My-Portfolio-25db6c4486108060ba46d90f8154ba68?source=copy_link",
     },
