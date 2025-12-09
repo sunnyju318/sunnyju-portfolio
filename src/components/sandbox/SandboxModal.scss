@@ -21,7 +21,7 @@
     flex-direction: column;
     width: 90%;
     max-width: 900px;
-    max-height: 80vh;
+    // max-height: 80vh;
     margin-top: 2rem;
     border-radius: 10px;
     overflow: hidden;
@@ -129,6 +129,18 @@
 
   &__tag {
     width: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    // AI 텍스트 스타일
+    .tech-text {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #0ea5e9;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
   }
 
   // <---------- carousel  ---------->
@@ -256,6 +268,11 @@
 
     &__tag {
       width: 25px;
+
+      // 태블릿에서 AI 텍스트 크기 증가
+      .tech-text {
+        font-size: 0.85rem;
+      }
     }
 
     &__image img {
@@ -294,6 +311,13 @@
   .sandbox-modal {
     &__content {
       margin-top: 4rem;
+    }
+
+    &__tag {
+      // 데스크톱에서 AI 텍스트 크기 더 증가
+      .tech-text {
+        font-size: 0.9rem;
+      }
     }
 
     &__content--portrait {

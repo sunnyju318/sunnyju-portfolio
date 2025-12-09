@@ -18,6 +18,10 @@ import {
   SiAdobeillustrator,
   SiAdobephotoshop,
   SiAdobeaftereffects,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiDocker,
 } from "react-icons/si";
 
 function Sandbox() {
@@ -71,6 +75,15 @@ function Sandbox() {
         return (
           <SiAdobeaftereffects size={25} color="#9999FF" title="AfterEffects" />
         );
+      case "Next.js 15":
+      case "Next.js":
+        return <SiNextdotjs size={25} color="#e5e5e5" title="Next.js" />;
+      case "TypeScript":
+        return <SiTypescript size={25} color="#3178c6" title="TypeScript" />;
+      case "Tailwind CSS":
+        return <SiTailwindcss size={25} color="#06b6d4" title="Tailwind CSS" />;
+      case "Docker":
+        return <SiDocker size={25} color="#2496ed" title="Docker" />;
       default:
         return <span className="tech-text">{tech}</span>;
     }

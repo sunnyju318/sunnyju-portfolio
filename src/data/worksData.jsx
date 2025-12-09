@@ -22,7 +22,7 @@ export const worksData = [
       type: "video",
       src: "/assets/images/work/skyframedev/skyframedev_large.mp4",
     },
-    thumbnail: "/assets/images/work/skyframe/skyframe_thumb.webp",
+    thumbnail: "/assets/images/work/skyframedev/skyframedev_thumb.webp",
 
     codeSnippets: [
       {
@@ -506,7 +506,7 @@ export const worksData = [
     // 외부 링크들을 모아둔 객체
     preview: {
       type: "image", // 또는 "image"
-      src: "/assets/images/work/skyframe/skyframe_thumb.webp",
+      src: "/assets/images/work/skyframe/skyframe_large.webp",
     },
     thumbnail: "/assets/images/work/skyframe/skyframe_thumb.webp",
     // 실제 표시할 코드, 템플릿 리터럴(벡틱)사용으로 여러줄 지원

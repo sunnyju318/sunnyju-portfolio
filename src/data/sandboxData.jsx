@@ -1,5 +1,55 @@
 export const sandboxData = [
   {
+    id: 111,
+    title: "Study Buddy",
+    category: "Development",
+    stack: ["Next.js 15", "TypeScript", "Tailwind CSS", "Docker", "AI"],
+    description:
+      "Task management app with authentication. Includes password validation (8+ chars, special char required), username validation (3-20 chars), edit mode with keyboard shortcuts (Enter to save, Escape to cancel), and localStorage for data persistence. Containerized with Docker for consistent deployment.",
+
+    links: {
+      viewCode: "https://github.com/sunnyju318/todo-app-bcit",
+    },
+
+    images: [
+      {
+        type: "image",
+        src: "assets/images/sandbox/development/study-buddy_large03.webp",
+        caption:
+          "Task manager with authentication. Built with Next.js 15, TypeScript, and Docker. Features accessibility support, keyboard navigation, and localStorage persistence.",
+      },
+      {
+        type: "image",
+        src: "assets/images/sandbox/development/study-buddy_large01.webp",
+        caption: "Login page with user authentication and form validation.",
+      },
+      {
+        type: "image",
+        src: "assets/images/sandbox/development/study-buddy_large02.webp",
+        caption:
+          "Signup page with password requirements: 8+ characters with special character validation.",
+      },
+    ],
+
+    thumbnail: "assets/images/sandbox/development/study-buddy_thumb.webp",
+  },
+  {
+    id: 110,
+    title: "AI Voice Cloning",
+    category: "Development",
+    stack: ["React", "AI"],
+    description:
+      "Experimental project exploring voice cloning with XTTS v2. Built entirely through AI-assisted learning to understand Rust backend, Python integration, and full-stack architecture beyond my existing React knowledge.",
+
+    links: {
+      viewCode: "https://github.com/sunnyju318/react-rust-audio-test",
+    },
+
+    thumbnail: "assets/images/sandbox/development/ai-voice-cloning_thumb.webp",
+    largeImage: "assets/images/sandbox/development/ai-voice-cloning_large.webp",
+    preview: null,
+  },
+  {
     id: 100,
     title: "Luna Preloader",
     category: "Development", // Development, Design(UIUX, 그래픽 디자인), Art(일러스트, 아트워크), Animation(모션그래픽, 애니메이션), Prototype(실험적 프로젝트)

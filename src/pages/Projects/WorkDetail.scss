@@ -152,6 +152,7 @@
     margin-top: 2rem;
     border-radius: 20px;
     padding: 2rem 1rem;
+    overflow-x: hidden;
     @include mixins.surface-glass;
   }
 
@@ -385,21 +386,13 @@
     overflow-x: auto;
   }
 
-  &__architecture-diagram {
-    margin: 0;
-    padding: 1.5rem;
-    background-color: rgba(vars.$near-black, 0.3);
+  &__architecture-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
     border-radius: 10px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: vars.$font-size-sm;
-    line-height: 1.6;
-    color: vars.$text-body-primary;
-    overflow-x: auto;
-    white-space: pre;
-
-    code {
-      font-family: inherit;
-    }
+    object-fit: contain;
   }
 
   // <---------- Bottom Navigation ---------->
