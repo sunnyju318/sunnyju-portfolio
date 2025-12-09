@@ -3,13 +3,25 @@
 
 // ========== Mobile (default) ==========
 
+// <---------- Design Project Only ---------->
+.work-detail--uxui {
+  .work-detail__preview {
+    grid-column: 1/-1;
+
+    img {
+      @include mixins.image-cover;
+    }
+  }
+}
+
+// <---------- Dev Project + Common ---------->
 .work-detail {
   @include mixins.grid-layout();
   @include mixins.container();
 
   // <---------- Header ---------->
 
-  // Top Navigation
+  // Top Navigation //
 
   &__nav-top {
     grid-column: 1/-1;
@@ -28,6 +40,7 @@
 
   &__projects-list {
     font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-medium;
     color: vars.$text-link-highlight;
     transition: all 0.3s ease;
 
@@ -49,17 +62,25 @@
     }
   }
 
-  // Title
+  // Title //
 
   &__title {
     grid-column: 1/-1;
     text-align: start;
     font-size: vars.$font-size-6xl;
-    margin-bottom: 2rem;
     line-height: vars.$line-height-xs;
   }
 
-  // Links
+  &__sub-title {
+    grid-column: 1/-1;
+    text-align: start;
+    font-size: vars.$font-size-4xl;
+    color: vars.$text-heading-secondary;
+    margin-bottom: 2.5rem;
+    line-height: vars.$line-height-xs;
+  }
+
+  // Links //
 
   &__links {
     grid-column: 1/-1;
@@ -97,6 +118,8 @@
 
   // <---------- Contents ---------->
 
+  // Preview //
+
   &__preview {
     grid-column: 1/-1;
     position: relative;
@@ -125,10 +148,14 @@
     }
   }
 
+  // Code //
+
   &__code {
     grid-column: 1/-1;
     margin-top: 1rem;
   }
+
+  // Sections //
 
   &__sections {
     grid-column: 1/-1;
@@ -141,28 +168,156 @@
     @include mixins.surface-glass;
   }
 
-  &__section-heading {
+  &__subsection-heading {
     text-align: start;
     margin-bottom: 1rem;
     @include mixins.section-title-mobile-beige;
   }
 
-  &__section--stack ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  &__section-heading {
+    grid-column: 1/-1;
+    text-align: start;
+    margin: 2rem 0;
 
-    li {
-      background-color: vars.$muted-olive;
-      box-shadow: inset 0 0 10px rgba(vars.$near-black, 0.5);
-      color: vars.$text-body-secondary;
-      padding: 0.5rem 1.5rem;
-      border-radius: 10px;
-      font-weight: vars.$font-weight-semibold;
+    font-size: vars.$font-size-4xl;
+    font-weight: vars.$font-weight-semibold;
+    line-height: 4rem;
+  }
+
+  // Project Overview (Development Only) //
+
+  // Details
+
+  &__section--meta {
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__meta-item {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__meta-item--tech {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        background-color: vars.$muted-olive;
+        box-shadow: inset 0 0 10px rgba(vars.$near-black, 0.5);
+        color: vars.$text-body-secondary;
+        padding: 0.3rem 1rem;
+        border-radius: 8px;
+        font-weight: vars.$font-weight-semibold;
+      }
     }
   }
 
+  &__meta-label {
+    color: vars.$text-heading-secondary;
+    font-weight: vars.$font-weight-medium;
+  }
+
+  // Summary
+
+  &__summary-item {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .work-detail__meta-label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .work-detail__meta-value {
+      display: block;
+    }
+  }
+
+  &__section--summary {
+    grid-column: 1/-1;
+  }
+
+  &__section--summary {
+    grid-column: 1/-1;
+  }
+
+  // Tech Stack
+
+  &__tech-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__tech-item {
+    .work-detail__meta-label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .work-detail__meta-value {
+      display: block;
+    }
+  }
+
+  // Project Overview (Design Only) //
+
+  &__section--background {
+    grid-column: 1/-1;
+  }
+
+  &__section--problem {
+    grid-column: 1/-1;
+  }
+
+  &__section--goal {
+    grid-column: 1/-1;
+  }
+
+  &__section--solution {
+    grid-column: 1/-1;
+  }
+
+  //User Flows
+
+  &__section--userflow {
+    grid-column: 1/-1;
+  }
+
+  // Critical Design Decisions
+
+  &__decision-wrapper {
+    display: contents;
+  }
+
+  &__section--decision-text {
+    grid-column: 1/-1;
+  }
+
+  &__section--decision-image {
+    grid-column: 1/-1;
+  }
+
+  // Design System
+
   &__section--design {
+    grid-column: 1/-1;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -171,6 +326,7 @@
   &__design-contents {
     display: flex;
     flex-direction: column;
+    flex: 0 0 30%;
 
     p {
       margin-bottom: 1rem;
@@ -179,16 +335,45 @@
 
   &__design-images {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
-    border-radius: 10px;
-    @include mixins.image-container;
+    border-radius: 20px;
+    flex: 0 0 70%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &.active {
+      cursor: grabbing;
+    }
 
     img {
       border-radius: 10px;
-      @include mixins.image-cover;
+      width: 75%;
+      min-width: 250px;
+      flex-shrink: 0;
+      user-select: none;
+      pointer-events: none;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      border-radius: 20px;
+    }
+
+    &--flow img {
+      width: 40%;
+      min-width: 200px;
     }
   }
+
+  // Development
 
   &__section--dev ul,
   &__section--challenges ul {
@@ -203,6 +388,30 @@
         content: counter(item-counter) ".";
         @include mixins.absolute-fill;
       }
+    }
+  }
+
+  // Project Architecture
+
+  &__section--architecture {
+    grid-column: 1/-1;
+    overflow-x: auto;
+  }
+
+  &__architecture-diagram {
+    margin: 0;
+    padding: 1.5rem;
+    background-color: rgba(vars.$near-black, 0.3);
+    border-radius: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: vars.$font-size-sm;
+    line-height: 1.6;
+    color: vars.$text-body-primary;
+    overflow-x: auto;
+    white-space: pre;
+
+    code {
+      font-family: inherit;
     }
   }
 
@@ -276,6 +485,11 @@
       font-size: vars.$font-size-8xl;
     }
 
+    &__sub-title {
+      font-size: vars.$font-size-6xl;
+      margin-bottom: 4.5rem;
+    }
+
     &__preview {
       grid-column: 1/5;
     }
@@ -295,51 +509,69 @@
       padding: 2rem 2rem;
     }
 
-    &__section--overview {
+    // Overview
+    &__section--meta {
       grid-column: 1/5;
     }
 
-    &__section--stack {
+    &__section--summary {
       grid-column: 5/9;
     }
 
+    &__section--background {
+      grid-column: 1/5;
+    }
+
+    &__section--problem {
+      grid-column: 5/9;
+    }
+
+    &__section--goal {
+      grid-column: 1/5;
+    }
+
+    &__section--solution {
+      grid-column: 5/9;
+    }
+
+    // Critical Design Decisions
+
+    &__section--decision-text {
+      grid-column: 1/5;
+    }
+
+    &__section--decision-image {
+      grid-column: 5/9;
+    }
+
+    // Design System
+
     &__section--design {
-      grid-column: 1/-1;
       flex-direction: row;
     }
 
-    &__design-contents {
-      flex: 0 0 30%;
+    // Development
+
+    // Tech Overview
+    &__section--tech-stack {
+      grid-column: 1/5;
     }
 
-    &__design-images {
-      flex: 0 0 70%;
-      flex-direction: row;
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      cursor: grab;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
+    &__section--architectural {
+      grid-column: 5/9;
+    }
 
-      &::-webkit-scrollbar {
-        display: none;
-      }
+    &__section--architecture {
+      grid-column: 1/9;
+    }
 
-      &.active {
-        cursor: grabbing;
-      }
+    // Performance & Future
+    &__section--performance {
+      grid-column: 1/5;
+    }
 
-      img {
-        width: 75%;
-        min-width: 250px;
-        flex-shrink: 0;
-        user-select: none;
-        pointer-events: none;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-      }
+    &__section--next-steps {
+      grid-column: 5/9;
     }
 
     &__section--dev {
@@ -390,6 +622,10 @@
       font-size: vars.$font-size-9xl;
     }
 
+    &__sub-title {
+      font-size: vars.$font-size-7xl;
+    }
+
     &__preview {
       grid-column: 1/7;
     }
@@ -401,6 +637,67 @@
     &__section {
       padding: 3rem 2.5rem;
       font-size: vars.$font-size-xl;
+    }
+
+    // Overview
+    &__section--meta {
+      grid-column: 1/7;
+    }
+
+    &__section--summary {
+      grid-column: 7/13;
+    }
+
+    &__section--background {
+      grid-column: 1/7;
+    }
+
+    &__section--problem {
+      grid-column: 7/13;
+    }
+
+    &__section--goal {
+      grid-column: 1/7;
+    }
+
+    &__section--solution {
+      grid-column: 7/13;
+    }
+
+    // Critical Design Decisions
+
+    &__section--decision-text {
+      grid-column: 1/9;
+    }
+
+    &__section--decision-image {
+      grid-column: 9/13;
+    }
+
+    // Tech Overview
+    &__section--tech-stack {
+      grid-column: 1/7;
+    }
+
+    &__section--architectural {
+      grid-column: 7/13;
+    }
+
+    &__section--architecture {
+      grid-column: 1/13;
+    }
+
+    &__architecture-diagram {
+      font-size: vars.$font-size-base;
+    }
+
+    // Performance & Future
+    &__section--performance {
+      grid-column: 1/7;
+    }
+
+    &__section--next-steps {
+      grid-column: 7/13;
     }
 
     &__section--overview {

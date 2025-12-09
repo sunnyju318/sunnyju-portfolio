@@ -178,7 +178,7 @@ function FaceIllustration({ isMenuOpen, isContactOpen }) {
       1. GPU와 CPU의 차이
         1) GPU : 그래픽전용, 훨씬빠름, 부드럽게 처리가능
         2) CPU : 일반계산용, 느릴수있음, 복잡한 UI에 부담
-      2. 브라우저는 GPU를 적극적극적으로 쓰려면 "나는 3D야"와 같은 힌트를 줘야 한다. 
+      2. 브라우저는 GPU를 적극적으로 쓰려면 "나는 3D야"와 같은 힌트를 줘야 한다. 
       3. translate3d(x, y, z)는 3D 이동으로 z에 0을 넣더라도 브라우저는 이 요소를 GPU 처리 대상으로 인식한다.
       */
 

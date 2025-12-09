@@ -26,8 +26,9 @@ function Home({ isMenuOpen, isContactOpen }) {
             Sunny <span className="home-wrapper__hero-lastname">Ju</span>
           </h1>
           <h2>
-            Developer X <br />
-            Product Designer
+            Front-End Developer
+            <br />
+            UXUI Designer
           </h2>
           <p>Code X Design</p>
           <VancouverClock className="home-wrapper__hero-clock" />

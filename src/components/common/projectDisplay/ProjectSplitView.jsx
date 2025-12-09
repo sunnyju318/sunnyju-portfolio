@@ -47,7 +47,6 @@ function ProjectSplitView({ title = "FEATURED PROJECTS", isFeatured = true }) {
             key={project.id}
             className="project-split-view__list-item"
             onMouseEnter={() => setExpandedItem(index)}
-            onMouseLeave={() => setExpandedItem(null)}
           >
             <motion.span
               className="project-split-view__project-title"

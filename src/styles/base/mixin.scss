@@ -132,7 +132,7 @@
 
 @mixin section-title-mobile-beige {
   color: vars.$text-heading-secondary;
-  font-size: vars.$font-size-4xl;
+  font-size: vars.$font-size-3xl;
   font-weight: vars.$font-weight-semibold;
   line-height: 4rem;
 }
@@ -235,6 +235,12 @@
 
 @mixin image-cover {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin image-contain {
+  object-fit: contain;
   width: 100%;
   height: 100%;
 }

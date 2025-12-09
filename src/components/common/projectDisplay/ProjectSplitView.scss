@@ -22,7 +22,11 @@
     @include mixins.image-container;
 
     &-img {
+      transition: transform 0.3s ease;
       @include mixins.image-cover;
+    }
+    &-img:hover {
+      transform: scale(1.2);
     }
   }
 

@@ -1,0 +1,72 @@
+// components/Projects/ProjectTimeline/ProjectTimeline.scss
+
+@use "../../styles/base/mixin.scss" as mixins;
+@use "../../styles/base/variables.scss" as vars;
+.project-timeline {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(vars.$muted-beige, 0.04);
+  border-radius: 20px;
+  overflow-x: auto;
+  @include mixins.flex-center;
+
+  &__step {
+    position: relative;
+    width: 65px;
+    flex-shrink: 0;
+    @include mixins.flex-column-center;
+
+    &:not(:last-child) {
+      margin-right: 0;
+    }
+  }
+
+  &__phase {
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-semibold;
+    text-align: center;
+    white-space: nowrap;
+    margin-bottom: 0.7rem;
+    transition: color 0.2s ease;
+    .project-timeline__step:not(.completed) & {
+      color: rgba(vars.$muted-olive, 0.7);
+    }
+  }
+
+  &__dot {
+    position: relative;
+    z-index: 2;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+
+    .project-timeline__step.completed & {
+      background: vars.$muted-beige;
+      border: 3px solid rgba(vars.$muted-beige, 0.8);
+      box-shadow: 0 0 0 4px rgba(vars.$muted-beige, 0.1);
+    }
+
+    .project-timeline__step:not(.completed) & {
+      background: transparent;
+      border: 3px solid rgba(vars.$muted-olive, 0.8);
+      box-shadow: none;
+    }
+
+    .project-timeline__step.in-progress & {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 4px rgba(vars.$muted-beige, 0.1);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 8px rgba(vars.$muted-beige, 0.2);
+  }
+}
