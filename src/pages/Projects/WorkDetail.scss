@@ -165,9 +165,9 @@
   &__section-heading {
     grid-column: 1/-1;
     text-align: start;
-    margin: 2rem 0;
+    margin: 6rem 0 0.5rem;
 
-    font-size: vars.$font-size-4xl;
+    font-size: vars.$font-size-5xl;
     font-weight: vars.$font-weight-semibold;
     line-height: 4rem;
   }

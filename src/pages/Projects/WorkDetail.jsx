@@ -327,7 +327,7 @@ function WorkDetail() {
         {/* =============== Description Sections =============== */}
 
         <div className="work-detail__sections ">
-          <h2 className="work-detail__section-heading">Project Overview</h2>
+          <h2 className="work-detail__section-heading">PROJECT OVERVIEW</h2>
           {/* =============== Details =============== */}
           <section className="work-detail__section work-detail__section--meta">
             <h3 className="work-detail__subsection-heading">Details</h3>
@@ -560,7 +560,7 @@ function WorkDetail() {
           {/* =============== Tech Overview =============== */}
           {!isDesignProject && (
             <>
-              <h2 className="work-detail__section-heading">Tech Overview</h2>
+              <h2 className="work-detail__section-heading">TECH OVERVIEW</h2>
 
               {/* Tech Stack */}
               <section className="work-detail__section work-detail__section--tech-stack">
@@ -611,7 +611,7 @@ function WorkDetail() {
           {/* =============== User Flows =============== */}
           {isDesignProject && (
             <>
-              <h2 className="work-detail__section-heading">User Flows</h2>
+              <h2 className="work-detail__section-heading">USER FLOWS</h2>
               {work.sections.userFlows?.map((flow, index) => (
                 <section
                   key={index}
@@ -637,7 +637,7 @@ function WorkDetail() {
           {isDesignProject && (
             <>
               <h2 className="work-detail__section-heading">
-                Critical Design Decisions
+                CRITICAL DESIGN DECISIONS
               </h2>
               {work.sections.designDecisions?.map((decision, index) => (
                 <div key={index} className="work-detail__decision-wrapper">
@@ -680,7 +680,7 @@ function WorkDetail() {
           {/* =============== Design System =============== */}
           {isDesignProject && (
             <>
-              <h2 className="work-detail__section-heading">Design System</h2>
+              <h2 className="work-detail__section-heading">DESIGN SYSTEM</h2>
 
               {work.sections.designSystem && (
                 <section className="work-detail__section work-detail__section--design">
@@ -742,7 +742,7 @@ function WorkDetail() {
           {/* =============== Final Product =============== */}
           {isDesignProject && (
             <>
-              <h2 className="work-detail__section-heading">Final Product</h2>
+              <h2 className="work-detail__section-heading">FINAL PRODUCT</h2>
 
               {work.sections.browseVisitFlow && (
                 <section className="work-detail__section work-detail__section--design">
@@ -861,7 +861,7 @@ function WorkDetail() {
           {/* =============== Implementation =============== */}
           {!isDesignProject && (
             <>
-              <h2 className="work-detail__section-heading">Implementation</h2>
+              <h2 className="work-detail__section-heading">IMPLEMENTATION</h2>
 
               {/* Development Highlights */}
               {work.sections.developmentHighlights && (
@@ -919,7 +919,7 @@ function WorkDetail() {
           {!isDesignProject && (
             <>
               <h2 className="work-detail__section-heading">
-                Project Architecture
+                PROJECT ARCHITECTURE
               </h2>
 
               <section className="work-detail__section work-detail__section--architecture">
@@ -945,7 +945,7 @@ function WorkDetail() {
         {!isDesignProject && (
           <>
             <h2 className="work-detail__section-heading">
-              Performance & Future
+              PERFORMANCE & FUTURE
             </h2>
 
             {/* Performance Optimization */}
