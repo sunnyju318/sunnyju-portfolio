@@ -999,7 +999,7 @@ function WorkDetail() {
         )}
 
         {/* =============== More Link =============== */}
-
+        {/* 
         <div className="work-detail__links work-detail__links--more">
           <div className="work-detail__links-wrapper">
             <a
@@ -1015,7 +1015,7 @@ function WorkDetail() {
               className="work-detail__link-arrow work-detail__link-arrow--more"
             />
           </div>
-        </div>
+        </div> */}
 
         {/* =============== Bottom Navigation =============== */}
 
