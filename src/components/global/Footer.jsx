@@ -1,13 +1,13 @@
-import "./Footer.scss";
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { AiFillGithub } from "react-icons/ai";
+import './Footer.scss';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { AiFillGithub } from 'react-icons/ai';
 
-import FooterNavigation from "./FooterNavigation.jsx";
+import FooterNavigation from './FooterNavigation.jsx';
 
 function Footer() {
-  const [formData, setFormData] = useState({ email: "", message: "" });
-  const [status, setStatus] = useState("idle");
+  const [formData, setFormData] = useState({ email: '', message: '' });
+  const [status, setStatus] = useState('idle');
   // idle | sending | success | error
   const [isExpanded, setIsExpanded] = useState(false);
   // 폼 텍스트 영역 확장 상태관리
@@ -16,8 +16,8 @@ function Footer() {
   // =============== Form Reset on Page Change ===============
 
   useEffect(() => {
-    setFormData({ email: "", message: "" });
-    setStatus("");
+    setFormData({ email: '', message: '' });
+    setStatus('');
     setIsExpanded(false);
   }, [location.pathname]);
   // 페이지 전환시 폼 리셋
@@ -25,36 +25,36 @@ function Footer() {
   // =============== Event Handlers ===============
 
   const handleLogoClick = () => {
-    window.scroll({ top: 0, behavior: "smooth" });
+    window.scroll({ top: 0, behavior: 'smooth' });
   }; // 클릭시 상단으로 부드럽게 이동
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setStatus("sending"); // 버튼을 비활성화 상태로
-    emailjs.init("OtRCujMzVnsbfqM2t");
+    setStatus('sending'); // 버튼을 비활성화 상태로
+    emailjs.init('OtRCujMzVnsbfqM2t');
 
     // EmailJS 초기화 (Public Key 넣기)
-    emailjs.init("OtRCujMzVnsbfqM2t");
+    emailjs.init('OtRCujMzVnsbfqM2t');
 
     // 폼 전송
     emailjs
-      .sendForm("service_to4g768", "template_cbn24bf", e.target)
+      .sendForm('service_to4g768', 'template_cbn24bf', e.target)
       .then(() => {
-        setStatus("success");
-        setFormData({ email: "", message: "" });
+        setStatus('success');
+        setFormData({ email: '', message: '' });
         setIsExpanded(false);
         // 2초 뒤 다시 "Send"로 복귀
         setTimeout(() => {
-          setStatus("idle");
+          setStatus('idle');
         }, 2000);
       })
       .catch((error) => {
-        setStatus("error");
-        console.error("Failed to send:", error);
+        setStatus('error');
+        console.error('Failed to send:', error);
         // 에러도 2초 후 복귀
         setTimeout(() => {
-          setStatus("idle");
+          setStatus('idle');
         }, 2000);
       });
   };
@@ -76,7 +76,7 @@ function Footer() {
           <p className="footer__title">Hi, I'm Jisun Ju</p>
           <p className="footer__subtitle">But you can call me SUNNY</p>
           <p className="footer__copyright">
-            © 2025 Sunny Ju. All rights reserved.
+            © 2026 Sunny Ju. All rights reserved.
           </p>
         </div>
 
@@ -113,11 +113,11 @@ function Footer() {
         {/* =============== Contact Form =============== */}
 
         <div className="footer__contact-section">
-          <h2>GET IN TOUCH {":)"}</h2>
+          <h2>GET IN TOUCH {':)'}</h2>
           <form
             id="contact-form"
             className={`footer__contact-form ${
-              isExpanded ? "footer__contact-form--expanded" : ""
+              isExpanded ? 'footer__contact-form--expanded' : ''
             }`}
             onSubmit={handleSubmit}
           >
@@ -147,17 +147,17 @@ function Footer() {
             <button
               type="submit"
               className={`footer__contact-button ${
-                status ? `footer__contact-button--${status}` : ""
+                status ? `footer__contact-button--${status}` : ''
               }`}
-              disabled={status === "sending"} // 전송 중에는 클릭 비활성화
+              disabled={status === 'sending'} // 전송 중에는 클릭 비활성화
             >
-              {status === "sending"
-                ? "Sending..."
-                : status === "success"
-                ? "Sent!"
-                : status === "error"
-                ? "Failed"
-                : "Send"}
+              {status === 'sending'
+                ? 'Sending...'
+                : status === 'success'
+                ? 'Sent!'
+                : status === 'error'
+                ? 'Failed'
+                : 'Send'}
             </button>
           </form>
         </div>

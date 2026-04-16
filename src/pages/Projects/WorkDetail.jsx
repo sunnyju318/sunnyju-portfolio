@@ -652,6 +652,7 @@ function WorkDetail() {
                         ([key, value], idx) => (
                           <div key={idx} className="work-detail__summary-item">
                             <span className="work-detail__meta-label">
+                              {" "}
                               {key.charAt(0).toUpperCase() +
                                 key.slice(1).replace(/([A-Z])/g, " $1")}
                             </span>
@@ -875,6 +876,7 @@ function WorkDetail() {
                       ([key, value]) => (
                         <div key={key} className="work-detail__tech-item">
                           <span className="work-detail__meta-label">
+                            {" "}
                             {key
                               .replace(/([A-Z])/g, " $1") // camelCase → spaced words
                               .replace(/^./, (str) => str.toUpperCase()) // capitalize
